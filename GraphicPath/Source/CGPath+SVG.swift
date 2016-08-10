@@ -1,0 +1,468 @@
+//
+//  CGPath+SVG.swift
+//  Scalar2D
+//
+//  Created by Glenn Howes on 8/7/16.
+//  Copyright © 2016 Generally Helpful Software. All rights reserved.
+//
+
+import Foundation
+import CoreGraphics
+
+
+fileprivate struct Vector2D
+{
+    let deltaX: CGFloat
+    let deltaY: CGFloat
+    
+    init(deltaX: CGFloat, deltaY: CGFloat)
+    {
+        self.deltaX = deltaX
+        self.deltaY = deltaY
+    }
+
+    // misusing CGPoint as a vector for laziness
+    private var vectorMagnitude: CGFloat
+    {
+        let	result = sqrt(self.deltaX*self.deltaX+self.deltaY*self.deltaY)
+        return result
+    }
+    
+    func vectorRatio(vector2: Vector2D) -> CGFloat
+    {
+        var result = self.deltaX*vector2.deltaX + self.deltaY*vector2.deltaY
+        result /= self.vectorMagnitude*vector2.vectorMagnitude
+        return result
+    }
+    
+    func vectorAngle(vector2: Vector2D) -> CGFloat
+    {
+        let vectorRatio = self.vectorRatio(vector2: vector2)
+        var  result = acos(vectorRatio)
+        if(self.deltaX*vector2.deltaY) < (self.deltaY*vector2.deltaX)
+        {
+            result *= -1.0
+        }
+        return result
+    }
+}
+
+extension CGMutablePath
+{
+    private struct CGPathBuilder
+    {
+        let tokens: [PathToken]
+        var x: CGFloat = 0.0
+        var y: CGFloat = 0.0
+        
+        var lastCubicX₂: CGFloat?
+        var lastCubicY₂: CGFloat?
+        
+        var lastQuadX₁: CGFloat?
+        var lastQuadY₁: CGFloat?
+        
+        let mutablePath : CGMutablePath
+        
+        init(path: CGMutablePath, tokens: [PathToken])
+        {
+            self.mutablePath = path
+            self.tokens = tokens
+            
+            if !path.isEmpty
+            {
+                let startCoordinate = path.currentPoint
+                self.x = startCoordinate.x
+                self.y = startCoordinate.y
+            }
+        }
+        
+        mutating func clearControlPoints()
+        {
+            lastCubicX₂ = nil
+            lastQuadX₁ = nil
+        }
+        
+        mutating private func addArc(xRadius radX: CGFloat, yRadius radY: CGFloat, tiltAngle: Double, largeArcFlag: PathToken.ArcChoice, sweepFlag: PathToken.ArcSweep, endX: CGFloat, endY: CGFloat)
+        {
+            //implementation notes http://www.w3.org/TR/SVG/implnote.html#ArcConversionEndpointToCenter
+            // general algorithm from MIT licensed http://code.google.com/p/svg-edit/source/browse/trunk/editor/canvg/canvg.js
+            // Gabe Lerner (gabelerner@gmail.com)
+            // first do first aid to the parameters to keep them in line
+            
+            let kDegreesToRadiansConstant: Double = Double.pi/180.0
+            
+            defer
+            {
+                self.x = endX
+                self.y = endY
+            }
+            
+            if(self.x == endX && endY == self.y)
+            { // do nothing
+            }
+            else if(radX == 0.0 || radY == 0.0) // not an actual arc, draw a line segment
+            {
+                self.mutablePath.addLineTo(nil, x: endX, y: endY)
+            }
+            else // actually try to draw an arc
+            {
+                var xRadius = fabs(radX) // make sure radius are positive
+                var yRadius = fabs(radY)
+                let xAxisRotationDegrees = fmod(tiltAngle, 360.0)
+                
+                let xAxisRotationRadians = xAxisRotationDegrees*kDegreesToRadiansConstant
+                
+                
+                let cosineAxisRotation = CGFloat(cos(xAxisRotationRadians))
+                let sineAxisRotation = CGFloat(sin(xAxisRotationRadians))
+                
+                let deltaX = self.x-endX
+                let deltaY = self.y-endY
+                
+                let ½DeltaX = deltaX / 2.0
+                let ½DeltaY = deltaY / 2.0
+                
+                let xRadius² = xRadius*xRadius
+                let yRadius² = yRadius*yRadius
+                
+                
+                // steps are from the implementation notes
+                // F.6.5  Step 1: Compute (x1′, y1′)
+                let	translatedCurPoint = CGPoint(x: cosineAxisRotation*½DeltaX+sineAxisRotation*½DeltaY,
+                   	                             y: -1.0*sineAxisRotation*½DeltaX+cosineAxisRotation*½DeltaY)
+                    
+                
+                let translatedCurPointX² = translatedCurPoint.x*translatedCurPoint.x
+                let translatedCurPointY² = translatedCurPoint.y*translatedCurPoint.y
+                
+                // (skipping to different section) F.6.6 Step 3: Ensure radii are large enough
+                var	shouldBeNoMoreThanOne = translatedCurPointX²/(xRadius²)
+                    + translatedCurPointY²/(yRadius²)
+                
+                if(shouldBeNoMoreThanOne > 1.0)
+                {
+                    xRadius *= sqrt(shouldBeNoMoreThanOne)
+                    yRadius *= sqrt(shouldBeNoMoreThanOne)
+                    
+                    shouldBeNoMoreThanOne = translatedCurPointX²/(xRadius²)
+                        + translatedCurPointY²/(yRadius²)
+                    if(shouldBeNoMoreThanOne > 1.0) // sometimes just a bit north of 1.0000000 after first pass
+                    {
+                        shouldBeNoMoreThanOne += 0.000001 // making sure
+                        xRadius *= sqrt(shouldBeNoMoreThanOne)
+                        yRadius *= sqrt(shouldBeNoMoreThanOne)
+                    }
+                }
+                
+                var	transform = CGAffineTransform.identity
+                // back to  F.6.5   Step 2: Compute (cx′, cy′)
+                let  centerScalingDivisor = xRadius²*translatedCurPointY²
+                    + yRadius²*translatedCurPointX²
+               
+                var	centerScaling = CGFloat(0.0)
+                
+                if(centerScalingDivisor != 0.0)
+                {
+                    let centerScaling² = (xRadius²*yRadius²
+                        - xRadius²*translatedCurPointY²
+                        - yRadius²*translatedCurPointX²)
+                        / centerScalingDivisor
+                    
+                    centerScaling = sqrt(centerScaling²)
+                    
+                    
+                    if(centerScaling.isNaN)
+                    {
+                        centerScaling = 0.0
+                    }
+                
+                    if(sweepFlag.rawValue == largeArcFlag.rawValue)
+                    {
+                        
+                        centerScaling *= -1.0
+                    }
+                }
+                
+                let translatedCenterPoint = CGPoint(x: centerScaling*xRadius*translatedCurPoint.y/yRadius,
+                                                    y: -1.0*centerScaling*yRadius*translatedCurPoint.x/xRadius)
+                
+                // F.6.5  Step 3: Compute (cx, cy) from (cx′, cy′)
+                
+                
+                let averageX = (self.x+endX)/2.0
+                let averageY = (self.y+endY)/2.0
+                let centerPoint = CGPoint(x:averageX+cosineAxisRotation*translatedCenterPoint.x-sineAxisRotation*translatedCenterPoint.y,
+                              y: averageY+sineAxisRotation*translatedCenterPoint.x+cosineAxisRotation*translatedCenterPoint.y)
+                // F.6.5   Step 4: Compute θ1 and Δθ
+                
+                // misusing CGPoint as a vector
+                let vectorX = Vector2D(deltaX: 1.0, deltaY: 0.0)
+                let vectorU = Vector2D(deltaX: (translatedCurPoint.x-translatedCenterPoint.x)/xRadius,
+                                      deltaY: (translatedCurPoint.y-translatedCenterPoint.y)/yRadius)
+                let vectorV = Vector2D(deltaX: (-1.0*translatedCurPoint.x-translatedCenterPoint.x)/xRadius,
+                                      deltaY: (-1.0*translatedCurPoint.y-translatedCenterPoint.y)/yRadius)
+                
+                let	startAngle = vectorX.vectorAngle(vector2: vectorU)
+                
+                var	angleDelta = vectorU.vectorAngle(vector2: vectorV)
+                
+                let vectorRatio = vectorU.vectorRatio(vector2: vectorV)
+                
+                if(vectorRatio <= -1)
+                {
+                    angleDelta = CGFloat.pi
+                }
+                else if(vectorRatio >= 1.0)
+                {
+                    angleDelta = 0.0
+                }
+                
+                switch sweepFlag
+                {
+                    case .clockwise where angleDelta > 0.0:
+                        angleDelta = angleDelta - 2.0 * CGFloat.pi
+                    case .counterclockwise where angleDelta < 0.0:
+                        angleDelta = angleDelta - 2.0 * CGFloat.pi
+                    default:
+                    break
+                }
+                
+                
+                transform = transform.translatedBy(x: centerPoint.x, y: centerPoint.y)
+                
+                transform = transform.rotated(by: CGFloat(xAxisRotationRadians))
+                
+                let radius = (xRadius > yRadius) ? xRadius : yRadius
+                let scaleX = (xRadius > yRadius) ? 1.0 : xRadius / yRadius
+                let scaleY = (xRadius > yRadius) ? yRadius / xRadius : 1.0
+                
+                transform = transform.scaledBy(x: scaleX, y: scaleY)
+                
+
+                self.mutablePath.addArc(&transform, x: 0.0, y: 0.0, radius: radius, startAngle: startAngle, endAngle: startAngle+angleDelta,
+                                        clockwise: 0 == sweepFlag.rawValue)
+            }
+            clearControlPoints()
+        }
+        
+        mutating func build()
+        {
+            for aToken in tokens
+            {
+                switch aToken
+                {
+                    case .close:
+                        mutablePath.closeSubpath()
+                    case let .moveTo(deltaX, deltaY):
+                        x = x + CGFloat(deltaX)
+                        y = y + CGFloat(deltaY)
+                        mutablePath.moveTo(nil, x: x, y: y)
+                        clearControlPoints()
+                    case let .moveToAbsolute(newX, newY):
+                        x = CGFloat(newX)
+                        y = CGFloat(newY)
+                        mutablePath.moveTo(nil, x: x, y: y)
+                        clearControlPoints()
+                        
+                    case let .lineTo(deltaX, deltaY):
+                        x = x + CGFloat(deltaX)
+                        y = y + CGFloat(deltaY)
+                        mutablePath.addLineTo(nil, x: x, y: y)
+                        clearControlPoints()
+                    case let .lineToAbsolute(newX, newY):
+                        x = CGFloat(newX)
+                        y = CGFloat(newY)
+                        mutablePath.addLineTo(nil, x: x, y: y)
+                        clearControlPoints()
+                        
+                    case .horizontalLineTo(let deltaX):
+                        x = x + CGFloat(deltaX)
+                        mutablePath.addLineTo(nil, x: x, y: y)
+                        clearControlPoints()
+                    case .horizontalLineToAbsolute(let newX):
+                        x = CGFloat(newX)
+                        mutablePath.addLineTo(nil, x: x, y: y)
+                        clearControlPoints()
+                        
+                    case .verticalLineTo(let deltaY):
+                        y = y + CGFloat(deltaY)
+                        mutablePath.addLineTo(nil, x: x, y: y)
+                        clearControlPoints()
+                    case .verticalLineToAbsolute(let newY):
+                        y = CGFloat(newY)
+                        mutablePath.addLineTo(nil, x: x, y: y)
+                        clearControlPoints()
+                    
+                    case let .quadraticBezierTo(deltaX₁, deltaY₁, deltaX, deltaY):
+                        let x₁ = CGFloat(deltaX₁) + x
+                        let y₁ = CGFloat(deltaY₁) + y
+                        x = x + CGFloat(deltaX)
+                        y = y + CGFloat(deltaY)
+                        mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        lastCubicX₂ = nil
+                    case let .quadraticBezierToAbsolute(x₁, y₁, newX, newY):
+                        let x₁ = CGFloat(x₁)
+                        let y₁ = CGFloat(y₁)
+                        x = CGFloat(newX)
+                        y = CGFloat(newY)
+                        mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        lastCubicX₂ = nil
+                        lastQuadX₁ = x₁
+                        lastQuadY₁ = y₁
+                    
+                    case let .smoothQuadraticBezierTo(deltaX, deltaY):
+                        var x₁ = x
+                        var y₁ = y
+                        
+                        if let previousQuadX₁  = self.lastQuadX₁,
+                            let previousQuadY₁ = self.lastQuadY₁
+                        {
+                            x₁ -= (previousQuadX₁-x₁)
+                            y₁ -= (previousQuadY₁-y₁)
+                        }
+                        
+                        x = x + CGFloat(deltaX)
+                        y = y + CGFloat(deltaY)
+                        
+                        mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        lastCubicX₂ = nil
+                        lastQuadX₁ = x₁
+                        lastQuadY₁ = y₁
+                    case let .smoothQuadraticBezierToAbsolute(newX, newY):
+                        var x₁ = x
+                        var y₁ = y
+                        
+                        if let previousQuadX₁ = self.lastQuadX₁,
+                            let previousQuadY₁ = self.lastQuadY₁
+                        {
+                            x₁ -= (previousQuadX₁-x₁)
+                            y₁ -= (previousQuadY₁-y₁)
+                        }
+                        
+                        x = CGFloat(newX)
+                        y = CGFloat(newY)
+                        
+                        mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        lastCubicX₂ = nil
+                        lastQuadX₁ = x₁
+                        lastQuadY₁ = y₁
+                    case let .cubicBezierTo(deltaX₁, deltaY₁, deltaX₂, deltaY₂, deltaX, deltaY):
+                    
+                        let x₁ = x + CGFloat(deltaX₁)
+                        let y₁ = y + CGFloat(deltaY₁)
+                        let x₂ = x + CGFloat(deltaX₂)
+                        let y₂ = y + CGFloat(deltaY₂)
+                    
+                        x = x + CGFloat(deltaX)
+                        y = y + CGFloat(deltaY)
+                        
+                        mutablePath.addCurve(nil, cp1x: x₁, cp1y: y₁, cp2x: x₂, cp2y: y₂, endingAtX: x, y: y)
+                        lastCubicX₂ = x₂
+                        lastCubicY₂ = y₂
+                        lastQuadX₁ = nil
+                    case let .cubicBezierToAbsolute(x₁, y₁, x₂, y₂, newX, newY):
+                    
+                        x = CGFloat(newX)
+                        y = CGFloat(newY)
+                        lastCubicX₂ = CGFloat(x₂)
+                        lastCubicY₂ = CGFloat(y₂)
+                    
+                        mutablePath.addCurve(nil, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
+                        
+                        lastQuadX₁ = nil
+                    
+                    case let .smoothCubicBezierTo(deltaX₂, deltaY₂, deltaX, deltaY):
+                    
+                        var x₁ = x
+                        var y₁ = y
+                    
+                        
+                        if let previousCubicX₂ = self.lastCubicX₂,
+                            let previousCubicY₂ = self.lastCubicY₂
+                        {
+                            x₁ -= (previousCubicX₂-x₁)
+                            y₁ -= (previousCubicY₂-y₁)
+                        }
+                    
+                        
+                        x = x + CGFloat(deltaX)
+                        y = y + CGFloat(deltaY)
+                        
+                        
+                        lastCubicX₂ = x + CGFloat(deltaX₂)
+                        lastCubicY₂ = y + CGFloat(deltaY₂)
+                    
+                        mutablePath.addCurve(nil, cp1x: x₁, cp1y: y₁, cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
+                        
+                        lastQuadX₁ = nil
+                    
+                    case let .smoothCubicBezierToAbsolute(x₂, y₂, newX, newY):
+                        
+                        var x₁ = x
+                        var y₁ = y
+                        if let previousCubicX₂ = self.lastCubicX₂,
+                            let previousCubicY₂ = self.lastCubicY₂
+                        {
+                            x₁ -= (previousCubicX₂-x₁)
+                            y₁ -= (previousCubicY₂-y₁)
+                        }
+                        
+                        x = CGFloat(newX)
+                        y = CGFloat(newY)
+                        lastCubicX₂ = CGFloat(x₂)
+                        lastCubicY₂ = CGFloat(y₂)
+                    
+                        mutablePath.addCurve(nil, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
+                        
+                        lastQuadX₁ = nil
+                    
+                    case let .arcTo(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, deltaX, deltaY):
+                       
+                        self.addArc(xRadius: CGFloat(xRadius), yRadius: CGFloat(yRadius), tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: x + CGFloat(deltaX), endY: y + CGFloat(deltaY))
+
+                    case let .arcToAbsolute(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, newX, newY):
+
+                        self.addArc(xRadius: CGFloat(xRadius), yRadius: CGFloat(yRadius), tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: CGFloat(newX), endY: CGFloat(newY))
+                    
+                    
+                    case .bad(_, _):
+                    break
+                }
+            }
+        }
+        
+    }
+    
+    public func addSVGPath(svgPath: String) -> Bool
+    {
+        do
+        {
+            let tokens = try svgPath.asPathTokens()
+            var builder = CGPathBuilder(path: self, tokens: tokens)
+            
+            builder.build()
+            return true
+        }
+        catch
+        {
+            return false
+        }
+    }
+}
+
+extension CGPath
+{
+    public static func pathFromSVGPath(svgPath: String) -> CGPath?
+    {
+        let mutableResult = CGMutablePath()
+        if mutableResult.addSVGPath(svgPath: svgPath)
+        {
+            return mutableResult.copy()
+        }
+        else
+        {
+            return nil 
+        }
+    }
+}
+
