@@ -61,8 +61,22 @@ class CGPathGeneratorTests: XCTestCase {
             XCTFail("Arc path not created")
             return
         }
+    }
+    
+    func testBackToString()
+    {
+        guard let cgPath = CGPath.pathFromSVGPath(svgPath: "M0 0 L 10 10 H 20 V20 Q 30 30 40 40 C 50 50 60 60 70 70 Z") else
+        {
+            XCTFail("Arc path not created")
+            return
+        }
+        
+        let asString = cgPath.asString()
+        XCTAssert(!asString.isEmpty)
+        XCTAssertEqual(asString, "M (0.0, 0.0)\nL (10.0, 10.0)\nL (20.0, 10.0)\nL (20.0, 20.0)\nQ (30.0, 30.0, 40.0, 40.0)\nC (50.0, 50.0, 60.0, 60.0, 70.0, 70.0)\nZ\n")
         
     }
+    
     
     func testPerformanceLotsOfLines() {
         

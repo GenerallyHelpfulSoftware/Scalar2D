@@ -24,9 +24,12 @@
 		213D06FD1D55F72D00A5FD69 /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */; };
 		2157D3751D5AE40500C57462 /* NSBezierPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */; };
-		2157D3761D5AE41B00C57462 /* CGPathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */; };
 		2157D3771D5AE5F600C57462 /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; };
 		2157D3781D5AE63A00C57462 /* NSBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E783F1D583401003802D7 /* NSBezierPath+SVG.swift */; };
+		21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
+		21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
+		21B5ABCA1D5FE74200B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
+		21B5ABCE1D60047B00B6E5EA /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
 		21B7197A1D48599B00B0ACBF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
 		21B719811D48599B00B0ACBF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B719731D48599A00B0ACBF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -118,6 +121,8 @@
 		2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_Mac_Test_AppTests.swift; sourceTree = "<group>"; };
 		2157D36E1D5AE3DE00C57462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathTests.swift; sourceTree = "<group>"; };
+		21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Test.swift"; path = "Scalar2DTests/CGPath+Test.swift"; sourceTree = SOURCE_ROOT; };
+		21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Iterate.swift"; path = "GraphicPath/Source/CGPath+Iterate.swift"; sourceTree = SOURCE_ROOT; };
 		21B719701D48599A00B0ACBF /* Scalar2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B719731D48599A00B0ACBF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
 		21B719741D48599A00B0ACBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -258,6 +263,7 @@
 		21B7197D1D48599B00B0ACBF /* Scalar2DTests */ = {
 			isa = PBXGroup;
 			children = (
+				21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */,
 				21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */,
 				212E78241D5797B0003802D7 /* PathGeneratorTests.swift */,
 				212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */,
@@ -272,6 +278,7 @@
 			children = (
 				21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */,
 				212E78281D57C05C003802D7 /* CGPath+SVG.swift */,
+				21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */,
 				212E782A1D5826AE003802D7 /* UIBezierPath+SVG.swift */,
 				212E783F1D583401003802D7 /* NSBezierPath+SVG.swift */,
 			);
@@ -515,8 +522,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2157D3761D5AE41B00C57462 /* CGPathGeneratorTests.swift in Sources */,
 				2157D3751D5AE40500C57462 /* NSBezierPathTests.swift in Sources */,
+				21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */,
 				2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,11 +533,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B7198D1D4A2DBF00B0ACBF /* DrawStyle.swift in Sources */,
+				21B5ABCE1D60047B00B6E5EA /* CGPath+Iterate.swift in Sources */,
 				212E782B1D5826AE003802D7 /* UIBezierPath+SVG.swift in Sources */,
 				212E78291D57C05C003802D7 /* CGPath+SVG.swift in Sources */,
 				21E326C91D5B411900B64C7C /* PathView.swift in Sources */,
 				2157D3781D5AE63A00C57462 /* NSBezierPath+SVG.swift in Sources */,
 				21B7198F1D4A35B000B0ACBF /* PathGenerator.swift in Sources */,
+				21B5ABCA1D5FE74200B6E5EA /* CGPath+Test.swift in Sources */,
 				21B7198B1D48633A00B0ACBF /* DocumentContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,6 +550,7 @@
 			files = (
 				212E785B1D58ACAF003802D7 /* CGPathGeneratorTests.swift in Sources */,
 				212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */,
+				21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */,
 				21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
