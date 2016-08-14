@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable class PathView: UIView {
+@IBDesignable public class PathView: UIView {
 
     @IBInspectable public var lineWidth: CGFloat = 1
     {
