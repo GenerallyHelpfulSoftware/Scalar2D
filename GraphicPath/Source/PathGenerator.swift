@@ -292,7 +292,7 @@ public extension String
             
             if self.completed
             {
-                return try PathToken.tokenWithOperand(operand: self.operand, parameters: self.completedParameters, atOffset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                return try PathToken(operand: self.operand, parameters: self.completedParameters, atOffset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
             }
             else
             {
@@ -304,7 +304,6 @@ public extension String
     
     private struct PathParser
     {
-        
         private enum ParseState
         {
             case lookingForFirstOperand
@@ -430,6 +429,11 @@ public extension String
         }
     }
     
+    /**
+        A function that converts a properly formatted string using the [SVG path specification](http://www.w3.org/TR/SVG/paths.html) to an array of PathTokens.
+        - returns: An arry of PathToken
+     **/
+    
     func asPathTokens() throws -> [PathToken]
     {
         var cursorIndex = self.startIndex
@@ -452,9 +456,14 @@ public extension String
 }
 
 
-
+/**
+    An enum encapsulating an individual path definition operation such as a line to, or a close path
+**/
 public enum PathToken : CustomStringConvertible
 {
+    /**
+        In the SVG definition of an Arc, there are almost always 2 ways to get from the starting point to the specified ending point. One way is longer than the other, thus the choice.
+     **/
     public enum ArcChoice : Int
     {
         case large = 1
@@ -472,6 +481,9 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
+    /**
+     In the SVG definition of an Arc, there is always the choice to reach from the start point to the end point by going clockwise or counterclockwise. Thus the need for this flag.
+     **/
     public enum ArcSweep : Int
     {
         case clockwise = 0
@@ -488,7 +500,9 @@ public enum PathToken : CustomStringConvertible
             }
         }
     }
-    
+    /**
+        If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
+     **/
     public enum FailureReason : CustomStringConvertible, Error
     {
         case none
@@ -542,61 +556,61 @@ public enum PathToken : CustomStringConvertible
     case arcToAbsolute(Double, Double, Double, ArcChoice, ArcSweep, Double, Double)
     
     
-    public static func tokenWithOperand(operand: Character, parameters: [Double], atOffset offset: Int) throws -> PathToken
+    public  init(operand: Character, parameters: [Double], atOffset offset: Int) throws
     {
         switch operand
         {
             case "z", "Z":
                 assert(parameters.count == 0, "close needs no parameters")
-                return .close
+                self = .close
             case "m":
                 assert(parameters.count == 2, "moveTo needs 2 parameters")
-                return .moveTo(parameters[0], parameters[1])
+                self = .moveTo(parameters[0], parameters[1])
             case "M":
                 assert(parameters.count == 2, "moveToAbsolute needs 2 parameters")
-                return .moveToAbsolute(parameters[0], parameters[1])
+                self = .moveToAbsolute(parameters[0], parameters[1])
             case "l":
                 assert(parameters.count == 2, "lineTo needs 2 parameters")
-                return .lineTo(parameters[0], parameters[1])
+                self = .lineTo(parameters[0], parameters[1])
             case "L":
                 assert(parameters.count == 2, "lineToAbsolute needs 2 parameters")
-                return .lineToAbsolute(parameters[0], parameters[1])
+                self = .lineToAbsolute(parameters[0], parameters[1])
             case "h":
                 assert(parameters.count == 1, "horizontalLineTo needs 1 parameter")
-                return .horizontalLineTo(parameters[0])
+                self = .horizontalLineTo(parameters[0])
             case "H":
                 assert(parameters.count == 1, "horizontalLineToAbsolute needs 1 parameter")
-                return .horizontalLineToAbsolute(parameters[0])
+                self = .horizontalLineToAbsolute(parameters[0])
             case "v":
                 assert(parameters.count == 1, "verticalLineTo needs 1 parameter")
-                return .verticalLineTo(parameters[0])
+                self = .verticalLineTo(parameters[0])
             case "V":
                 assert(parameters.count == 1, "verticalLineToAbsolute needs 1 parameter")
-                return .verticalLineToAbsolute(parameters[0])
+                self = .verticalLineToAbsolute(parameters[0])
             case "q":
                 assert(parameters.count == 4, "quadraticBezierTo needs 4 parameters")
-                return .quadraticBezierTo(parameters[0], parameters[1], parameters[2], parameters[3])
+                self = .quadraticBezierTo(parameters[0], parameters[1], parameters[2], parameters[3])
             case "Q":
                 assert(parameters.count == 4, "quadraticBezierToAbsolute needs 4 parameters")
-                return .quadraticBezierToAbsolute(parameters[0], parameters[1], parameters[2], parameters[3])
+                self = .quadraticBezierToAbsolute(parameters[0], parameters[1], parameters[2], parameters[3])
             case "c":
                 assert(parameters.count == 6, "cubicBezierTo needs 6 parameters")
-                return .cubicBezierTo(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5])
+                self = .cubicBezierTo(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5])
             case "C":
                 assert(parameters.count == 6, "cubicBezierToAbsolute needs 6 parameters")
-                return .cubicBezierToAbsolute(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5])
+                self = .cubicBezierToAbsolute(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5])
             case "t":
                 assert(parameters.count == 2, "smoothQuadraticBezierTo needs 2 parameters")
-                return .smoothQuadraticBezierTo(parameters[0], parameters[1])
+                self = .smoothQuadraticBezierTo(parameters[0], parameters[1])
             case "T":
                 assert(parameters.count == 2, "smoothQuadraticBezierToAbsolute needs 2 parameters")
-                return .smoothQuadraticBezierToAbsolute(parameters[0], parameters[1])
+                self = .smoothQuadraticBezierToAbsolute(parameters[0], parameters[1])
             case "s":
                 assert(parameters.count == 4, "smoothCubicBezierTo needs 4 parameters")
-                return .smoothCubicBezierTo(parameters[0], parameters[1], parameters[2], parameters[3])
+                self = .smoothCubicBezierTo(parameters[0], parameters[1], parameters[2], parameters[3])
             case "S":
                 assert(parameters.count == 4, "smoothCubicBezierToAbsolute needs 4 parameters")
-                return .smoothCubicBezierToAbsolute(parameters[0], parameters[1], parameters[2], parameters[3])
+                self = .smoothCubicBezierToAbsolute(parameters[0], parameters[1], parameters[2], parameters[3])
             case "a", "A":
                 assert(parameters.count == 7, "arcTo needs 7 parameters")
                 let arcChoiceRaw = parameters[3]
@@ -616,11 +630,11 @@ public enum PathToken : CustomStringConvertible
                 let arcSweep = ArcSweep(rawValue: Int(arcSweepRaw))
                 if operand == "a"
                 {
-                    return .arcTo(parameters[0], parameters[1], parameters[2], archChoice!, arcSweep!, parameters[5], parameters[6])
+                    self = .arcTo(parameters[0], parameters[1], parameters[2], archChoice!, arcSweep!, parameters[5], parameters[6])
                 }
                 else
                 {
-                    return .arcToAbsolute(parameters[0], parameters[1], parameters[2], archChoice!, arcSweep!, parameters[5], parameters[6])
+                    self = .arcToAbsolute(parameters[0], parameters[1], parameters[2], archChoice!, arcSweep!, parameters[5], parameters[6])
                 }
             default:
                 throw PathToken.FailureReason.unexpectedCharacter(badCharacter: operand, offset: offset)
