@@ -36,8 +36,18 @@ import CoreGraphics
 
 extension CGPath
 {
+    /**
+        Declaration of the closure type which will be called with the elements of a CGPath.
+    **/
     public typealias ElementIterator = (element: CGPathElement)->Void
 
+    /**
+     
+        A function that delivers the contents of the CGPath to a provided closure one element at a time. 
+        See the apply or CGPathApply function for details.
+        - parameters:
+            - callback: a closure that takes a CGPathElemnt as the sole parameter.
+     **/
     public func iterate( _ callback: ElementIterator)
     {
         var localCallback = callback

@@ -31,9 +31,35 @@
 //
 import Foundation
 
-
 public extension String
 {
+    /**
+     A function that converts a properly formatted string using the [SVG path specification](http://www.w3.org/TR/SVG/paths.html) to an array of PathTokens.
+     - returns: An arry of PathToken
+     - throws: a PathToken.FailureReason
+     **/
+    
+    public func asPathTokens() throws -> [PathToken]
+    {
+        var cursorIndex = self.startIndex
+        let endIndex = self.endIndex
+        
+        var parser = PathParser(pathString: self)
+        
+        charaterLoop: while cursorIndex < endIndex
+        {
+            let aCharacter = self[cursorIndex]
+            
+            try parser.handleCharacter(character: aCharacter, atIndex: cursorIndex)
+            
+            cursorIndex = self.index(after: cursorIndex)
+        }
+        
+        return try parser.complete()
+        
+    }
+    
+    
     private struct TokenBuilder
     {
         enum TokenBuildState
@@ -429,30 +455,7 @@ public extension String
         }
     }
     
-    /**
-        A function that converts a properly formatted string using the [SVG path specification](http://www.w3.org/TR/SVG/paths.html) to an array of PathTokens.
-        - returns: An arry of PathToken
-     **/
-    
-    func asPathTokens() throws -> [PathToken]
-    {
-        var cursorIndex = self.startIndex
-        let endIndex = self.endIndex
-        
-        var parser = PathParser(pathString: self)
-        
-        charaterLoop: while cursorIndex < endIndex
-        {
-            let aCharacter = self[cursorIndex]
-            
-            try parser.handleCharacter(character: aCharacter, atIndex: cursorIndex)
-            
-            cursorIndex = self.index(after: cursorIndex)
-        }
-        
-        return try parser.complete()
-        
-    }
+
 }
 
 
@@ -767,7 +770,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    static func isValidOperand(operand : Character) -> Bool
+    fileprivate static func isValidOperand(operand : Character) -> Bool
     {
         switch String(operand).lowercased()
         {
@@ -778,7 +781,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    public static func parametersPerOperand(operand : Character) -> Int
+    fileprivate static func parametersPerOperand(operand : Character) -> Int
     {
         switch String(operand).lowercased()
         {
@@ -807,7 +810,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
 
-    static func nameForOperand(operand : Character) -> String
+    fileprivate static func nameForOperand(operand : Character) -> String
     {
         var baseName : String
         let operandAsString = String(operand)

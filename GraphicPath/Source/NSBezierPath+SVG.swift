@@ -40,7 +40,7 @@ public extension NSBezierPath
         let cgPath = CGMutablePath()
         guard cgPath.addSVGPath(svgPath: svgPath) == true  else
         {
-            return nil
+            return nil // wasn't a valid SVG path
         }
         
         self.init()
@@ -49,7 +49,7 @@ public extension NSBezierPath
         
         
         cgPath.iterate { (element) in
-            let points = element.points
+            let points = element.points // remember that points are unsafe (thus use of pointee below)
         
             switch anElement.type
             {
@@ -61,12 +61,12 @@ public extension NSBezierPath
                     myself.line(to: NSPoint(x: newPoint.x, y: newPoint.y))
                 case .closeSubpath:
                     myself.close()
-                case .addCurveToPoint:
+                case .addCurveToPoint: // add a cubic bezier
                     let controlPoint1 = points.pointee
                     let controlPoint2 = points.advanced(by: 1).pointee
                     let nextPoint = points.advanced(by: 2).pointee
                     myself.curve(to: nextPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
-                case .addQuadCurveToPoint:
+                case .addQuadCurveToPoint: // As NSBezierPath has no native quad curve element, convert to cubic.
                     let ⅔ = CGFloat(2.0/3.0)
                     
                     let quadControlPoint = points.pointee

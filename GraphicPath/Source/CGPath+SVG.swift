@@ -98,12 +98,29 @@ extension CGMutablePath
             }
         }
         
+        
+        /**
+            The smooth/shortcut operators T & S work with the control points of the immediately previous curve operators. This method just cleans the control points out if the previous operand was not a curve operatior.
+        **/
         mutating func clearControlPoints()
         {
             lastCubicX₂ = nil
             lastQuadX₁ = nil
         }
         
+        /**
+            A routine to take the parameters provided by an SVG arc operator and add it to a CGMutablePath
+            - parameters:
+                - xRadius: the radius of the arc along the X axis
+                - yRadius: the radious of the arc along the Y axis
+                - tiltAngle: the rotation (in degrees) of the arc off the X Axis
+                - largeArcFlag: whether the long path will be selected
+                - sweepFlag: whether the path will travel clockwise or counterclockwise
+                - endX: the absolute X coordinate of the end point. 
+                - endY: the absolute Y coordinate of the end point.
+         
+            - warning; An end point that equals the start point will result in nothing being drawn.
+         **/
         mutating private func addArc(xRadius radX: CGFloat, yRadius radY: CGFloat, tiltAngle: Double, largeArcFlag: PathToken.ArcChoice, sweepFlag: PathToken.ArcSweep, endX: CGFloat, endY: CGFloat)
         {
             //implementation notes http://www.w3.org/TR/SVG/implnote.html#ArcConversionEndpointToCenter
@@ -266,7 +283,9 @@ extension CGMutablePath
             }
             clearControlPoints()
         }
-        
+        /**
+            Loop over the tokens and add the equivalent CGPath operation to the mutablePath.
+        */
         mutating func build()
         {
             for aToken in tokens
@@ -350,9 +369,10 @@ extension CGMutablePath
                         y = y + CGFloat(deltaY)
                         
                         mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
-                        lastCubicX₂ = nil
+                        lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
+                    
                     case let .smoothQuadraticBezierToAbsolute(newX, newY):
                         var x₁ = x
                         var y₁ = y
@@ -368,9 +388,10 @@ extension CGMutablePath
                         y = CGFloat(newY)
                         
                         mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
-                        lastCubicX₂ = nil
+                        lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
+                    
                     case let .cubicBezierTo(deltaX₁, deltaY₁, deltaX₂, deltaY₂, deltaX, deltaY):
                     
                         let x₁ = x + CGFloat(deltaX₁)
@@ -384,7 +405,8 @@ extension CGMutablePath
                         mutablePath.addCurve(nil, cp1x: x₁, cp1y: y₁, cp2x: x₂, cp2y: y₂, endingAtX: x, y: y)
                         lastCubicX₂ = x₂
                         lastCubicY₂ = y₂
-                        lastQuadX₁ = nil
+                        lastQuadX₁ = nil // clean out the last quad as this is a cubic
+                    
                     case let .cubicBezierToAbsolute(x₁, y₁, x₂, y₂, newX, newY):
                     
                         x = CGFloat(newX)
@@ -394,7 +416,7 @@ extension CGMutablePath
                     
                         mutablePath.addCurve(nil, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
                         
-                        lastQuadX₁ = nil
+                        lastQuadX₁ = nil // clean out the last quad as this is a cubic
                     
                     case let .smoothCubicBezierTo(deltaX₂, deltaY₂, deltaX, deltaY):
                     
@@ -419,7 +441,7 @@ extension CGMutablePath
                     
                         mutablePath.addCurve(nil, cp1x: x₁, cp1y: y₁, cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
                         
-                        lastQuadX₁ = nil
+                        lastQuadX₁ = nil // clean out the last quad as this is a cubic
                     
                     case let .smoothCubicBezierToAbsolute(x₂, y₂, newX, newY):
                         
@@ -439,7 +461,7 @@ extension CGMutablePath
                     
                         mutablePath.addCurve(nil, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
                         
-                        lastQuadX₁ = nil
+                        lastQuadX₁ = nil // clean out the last quad as this is a cubic
                     
                     case let .arcTo(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, deltaX, deltaY):
                        
@@ -457,7 +479,12 @@ extension CGMutablePath
         }
         
     }
-    
+    /**
+        There might be a case where you would want to add an SVG path to a pre-existing CGMutablePath.
+        - parameters: 
+            - svgPath: a (hopefully) well formatted SVG path.
+        - returns: true if the SVG path was valid, false otherwise. 
+     **/
     public func addSVGPath(svgPath: String) -> Bool
     {
         do
@@ -477,6 +504,14 @@ extension CGMutablePath
 
 extension CGPath
 {
+    /**
+     A factory method to create an immutable CGPath from an SVG path string.
+        I am not sure how to make this into a convenience init method.
+     
+        - parameters:
+            - svgPath: A (hopefully) valid path complying to the SVG path specification. 
+        - returns: an optional CGPath which will be .Some if the SVG path string was valid.
+     **/
     public static func pathFromSVGPath(svgPath: String) -> CGPath?
     {
         let mutableResult = CGMutablePath()
