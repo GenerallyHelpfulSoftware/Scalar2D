@@ -321,14 +321,17 @@ extension CGMutablePath
                         x = x + CGFloat(deltaX)
                         y = y + CGFloat(deltaY)
                         mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
-                        lastCubicX₂ = nil
+                        lastCubicX₂ = nil // clean out the last cubic as this is a quad
+                        
+                        lastQuadX₁ = x₁
+                        lastQuadY₁ = y₁
                     case let .quadraticBezierToAbsolute(x₁, y₁, newX, newY):
                         let x₁ = CGFloat(x₁)
                         let y₁ = CGFloat(y₁)
                         x = CGFloat(newX)
                         y = CGFloat(newY)
                         mutablePath.addQuadCurve(nil, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
-                        lastCubicX₂ = nil
+                        lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
                     
