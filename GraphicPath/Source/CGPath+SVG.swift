@@ -1,4 +1,4 @@
-//
+  //
 //  CGPath+SVG.swift
 //  Scalar2D
 //
@@ -161,8 +161,8 @@ extension CGMutablePath
                 let ½DeltaX = deltaX / 2.0
                 let ½DeltaY = deltaY / 2.0
                 
-                let xRadius² = xRadius*xRadius
-                let yRadius² = yRadius*yRadius
+                var xRadius² = xRadius*xRadius
+                var yRadius² = yRadius*yRadius
                 
                 
                 // steps are from the implementation notes
@@ -183,6 +183,9 @@ extension CGMutablePath
                     xRadius *= sqrt(shouldBeNoMoreThanOne)
                     yRadius *= sqrt(shouldBeNoMoreThanOne)
                     
+                    xRadius² = xRadius*xRadius
+                    yRadius² = yRadius*yRadius
+                    
                     shouldBeNoMoreThanOne = translatedCurPointX²/(xRadius²)
                         + translatedCurPointY²/(yRadius²)
                     if(shouldBeNoMoreThanOne > 1.0) // sometimes just a bit north of 1.0000000 after first pass
@@ -190,6 +193,9 @@ extension CGMutablePath
                         shouldBeNoMoreThanOne += 0.000001 // making sure
                         xRadius *= sqrt(shouldBeNoMoreThanOne)
                         yRadius *= sqrt(shouldBeNoMoreThanOne)
+                        
+                        xRadius² = xRadius*xRadius
+                        yRadius² = yRadius*yRadius
                     }
                 }
                 
@@ -500,6 +506,16 @@ extension CGMutablePath
             return false
         }
     }
+
+    // following crashes the current Swift compiler
+//    public convenience init?(svgPath: String)
+//    {
+//        self.init()
+//        if !self.addSVGPath(svgPath: svgPath)
+//        {
+//            return nil 
+//        }
+//    }
 }
 
 extension CGPath
