@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78241D5797B0003802D7 /* PathGeneratorTests.swift */; };
-		212E78291D57C05C003802D7 /* CGPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78281D57C05C003802D7 /* CGPath+SVG.swift */; };
-		212E782B1D5826AE003802D7 /* UIBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E782A1D5826AE003802D7 /* UIBezierPath+SVG.swift */; };
 		212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78321D5832C4003802D7 /* AppDelegate.swift */; };
 		212E78351D5832C4003802D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78341D5832C4003802D7 /* ViewController.swift */; };
 		212E78371D5832C4003802D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212E78361D5832C4003802D7 /* Assets.xcassets */; };
@@ -20,22 +18,21 @@
 		213D06F21D55F72200A5FD69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F01D55F72200A5FD69 /* Main.storyboard */; };
 		213D06F41D55F72200A5FD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F31D55F72200A5FD69 /* Assets.xcassets */; };
 		213D06F71D55F72200A5FD69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */; };
-		213D06FC1D55F72D00A5FD69 /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; };
-		213D06FD1D55F72D00A5FD69 /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */; };
 		2157D3751D5AE40500C57462 /* NSBezierPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */; };
-		2157D3771D5AE5F600C57462 /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; };
-		2157D3781D5AE63A00C57462 /* NSBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E783F1D583401003802D7 /* NSBezierPath+SVG.swift */; };
 		21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
-		21B5ABCE1D60047B00B6E5EA /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
-		21B7197A1D48599B00B0ACBF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
-		21B719811D48599B00B0ACBF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21B719731D48599A00B0ACBF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		21B7198B1D48633A00B0ACBF /* DocumentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198A1D48633A00B0ACBF /* DocumentContext.swift */; };
-		21B7198D1D4A2DBF00B0ACBF /* DrawStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198C1D4A2DBF00B0ACBF /* DrawStyle.swift */; };
-		21B7198F1D4A35B000B0ACBF /* PathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */; };
-		21E326C91D5B411900B64C7C /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView.swift */; };
+		21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFE8C71D63009D003446DF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; };
+		21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198A1D48633A00B0ACBF /* DocumentContext.swift */; };
+		21FFE8D21D6300AF003446DF /* DrawStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198C1D4A2DBF00B0ACBF /* DrawStyle.swift */; };
+		21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */; };
+		21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78281D57C05C003802D7 /* CGPath+SVG.swift */; };
+		21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
+		21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E782A1D5826AE003802D7 /* UIBezierPath+SVG.swift */; };
+		21FFE8D81D630108003446DF /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,13 +43,6 @@
 			remoteGlobalIDString = 213D06E91D55F72100A5FD69;
 			remoteInfo = "Scalar2D Test App";
 		};
-		213D06FE1D55F72D00A5FD69 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 21B7196F1D48599A00B0ACBF;
-			remoteInfo = Scalar2D;
-		};
 		2157D36F1D5AE3DE00C57462 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
@@ -60,11 +50,11 @@
 			remoteGlobalIDString = 212E782F1D5832C4003802D7;
 			remoteInfo = "Scalar2D Mac Test App";
 		};
-		21B7197B1D48599B00B0ACBF /* PBXContainerItemProxy */ = {
+		21FFE8CA1D63009D003446DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 21B7196F1D48599A00B0ACBF;
+			remoteGlobalIDString = 21FFE8C41D63009D003446DF;
 			remoteInfo = Scalar2D;
 		};
 /* End PBXContainerItemProxy section */
@@ -86,7 +76,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				213D06FD1D55F72D00A5FD69 /* Scalar2D.framework in Embed Frameworks */,
+				21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,8 +98,7 @@
 		212E78491D5834C2003802D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212E78591D5835BA003802D7 /* Scalar2D Mac Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalar2D Mac Playground.playground"; sourceTree = "<group>"; };
 		212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPathGeneratorTests.swift; sourceTree = "<group>"; };
-		213D06E51D55F43400A5FD69 /* Scalar2D Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = "Scalar2D Playground.playground"; path = "Playgrounds/Scalar2D Playground.playground"; sourceTree = "<group>"; };
-		213D06EA1D55F72100A5FD69 /* Scalar2D Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D iOS Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		213D06EC1D55F72200A5FD69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		213D06EE1D55F72200A5FD69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		213D06F11D55F72200A5FD69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,7 +111,6 @@
 		2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathTests.swift; sourceTree = "<group>"; };
 		21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Test.swift"; path = "Scalar2DTests/CGPath+Test.swift"; sourceTree = SOURCE_ROOT; };
 		21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Iterate.swift"; path = "GraphicPath/Source/CGPath+Iterate.swift"; sourceTree = SOURCE_ROOT; };
-		21B719701D48599A00B0ACBF /* Scalar2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B719731D48599A00B0ACBF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
 		21B719741D48599A00B0ACBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Scalar2DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +120,10 @@
 		21B7198C1D4A2DBF00B0ACBF /* DrawStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawStyle.swift; path = Source/DrawStyle.swift; sourceTree = "<group>"; };
 		21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathGenerator.swift; path = GraphicPath/Source/PathGenerator.swift; sourceTree = SOURCE_ROOT; };
 		21E326C81D5B411900B64C7C /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathView.swift; path = UIKit/Source/PathView.swift; sourceTree = SOURCE_ROOT; };
+		21FFE8C51D63009D003446DF /* Scalar2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21FFE8C71D63009D003446DF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
+		21FFE8C81D63009D003446DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalard2D (iOS).playground"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +131,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2157D3771D5AE5F600C57462 /* Scalar2D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				213D06FC1D55F72D00A5FD69 /* Scalar2D.framework in Frameworks */,
+				21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,18 +149,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		21B7196C1D48599A00B0ACBF /* Frameworks */ = {
+		21B719761D48599B00B0ACBF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		21B719761D48599B00B0ACBF /* Frameworks */ = {
+		21FFE8C11D63009D003446DF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B7197A1D48599B00B0ACBF /* Scalar2D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,17 +188,18 @@
 			path = Scalar2DMac;
 			sourceTree = "<group>";
 		};
-		213D06EB1D55F72200A5FD69 /* Scalar2D Test App */ = {
+		213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */ = {
 			isa = PBXGroup;
 			children = (
+				21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */,
 				213D06EC1D55F72200A5FD69 /* AppDelegate.swift */,
 				213D06EE1D55F72200A5FD69 /* ViewController.swift */,
-				21E326C81D5B411900B64C7C /* PathView.swift */,
 				213D06F01D55F72200A5FD69 /* Main.storyboard */,
 				213D06F31D55F72200A5FD69 /* Assets.xcassets */,
 				213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */,
 				213D06F81D55F72200A5FD69 /* Info.plist */,
 			);
+			name = "Scalar2D iOS Test App";
 			path = "Scalar2D Test App";
 			sourceTree = "<group>";
 		};
@@ -224,14 +215,14 @@
 		21B719661D48599A00B0ACBF = {
 			isa = PBXGroup;
 			children = (
-				213D06E51D55F43400A5FD69 /* Scalar2D Playground.playground */,
 				21B719721D48599A00B0ACBF /* Scalar2D */,
 				21B719901D4A35BD00B0ACBF /* GraphicPath */,
 				21B7197D1D48599B00B0ACBF /* Scalar2DTests */,
-				213D06EB1D55F72200A5FD69 /* Scalar2D Test App */,
+				213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */,
 				212E78311D5832C4003802D7 /* Scalar2D Mac Test App */,
 				212E78471D5834C2003802D7 /* Scalar2DMac */,
 				2157D36B1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */,
+				21FFE8C61D63009D003446DF /* Scalar2D */,
 				21B719711D48599A00B0ACBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -239,11 +230,11 @@
 		21B719711D48599A00B0ACBF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21B719701D48599A00B0ACBF /* Scalar2D.framework */,
 				21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */,
-				213D06EA1D55F72100A5FD69 /* Scalar2D Test App.app */,
+				213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */,
 				212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */,
 				2157D36A1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests.xctest */,
+				21FFE8C51D63009D003446DF /* Scalar2D.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -275,6 +266,7 @@
 		21B719901D4A35BD00B0ACBF /* GraphicPath */ = {
 			isa = PBXGroup;
 			children = (
+				21E326C81D5B411900B64C7C /* PathView.swift */,
 				21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */,
 				212E78281D57C05C003802D7 /* CGPath+SVG.swift */,
 				21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */,
@@ -285,14 +277,23 @@
 			path = Scalar2D;
 			sourceTree = "<group>";
 		};
+		21FFE8C61D63009D003446DF /* Scalar2D */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8C71D63009D003446DF /* Scalar2D.h */,
+				21FFE8C81D63009D003446DF /* Info.plist */,
+			);
+			path = Scalar2D;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		21B7196D1D48599A00B0ACBF /* Headers */ = {
+		21FFE8C21D63009D003446DF /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B719811D48599B00B0ACBF /* Scalar2D.h in Headers */,
+				21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,9 +318,9 @@
 			productReference = 212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */;
 			productType = "com.apple.product-type.application";
 		};
-		213D06E91D55F72100A5FD69 /* Scalar2D Test App */ = {
+		213D06E91D55F72100A5FD69 /* Scalar2D iOS Test App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 213D06F91D55F72200A5FD69 /* Build configuration list for PBXNativeTarget "Scalar2D Test App" */;
+			buildConfigurationList = 213D06F91D55F72200A5FD69 /* Build configuration list for PBXNativeTarget "Scalar2D iOS Test App" */;
 			buildPhases = (
 				213D06E61D55F72100A5FD69 /* Sources */,
 				213D06E71D55F72100A5FD69 /* Frameworks */,
@@ -329,11 +330,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				213D06FF1D55F72D00A5FD69 /* PBXTargetDependency */,
+				21FFE8CB1D63009D003446DF /* PBXTargetDependency */,
 			);
-			name = "Scalar2D Test App";
+			name = "Scalar2D iOS Test App";
 			productName = "Scalar2D Test App";
-			productReference = 213D06EA1D55F72100A5FD69 /* Scalar2D Test App.app */;
+			productReference = 213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2157D3691D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */ = {
@@ -354,24 +355,6 @@
 			productReference = 2157D36A1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		21B7196F1D48599A00B0ACBF /* Scalar2D */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 21B719841D48599B00B0ACBF /* Build configuration list for PBXNativeTarget "Scalar2D" */;
-			buildPhases = (
-				21B7196B1D48599A00B0ACBF /* Sources */,
-				21B7196C1D48599A00B0ACBF /* Frameworks */,
-				21B7196D1D48599A00B0ACBF /* Headers */,
-				21B7196E1D48599A00B0ACBF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = Scalar2D;
-			productName = Scalar2D;
-			productReference = 21B719701D48599A00B0ACBF /* Scalar2D.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		21B719781D48599B00B0ACBF /* Scalar2DTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 21B719871D48599B00B0ACBF /* Build configuration list for PBXNativeTarget "Scalar2DTests" */;
@@ -383,13 +366,30 @@
 			buildRules = (
 			);
 			dependencies = (
-				21B7197C1D48599B00B0ACBF /* PBXTargetDependency */,
 				212E78271D579C29003802D7 /* PBXTargetDependency */,
 			);
 			name = Scalar2DTests;
 			productName = Scalar2DTests;
 			productReference = 21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		21FFE8C41D63009D003446DF /* Scalar2D */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21FFE8CE1D63009D003446DF /* Build configuration list for PBXNativeTarget "Scalar2D" */;
+			buildPhases = (
+				21FFE8C01D63009D003446DF /* Sources */,
+				21FFE8C11D63009D003446DF /* Frameworks */,
+				21FFE8C21D63009D003446DF /* Headers */,
+				21FFE8C31D63009D003446DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Scalar2D;
+			productName = Scalar2D;
+			productReference = 21FFE8C51D63009D003446DF /* Scalar2D.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -417,19 +417,17 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 212E782F1D5832C4003802D7;
 					};
-					21B7196F1D48599A00B0ACBF = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 626532Z6AM;
-						DevelopmentTeamName = "Generally Helpful Software";
-						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
-					};
 					21B719781D48599B00B0ACBF = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
 						DevelopmentTeamName = "Generally Helpful Software";
 						ProvisioningStyle = Automatic;
 						TestTargetID = 213D06E91D55F72100A5FD69;
+					};
+					21FFE8C41D63009D003446DF = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 626532Z6AM;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -446,11 +444,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				21B7196F1D48599A00B0ACBF /* Scalar2D */,
 				21B719781D48599B00B0ACBF /* Scalar2DTests */,
-				213D06E91D55F72100A5FD69 /* Scalar2D Test App */,
+				213D06E91D55F72100A5FD69 /* Scalar2D iOS Test App */,
 				212E782F1D5832C4003802D7 /* Scalar2D Mac Test App */,
 				2157D3691D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */,
+				21FFE8C41D63009D003446DF /* Scalar2D */,
 			);
 		};
 /* End PBXProject section */
@@ -482,14 +480,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		21B7196E1D48599A00B0ACBF /* Resources */ = {
+		21B719771D48599B00B0ACBF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		21B719771D48599B00B0ACBF /* Resources */ = {
+		21FFE8C31D63009D003446DF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -527,21 +525,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		21B7196B1D48599A00B0ACBF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				21B7198D1D4A2DBF00B0ACBF /* DrawStyle.swift in Sources */,
-				21B5ABCE1D60047B00B6E5EA /* CGPath+Iterate.swift in Sources */,
-				212E782B1D5826AE003802D7 /* UIBezierPath+SVG.swift in Sources */,
-				212E78291D57C05C003802D7 /* CGPath+SVG.swift in Sources */,
-				21E326C91D5B411900B64C7C /* PathView.swift in Sources */,
-				2157D3781D5AE63A00C57462 /* NSBezierPath+SVG.swift in Sources */,
-				21B7198F1D4A35B000B0ACBF /* PathGenerator.swift in Sources */,
-				21B7198B1D48633A00B0ACBF /* DocumentContext.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		21B719751D48599B00B0ACBF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,28 +536,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		21FFE8C01D63009D003446DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
+				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,
+				21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */,
+				21FFE8D81D630108003446DF /* PathView.swift in Sources */,
+				21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */,
+				21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */,
+				21FFE8D21D6300AF003446DF /* DrawStyle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
 		212E78271D579C29003802D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 213D06E91D55F72100A5FD69 /* Scalar2D Test App */;
+			target = 213D06E91D55F72100A5FD69 /* Scalar2D iOS Test App */;
 			targetProxy = 212E78261D579C29003802D7 /* PBXContainerItemProxy */;
-		};
-		213D06FF1D55F72D00A5FD69 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 21B7196F1D48599A00B0ACBF /* Scalar2D */;
-			targetProxy = 213D06FE1D55F72D00A5FD69 /* PBXContainerItemProxy */;
 		};
 		2157D3701D5AE3DE00C57462 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 212E782F1D5832C4003802D7 /* Scalar2D Mac Test App */;
 			targetProxy = 2157D36F1D5AE3DE00C57462 /* PBXContainerItemProxy */;
 		};
-		21B7197C1D48599B00B0ACBF /* PBXTargetDependency */ = {
+		21FFE8CB1D63009D003446DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 21B7196F1D48599A00B0ACBF /* Scalar2D */;
-			targetProxy = 21B7197B1D48599B00B0ACBF /* PBXContainerItemProxy */;
+			target = 21FFE8C41D63009D003446DF /* Scalar2D */;
+			targetProxy = 21FFE8CA1D63009D003446DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -817,45 +809,6 @@
 			};
 			name = Release;
 		};
-		21B719851D48599B00B0ACBF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 626532Z6AM;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Scalar2D/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		21B719861D48599B00B0ACBF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 626532Z6AM;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Scalar2D/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		21B719881D48599B00B0ACBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -880,6 +833,48 @@
 			};
 			name = Release;
 		};
+		21FFE8CF1D63009D003446DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Scalar2D/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		21FFE8D01D63009D003446DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Scalar2D/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -892,7 +887,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		213D06F91D55F72200A5FD69 /* Build configuration list for PBXNativeTarget "Scalar2D Test App" */ = {
+		213D06F91D55F72200A5FD69 /* Build configuration list for PBXNativeTarget "Scalar2D iOS Test App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				213D06FA1D55F72200A5FD69 /* Debug */,
@@ -919,15 +914,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		21B719841D48599B00B0ACBF /* Build configuration list for PBXNativeTarget "Scalar2D" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				21B719851D48599B00B0ACBF /* Debug */,
-				21B719861D48599B00B0ACBF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		21B719871D48599B00B0ACBF /* Build configuration list for PBXNativeTarget "Scalar2DTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -936,6 +922,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		21FFE8CE1D63009D003446DF /* Build configuration list for PBXNativeTarget "Scalar2D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21FFE8CF1D63009D003446DF /* Debug */,
+				21FFE8D01D63009D003446DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

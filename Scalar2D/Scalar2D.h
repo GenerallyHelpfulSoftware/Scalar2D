@@ -2,11 +2,11 @@
 //  Scalar2D.h
 //  Scalar2D
 //
-//  Created by Glenn Howes on 7/26/16.
+//  Created by Glenn Howes on 8/16/16.
 //  Copyright © 2016 Generally Helpful Software. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 //! Project version number for Scalar2D.
 FOUNDATION_EXPORT double Scalar2DVersionNumber;
