@@ -203,7 +203,19 @@ public extension String
                         }
                         else if (self.seenPeriod)
                         {
-                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                            if self.seenDigit
+                            {
+                                try self.completeActiveParameter()
+                                
+                                self.activeParameterStartIndex = index
+                                self.activeParameterStringLength = 1
+                                self.lookingForParameter = false
+                                self.seenPeriod = true
+                            }
+                            else
+                            {
+                                throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                            }
                         }
                         else
                         {

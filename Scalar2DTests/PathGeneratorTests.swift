@@ -58,6 +58,22 @@ class PathGeneratorTests: XCTestCase {
         }
     }
     
+    func testSeparators()
+    {
+        let stressfullSeparators = " \tM-20.2.35,L+33-21.2.4e2-44-22+21"
+        do
+        {
+            let tokens = try stressfullSeparators.asPathTokens()
+            XCTAssertEqual(tokens.count, 4)
+            
+            XCTAssertEqual(tokens[0].operand, "M")
+        }
+        catch
+        {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
     func testAllOperands()
     {
         let allOperandsPath = "M 0 0 m 5 5 L 10 10 l 20 20 h 30 H 40 v 50 V 60 q 70 70 80 80 Q 90 90 100 100 t 110 110 T 120 120 C 130 130 140 140 150 150 c 170 170 180 180 190 190 S 200 200 210 210 s 220 220 230 230 A 240 240 250 0 0 260 260 a 270 270 280 1 1 290 290 z"
