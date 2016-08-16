@@ -31,6 +31,13 @@
 //
 import Foundation
 
+#if os(iOS) || os(tvOS) || os(osX)
+    public typealias PathParameter = CGFloat
+#else
+    public typealias PathParameter = Double
+#endif
+
+
 public extension String
 {
     /**
@@ -56,9 +63,7 @@ public extension String
         }
         
         return try parser.complete()
-        
     }
-    
     
     private struct TokenBuilder
     {
@@ -79,7 +84,7 @@ public extension String
         var seenPeriod: Bool
         var seenExponent: Bool
         var seenDigit: Bool
-        var completedParameters: [Double]
+        var completedParameters: [PathParameter]
         
          init(pathString: String, operand: Character)
         {
@@ -92,7 +97,7 @@ public extension String
             self.seenPeriod = false
             self.seenExponent = false
             self.seenDigit = false
-            self.completedParameters = [Double]()
+            self.completedParameters = [PathParameter]()
             self.completedParameters.reserveCapacity(self.numberOfParameters)
         }
         
@@ -128,7 +133,7 @@ public extension String
             {
                 if let intValue = Int(completedParameterString)
                 {
-                    self.completedParameters.append(Double(intValue))
+                    self.completedParameters.append(PathParameter(intValue))
                 }
                 else
                 {
@@ -139,7 +144,7 @@ public extension String
             {
                 if let doubleValue = Double(completedParameterString)
                 {
-                    self.completedParameters.append(doubleValue)
+                    self.completedParameters.append(PathParameter(doubleValue))
                 }
                 else
                 {
@@ -553,27 +558,27 @@ public enum PathToken : CustomStringConvertible
     
     case bad(Character, FailureReason)
     case close
-    case moveTo(Double, Double)
-    case moveToAbsolute(Double, Double)
-    case lineTo(Double, Double)
-    case lineToAbsolute(Double, Double)
-    case horizontalLineTo(Double)
-    case horizontalLineToAbsolute(Double)
-    case verticalLineTo(Double)
-    case verticalLineToAbsolute(Double)
-    case cubicBezierTo(Double, Double, Double, Double, Double, Double)
-    case cubicBezierToAbsolute(Double, Double, Double, Double, Double, Double)
-    case smoothCubicBezierTo(Double, Double, Double, Double)
-    case smoothCubicBezierToAbsolute(Double, Double, Double, Double)
-    case quadraticBezierTo(Double, Double, Double, Double)
-    case quadraticBezierToAbsolute(Double, Double, Double, Double)
-    case smoothQuadraticBezierTo(Double, Double)
-    case smoothQuadraticBezierToAbsolute(Double, Double)
-    case arcTo(Double, Double, Double, ArcChoice, ArcSweep, Double, Double)
-    case arcToAbsolute(Double, Double, Double, ArcChoice, ArcSweep, Double, Double)
+    case moveTo(PathParameter, PathParameter)
+    case moveToAbsolute(PathParameter, PathParameter)
+    case lineTo(PathParameter, PathParameter)
+    case lineToAbsolute(PathParameter, PathParameter)
+    case horizontalLineTo(PathParameter)
+    case horizontalLineToAbsolute(PathParameter)
+    case verticalLineTo(PathParameter)
+    case verticalLineToAbsolute(PathParameter)
+    case cubicBezierTo(PathParameter, PathParameter, PathParameter, PathParameter, PathParameter, PathParameter)
+    case cubicBezierToAbsolute(PathParameter, PathParameter, PathParameter, PathParameter, PathParameter, PathParameter)
+    case smoothCubicBezierTo(PathParameter, PathParameter, PathParameter, PathParameter)
+    case smoothCubicBezierToAbsolute(PathParameter, PathParameter, PathParameter, PathParameter)
+    case quadraticBezierTo(PathParameter, PathParameter, PathParameter, PathParameter)
+    case quadraticBezierToAbsolute(PathParameter, PathParameter, PathParameter, PathParameter)
+    case smoothQuadraticBezierTo(PathParameter, PathParameter)
+    case smoothQuadraticBezierToAbsolute(PathParameter, PathParameter)
+    case arcTo(PathParameter, PathParameter, Double, ArcChoice, ArcSweep, PathParameter, PathParameter)
+    case arcToAbsolute(PathParameter, PathParameter, Double, ArcChoice, ArcSweep, PathParameter, PathParameter)
     
     
-    public  init(operand: Character, parameters: [Double], atOffset offset: Int) throws
+    public  init(operand: Character, parameters: [PathParameter], atOffset offset: Int) throws
     {
         switch operand
         {
@@ -647,11 +652,11 @@ public enum PathToken : CustomStringConvertible
                 let arcSweep = ArcSweep(rawValue: Int(arcSweepRaw))
                 if operand == "a"
                 {
-                    self = .arcTo(parameters[0], parameters[1], parameters[2], archChoice!, arcSweep!, parameters[5], parameters[6])
+                    self = .arcTo(parameters[0], parameters[1], Double(parameters[2]), archChoice!, arcSweep!, parameters[5], parameters[6])
                 }
                 else
                 {
-                    self = .arcToAbsolute(parameters[0], parameters[1], parameters[2], archChoice!, arcSweep!, parameters[5], parameters[6])
+                    self = .arcToAbsolute(parameters[0], parameters[1], Double(parameters[2]), archChoice!, arcSweep!, parameters[5], parameters[6])
                 }
             default:
                 throw PathToken.FailureReason.unexpectedCharacter(badCharacter: operand, offset: offset)

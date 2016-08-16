@@ -301,60 +301,58 @@ extension CGMutablePath
                     case .close:
                         mutablePath.closeSubpath()
                     case let .moveTo(deltaX, deltaY):
-                        x = x + CGFloat(deltaX)
-                        y = y + CGFloat(deltaY)
+                        x = x + deltaX
+                        y = y + deltaY
                         mutablePath.moveTo(transform, x: x, y: y)
                         clearControlPoints()
                     case let .moveToAbsolute(newX, newY):
-                        x = CGFloat(newX)
-                        y = CGFloat(newY)
+                        x = newX
+                        y = newY
                         mutablePath.moveTo(transform, x: x, y: y)
                         clearControlPoints()
                         
                     case let .lineTo(deltaX, deltaY):
-                        x = x + CGFloat(deltaX)
-                        y = y + CGFloat(deltaY)
+                        x = x + deltaX
+                        y = y + deltaY
                         mutablePath.addLineTo(transform, x: x, y: y)
                         clearControlPoints()
                     case let .lineToAbsolute(newX, newY):
-                        x = CGFloat(newX)
-                        y = CGFloat(newY)
+                        x = newX
+                        y = newY
                         mutablePath.addLineTo(transform, x: x, y: y)
                         clearControlPoints()
                         
                     case .horizontalLineTo(let deltaX):
-                        x = x + CGFloat(deltaX)
+                        x = x + deltaX
                         mutablePath.addLineTo(transform, x: x, y: y)
                         clearControlPoints()
                     case .horizontalLineToAbsolute(let newX):
-                        x = CGFloat(newX)
+                        x = newX
                         mutablePath.addLineTo(transform, x: x, y: y)
                         clearControlPoints()
                         
                     case .verticalLineTo(let deltaY):
-                        y = y + CGFloat(deltaY)
+                        y = y + deltaY
                         mutablePath.addLineTo(transform, x: x, y: y)
                         clearControlPoints()
                     case .verticalLineToAbsolute(let newY):
-                        y = CGFloat(newY)
+                        y = newY
                         mutablePath.addLineTo(transform, x: x, y: y)
                         clearControlPoints()
                     
                     case let .quadraticBezierTo(deltaX₁, deltaY₁, deltaX, deltaY):
-                        let x₁ = CGFloat(deltaX₁) + x
-                        let y₁ = CGFloat(deltaY₁) + y
-                        x = x + CGFloat(deltaX)
-                        y = y + CGFloat(deltaY)
+                        let x₁ = deltaX₁ + x
+                        let y₁ = deltaY₁ + y
+                        x = x + deltaX
+                        y = y + deltaY
                         mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
                     case let .quadraticBezierToAbsolute(x₁, y₁, newX, newY):
-                        let x₁ = CGFloat(x₁)
-                        let y₁ = CGFloat(y₁)
-                        x = CGFloat(newX)
-                        y = CGFloat(newY)
+                        x = newX
+                        y = newY
                         mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
@@ -371,8 +369,8 @@ extension CGMutablePath
                             y₁ -= (previousQuadY₁-y₁)
                         }
                         
-                        x = x + CGFloat(deltaX)
-                        y = y + CGFloat(deltaY)
+                        x = x + deltaX
+                        y = y + deltaY
                         
                         mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
@@ -390,8 +388,8 @@ extension CGMutablePath
                             y₁ -= (previousQuadY₁-y₁)
                         }
                         
-                        x = CGFloat(newX)
-                        y = CGFloat(newY)
+                        x = newX
+                        y = newY
                         
                         mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
@@ -400,13 +398,13 @@ extension CGMutablePath
                     
                     case let .cubicBezierTo(deltaX₁, deltaY₁, deltaX₂, deltaY₂, deltaX, deltaY):
                     
-                        let x₁ = x + CGFloat(deltaX₁)
-                        let y₁ = y + CGFloat(deltaY₁)
-                        let x₂ = x + CGFloat(deltaX₂)
-                        let y₂ = y + CGFloat(deltaY₂)
+                        let x₁ = x + deltaX₁
+                        let y₁ = y + deltaY₁
+                        let x₂ = x + deltaX₂
+                        let y₂ = y + deltaY₂
                     
-                        x = x + CGFloat(deltaX)
-                        y = y + CGFloat(deltaY)
+                        x = x + deltaX
+                        y = y + deltaY
                         
                         mutablePath.addCurve(transform, cp1x: x₁, cp1y: y₁, cp2x: x₂, cp2y: y₂, endingAtX: x, y: y)
                         lastCubicX₂ = x₂
@@ -415,10 +413,10 @@ extension CGMutablePath
                     
                     case let .cubicBezierToAbsolute(x₁, y₁, x₂, y₂, newX, newY):
                     
-                        x = CGFloat(newX)
-                        y = CGFloat(newY)
-                        lastCubicX₂ = CGFloat(x₂)
-                        lastCubicY₂ = CGFloat(y₂)
+                        x = newX
+                        y = newY
+                        lastCubicX₂ = x₂
+                        lastCubicY₂ = y₂
                     
                         mutablePath.addCurve(transform, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
                         
@@ -438,12 +436,12 @@ extension CGMutablePath
                         }
                     
                         
-                        x = x + CGFloat(deltaX)
-                        y = y + CGFloat(deltaY)
+                        x = x + deltaX
+                        y = y + deltaY
                         
                         
-                        lastCubicX₂ = x + CGFloat(deltaX₂)
-                        lastCubicY₂ = y + CGFloat(deltaY₂)
+                        lastCubicX₂ = x + deltaX₂
+                        lastCubicY₂ = y + deltaY₂
                     
                         mutablePath.addCurve(transform, cp1x: x₁, cp1y: y₁, cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
                         
@@ -460,8 +458,8 @@ extension CGMutablePath
                             y₁ -= (previousCubicY₂-y₁)
                         }
                         
-                        x = CGFloat(newX)
-                        y = CGFloat(newY)
+                        x = newX
+                        y = newY
                         lastCubicX₂ = CGFloat(x₂)
                         lastCubicY₂ = CGFloat(y₂)
                     
@@ -471,11 +469,11 @@ extension CGMutablePath
                     
                     case let .arcTo(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, deltaX, deltaY):
                        
-                        self.addArc(using: transform,  xRadius: CGFloat(xRadius), yRadius: CGFloat(yRadius), tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: x + CGFloat(deltaX), endY: y + CGFloat(deltaY))
+                        self.addArc(using: transform,  xRadius: xRadius, yRadius: yRadius, tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: x + deltaX, endY: y + deltaY)
 
                     case let .arcToAbsolute(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, newX, newY):
 
-                        self.addArc(using: transform, xRadius: CGFloat(xRadius), yRadius: CGFloat(yRadius), tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: CGFloat(newX), endY: CGFloat(newY))
+                        self.addArc(using: transform, xRadius: xRadius, yRadius: yRadius, tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: newX, endY: newY)
                     
                     
                     case .bad(_, _):
