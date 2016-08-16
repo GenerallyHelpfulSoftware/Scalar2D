@@ -31,11 +31,6 @@
 //
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(osX)
-    public typealias PathParameter = CGFloat
-#else
-    public typealias PathParameter = Double
-#endif
 
 
 public extension String
@@ -84,7 +79,7 @@ public extension String
         var seenPeriod: Bool
         var seenExponent: Bool
         var seenDigit: Bool
-        var completedParameters: [PathParameter]
+        var completedParameters: [PathToken.PathParameter]
         
          init(pathString: String, operand: Character)
         {
@@ -97,7 +92,7 @@ public extension String
             self.seenPeriod = false
             self.seenExponent = false
             self.seenDigit = false
-            self.completedParameters = [PathParameter]()
+            self.completedParameters = Array<PathToken.PathParameter>()
             self.completedParameters.reserveCapacity(self.numberOfParameters)
         }
         
@@ -133,7 +128,7 @@ public extension String
             {
                 if let intValue = Int(completedParameterString)
                 {
-                    self.completedParameters.append(PathParameter(intValue))
+                    self.completedParameters.append(PathToken.PathParameter(intValue))
                 }
                 else
                 {
@@ -144,7 +139,7 @@ public extension String
             {
                 if let doubleValue = Double(completedParameterString)
                 {
-                    self.completedParameters.append(PathParameter(doubleValue))
+                    self.completedParameters.append(PathToken.PathParameter(doubleValue))
                 }
                 else
                 {
@@ -483,6 +478,12 @@ public extension String
 **/
 public enum PathToken : CustomStringConvertible
 {
+    #if os(iOS) || os(tvOS) || os(OSX)
+    public typealias PathParameter = CGFloat
+    #else
+    public typealias PathParameter = Double
+    #endif
+
     /**
         In the SVG definition of an Arc, there are almost always 2 ways to get from the starting point to the specified ending point. One way is longer than the other, thus the choice.
      **/
