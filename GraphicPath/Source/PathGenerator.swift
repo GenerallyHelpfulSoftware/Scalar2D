@@ -46,7 +46,7 @@ public extension String
         
         var parser = PathParser(pathString: self)
         
-        charaterLoop: while cursorIndex < endIndex
+        while cursorIndex < endIndex
         {
             let aCharacter = self[cursorIndex]
             
@@ -312,13 +312,13 @@ public extension String
                 }
                 else
                 {
-                    
+                    return false
                 }
                 
             default:
                 return false
             }
-            return false
+            
         }
         
         mutating fileprivate func buildToken() throws -> PathToken
