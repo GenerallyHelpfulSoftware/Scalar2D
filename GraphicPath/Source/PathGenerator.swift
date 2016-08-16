@@ -155,6 +155,13 @@ public extension String
             }
         }
         
+        private mutating func beginParameterAtIndex(index: String.CharacterView.Index)
+        {
+            self.activeParameterStartIndex = index
+            self.activeParameterStringLength = 1
+            self.lookingForParameter = false
+        }
+        
         mutating func testCompletionCharacter(character: Character, atIndex index: String.CharacterView.Index) throws -> TokenBuildState
         {
             if self.completed
@@ -166,31 +173,30 @@ public extension String
                 var foundNumber = false
                 switch character
                 {
-                case " ", "\t", "\n", "\r", ",":
-                    break
-                case ".":
-                    foundNumber = true
-                    self.seenPeriod = true
-                case "-", "+":
-                    foundNumber = true
-                    
-                case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-                    foundNumber = true
-                    self.seenDigit = true
-                default:
-                    throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                    case " ", "\t", "\n", "\r", ",":
+                        break
+                        
+                    case ".":
+                        foundNumber = true
+                        self.seenPeriod = true
+                    case "-", "+":
+                        foundNumber = true
+                        
+                    case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+                        foundNumber = true
+                        self.seenDigit = true
+                        
+                    default:
+                        throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
                 }
                 
                 if foundNumber
                 {
-                    self.activeParameterStartIndex = index
-                    self.activeParameterStringLength = 1
-                    self.lookingForParameter = false
+                    self.beginParameterAtIndex(index: index)
                 }
             }
             else // inside a parameter
             {
-                
                 switch character
                 {
                     case " ", "\t", "\n", "\r", ",":
@@ -207,9 +213,7 @@ public extension String
                             {
                                 try self.completeActiveParameter()
                                 
-                                self.activeParameterStartIndex = index
-                                self.activeParameterStringLength = 1
-                                self.lookingForParameter = false
+                                self.beginParameterAtIndex(index: index)
                                 self.seenPeriod = true
                             }
                             else
@@ -238,9 +242,7 @@ public extension String
                         {
                             try self.completeActiveParameter()
                             
-                            self.activeParameterStartIndex = index
-                            self.activeParameterStringLength = 1
-                            self.lookingForParameter = false
+                            self.beginParameterAtIndex(index: index)
                         }
                         else
                         {
@@ -281,42 +283,43 @@ public extension String
                 && self.activeParameterStringLength > 0
                 && !self.lookingForParameter
             
-            switch testCharacter {
-            case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M",  "z", "Z":
-                return true
-            case "+", "-":
-                
-                if onLastParameter
-                    && self.lastCharacter != "e"
-                    && self.lastCharacter != "E" // might be of the form 1e-3
-                {
+            switch testCharacter
+            {
+                case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M",  "z", "Z":
                     return true
-                }
-                else
-                {
+                case "+", "-":
+                    
+                    if onLastParameter
+                        && self.lastCharacter != "e"
+                        && self.lastCharacter != "E" // might be of the form 1e-3
+                    {
+                        return true
+                    }
+                    else
+                    {
+                        return false
+                    }
+                case " ", "\t", "\n", "\r", ",":
+                    if onLastParameter
+                    {
+                        return true
+                    }
+                    else
+                    {
+                        return false
+                    }
+                case ".":
+                    if onLastParameter && (self.seenPeriod || self.seenExponent)
+                    {
+                        return true
+                    }
+                    else
+                    {
+                        return false
+                    }
+                    
+                default:
                     return false
-                }
-            case " ", "\t", "\n", "\r", ",":
-                if onLastParameter
-                {
-                    return true
-                }
-                else
-                {
-                    return false
-                }
-            case ".":
-                if onLastParameter && (self.seenPeriod || self.seenExponent)
-                {
-                    return true
-                }
-                else
-                {
-                    return false
-                }
-                
-            default:
-                return false
             }
             
         }
@@ -337,7 +340,6 @@ public extension String
                 throw PathToken.FailureReason.tooFewParameters(operand: self.operand, expectedParameterCount: self.numberOfParameters, actualParameterCount: self.activeParameterStringLength, offset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
             }
         }
-        
     }
     
     private struct PathParser
@@ -368,46 +370,46 @@ public extension String
                 case .lookingForFirstOperand:
                     switch character
                     {
-                    case " ", "\t", "\n", "\r": // possible leading whitespace
-                        break
-                    case "m", "M":
-                        self.parseState = .buildingToken
-                    case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a":
-                        throw PathToken.FailureReason.missingMoveAtStart
-                    default:
-                        throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                        case " ", "\t", "\n", "\r": // possible leading whitespace
+                            break
+                        case "m", "M":
+                            self.parseState = .buildingToken
+                        case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a":
+                            throw PathToken.FailureReason.missingMoveAtStart
+                        default:
+                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
                     }
                     
                 case .lookingForOperand:
                     switch character
                     {
-                    case " ", "\t", "\n", "\r", ",": // possible operand separators
-                        break
-                    case "z", "Z":
-                        resultTokens.append(PathToken.close)
-                    case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M":
-                        self.tokenBuilder = TokenBuilder(pathString: pathString, operand: character)
-                        parseState = .buildingToken
-                    case "-", "+", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".": // an implied
-                        guard  let mostRecentToken = self.resultTokens.last else
-                        {
-                            throw PathToken.FailureReason.missingMoveAtStart
-                        }
-                        
-                        guard mostRecentToken.impliesSubsequentOperand else
-                        {
-                            throw PathToken.FailureReason.missingMoveAtStart
-                        }
-                        
-                        self.tokenBuilder = TokenBuilder(pathString: pathString, operand: mostRecentToken.impliedSubsequentOperand)
-                        parseState = .buildingToken
-                        let _ = try self.tokenBuilder.testCompletionCharacter(character: character, atIndex: index) // I know it's not completed
-                        
-                        
-                    default:
-                        let failureReason = PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
-                        resultTokens.append(PathToken.bad(character, failureReason))
-                        throw failureReason
+                        case " ", "\t", "\n", "\r", ",": // possible operand separators
+                            break
+                        case "z", "Z":
+                            resultTokens.append(PathToken.close)
+                        case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M":
+                            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: character)
+                            parseState = .buildingToken
+                        case "-", "+", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".": // an implied
+                            guard  let mostRecentToken = self.resultTokens.last else
+                            {
+                                throw PathToken.FailureReason.missingMoveAtStart
+                            }
+                            
+                            guard mostRecentToken.impliesSubsequentOperand else
+                            {
+                                throw PathToken.FailureReason.missingMoveAtStart
+                            }
+                            
+                            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: mostRecentToken.impliedSubsequentOperand)
+                            parseState = .buildingToken
+                            let _ = try self.tokenBuilder.testCompletionCharacter(character: character, atIndex: index) // I know it's not completed
+                            
+                            
+                        default:
+                            let failureReason = PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                            resultTokens.append(PathToken.bad(character, failureReason))
+                            throw failureReason
                     }
                     
                 case .buildingToken:
@@ -420,23 +422,23 @@ public extension String
                         
                         switch character
                         {
-                        case "Z", "z":
-                            resultTokens.append(PathToken.close)
-                            parseState = .lookingForOperand
-                        case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M":
-                            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: character)
-                            parseState = .buildingToken
-                        case " ", "\t", "\n", "\r", ",":
-                            parseState = .lookingForOperand
-                        default:
-                            
-                            guard newToken.impliesSubsequentOperand else
-                            {
-                                throw PathToken.FailureReason.missingMoveAtStart
+                            case "Z", "z":
+                                resultTokens.append(PathToken.close)
+                                parseState = .lookingForOperand
+                            case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M":
+                                self.tokenBuilder = TokenBuilder(pathString: pathString, operand: character)
+                                parseState = .buildingToken
+                            case " ", "\t", "\n", "\r", ",":
+                                parseState = .lookingForOperand
+                            default:
+                                
+                                guard newToken.impliesSubsequentOperand else
+                                {
+                                    throw PathToken.FailureReason.missingMoveAtStart
+                                }
+                                self.tokenBuilder = TokenBuilder(pathString: pathString, operand: newToken.impliedSubsequentOperand)
+                                parseState = .buildingToken
                             }
-                            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: newToken.impliedSubsequentOperand)
-                            parseState = .buildingToken
-                        }
                         
                     }
                     else
@@ -455,13 +457,13 @@ public extension String
         {
             switch parseState
             {
-            case .lookingForOperand:
-                break
-            case .lookingForFirstOperand:
-                throw PathToken.FailureReason.noOperands
-            case .buildingToken:
-                let lastToken = try self.tokenBuilder.buildToken()
-                self.resultTokens.append(lastToken)
+                case .lookingForOperand:
+                    break
+                case .lookingForFirstOperand:
+                    throw PathToken.FailureReason.noOperands
+                case .buildingToken:
+                    let lastToken = try self.tokenBuilder.buildToken()
+                    self.resultTokens.append(lastToken)
             }
             return self.resultTokens
         }
@@ -711,9 +713,9 @@ public enum PathToken : CustomStringConvertible
         switch self
         {
             case .close:
-                return false
+                return false //I don't believe that a z implies a subsequent M
             default:
-                return true
+                return true // M implies L, m implies l, otherwise operand implies the same operand
         }
     }
     
