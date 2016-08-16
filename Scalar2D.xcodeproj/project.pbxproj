@@ -28,7 +28,6 @@
 		2157D3781D5AE63A00C57462 /* NSBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E783F1D583401003802D7 /* NSBezierPath+SVG.swift */; };
 		21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
-		21B5ABCA1D5FE74200B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B5ABCE1D60047B00B6E5EA /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
 		21B7197A1D48599B00B0ACBF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B719701D48599A00B0ACBF /* Scalar2D.framework */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
@@ -539,7 +538,6 @@
 				21E326C91D5B411900B64C7C /* PathView.swift in Sources */,
 				2157D3781D5AE63A00C57462 /* NSBezierPath+SVG.swift in Sources */,
 				21B7198F1D4A35B000B0ACBF /* PathGenerator.swift in Sources */,
-				21B5ABCA1D5FE74200B6E5EA /* CGPath+Test.swift in Sources */,
 				21B7198B1D48633A00B0ACBF /* DocumentContext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
