@@ -8,7 +8,7 @@
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Glenn R. Howes
+//  Copyright (c) 2016 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,9 +29,8 @@
 //  THE SOFTWARE.
 //
 //
+
 import Foundation
-
-
 
 public extension String
 {
@@ -70,7 +69,6 @@ public extension String
         }
         
         let pathString: String
-        
         let operand: Character
         let numberOfParameters: Int
         var lookingForParameter: Bool
@@ -81,7 +79,7 @@ public extension String
         var seenDigit: Bool
         var completedParameters: [PathToken.PathParameter]
         
-         init(pathString: String, operand: Character)
+        init(pathString: String, operand: Character)
         {
             self.pathString = pathString
             self.operand = operand
@@ -179,6 +177,7 @@ public extension String
                     case ".":
                         foundNumber = true
                         self.seenPeriod = true
+                    
                     case "-", "+":
                         foundNumber = true
                         
@@ -202,6 +201,7 @@ public extension String
                     case " ", "\t", "\n", "\r", ",":
                         try self.completeActiveParameter()
                         self.lookingForParameter = true
+                    
                     case ".":
                         if(self.seenExponent)
                         {
@@ -226,6 +226,7 @@ public extension String
                             self.seenPeriod = true
                             self.activeParameterStringLength += 1
                         }
+                    
                     case "e" where !self.seenExponent:
                         fallthrough
                     case "E" where !self.seenExponent:
@@ -248,6 +249,7 @@ public extension String
                         {
                             throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
                         }
+                    
                     case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
                         self.seenDigit = true
                         self.activeParameterStringLength += 1
@@ -321,7 +323,6 @@ public extension String
                 default:
                     return false
             }
-            
         }
         
         mutating fileprivate func buildToken() throws -> PathToken
@@ -351,7 +352,6 @@ public extension String
             case buildingToken
         }
         
-        
         let pathString: String
         var resultTokens = [PathToken]()
         var parseState = ParseState.lookingForFirstOperand
@@ -363,7 +363,7 @@ public extension String
             self.tokenBuilder = TokenBuilder(pathString: pathString, operand: "M")
         }
         
-        mutating func handleCharacter(character: Character, atIndex index: String.CharacterView.Index) throws
+        fileprivate mutating func handleCharacter(character: Character, atIndex index: String.CharacterView.Index) throws
         {
             switch parseState
             {
@@ -438,8 +438,7 @@ public extension String
                                 }
                                 self.tokenBuilder = TokenBuilder(pathString: pathString, operand: newToken.impliedSubsequentOperand)
                                 parseState = .buildingToken
-                            }
-                        
+                        }
                     }
                     else
                     {
@@ -449,7 +448,6 @@ public extension String
                             self.parseState = .lookingForOperand
                         }
                     }
-                
             }
         }
         
@@ -468,8 +466,6 @@ public extension String
             return self.resultTokens
         }
     }
-    
-
 }
 
 

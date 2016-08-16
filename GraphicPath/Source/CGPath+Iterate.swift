@@ -7,9 +7,10 @@
 //
 // based upon tutorial found at http://oleb.net/blog/2015/06/c-callbacks-in-swift/
 //
+//
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Glenn R. Howes
+//  Copyright (c) 2016 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
