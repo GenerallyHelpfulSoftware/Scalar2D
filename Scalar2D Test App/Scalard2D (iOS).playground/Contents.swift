@@ -18,10 +18,6 @@ if let myPath = UIBezierPath(svgPath: pathString)
     //This code must always be at the end of the playground
     let theImage = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
-    
-    
-    
-    
 }
 
 let pathView = PathView(frame: CGRect(x: 0.0, y: 0.0, width: 300, height: 300))

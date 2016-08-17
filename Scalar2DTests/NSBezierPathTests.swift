@@ -30,7 +30,7 @@
 //
 
 import XCTest
-import Scalar2D
+
 class NSBezierPathTests: XCTestCase {
     
     override func setUp() {

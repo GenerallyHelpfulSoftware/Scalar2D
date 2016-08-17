@@ -32,7 +32,7 @@
 
 import UIKit
 
-@IBDesignable public class PathView: UIView {
+@IBDesignable public class PathView: UIView, ShapeView {
 
     @IBInspectable public var lineWidth: CGFloat = 1
     {
@@ -62,21 +62,11 @@ import UIKit
     {
         didSet
         {
-            guard let pathToRender = svgPath else
-            {
-                self.shapeLayer.path = nil
-                return
-            }
-            guard let cgPath = CGPath.pathFromSVGPath(svgPath: pathToRender) else
-            {
-                print("Bad SVG: \(pathToRender)")
-                return
-            }
-            self.shapeLayer.path = cgPath
+            self.setPathString(pathString: svgPath)
         }
     }
     
-    private var shapeLayer: CAShapeLayer
+    public var shapeLayer: CAShapeLayer
     {
         return self.layer as! CAShapeLayer
     }

@@ -19,7 +19,6 @@
 		213D06F41D55F72200A5FD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F31D55F72200A5FD69 /* Assets.xcassets */; };
 		213D06F71D55F72200A5FD69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */; };
 		2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */; };
-		2157D3751D5AE40500C57462 /* NSBezierPathTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */; };
 		21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
@@ -32,7 +31,15 @@
 		21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78281D57C05C003802D7 /* CGPath+SVG.swift */; };
 		21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
 		21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E782A1D5826AE003802D7 /* UIBezierPath+SVG.swift */; };
-		21FFE8D81D630108003446DF /* PathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView.swift */; };
+		21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView+iOS.swift */; };
+		21FFE8DA1D6463C2003446DF /* NSBezierPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E783F1D583401003802D7 /* NSBezierPath+SVG.swift */; };
+		21FFE8DB1D6463C8003446DF /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
+		21FFE8DD1D6463D0003446DF /* CGPath+SVG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78281D57C05C003802D7 /* CGPath+SVG.swift */; };
+		21FFE8DE1D6463D6003446DF /* PathGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */; };
+		21FFE8E01D6464A8003446DF /* PathView+Mac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFE8DF1D6464A8003446DF /* PathView+Mac.swift */; };
+		21FFE8E51D646669003446DF /* PathView+Cross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFE8E41D646669003446DF /* PathView+Cross.swift */; };
+		21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFE8E41D646669003446DF /* PathView+Cross.swift */; };
+		21FFE8EA1D6473D3003446DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8E91D6473D3003446DF /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,11 +126,14 @@
 		21B7198A1D48633A00B0ACBF /* DocumentContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DocumentContext.swift; path = Source/DocumentContext.swift; sourceTree = "<group>"; };
 		21B7198C1D4A2DBF00B0ACBF /* DrawStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawStyle.swift; path = Source/DrawStyle.swift; sourceTree = "<group>"; };
 		21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathGenerator.swift; path = GraphicPath/Source/PathGenerator.swift; sourceTree = SOURCE_ROOT; };
-		21E326C81D5B411900B64C7C /* PathView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathView.swift; path = UIKit/Source/PathView.swift; sourceTree = SOURCE_ROOT; };
+		21E326C81D5B411900B64C7C /* PathView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathView+iOS.swift"; path = "Views/UIKit/Source/PathView+iOS.swift"; sourceTree = SOURCE_ROOT; };
 		21FFE8C51D63009D003446DF /* Scalar2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FFE8C71D63009D003446DF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
 		21FFE8C81D63009D003446DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalard2D (iOS).playground"; sourceTree = "<group>"; };
+		21FFE8DF1D6464A8003446DF /* PathView+Mac.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathView+Mac.swift"; path = "Views/Cocoa/Source/PathView+Mac.swift"; sourceTree = SOURCE_ROOT; };
+		21FFE8E41D646669003446DF /* PathView+Cross.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathView+Cross.swift"; path = "Views/CrossPlatform/Source/PathView+Cross.swift"; sourceTree = SOURCE_ROOT; };
+		21FFE8E91D6473D3003446DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21FFE8EA1D6473D3003446DF /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +228,7 @@
 			children = (
 				21B719721D48599A00B0ACBF /* Scalar2D */,
 				21B719901D4A35BD00B0ACBF /* GraphicPath */,
+				21FFE8E11D6465EB003446DF /* Views */,
 				21B7197D1D48599B00B0ACBF /* Scalar2DTests */,
 				213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */,
 				212E78311D5832C4003802D7 /* Scalar2D Mac Test App */,
@@ -224,6 +236,7 @@
 				2157D36B1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */,
 				21FFE8C61D63009D003446DF /* Scalar2D */,
 				21B719711D48599A00B0ACBF /* Products */,
+				21FFE8E81D6473D3003446DF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -266,7 +279,6 @@
 		21B719901D4A35BD00B0ACBF /* GraphicPath */ = {
 			isa = PBXGroup;
 			children = (
-				21E326C81D5B411900B64C7C /* PathView.swift */,
 				21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */,
 				212E78281D57C05C003802D7 /* CGPath+SVG.swift */,
 				21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */,
@@ -284,6 +296,49 @@
 				21FFE8C81D63009D003446DF /* Info.plist */,
 			);
 			path = Scalar2D;
+			sourceTree = "<group>";
+		};
+		21FFE8E11D6465EB003446DF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8E71D646672003446DF /* CrossPlatform */,
+				21FFE8E21D646600003446DF /* UIKit */,
+				21FFE8E31D64660C003446DF /* Cocoa */,
+			);
+			name = Views;
+			path = Scalar2D;
+			sourceTree = "<group>";
+		};
+		21FFE8E21D646600003446DF /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				21E326C81D5B411900B64C7C /* PathView+iOS.swift */,
+			);
+			name = UIKit;
+			sourceTree = "<group>";
+		};
+		21FFE8E31D64660C003446DF /* Cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8DF1D6464A8003446DF /* PathView+Mac.swift */,
+			);
+			name = Cocoa;
+			sourceTree = "<group>";
+		};
+		21FFE8E71D646672003446DF /* CrossPlatform */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8E41D646669003446DF /* PathView+Cross.swift */,
+			);
+			name = CrossPlatform;
+			sourceTree = "<group>";
+		};
+		21FFE8E81D6473D3003446DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8E91D6473D3003446DF /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -501,8 +556,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21FFE8DA1D6463C2003446DF /* NSBezierPath+SVG.swift in Sources */,
+				21FFE8DD1D6463D0003446DF /* CGPath+SVG.swift in Sources */,
 				212E78351D5832C4003802D7 /* ViewController.swift in Sources */,
 				212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */,
+				21FFE8E51D646669003446DF /* PathView+Cross.swift in Sources */,
+				21FFE8DE1D6463D6003446DF /* PathGenerator.swift in Sources */,
+				21FFE8DB1D6463C8003446DF /* CGPath+Iterate.swift in Sources */,
+				21FFE8E01D6464A8003446DF /* PathView+Mac.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +580,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2157D3751D5AE40500C57462 /* NSBezierPathTests.swift in Sources */,
 				21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */,
 				2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */,
 			);
@@ -543,7 +603,8 @@
 				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
 				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,
 				21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */,
-				21FFE8D81D630108003446DF /* PathView.swift in Sources */,
+				21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */,
+				21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */,
 				21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */,
 				21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */,
 				21FFE8D21D6300AF003446DF /* DrawStyle.swift in Sources */,
@@ -610,7 +671,7 @@
 				DEVELOPMENT_TEAM = 626532Z6AM;
 				INFOPLIST_FILE = "Scalar2D Mac Test App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,7 +692,7 @@
 				DEVELOPMENT_TEAM = 626532Z6AM;
 				INFOPLIST_FILE = "Scalar2D Mac Test App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
