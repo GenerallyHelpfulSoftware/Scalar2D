@@ -58,6 +58,11 @@ public extension String
         
         return try parser.complete()
     }
+    /**
+        SVG path strings (the "d" parameter of a <path> element) are faily complicated because they use various tricks for compactness. Thus parameters and operands can be separated by nothing(operand immediately followed by the start of its first parameter), commas, +, -, white space, and even a period if the preceding parameter already has a period. Also, operands can be implied to be the same as the previous operand, unless it was a move, in which case the implied operand is a line, or a close path in which case the use of an implied operand is an error. 
+     
+        The token builder builds up an individual token (an operand + its parameters)
+    **/
     
     private struct TokenBuilder
     {
