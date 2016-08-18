@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg width="100%" height="100%" viewBox="0 0 336 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+<svg width="100%" height="100%" viewBox="0 0 336 300"  viewport-fill="none" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.41421;">
     <g transform="matrix(1.39121,0,0,1.39362,-32.08,-30.5142)">
         <path d="M257.084,58.173C257.084,41.535 243.553,28.028 226.887,28.028L58.162,28.028C41.496,28.028 27.965,41.535 27.965,58.173L27.965,199.792C27.965,216.429 41.496,229.937 58.162,229.937L226.887,229.937C243.553,229.937 257.084,216.429 257.084,199.792L257.084,58.173Z" style="fill:rgb(215,219,194);stroke-width:0.54px;stroke:black;"/>
     </g>
@@ -25,10 +25,10 @@
         </g>
     </g>
     <g transform="matrix(1,0,0,1,-89.3761,-2.65339)">
-        <text x="147.736px" y="54.757px" style="font-family:'SanFranciscoDisplay-Regular';font-size:48px;fill:rgb(215,219,194);">(<tspan x="161.353px " y="54.757px ">G</tspan>enerall<tspan x="331.322px " y="54.757px ">y</tspan>)</text>
+        <text x="147.736px" y="54.757px" style="font-family:'SanFranciscoDisplay-Regular',system,sans-serif;font-weight:500;font-size:48px;fill:rgb(215,219,194);">(Generally)</text>
     </g>
     <g transform="matrix(1.37772,0,0,1.37772,-180.792,42.495)">
-        <text x="174.807px" y="54.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:48px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Help<tspan x="275.025px " y="54.757px ">f</tspan>ul</text>
-        <text x="250.51px" y="74.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:20px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Soft<tspan x="288.996px " y="74.757px ">w</tspan>ar<tspan x="322.805px " y="74.757px ">e</tspan></text>
+        <text x="174.807px" y="54.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:48px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Helpful</text>
+        <text x="250.51px" y="74.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:20px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Software</text>
     </g>
 </svg>
