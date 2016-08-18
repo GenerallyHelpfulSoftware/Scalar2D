@@ -28,7 +28,7 @@
         <text x="147.736px" y="54.757px" style="font-family:'SanFranciscoDisplay-Regular';font-size:48px;fill:rgb(215,219,194);">(<tspan x="161.353px " y="54.757px ">G</tspan>enerall<tspan x="331.322px " y="54.757px ">y</tspan>)</text>
     </g>
     <g transform="matrix(1.37772,0,0,1.37772,-180.792,42.495)">
-        <text x="174.807px" y="54.757px" style="font-family:'SanFranciscoDisplay-Bold';font-size:48px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Help<tspan x="275.025px " y="54.757px ">f</tspan>ul</text>
-        <text x="250.51px" y="74.757px" style="font-family:'SanFranciscoDisplay-Bold';font-size:20px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Soft<tspan x="288.996px " y="74.757px ">w</tspan>ar<tspan x="322.805px " y="74.757px ">e</tspan></text>
+        <text x="174.807px" y="54.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:48px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Help<tspan x="275.025px " y="54.757px ">f</tspan>ul</text>
+        <text x="250.51px" y="74.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:20px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Soft<tspan x="288.996px " y="74.757px ">w</tspan>ar<tspan x="322.805px " y="74.757px ">e</tspan></text>
     </g>
 </svg>
