@@ -122,7 +122,7 @@ extension CGMutablePath
          
             - warning; An end point that equals the start point will result in nothing being drawn.
          **/
-        mutating private func addArc(using inputTransform: UnsafePointer<CGAffineTransform>?, xRadius radX: CGFloat, yRadius radY: CGFloat, tiltAngle: Double, largeArcFlag: PathToken.ArcChoice, sweepFlag: PathToken.ArcSweep, endX: CGFloat, endY: CGFloat)
+        mutating private func addArc(xRadius radX: CGFloat, yRadius radY: CGFloat, tiltAngle: Double, largeArcFlag: PathToken.ArcChoice, sweepFlag: PathToken.ArcSweep, endX: CGFloat, endY: CGFloat)
         {
             //implementation notes http://www.w3.org/TR/SVG/implnote.html#ArcConversionEndpointToCenter
             // general algorithm from MIT licensed http://code.google.com/p/svg-edit/source/browse/trunk/editor/canvg/canvg.js
@@ -142,7 +142,7 @@ extension CGMutablePath
             }
             else if(radX == 0.0 || radY == 0.0) // not an actual arc, draw a line segment
             {
-                self.mutablePath.addLineTo(nil, x: endX, y: endY)
+                self.mutablePath.addLine(to: CGPoint(x: endX, y: endY))
             }
             else // actually try to draw an arc
             {
@@ -200,7 +200,7 @@ extension CGMutablePath
                     }
                 }
                 
-                var	transform = inputTransform?.pointee ?? CGAffineTransform.identity
+                var	transform = CGAffineTransform.identity
                 // back to  F.6.5   Step 2: Compute (cx′, cy′)
                 let  centerScalingDivisor = xRadius²*translatedCurPointY²
                     + yRadius²*translatedCurPointX²
@@ -284,16 +284,14 @@ extension CGMutablePath
                 
                 transform = transform.scaledBy(x: scaleX, y: scaleY)
                 
-
-                self.mutablePath.addArc(&transform, x: 0.0, y: 0.0, radius: radius, startAngle: startAngle, endAngle: startAngle+angleDelta,
-                                        clockwise: 0 == sweepFlag.rawValue)
+                self.mutablePath.addArc(center: CGPoint.zero, radius: radius, startAngle: startAngle, endAngle: startAngle+angleDelta, clockwise: 0 == sweepFlag.rawValue, transform: transform)
             }
             clearControlPoints()
         }
         /**
             Loop over the tokens and add the equivalent CGPath operation to the mutablePath.
         */
-        mutating func build(using transform: UnsafePointer<CGAffineTransform>?)
+        mutating func build()
         {
             for aToken in tokens
             {
@@ -304,41 +302,42 @@ extension CGMutablePath
                     case let .moveTo(deltaX, deltaY):
                         x = x + deltaX
                         y = y + deltaY
-                        mutablePath.moveTo(transform, x: x, y: y)
+                        
+                        mutablePath.move(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                     case let .moveToAbsolute(newX, newY):
                         x = newX
                         y = newY
-                        mutablePath.moveTo(transform, x: x, y: y)
+                        mutablePath.move(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                         
                     case let .lineTo(deltaX, deltaY):
                         x = x + deltaX
                         y = y + deltaY
-                        mutablePath.addLineTo(transform, x: x, y: y)
+                        mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                     case let .lineToAbsolute(newX, newY):
                         x = newX
                         y = newY
-                        mutablePath.addLineTo(transform, x: x, y: y)
+                        mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                         
                     case .horizontalLineTo(let deltaX):
                         x = x + deltaX
-                        mutablePath.addLineTo(transform, x: x, y: y)
+                        mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                     case .horizontalLineToAbsolute(let newX):
                         x = newX
-                        mutablePath.addLineTo(transform, x: x, y: y)
+                        mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                         
                     case .verticalLineTo(let deltaY):
                         y = y + deltaY
-                        mutablePath.addLineTo(transform, x: x, y: y)
+                        mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                     case .verticalLineToAbsolute(let newY):
                         y = newY
-                        mutablePath.addLineTo(transform, x: x, y: y)
+                        mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
                     
                     case let .quadraticBezierTo(deltaX₁, deltaY₁, deltaX, deltaY):
@@ -346,7 +345,8 @@ extension CGMutablePath
                         let y₁ = deltaY₁ + y
                         x = x + deltaX
                         y = y + deltaY
-                        mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        
+                        mutablePath.addQuadCurve(to: CGPoint(x: x, y: y) , control: CGPoint(x: x₁, y: y₁))
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         
                         lastQuadX₁ = x₁
@@ -354,7 +354,7 @@ extension CGMutablePath
                     case let .quadraticBezierToAbsolute(x₁, y₁, newX, newY):
                         x = newX
                         y = newY
-                        mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        mutablePath.addQuadCurve(to: CGPoint(x: x, y: y) , control: CGPoint(x: x₁, y: y₁))
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
@@ -373,7 +373,7 @@ extension CGMutablePath
                         x = x + deltaX
                         y = y + deltaY
                         
-                        mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        mutablePath.addQuadCurve(to: CGPoint(x: x, y: y) , control: CGPoint(x: x₁, y: y₁))
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
@@ -392,7 +392,7 @@ extension CGMutablePath
                         x = newX
                         y = newY
                         
-                        mutablePath.addQuadCurve(transform, cpx: x₁, cpy: y₁, endingAtX: x, y: y)
+                        mutablePath.addQuadCurve(to: CGPoint(x: x, y: y) , control: CGPoint(x: x₁, y: y₁))
                         lastCubicX₂ = nil // clean out the last cubic as this is a quad
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
@@ -407,7 +407,7 @@ extension CGMutablePath
                         x = x + deltaX
                         y = y + deltaY
                         
-                        mutablePath.addCurve(transform, cp1x: x₁, cp1y: y₁, cp2x: x₂, cp2y: y₂, endingAtX: x, y: y)
+                        mutablePath.addCurve(to: CGPoint(x: x, y: y), control1: CGPoint(x: x₁, y: y₁), control2: CGPoint(x: x₂, y: y₂))
                         lastCubicX₂ = x₂
                         lastCubicY₂ = y₂
                         lastQuadX₁ = nil // clean out the last quad as this is a cubic
@@ -418,8 +418,8 @@ extension CGMutablePath
                         y = newY
                         lastCubicX₂ = x₂
                         lastCubicY₂ = y₂
-                    
-                        mutablePath.addCurve(transform, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
+                        
+                        mutablePath.addCurve(to: CGPoint(x: x, y: y), control1: CGPoint(x: x₁, y: y₁), control2: CGPoint(x: x₂, y: y₂))
                         
                         lastQuadX₁ = nil // clean out the last quad as this is a cubic
                     
@@ -443,8 +443,8 @@ extension CGMutablePath
                         
                         lastCubicX₂ = x + deltaX₂
                         lastCubicY₂ = y + deltaY₂
-                    
-                        mutablePath.addCurve(transform, cp1x: x₁, cp1y: y₁, cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
+                        
+                        mutablePath.addCurve(to: CGPoint(x: x, y: y), control1: CGPoint(x: x₁, y: y₁), control2: CGPoint(x: lastCubicX₂!, y: lastCubicY₂!))
                         
                         lastQuadX₁ = nil // clean out the last quad as this is a cubic
                     
@@ -463,19 +463,18 @@ extension CGMutablePath
                         y = newY
                         lastCubicX₂ = CGFloat(x₂)
                         lastCubicY₂ = CGFloat(y₂)
-                    
-                        mutablePath.addCurve(transform, cp1x: CGFloat(x₁), cp1y: CGFloat(y₁), cp2x: lastCubicX₂!, cp2y: lastCubicY₂!, endingAtX: x, y: y)
+                        
+                        mutablePath.addCurve(to: CGPoint(x: x, y: y), control1: CGPoint(x: x₁, y: y₁), control2: CGPoint(x: lastCubicX₂!, y: lastCubicY₂!))
                         
                         lastQuadX₁ = nil // clean out the last quad as this is a cubic
                     
                     case let .arcTo(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, deltaX, deltaY):
                        
-                        self.addArc(using: transform,  xRadius: xRadius, yRadius: yRadius, tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: x + deltaX, endY: y + deltaY)
+                        self.addArc(xRadius: xRadius, yRadius: yRadius, tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: x + deltaX, endY: y + deltaY)
 
                     case let .arcToAbsolute(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, newX, newY):
-
-                        self.addArc(using: transform, xRadius: xRadius, yRadius: yRadius, tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: newX, endY: newY)
-                    
+                        
+                        self.addArc(xRadius: xRadius, yRadius: yRadius, tiltAngle: tiltAngle, largeArcFlag: largeArcFlag, sweepFlag: sweepFlag, endX: newX, endY: newY)
                     
                     case .bad(_, _):
                     break
@@ -490,14 +489,14 @@ extension CGMutablePath
             - svgPath: a (hopefully) well formatted SVG path.
         - returns: true if the SVG path was valid, false otherwise. 
      **/
-    public func addSVGPath(svgPath: String, using transform: UnsafePointer<CGAffineTransform>?) -> Bool
+    public func addSVGPath(svgPath: String) -> Bool
     {
         do
         {
             let tokens = try svgPath.asPathTokens()
             var builder = CGPathBuilder(path: self, tokens: tokens)
             
-            builder.build(using: transform)
+            builder.build()
             return true
         }
         catch
@@ -530,7 +529,7 @@ extension CGPath
     public static func pathFromSVGPath(svgPath: String) -> CGPath?
     {
         let mutableResult = CGMutablePath()
-        if mutableResult.addSVGPath(svgPath: svgPath, using: nil)
+        if mutableResult.addSVGPath(svgPath: svgPath)
         {
             return mutableResult.copy()
         }

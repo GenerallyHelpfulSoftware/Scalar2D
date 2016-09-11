@@ -284,7 +284,7 @@ public extension String
             return self.pathString[lastCharacterIndex]
         }
         
-        private func isCompletionCharacter(testCharacter: Character) -> Bool
+        fileprivate func isCompletionCharacter(testCharacter: Character) -> Bool
         {
             let onLastParameter = self.numberOfParameters == (self.activeParameterIndex+1)
                 && self.activeParameterStringLength > 0
@@ -348,7 +348,7 @@ public extension String
         }
     }
     
-    private struct PathParser
+    fileprivate struct PathParser
     {
         private enum ParseState
         {
@@ -456,7 +456,7 @@ public extension String
             }
         }
         
-        mutating private func complete() throws -> [PathToken]
+        mutating fileprivate func complete() throws -> [PathToken]
         {
             switch parseState
             {
@@ -642,12 +642,12 @@ public enum PathToken : CustomStringConvertible
                 
                 guard arcChoiceRaw == 1 || arcChoiceRaw == 0 else
                 {
-                    throw PathToken.FailureReason.badParameter(operand: operand, parameterIndex: 3, unexpectedValue: String(arcChoiceRaw), offset: offset)
+                    throw PathToken.FailureReason.badParameter(operand: operand, parameterIndex: 3, unexpectedValue: String(describing: arcChoiceRaw), offset: offset)
                 }
                 
                 guard arcSweepRaw == 1 || arcSweepRaw == 0 else
                 {
-                    throw PathToken.FailureReason.badParameter(operand: operand, parameterIndex: 4, unexpectedValue: String(arcSweepRaw), offset: offset)
+                    throw PathToken.FailureReason.badParameter(operand: operand, parameterIndex: 4, unexpectedValue: String(describing: arcSweepRaw), offset: offset)
                 }
                 
                 let archChoice = ArcChoice(rawValue: Int(arcChoiceRaw))
