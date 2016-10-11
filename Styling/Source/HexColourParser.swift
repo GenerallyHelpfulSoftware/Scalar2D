@@ -34,18 +34,18 @@ import Foundation
 
 public struct HexColourParser : ColourParser
 {
-    public func deserializeString(textColour: String) throws -> Colour?
+    public func deserializeString(source: String) throws -> Colour?
     {
-        guard textColour.hasPrefix("#") else
+        guard source.hasPrefix("#") else
         {
             return nil
         }
-        let index1 = textColour.index(after:textColour.startIndex)
+        let index1 = source.index(after:source.startIndex)
         
-        switch textColour.characters.count
+        switch source.characters.count
         {
             case 4:
-                let hexString = textColour.substring(from: index1)
+                let hexString = source.substring(from: index1)
                 let scanner = Scanner(string: hexString)
                 var rgbInt = UInt32()
                 guard scanner.scanHexInt32(&rgbInt) else
@@ -58,9 +58,9 @@ public struct HexColourParser : ColourParser
                 green = green + green >> 4
                 var red = Int(0xF & (rgbInt >> 8))
                 red = red + red << 4
-                return Colour.rgb(red: ColourFloat(red)/255.0, green: ColourFloat(green)/255.0, blue: ColourFloat(blue)/255.0)
+                return Colour.rgb(red: ColourFloat(red)/255.0, green: ColourFloat(green)/255.0, blue: ColourFloat(blue)/255.0, source: source)
             case 7:
-                let hexString = textColour.substring(from: index1)
+                let hexString = source.substring(from: index1)
                 let scanner = Scanner(string: hexString)
                 var rgbInt = UInt32()
                 guard scanner.scanHexInt32(&rgbInt) else
@@ -71,15 +71,15 @@ public struct HexColourParser : ColourParser
                 let green = Int((rgbInt >> 8) & 0xFF)
                 let red = Int((rgbInt >> 16) & 0xFF)
                 
-                return Colour.rgb(red: ColourFloat(red)/255.0, green: ColourFloat(green)/255.0, blue: ColourFloat(blue)/255.0)
+                return Colour.rgb(red: ColourFloat(red)/255.0, green: ColourFloat(green)/255.0, blue: ColourFloat(blue)/255.0, source: source)
             default:
-                if textColour.characters.count < 4 || textColour.characters.count == 5 || textColour.characters.count == 6
+                if source.characters.count < 4 || source.characters.count == 5 || source.characters.count == 6
                 {
-                    throw ColourParsingError.incomplete(textColour)
+                    throw ColourParsingError.incomplete(source)
                 }
             else
                 {
-                    throw ColourParsingError.unknown(textColour)
+                    throw ColourParsingError.unknown(source)
             }
         }
     }

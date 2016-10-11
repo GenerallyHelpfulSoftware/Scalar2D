@@ -37,10 +37,10 @@ class ColourParserTests: XCTestCase {
         {
             for aString in tests
             {
-                if let color = try colorParser.deserializeString(textColour: aString)
+                if let color = try colorParser.deserializeString(source: aString)
                 {
                     switch color {
-                    case .rgb(red: let red, green: let green, blue: let blue):
+                    case .rgb(red: let red, green: let green, blue: let blue, _):
                         XCTAssertTrue(red > 0 && green <= 255 && blue <= 255)
                     break
                     default:
@@ -63,7 +63,7 @@ class ColourParserTests: XCTestCase {
         {
             for aString in badTests
             {
-                let _ = try colorParser.deserializeString(textColour: aString)
+                let _ = try colorParser.deserializeString(source: aString)
             }
             XCTFail("Expected Parsing Failure")
         }
@@ -90,10 +90,10 @@ class ColourParserTests: XCTestCase {
         {
             do
             {
-                let baseColour = try self.allParsers.parseString(textColour: anEquivalentList.first!)
+                let baseColour = try self.allParsers.parseString(source: anEquivalentList.first!)
                 for anEquivalent in anEquivalentList
                 {
-                    let testColour = try self.allParsers.parseString(textColour:anEquivalent)
+                    let testColour = try self.allParsers.parseString(source:anEquivalent)
                     XCTAssertEqual(testColour, baseColour, "color string \(anEquivalent) not equal to \(anEquivalentList.first!)")
                 }
             }

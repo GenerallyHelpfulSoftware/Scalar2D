@@ -74,17 +74,17 @@ public struct RGBColourParser : ColourParser
         }
     }
     
-    public func deserializeString(textColour: String) throws -> Colour?
+    public func deserializeString(source: String) throws -> Colour?
     {
-        guard textColour.hasPrefix("rgb") else
+        guard source.hasPrefix("rgb") else
         {
             return nil
         }
         
-        let components = textColour.components(separatedBy: ",")
+        let components = source.components(separatedBy: ",")
         guard  components.count == 3 else
         {
-            throw ColourParsingError.unknown(textColour)
+            throw ColourParsingError.unknown(source)
         }
         
         let red = try self.retrieveColourComponent(component: components[0])
@@ -92,7 +92,7 @@ public struct RGBColourParser : ColourParser
         let blue = try self.retrieveColourComponent(component: components[2])
         
         
-        return Colour.rgb(red: red, green: green, blue: blue)
+        return Colour.rgb(red: red, green: green, blue: blue, source: source)
         
     }
     

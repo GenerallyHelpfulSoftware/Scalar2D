@@ -48,9 +48,9 @@ public enum ColourParsingError : Error
 
 public enum Colour : Equatable
 {
-    case monochrome(ColourFloat)
-    case rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat)
-    case cymk(cyan: ColourFloat, yellow: ColourFloat, magenta: ColourFloat, black: ColourFloat)
+    case monochrome(grey: ColourFloat, source: String?)
+    case rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat, source: String?)
+    case cymk(cyan: ColourFloat, yellow: ColourFloat, magenta: ColourFloat, black: ColourFloat, source: String?)
     case placeholder(name: String)
     indirect case transparent(Colour: Colour, alpha: ColourFloat)
     
@@ -58,11 +58,11 @@ public enum Colour : Equatable
     {
         switch(lhs, rhs)
         {
-            case (.monochrome(let lhsGrey), .monochrome(let rhsGrey)):
+            case (.monochrome(let lhsGrey, _), .monochrome(let rhsGrey, _)):
                 return lhsGrey == rhsGrey
-            case (.rgb(let lhsRed, let lhsGreen, let lhsBlue), .rgb(let rhsRed, let rhsGreen, let rhsBlue)):
+            case (.rgb(let lhsRed, let lhsGreen, let lhsBlue, _), .rgb(let rhsRed, let rhsGreen, let rhsBlue, _)):
                 return lhsRed == rhsRed && lhsGreen == rhsGreen && lhsBlue == rhsBlue
-            case (.cymk(let lhsCyan, let lhsYellow, let lhsMagenta, let lhsBlack), .cymk(let rhsCyan, let rhsYellow, let rhsMagenta, let rhsBlack)):
+            case (.cymk(let lhsCyan, let lhsYellow, let lhsMagenta, let lhsBlack, _), .cymk(let rhsCyan, let rhsYellow, let rhsMagenta, let rhsBlack, _)):
                 return lhsCyan == rhsCyan && lhsYellow == rhsYellow && lhsMagenta == rhsMagenta && lhsBlack == rhsBlack
             case (.placeholder(let lhsName), .placeholder(let rhsName)):
                 return lhsName == rhsName
@@ -79,35 +79,35 @@ public typealias ColourTable = [String: Colour]
 
 public protocol ColourParser
 {
-    // It's assumed that textColour is in lowercase
-    func deserializeString(textColour: String) throws -> Colour?
+    // It's assumed that source is in lowercase
+    func deserializeString(source: String) throws -> Colour?
 }
 
 
 public struct AnyColourParser : ColourParser
 {
-    private let _deserialize: (_ textColour: String) throws -> Colour?
+    private let _deserialize: (_ source: String) throws -> Colour?
     
     public init<Base: ColourParser>(_ base: Base)
     {
         _deserialize = base.deserializeString
     }
     
-    public func deserializeString(textColour: String) throws -> Colour? {
-        return try self._deserialize(textColour)
+    public func deserializeString(source: String) throws -> Colour? {
+        return try self._deserialize(source)
     }
 
 }
 
 public extension Array where Element : ColourParser
 {
-    public func parseString(textColour: String) throws -> Colour?
+    public func parseString(source: String) throws -> Colour?
     {
         var result : Colour?
-        let normalizedTextColour = textColour.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        let normalizedsource = source.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         for aParser in self
         {
-            if let testResult = try aParser.deserializeString(textColour: normalizedTextColour)
+            if let testResult = try aParser.deserializeString(source: normalizedsource)
             {
                 result = testResult
                 break
