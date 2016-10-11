@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		211179C31DAC75C30054FAA4 /* HexColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C21DAC75C30054FAA4 /* HexColourParser.swift */; };
+		211179C51DAC996A0054FAA4 /* RGBColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C41DAC996A0054FAA4 /* RGBColourParser.swift */; };
+		211179C71DACAB740054FAA4 /* ColourParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C61DACAB740054FAA4 /* ColourParserTests.swift */; };
+		212287931D95EE0D006EC656 /* ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212287921D95EE0D006EC656 /* ColourParser.swift */; };
 		212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78241D5797B0003802D7 /* PathGeneratorTests.swift */; };
 		212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78321D5832C4003802D7 /* AppDelegate.swift */; };
 		212E78351D5832C4003802D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78341D5832C4003802D7 /* ViewController.swift */; };
@@ -22,6 +26,11 @@
 		21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
+		21EBF2341DA9C05700A91828 /* CGColor+ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EBF2331DA9C05700A91828 /* CGColor+ColourParser.swift */; };
+		21EBF2361DA9CF2F00A91828 /* WebColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EBF2351DA9CF2F00A91828 /* WebColourParser.swift */; };
+		21F718FF1D71D08B00C98410 /* CSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F718FE1D71D08B00C98410 /* CSSParser.swift */; };
+		21F719011D71D11D00C98410 /* GraphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719001D71D11D00C98410 /* GraphicStyle.swift */; };
+		21F719041D71D1E600C98410 /* StyleSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719031D71D1E600C98410 /* StyleSelector.swift */; };
 		21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFE8C71D63009D003446DF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; };
 		21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -91,6 +100,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		211179C21DAC75C30054FAA4 /* HexColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColourParser.swift; path = Styling/Source/HexColourParser.swift; sourceTree = SOURCE_ROOT; };
+		211179C41DAC996A0054FAA4 /* RGBColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RGBColourParser.swift; path = Styling/Source/RGBColourParser.swift; sourceTree = SOURCE_ROOT; };
+		211179C61DACAB740054FAA4 /* ColourParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourParserTests.swift; sourceTree = "<group>"; };
+		212287921D95EE0D006EC656 /* ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColourParser.swift; path = Styling/Source/ColourParser.swift; sourceTree = SOURCE_ROOT; };
 		212E78241D5797B0003802D7 /* PathGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathGeneratorTests.swift; sourceTree = "<group>"; };
 		212E78281D57C05C003802D7 /* CGPath+SVG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+SVG.swift"; path = "GraphicPath/Source/CGPath+SVG.swift"; sourceTree = SOURCE_ROOT; };
 		212E782A1D5826AE003802D7 /* UIBezierPath+SVG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBezierPath+SVG.swift"; path = "GraphicPath/Source/UIBezierPath+SVG.swift"; sourceTree = SOURCE_ROOT; };
@@ -127,6 +140,11 @@
 		21B7198C1D4A2DBF00B0ACBF /* DrawStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawStyle.swift; path = Source/DrawStyle.swift; sourceTree = "<group>"; };
 		21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathGenerator.swift; path = GraphicPath/Source/PathGenerator.swift; sourceTree = SOURCE_ROOT; };
 		21E326C81D5B411900B64C7C /* PathView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathView+iOS.swift"; path = "Views/UIKit/Source/PathView+iOS.swift"; sourceTree = SOURCE_ROOT; };
+		21EBF2331DA9C05700A91828 /* CGColor+ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGColor+ColourParser.swift"; path = "Styling/Source/CGColor+ColourParser.swift"; sourceTree = SOURCE_ROOT; };
+		21EBF2351DA9CF2F00A91828 /* WebColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WebColourParser.swift; path = Styling/Source/WebColourParser.swift; sourceTree = SOURCE_ROOT; };
+		21F718FE1D71D08B00C98410 /* CSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSSParser.swift; path = Styling/Source/CSSParser.swift; sourceTree = SOURCE_ROOT; };
+		21F719001D71D11D00C98410 /* GraphicStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicStyle.swift; path = Styling/Source/GraphicStyle.swift; sourceTree = SOURCE_ROOT; };
+		21F719031D71D1E600C98410 /* StyleSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StyleSelector.swift; path = Styling/Source/StyleSelector.swift; sourceTree = SOURCE_ROOT; };
 		21FFE8C51D63009D003446DF /* Scalar2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FFE8C71D63009D003446DF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
 		21FFE8C81D63009D003446DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -227,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				21B719721D48599A00B0ACBF /* Scalar2D */,
+				21F719021D71D12C00C98410 /* Styling */,
 				21B719901D4A35BD00B0ACBF /* GraphicPath */,
 				21FFE8E11D6465EB003446DF /* Views */,
 				21B7197D1D48599B00B0ACBF /* Scalar2DTests */,
@@ -270,6 +289,7 @@
 				21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */,
 				212E78241D5797B0003802D7 /* PathGeneratorTests.swift */,
 				212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */,
+				211179C61DACAB740054FAA4 /* ColourParserTests.swift */,
 				2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */,
 				21B719801D48599B00B0ACBF /* Info.plist */,
 			);
@@ -286,6 +306,22 @@
 				212E783F1D583401003802D7 /* NSBezierPath+SVG.swift */,
 			);
 			name = GraphicPath;
+			path = Scalar2D;
+			sourceTree = "<group>";
+		};
+		21F719021D71D12C00C98410 /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				21F718FE1D71D08B00C98410 /* CSSParser.swift */,
+				21F719001D71D11D00C98410 /* GraphicStyle.swift */,
+				21F719031D71D1E600C98410 /* StyleSelector.swift */,
+				212287921D95EE0D006EC656 /* ColourParser.swift */,
+				21EBF2351DA9CF2F00A91828 /* WebColourParser.swift */,
+				211179C21DAC75C30054FAA4 /* HexColourParser.swift */,
+				211179C41DAC996A0054FAA4 /* RGBColourParser.swift */,
+				21EBF2331DA9C05700A91828 /* CGColor+ColourParser.swift */,
+			);
+			name = Styling;
 			path = Scalar2D;
 			sourceTree = "<group>";
 		};
@@ -589,9 +625,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211179C71DACAB740054FAA4 /* ColourParserTests.swift in Sources */,
 				212E785B1D58ACAF003802D7 /* CGPathGeneratorTests.swift in Sources */,
 				212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */,
 				21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */,
+				21F718FF1D71D08B00C98410 /* CSSParser.swift in Sources */,
+				21F719011D71D11D00C98410 /* GraphicStyle.swift in Sources */,
+				21F719041D71D1E600C98410 /* StyleSelector.swift in Sources */,
 				21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,13 +640,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211179C31DAC75C30054FAA4 /* HexColourParser.swift in Sources */,
+				211179C51DAC996A0054FAA4 /* RGBColourParser.swift in Sources */,
 				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
 				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,
 				21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */,
+				21EBF2361DA9CF2F00A91828 /* WebColourParser.swift in Sources */,
 				21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */,
 				21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */,
 				21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */,
 				21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */,
+				212287931D95EE0D006EC656 /* ColourParser.swift in Sources */,
+				21EBF2341DA9C05700A91828 /* CGColor+ColourParser.swift in Sources */,
 				21FFE8D21D6300AF003446DF /* DrawStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -991,6 +1036,7 @@
 				21FFE8D01D63009D003446DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
