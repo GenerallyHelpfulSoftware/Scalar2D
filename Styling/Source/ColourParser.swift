@@ -46,11 +46,10 @@ public enum ColourParsingError : Error
     case badRange(String)
 }
 
-public enum Colour : Equatable
+public enum Colour : Equatable, CustomStringConvertible
 {
-    case monochrome(grey: ColourFloat, source: String?)
     case rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat, source: String?)
-    case cymk(cyan: ColourFloat, yellow: ColourFloat, magenta: ColourFloat, black: ColourFloat, source: String?)
+    case icc(profileName: String, components: [ColourFloat], source: String?)
     case placeholder(name: String)
     indirect case transparent(Colour: Colour, alpha: ColourFloat)
     
@@ -58,12 +57,10 @@ public enum Colour : Equatable
     {
         switch(lhs, rhs)
         {
-            case (.monochrome(let lhsGrey, _), .monochrome(let rhsGrey, _)):
-                return lhsGrey == rhsGrey
             case (.rgb(let lhsRed, let lhsGreen, let lhsBlue, _), .rgb(let rhsRed, let rhsGreen, let rhsBlue, _)):
                 return lhsRed == rhsRed && lhsGreen == rhsGreen && lhsBlue == rhsBlue
-            case (.cymk(let lhsCyan, let lhsYellow, let lhsMagenta, let lhsBlack, _), .cymk(let rhsCyan, let rhsYellow, let rhsMagenta, let rhsBlack, _)):
-                return lhsCyan == rhsCyan && lhsYellow == rhsYellow && lhsMagenta == rhsMagenta && lhsBlack == rhsBlack
+            case (.icc(let lhsProfile, let lhsComponents, _), .icc(let rhsProfile, let rhsComponents, _)):
+                return lhsProfile == rhsProfile && lhsComponents == rhsComponents
             case (.placeholder(let lhsName), .placeholder(let rhsName)):
                 return lhsName == rhsName
             case (.transparent(let lhsColour, let lhsAlpha), .transparent(let rhsColour, let rhsAlpha)):
@@ -72,6 +69,61 @@ public enum Colour : Equatable
                 return false
         }
     }
+    
+    public var source : String?
+    {
+        get
+        {
+            switch self
+            {
+                case .rgb(_, _, _, let source):
+                    return source
+                case .icc( _, _, let source):
+                    return source
+                case .placeholder(let name):
+                    return name
+                case .transparent(let baseColour, _):
+                    return baseColour.source
+            }
+        }
+    }
+    
+    public var asString: String
+    {
+        if let originalSource = self.source
+        {
+            return originalSource
+        }
+        else
+        {
+            switch self {
+                case .rgb(let red, let green, let blue, _):
+                    return "rgb(\(red*255.0),\(green*255.0), \(blue*255.0))"
+                case .icc(let profileName, let components, _):
+                    return "icc-color(\(profileName), \(components.map{String(describing: $0)}.joined(separator: ",")))"
+                case .placeholder(let name):
+                    return name
+                case .transparent(let aColour, _):
+                    return aColour.asString
+            }
+        }
+    }
+    
+    public var description: String
+    {
+        var enumString: String!
+        switch self
+        {
+            case .placeholder(let name):
+                enumString = "placeholder: \(name)"
+            case .transparent(let aColour, let alpha):
+                enumString = "transparent: \(aColour.asString), alpha: \(alpha)"
+            default:
+                enumString = self.asString
+        }
+        return "<Colour \(enumString)>"
+    }
+    
 }
 
 public typealias ColourTable = [String: Colour]
@@ -116,3 +168,5 @@ public extension Array where Element : ColourParser
         return result
     }
 }
+
+

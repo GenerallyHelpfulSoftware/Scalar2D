@@ -13,7 +13,8 @@ class ColourParserTests: XCTestCase {
     let allParsers = [
         AnyColourParser(RGBColourParser()),
         AnyColourParser(WebColourParser()),
-        AnyColourParser(HexColourParser())
+        AnyColourParser(HexColourParser()),
+        AnyColourParser(ICCColourParser())
     
     ]
     override func setUp() {
@@ -31,7 +32,7 @@ class ColourParserTests: XCTestCase {
         let colorParser = RGBColourParser()
         
         let tests = ["rgb (12%, 244, 10 )", "rgb(1%, 0, 0)"]
-        let badTests = ["rgb (.%, 1, 10 )", "rgb(256, -11, 0)"]
+        let badTests = ["rgb (.%, 1, 10 )", "rgb(256, -11, 0)", "rgb bad(1.0, 22, 33), rgb(bad, 1.0, 22), rgb(1.0, 1.0), rgb(1.0, ,1.0)"]
         
         do
         {
@@ -102,7 +103,52 @@ class ColourParserTests: XCTestCase {
                 XCTFail("Unexpected Colour Parsing Failure \(anEquivalentList)")
             }
         }
+    }
+    
+    func testICCParsing()
+    {
+        let badSources = ["icc-color bad (profile1, 53)", "icc-color(", "icc-color)", "icc-color()", "icc-color(bad)", "icc-color(profile1, 1, 1,)"]
+        for aSource in badSources
+        {
+            do
+            {
+                let _ = try self.allParsers.parseString(source: aSource)
+                XCTFail("Unexpected Colour Parsing Non-Failure \(aSource)")
+            }
+            catch
+            {
+                // good
+            }
+        }
         
+        let goodSources = ["icc-color(profile1, 44)", "icc-color(profile1, 1, 2, 33.4,33.1       )"]
+        for aSource in goodSources
+        {
+            do
+            {
+                if let aColour = try self.allParsers.parseString(source: aSource)
+                {
+                    switch aColour
+                    {
+                        case .icc(let profileName, let components, let source):
+                            XCTAssertEqual(aSource, source)
+                            XCTAssertEqual("profile1", profileName)
+                            XCTAssertTrue(components.count > 0)
+                    default:
+                        XCTFail("Unexpected Colour Parsed \(aSource) to \(aColour.description)")
+                        
+                    }
+                }
+                else
+                {
+                    XCTFail("Unexpected Colour Parsing Nil for \(aSource)")
+                }
+            }
+            catch
+            {
+                XCTFail("Unexpected Colour Parsing Failure \(aSource)")
+            }
+        }
     }
     
     func testPerformanceExample() {

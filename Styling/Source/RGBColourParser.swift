@@ -81,15 +81,40 @@ public struct RGBColourParser : ColourParser
             return nil
         }
         
-        let components = source.components(separatedBy: ",")
-        guard  components.count == 3 else
+
+        let leftParenComponents = source.components(separatedBy: "(")
+        guard leftParenComponents.count == 2 else
         {
-            throw ColourParsingError.unknown(source)
+            throw ColourParsingError.unexpectedCharacter(source)
         }
         
-        let red = try self.retrieveColourComponent(component: components[0])
-        let green = try self.retrieveColourComponent(component: components[1])
-        let blue = try self.retrieveColourComponent(component: components[2])
+        guard leftParenComponents.first!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "rgb" else
+        { // something between the rgb prefix and the leading (
+            throw ColourParsingError.unexpectedCharacter(source)
+        }
+        let rightSide = leftParenComponents.last!
+        
+        guard rightSide.hasSuffix(")") else
+        {
+            throw ColourParsingError.incomplete(source)
+        }
+        
+        let rightParenComponents = rightSide.components(separatedBy: ")") // source is assumed to be trimmed so it should terminate on the )
+        guard rightParenComponents.count == 2 && rightParenComponents.last!.isEmpty else
+        {
+            throw ColourParsingError.unexpectedCharacter(source)
+        }
+        let payload = rightParenComponents.first!
+        
+        let stringComponents = payload.components(separatedBy: ",")
+        guard  stringComponents.count == 3 else
+        {// need exactly 3 components r,g, b
+            throw ColourParsingError.incomplete(source)
+        }
+        
+        let red = try self.retrieveColourComponent(component: stringComponents[0])
+        let green = try self.retrieveColourComponent(component: stringComponents[1])
+        let blue = try self.retrieveColourComponent(component: stringComponents[2])
         
         
         return Colour.rgb(red: red, green: green, blue: blue, source: source)
@@ -101,3 +126,4 @@ public struct RGBColourParser : ColourParser
         
     }
 }
+

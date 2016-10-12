@@ -10,6 +10,7 @@
 		211179C31DAC75C30054FAA4 /* HexColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C21DAC75C30054FAA4 /* HexColourParser.swift */; };
 		211179C51DAC996A0054FAA4 /* RGBColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C41DAC996A0054FAA4 /* RGBColourParser.swift */; };
 		211179C71DACAB740054FAA4 /* ColourParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C61DACAB740054FAA4 /* ColourParserTests.swift */; };
+		211179C91DAE39F70054FAA4 /* ICCColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C81DAE39F70054FAA4 /* ICCColourParser.swift */; };
 		212287931D95EE0D006EC656 /* ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212287921D95EE0D006EC656 /* ColourParser.swift */; };
 		212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78241D5797B0003802D7 /* PathGeneratorTests.swift */; };
 		212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78321D5832C4003802D7 /* AppDelegate.swift */; };
@@ -103,6 +104,7 @@
 		211179C21DAC75C30054FAA4 /* HexColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HexColourParser.swift; path = Styling/Source/HexColourParser.swift; sourceTree = SOURCE_ROOT; };
 		211179C41DAC996A0054FAA4 /* RGBColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RGBColourParser.swift; path = Styling/Source/RGBColourParser.swift; sourceTree = SOURCE_ROOT; };
 		211179C61DACAB740054FAA4 /* ColourParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourParserTests.swift; sourceTree = "<group>"; };
+		211179C81DAE39F70054FAA4 /* ICCColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICCColourParser.swift; path = Styling/Source/ICCColourParser.swift; sourceTree = SOURCE_ROOT; };
 		212287921D95EE0D006EC656 /* ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColourParser.swift; path = Styling/Source/ColourParser.swift; sourceTree = SOURCE_ROOT; };
 		212E78241D5797B0003802D7 /* PathGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathGeneratorTests.swift; sourceTree = "<group>"; };
 		212E78281D57C05C003802D7 /* CGPath+SVG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+SVG.swift"; path = "GraphicPath/Source/CGPath+SVG.swift"; sourceTree = SOURCE_ROOT; };
@@ -312,14 +314,15 @@
 		21F719021D71D12C00C98410 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				21EBF2331DA9C05700A91828 /* CGColor+ColourParser.swift */,
+				212287921D95EE0D006EC656 /* ColourParser.swift */,
 				21F718FE1D71D08B00C98410 /* CSSParser.swift */,
 				21F719001D71D11D00C98410 /* GraphicStyle.swift */,
-				21F719031D71D1E600C98410 /* StyleSelector.swift */,
-				212287921D95EE0D006EC656 /* ColourParser.swift */,
-				21EBF2351DA9CF2F00A91828 /* WebColourParser.swift */,
 				211179C21DAC75C30054FAA4 /* HexColourParser.swift */,
+				211179C81DAE39F70054FAA4 /* ICCColourParser.swift */,
 				211179C41DAC996A0054FAA4 /* RGBColourParser.swift */,
-				21EBF2331DA9C05700A91828 /* CGColor+ColourParser.swift */,
+				21F719031D71D1E600C98410 /* StyleSelector.swift */,
+				21EBF2351DA9CF2F00A91828 /* WebColourParser.swift */,
 			);
 			name = Styling;
 			path = Scalar2D;
@@ -642,6 +645,7 @@
 			files = (
 				211179C31DAC75C30054FAA4 /* HexColourParser.swift in Sources */,
 				211179C51DAC996A0054FAA4 /* RGBColourParser.swift in Sources */,
+				211179C91DAE39F70054FAA4 /* ICCColourParser.swift in Sources */,
 				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
 				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,
 				21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */,
