@@ -74,6 +74,7 @@ public struct RGBColourParser : ColourParser
         }
     }
     
+    
     public func deserializeString(source: String) throws -> Colour?
     {
         guard source.hasPrefix("rgb") else

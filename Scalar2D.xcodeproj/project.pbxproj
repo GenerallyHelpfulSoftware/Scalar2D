@@ -11,6 +11,12 @@
 		211179C51DAC996A0054FAA4 /* RGBColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C41DAC996A0054FAA4 /* RGBColourParser.swift */; };
 		211179C71DACAB740054FAA4 /* ColourParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C61DACAB740054FAA4 /* ColourParserTests.swift */; };
 		211179C91DAE39F70054FAA4 /* ICCColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C81DAE39F70054FAA4 /* ICCColourParser.swift */; };
+		211179CB1DAE51C60054FAA4 /* UIColor+ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179CA1DAE51C60054FAA4 /* UIColor+ColourParser.swift */; };
+		211179CD1DAE52BE0054FAA4 /* NSColor+ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179CC1DAE52BE0054FAA4 /* NSColor+ColourParser.swift */; };
+		211179CF1DAF1C4E0054FAA4 /* DeviceRGBColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179CE1DAF1C4E0054FAA4 /* DeviceRGBColourParser.swift */; };
+		211179D11DAF1DE70054FAA4 /* DeviceGrayColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179D01DAF1DE70054FAA4 /* DeviceGrayColourParser.swift */; };
+		211179D31DAF1F8D0054FAA4 /* DeviceCYMKColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179D21DAF1F8D0054FAA4 /* DeviceCYMKColourParser.swift */; };
+		211179D51DAF209F0054FAA4 /* DeviceColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179D41DAF209F0054FAA4 /* DeviceColourParser.swift */; };
 		212287931D95EE0D006EC656 /* ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212287921D95EE0D006EC656 /* ColourParser.swift */; };
 		212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78241D5797B0003802D7 /* PathGeneratorTests.swift */; };
 		212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78321D5832C4003802D7 /* AppDelegate.swift */; };
@@ -105,6 +111,12 @@
 		211179C41DAC996A0054FAA4 /* RGBColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RGBColourParser.swift; path = Styling/Source/RGBColourParser.swift; sourceTree = SOURCE_ROOT; };
 		211179C61DACAB740054FAA4 /* ColourParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourParserTests.swift; sourceTree = "<group>"; };
 		211179C81DAE39F70054FAA4 /* ICCColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ICCColourParser.swift; path = Styling/Source/ICCColourParser.swift; sourceTree = SOURCE_ROOT; };
+		211179CA1DAE51C60054FAA4 /* UIColor+ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+ColourParser.swift"; path = "Styling/Source/UIColor+ColourParser.swift"; sourceTree = SOURCE_ROOT; };
+		211179CC1DAE52BE0054FAA4 /* NSColor+ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSColor+ColourParser.swift"; path = "Styling/Source/NSColor+ColourParser.swift"; sourceTree = SOURCE_ROOT; };
+		211179CE1DAF1C4E0054FAA4 /* DeviceRGBColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceRGBColourParser.swift; path = Styling/Source/DeviceRGBColourParser.swift; sourceTree = SOURCE_ROOT; };
+		211179D01DAF1DE70054FAA4 /* DeviceGrayColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceGrayColourParser.swift; path = Styling/Source/DeviceGrayColourParser.swift; sourceTree = SOURCE_ROOT; };
+		211179D21DAF1F8D0054FAA4 /* DeviceCYMKColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceCYMKColourParser.swift; path = Styling/Source/DeviceCYMKColourParser.swift; sourceTree = SOURCE_ROOT; };
+		211179D41DAF209F0054FAA4 /* DeviceColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeviceColourParser.swift; path = Styling/Source/DeviceColourParser.swift; sourceTree = SOURCE_ROOT; };
 		212287921D95EE0D006EC656 /* ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColourParser.swift; path = Styling/Source/ColourParser.swift; sourceTree = SOURCE_ROOT; };
 		212E78241D5797B0003802D7 /* PathGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PathGeneratorTests.swift; sourceTree = "<group>"; };
 		212E78281D57C05C003802D7 /* CGPath+SVG.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+SVG.swift"; path = "GraphicPath/Source/CGPath+SVG.swift"; sourceTree = SOURCE_ROOT; };
@@ -315,12 +327,18 @@
 			isa = PBXGroup;
 			children = (
 				21EBF2331DA9C05700A91828 /* CGColor+ColourParser.swift */,
+				211179CA1DAE51C60054FAA4 /* UIColor+ColourParser.swift */,
+				211179CC1DAE52BE0054FAA4 /* NSColor+ColourParser.swift */,
 				212287921D95EE0D006EC656 /* ColourParser.swift */,
 				21F718FE1D71D08B00C98410 /* CSSParser.swift */,
 				21F719001D71D11D00C98410 /* GraphicStyle.swift */,
 				211179C21DAC75C30054FAA4 /* HexColourParser.swift */,
 				211179C81DAE39F70054FAA4 /* ICCColourParser.swift */,
 				211179C41DAC996A0054FAA4 /* RGBColourParser.swift */,
+				211179CE1DAF1C4E0054FAA4 /* DeviceRGBColourParser.swift */,
+				211179D41DAF209F0054FAA4 /* DeviceColourParser.swift */,
+				211179D01DAF1DE70054FAA4 /* DeviceGrayColourParser.swift */,
+				211179D21DAF1F8D0054FAA4 /* DeviceCYMKColourParser.swift */,
 				21F719031D71D1E600C98410 /* StyleSelector.swift */,
 				21EBF2351DA9CF2F00A91828 /* WebColourParser.swift */,
 			);
@@ -644,17 +662,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				211179C31DAC75C30054FAA4 /* HexColourParser.swift in Sources */,
+				211179CD1DAE52BE0054FAA4 /* NSColor+ColourParser.swift in Sources */,
+				211179CB1DAE51C60054FAA4 /* UIColor+ColourParser.swift in Sources */,
 				211179C51DAC996A0054FAA4 /* RGBColourParser.swift in Sources */,
 				211179C91DAE39F70054FAA4 /* ICCColourParser.swift in Sources */,
 				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
+				211179CF1DAF1C4E0054FAA4 /* DeviceRGBColourParser.swift in Sources */,
 				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,
 				21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */,
 				21EBF2361DA9CF2F00A91828 /* WebColourParser.swift in Sources */,
 				21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */,
+				211179D11DAF1DE70054FAA4 /* DeviceGrayColourParser.swift in Sources */,
+				211179D51DAF209F0054FAA4 /* DeviceColourParser.swift in Sources */,
 				21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */,
 				21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */,
 				21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */,
 				212287931D95EE0D006EC656 /* ColourParser.swift in Sources */,
+				211179D31DAF1F8D0054FAA4 /* DeviceCYMKColourParser.swift in Sources */,
 				21EBF2341DA9C05700A91828 /* CGColor+ColourParser.swift in Sources */,
 				21FFE8D21D6300AF003446DF /* DrawStyle.swift in Sources */,
 			);

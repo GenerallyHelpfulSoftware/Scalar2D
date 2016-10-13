@@ -32,3 +32,64 @@
 //
 
 import Foundation
+import CoreGraphics
+
+
+public extension Colour
+{
+    public var cgColor: CGColor?
+    {
+        switch self
+        {
+            case .rgb(let red, let green, let blue, _):
+                let colorSpace = CGColorSpaceCreateDeviceRGB()
+                let components = [red, green, blue]
+                return CGColor(colorSpace: colorSpace, components: components)
+            case .device_rgb(let red, let green, let blue, _):
+                let components = [red, green, blue]
+                let colorSpace = CGColorSpaceCreateDeviceRGB()
+                return CGColor(colorSpace: colorSpace, components: components)
+            case .device_gray(let gray, _):
+                let components = [gray]
+                let colorSpace = CGColorSpaceCreateDeviceGray()
+                return CGColor(colorSpace: colorSpace, components: components)
+            case .device_cmyk(let cyan, let magenta, let yellow, let black, _):
+                let components = [cyan, magenta, yellow, black]
+                let colorSpace = CGColorSpaceCreateDeviceCMYK()
+                return CGColor(colorSpace: colorSpace, components: components)
+            case .icc(_, _, _):
+                return nil
+            case .placeholder(_):
+                return nil
+            case .transparent(let aColour, let alpha):
+                guard  let cgColor = aColour.cgColor else
+                {
+                    return nil
+                }
+                return cgColor.copy(alpha: alpha)
+        }
+    }
+}
+
+
+extension CGColor
+{
+    static let standaloneParsers = [
+            AnyColourParser(RGBColourParser()),
+            AnyColourParser(WebColourParser()),
+            AnyColourParser(HexColourParser()),
+            AnyColourParser(DeviceRGBColourParser()),
+            AnyColourParser(DeviceGrayColourParser()),
+            AnyColourParser(DeviceCYMKColourParser())
+        ]
+    
+    static func fromString(string: String) -> CGColor?
+    {
+        if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string)
+        {
+            return aColorDefinition?.cgColor
+        }
+        
+        return nil
+    }
+}

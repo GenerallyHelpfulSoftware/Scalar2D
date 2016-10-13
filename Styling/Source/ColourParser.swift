@@ -49,6 +49,9 @@ public enum ColourParsingError : Error
 public enum Colour : Equatable, CustomStringConvertible
 {
     case rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat, source: String?)
+    case device_rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat, source: String?)
+    case device_gray(gray: ColourFloat, source: String?)
+    case device_cmyk(cyan: ColourFloat, magenta: ColourFloat, yellow: ColourFloat, black: ColourFloat, source: String?)
     case icc(profileName: String, components: [ColourFloat], source: String?)
     case placeholder(name: String)
     indirect case transparent(Colour: Colour, alpha: ColourFloat)
@@ -59,6 +62,12 @@ public enum Colour : Equatable, CustomStringConvertible
         {
             case (.rgb(let lhsRed, let lhsGreen, let lhsBlue, _), .rgb(let rhsRed, let rhsGreen, let rhsBlue, _)):
                 return lhsRed == rhsRed && lhsGreen == rhsGreen && lhsBlue == rhsBlue
+            case (.device_rgb(let lhsRed, let lhsGreen, let lhsBlue, _), .device_rgb(let rhsRed, let rhsGreen, let rhsBlue, _)):
+                return lhsRed == rhsRed && lhsGreen == rhsGreen && lhsBlue == rhsBlue
+            case (.device_gray(let lhsGray, _), .device_gray(let rhsGray, _)):
+                return lhsGray == rhsGray
+            case (.device_cmyk(let lhsCyan, let lhsMagenta, let lhsYellow, let lhsBlack, _), .device_cmyk(let rhsCyan, let rhsMagenta, let rhsYellow, let rhsBlack, _)):
+                return lhsCyan == rhsCyan && lhsMagenta == rhsMagenta && lhsYellow == rhsYellow && lhsBlack == rhsBlack
             case (.icc(let lhsProfile, let lhsComponents, _), .icc(let rhsProfile, let rhsComponents, _)):
                 return lhsProfile == rhsProfile && lhsComponents == rhsComponents
             case (.placeholder(let lhsName), .placeholder(let rhsName)):
@@ -77,6 +86,12 @@ public enum Colour : Equatable, CustomStringConvertible
             switch self
             {
                 case .rgb(_, _, _, let source):
+                    return source
+                case .device_rgb(_, _, _, let source):
+                    return source
+                case .device_gray(_, let source):
+                    return source
+                case .device_cmyk(_, _, _, _, let source):
                     return source
                 case .icc( _, _, let source):
                     return source
@@ -98,7 +113,13 @@ public enum Colour : Equatable, CustomStringConvertible
         {
             switch self {
                 case .rgb(let red, let green, let blue, _):
-                    return "rgb(\(red*255.0),\(green*255.0), \(blue*255.0))"
+                    return "rgb(\(red*255.0),\(green*255.0),\(blue*255.0))"
+                case .device_rgb(let red, let green, let blue, _):
+                    return "device-rgb(\(red),\(green),\(blue))"
+                case .device_gray(let gray, _):
+                    return "device-gray<#T##String?#>(\(gray))"
+                case .device_cmyk(let cyan, let magenta, let yellow, let black, _):
+                    return "device-cmyk(\(cyan),\(magenta),\(yellow),\(black))"
                 case .icc(let profileName, let components, _):
                     return "icc-color(\(profileName), \(components.map{String(describing: $0)}.joined(separator: ",")))"
                 case .placeholder(let name):

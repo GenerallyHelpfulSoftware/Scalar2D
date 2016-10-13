@@ -14,7 +14,10 @@ class ColourParserTests: XCTestCase {
         AnyColourParser(RGBColourParser()),
         AnyColourParser(WebColourParser()),
         AnyColourParser(HexColourParser()),
-        AnyColourParser(ICCColourParser())
+        AnyColourParser(ICCColourParser()),
+        AnyColourParser(DeviceRGBColourParser()),
+        AnyColourParser(DeviceGrayColourParser()),
+        AnyColourParser(DeviceCYMKColourParser())
     
     ]
     override func setUp() {
@@ -105,9 +108,9 @@ class ColourParserTests: XCTestCase {
         }
     }
     
-    func testICCParsing()
+    
+    func tryBadParsing(badSources:[String])
     {
-        let badSources = ["icc-color bad (profile1, 53)", "icc-color(", "icc-color)", "icc-color()", "icc-color(bad)", "icc-color(profile1, 1, 1,)"]
         for aSource in badSources
         {
             do
@@ -120,24 +123,18 @@ class ColourParserTests: XCTestCase {
                 // good
             }
         }
-        
-        let goodSources = ["icc-color(profile1, 44)", "icc-color(profile1, 1, 2, 33.4,33.1       )"]
+    }
+    
+    func tryGoodParsing(goodSources: [String]) -> [Colour]
+    {
+        var result = [Colour]()
         for aSource in goodSources
         {
             do
             {
                 if let aColour = try self.allParsers.parseString(source: aSource)
                 {
-                    switch aColour
-                    {
-                        case .icc(let profileName, let components, let source):
-                            XCTAssertEqual(aSource, source)
-                            XCTAssertEqual("profile1", profileName)
-                            XCTAssertTrue(components.count > 0)
-                    default:
-                        XCTFail("Unexpected Colour Parsed \(aSource) to \(aColour.description)")
-                        
-                    }
+                   result.append(aColour)
                 }
                 else
                 {
@@ -147,6 +144,73 @@ class ColourParserTests: XCTestCase {
             catch
             {
                 XCTFail("Unexpected Colour Parsing Failure \(aSource)")
+            }
+        }
+        return result
+    }
+    
+    func testICCParsing()
+    {
+        let badSources = ["icc-color bad (profile1, 53)", "icc-color(", "icc-color)", "icc-color()", "icc-color(bad)", "icc-color(profile1, 1, 1,)"]
+        self.tryBadParsing(badSources: badSources)
+        
+        let goodSources = ["icc-color(profile1, 44)", "icc-color(profile1, 1, 2, 33.4,33.1       )"]
+        let colours = self.tryGoodParsing(goodSources: goodSources)
+        for aColour in colours
+        {
+            switch aColour
+            {
+                case .icc(let profile, let components, _):
+                    XCTAssertTrue(profile == "profile1")
+                    XCTAssertTrue(components.count >= 1)
+                default:
+                    XCTFail("Unexpected Colour \(aColour)")
+                
+            }
+        }
+    }
+    
+    func testGrayDeviceParsing()
+    {
+        let badSources = ["device-gray bad (.1)", "device-gray(2.0)" , "device-gray(.1, .2)", "device-gray()", "device-gray(bad)", "device-gray(1.0"]
+        self.tryBadParsing(badSources: badSources)
+        
+        let goodSources = ["device-gray(0.0)", "device-gray (  .4  )"]
+        
+        let colours = self.tryGoodParsing(goodSources: goodSources)
+        for aColour in colours
+        {
+            switch aColour
+            {
+            case .device_gray(let gray, _):
+                XCTAssertTrue(gray >= 0.0 && gray <= 1.0)
+            default:
+                XCTFail("Unexpected Colour \(aColour)")
+                
+            }
+        }
+    }
+    
+    func testCMYKDeviceParsing()
+    {
+        let badSources = ["device-cmyk bad (.1, .2, .3, .4)", "device-cmyk(", "device-cmyk)", "device-cmyk()", "device-cmyk(.1, .2, .3, .4, .5)", "device-cmyk(1.1, 2.1, 3.1, 4.1)"]
+        self.tryBadParsing(badSources: badSources)
+        
+        let goodSources = ["device-cmyk(.1, .2, .3, .4)", "device-cmyk(.1, .2, .3,    1.0000   )"]
+        let colours = self.tryGoodParsing(goodSources: goodSources)
+        for aColour in colours
+        {
+            switch aColour
+            {
+            case .device_cmyk(let cyan, let magenta, let yellow, let black, _):
+                XCTAssertTrue(cyan == 0.1)
+                XCTAssertTrue(magenta > 0.1)
+                XCTAssertTrue(yellow > 0.1)
+                XCTAssertTrue(black > 0.1)
+            default:
+                
+                XCTFail("Unexpected Colour \(aColour)")
+                
             }
         }
     }
