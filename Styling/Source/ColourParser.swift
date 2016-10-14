@@ -117,7 +117,7 @@ public enum Colour : Equatable, CustomStringConvertible
                 case .device_rgb(let red, let green, let blue, _):
                     return "device-rgb(\(red),\(green),\(blue))"
                 case .device_gray(let gray, _):
-                    return "device-gray<#T##String?#>(\(gray))"
+                    return "device-gray(\(gray))"
                 case .device_cmyk(let cyan, let magenta, let yellow, let black, _):
                     return "device-cmyk(\(cyan),\(magenta),\(yellow),\(black))"
                 case .icc(let profileName, let components, _):
@@ -150,37 +150,41 @@ public enum Colour : Equatable, CustomStringConvertible
 public typealias ColourTable = [String: Colour]
 
 
+public protocol ColorContext {
+    func profileNamed(name: String) -> Data
+}
+
 public protocol ColourParser
 {
     // It's assumed that source is in lowercase
-    func deserializeString(source: String) throws -> Colour?
+    func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour?
 }
 
 
 public struct AnyColourParser : ColourParser
 {
-    private let _deserialize: (_ source: String) throws -> Colour?
+    private let _deserialize: (_ source: String, _ colorContext: ColorContext?) throws -> Colour?
     
     public init<Base: ColourParser>(_ base: Base)
     {
         _deserialize = base.deserializeString
     }
     
-    public func deserializeString(source: String) throws -> Colour? {
-        return try self._deserialize(source)
+    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour? {
+        return try self._deserialize(source, colorContext)
     }
 
 }
 
 public extension Array where Element : ColourParser
 {
-    public func parseString(source: String) throws -> Colour?
+    public func parseString(source: String, colorContext: ColorContext?) throws -> Colour?
     {
         var result : Colour?
         let normalizedsource = source.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         for aParser in self
         {
-            if let testResult = try aParser.deserializeString(source: normalizedsource)
+            if let testResult = try aParser.deserializeString(source: normalizedsource, colorContext: nil)
             {
                 result = testResult
                 break
@@ -189,5 +193,4 @@ public extension Array where Element : ColourParser
         return result
     }
 }
-
 

@@ -38,9 +38,9 @@ public struct DeviceGrayColourParser : ColourParser
     static let deviceParser = DeviceColourParser(prefix: "device-gray", componentCount: 1)
     
     
-    public func deserializeString(source: String) throws -> Colour?
+    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour?
     {
-        guard let components = try DeviceGrayColourParser.deviceParser.deserializeString(source: source) else
+        guard let components = try DeviceGrayColourParser.deviceParser.deserializeString(source: source, colorContext: colorContext) else
         {
             return nil
         }

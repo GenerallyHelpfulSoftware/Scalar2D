@@ -41,7 +41,7 @@ class ColourParserTests: XCTestCase {
         {
             for aString in tests
             {
-                if let color = try colorParser.deserializeString(source: aString)
+                if let color = try colorParser.deserializeString(source: aString, colorContext: nil)
                 {
                     switch color {
                     case .rgb(red: let red, green: let green, blue: let blue, _):
@@ -67,7 +67,7 @@ class ColourParserTests: XCTestCase {
         {
             for aString in badTests
             {
-                let _ = try colorParser.deserializeString(source: aString)
+                let _ = try colorParser.deserializeString(source: aString, colorContext: nil)
             }
             XCTFail("Expected Parsing Failure")
         }
@@ -94,10 +94,10 @@ class ColourParserTests: XCTestCase {
         {
             do
             {
-                let baseColour = try self.allParsers.parseString(source: anEquivalentList.first!)
+                let baseColour = try self.allParsers.parseString(source: anEquivalentList.first!, colorContext: nil)
                 for anEquivalent in anEquivalentList
                 {
-                    let testColour = try self.allParsers.parseString(source:anEquivalent)
+                    let testColour = try self.allParsers.parseString(source:anEquivalent, colorContext: nil)
                     XCTAssertEqual(testColour, baseColour, "color string \(anEquivalent) not equal to \(anEquivalentList.first!)")
                 }
             }
@@ -115,7 +115,7 @@ class ColourParserTests: XCTestCase {
         {
             do
             {
-                let _ = try self.allParsers.parseString(source: aSource)
+                let _ = try self.allParsers.parseString(source: aSource, colorContext: nil)
                 XCTFail("Unexpected Colour Parsing Non-Failure \(aSource)")
             }
             catch
@@ -132,7 +132,7 @@ class ColourParserTests: XCTestCase {
         {
             do
             {
-                if let aColour = try self.allParsers.parseString(source: aSource)
+                if let aColour = try self.allParsers.parseString(source: aSource, colorContext: nil)
                 {
                    result.append(aColour)
                 }

@@ -38,9 +38,9 @@ public struct DeviceCYMKColourParser : ColourParser
     static let deviceParser = DeviceColourParser(prefix: "device-cmyk", componentCount: 4)
     
     
-    public func deserializeString(source: String) throws -> Colour?
+    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour?
     {
-        guard let components = try DeviceCYMKColourParser.deviceParser.deserializeString(source: source) else
+        guard let components = try DeviceCYMKColourParser.deviceParser.deserializeString(source: source, colorContext: colorContext) else
         {
             return nil
         }

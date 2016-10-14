@@ -10,7 +10,7 @@ import Foundation
 
 public struct ICCColourParser : ColourParser
 {
-    public func deserializeString(source: String) throws -> Colour?
+    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour?
     {
         guard source.hasPrefix("icc-color") else
         {

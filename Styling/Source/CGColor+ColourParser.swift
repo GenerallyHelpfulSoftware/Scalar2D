@@ -74,7 +74,7 @@ public extension Colour
 
 extension CGColor
 {
-    static let standaloneParsers = [
+    private static let standaloneParsers = [
             AnyColourParser(RGBColourParser()),
             AnyColourParser(WebColourParser()),
             AnyColourParser(HexColourParser()),
@@ -85,7 +85,7 @@ extension CGColor
     
     static func fromString(string: String) -> CGColor?
     {
-        if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string)
+        if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)
         {
             return aColorDefinition?.cgColor
         }
