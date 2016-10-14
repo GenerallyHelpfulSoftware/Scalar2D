@@ -6,7 +6,21 @@ Author [Glenn R. Howes](mailto:glenn@genhelp.com), *owner [Generally Helpful Sof
 # Introduction
 The intent here is to put together a package of types devoted to cross-platform 2D rendering. These will be based around the SVG document model, but not necessarily confined to using SVG documents. 
 
-This is all very early in development. Right now, I've just implemented an SVG path parser and used it to generate the iOS and macOS native types: CGPath, NSBezierPath and UIBezierPath. So, there is a long, long way to go. 
+This is all very early in development. I'm gradually building up parsers, editors and data structures which should be platform agnostic, and the means to do rendering on Apple platforms. Hopefully, much of this code would be useful to someone on Linux. 
+
+✔︎ SVG Path Parser ✔︎ Color Parser ❌CSS Parser ❌SVG Parser
+
+✔︎ Path ➤ CGPath ✔︎ Path ➤ UIBezierPath ✔︎ Path ➤ NSBezierPath
+
+✔︎ Colour ➤ CGColor ✔︎ Colour ➤ UIColor ✔︎ Colour ➤ NSColor ❌ Colour Palettes 
+
+❌SVG Rendering  ❌ CSS Styling
+
+✔︎ PathView • iOS • macOS ❌ ScalarView ❌ Button ❌ TabItem ❌ Segmented Control
+
+❌ Document Editor ❌ Output
+
+
 
 # Requirements
 Xcode 8, Swift 3, Right now only the iOS framework is setup.
