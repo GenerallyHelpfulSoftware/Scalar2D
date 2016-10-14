@@ -43,18 +43,18 @@ public extension Colour
         {
             case .rgb(let red, let green, let blue, _):
                 let colorSpace = CGColorSpaceCreateDeviceRGB()
-                let components = [red, green, blue]
+                let components = [red, green, blue, 1.0]
                 return CGColor(colorSpace: colorSpace, components: components)
             case .device_rgb(let red, let green, let blue, _):
-                let components = [red, green, blue]
+                let components = [red, green, blue, 1.0]
                 let colorSpace = CGColorSpaceCreateDeviceRGB()
                 return CGColor(colorSpace: colorSpace, components: components)
             case .device_gray(let gray, _):
-                let components = [gray]
+                let components = [gray, 1.0]
                 let colorSpace = CGColorSpaceCreateDeviceGray()
                 return CGColor(colorSpace: colorSpace, components: components)
             case .device_cmyk(let cyan, let magenta, let yellow, let black, _):
-                let components = [cyan, magenta, yellow, black]
+                let components = [cyan, magenta, yellow, black, 1.0]
                 let colorSpace = CGColorSpaceCreateDeviceCMYK()
                 return CGColor(colorSpace: colorSpace, components: components)
             case .icc(_, _, _):
