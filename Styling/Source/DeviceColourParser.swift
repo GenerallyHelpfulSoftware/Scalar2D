@@ -26,10 +26,6 @@ struct DeviceColourParser
             throw ColourParsingError.unexpectedCharacter(component)
         }
         
-        guard result >= 0.0, result <= 1.0 else
-        {
-            throw ColourParsingError.badRange(component)
-        }
         return ColourFloat(result)
         
     }
