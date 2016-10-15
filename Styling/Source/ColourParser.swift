@@ -151,7 +151,7 @@ public typealias ColourTable = [String: Colour]
 
 
 public protocol ColorContext {
-    func profileNamed(name: String) -> Data
+    func profileNamed(name: String) -> Data?
 }
 
 public protocol ColourParser

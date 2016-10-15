@@ -37,9 +37,9 @@ import Foundation
     
     public extension NSColor
     {
-        public convenience init?(string: String)
+        public convenience init?(string: String, profileName: String? = nil)
         {
-            guard let cgColor = CGColor.fromString(string: string) else
+            guard let cgColor = CGColor.fromString(string: string, profileName: profileName) else
             {
                 return nil
             }

@@ -57,8 +57,24 @@ public extension Colour
                 let components = [cyan, magenta, yellow, black, 1.0]
                 let colorSpace = CGColorSpaceCreateDeviceCMYK()
                 return CGColor(colorSpace: colorSpace, components: components)
-            case .icc(_, _, _):
-                return nil
+            case .icc(let profileName, let components, _):
+                switch profileName
+                {
+                    case "p3":
+                        if let colorSpace = CGColorSpace(name: CGColorSpace.displayP3)
+                        {
+                            var withAlphaComponents = components
+                            if withAlphaComponents.count == 3
+                            {
+                                withAlphaComponents.append(1.0)
+                            }
+                            
+                            return CGColor(colorSpace: colorSpace, components: withAlphaComponents)
+                        }
+                    default:
+                        return nil
+                }
+            
             case .placeholder(_):
                 return nil
             case .transparent(let aColour, let alpha):
@@ -68,6 +84,28 @@ public extension Colour
                 }
                 return cgColor.copy(alpha: alpha)
         }
+        return nil 
+    }
+    
+    public func toCGColorWithColorContext(_ colorContext: ColorContext? = nil) ->CGColor?
+    {
+        guard let cgColor = self.cgColor else
+        {
+            var result: CGColor? = nil
+            
+            if let context = colorContext , case .icc(let name, let components, _) = self
+            {
+                if let profileData = context.profileNamed(name: name)
+                {
+                    if let colorSpace = CGColorSpace(iccProfileData: profileData as CFData)
+                    {
+                        result = CGColor(colorSpace: colorSpace, components: components)
+                    }
+                }
+            }
+            return result
+        }
+        return cgColor
     }
 }
 
@@ -80,10 +118,11 @@ extension CGColor
             AnyColourParser(HexColourParser()),
             AnyColourParser(DeviceRGBColourParser()),
             AnyColourParser(DeviceGrayColourParser()),
-            AnyColourParser(DeviceCYMKColourParser())
+            AnyColourParser(DeviceCYMKColourParser()),
+            AnyColourParser(ICCColourParser())
         ]
     
-    static func fromString(string: String) -> CGColor?
+    static public func fromString(string: String, colorContext: ColorContext? = nil) -> CGColor?
     {
         if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)
         {

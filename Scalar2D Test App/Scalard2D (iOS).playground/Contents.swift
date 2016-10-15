@@ -20,9 +20,10 @@ if let myPath = UIBezierPath(svgPath: pathString)
     UIGraphicsEndImageContext()
 }
 
+
 let pathView = PathView(frame: CGRect(x: 0.0, y: 0.0, width: 300, height: 300))
 pathView.svgPath = pathString
-pathView.fillColor = UIColor.clear
-pathView.strokeColor = UIColor.green
+pathView.fillColor = UIColor(string: "#FFF")
+pathView.strokeColor = UIColor(string: "icc-color(p3, 1.0, 0.0, 1.0)")
 pathView.lineWidth = 5.0
-pathView.backgroundColor = UIColor.blue
+pathView.backgroundColor = UIColor.clear
