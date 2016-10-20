@@ -37,7 +37,7 @@ public struct RGBColourParser : ColourParser
     static let decimalSymbols = CharacterSet(charactersIn: "0123456789.")
     static let notRGBParameterSymbols = CharacterSet(charactersIn: "0123456789.%").inverted
     
-    private func retrieveColourComponent(component: String) throws -> ColourFloat
+    private func retrieveColourComponent(component: String, isAlpha: Bool) throws -> ColourFloat
     {
         // obviously this method is going to be pretty forgiving of garbled input.
         var componentString = component.trimmingCharacters(in: RGBColourParser.notRGBParameterSymbols)
@@ -56,21 +56,40 @@ public struct RGBColourParser : ColourParser
         {
             throw ColourParsingError.unexpectedCharacter(component)
         }
-        if(isPercent)
+        
+        if isAlpha
         {
-            guard result >= 0.0, result <= 100.0 else
+            if isPercent
             {
-                throw ColourParsingError.badRange(component)
+                throw ColourParsingError.unexpectedCharacter(component)
             }
-            return ColourFloat(result / 100.0)
+            else
+            {
+                guard result >= 0.0, result <= 1.0 else
+                {
+                    throw ColourParsingError.badRange(component)
+                }
+                return ColourFloat(result)
+            }
         }
         else
         {
-            guard result >= 0.0, result <= 255.0 else
+            if(isPercent)
             {
-                throw ColourParsingError.badRange(component)
+                guard result >= 0.0, result <= 100.0 else
+                {
+                    throw ColourParsingError.badRange(component)
+                }
+                return ColourFloat(result / 100.0)
             }
-            return ColourFloat(result / 255.0)
+            else
+            {
+                guard result >= 0.0, result <= 255.0 else
+                {
+                    throw ColourParsingError.badRange(component)
+                }
+                return ColourFloat(result / 255.0)
+            }
         }
     }
     
@@ -82,6 +101,10 @@ public struct RGBColourParser : ColourParser
             return nil
         }
         
+        let isRGBA = source.hasPrefix("rgba")
+        let prefix = isRGBA ? "rgba" : "rgb"
+        let parameterCount = isRGBA ? 4 : 3
+        
 
         let leftParenComponents = source.components(separatedBy: "(")
         guard leftParenComponents.count == 2 else
@@ -89,7 +112,7 @@ public struct RGBColourParser : ColourParser
             throw ColourParsingError.unexpectedCharacter(source)
         }
         
-        guard leftParenComponents.first!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == "rgb" else
+        guard leftParenComponents.first!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) == prefix else
         { // something between the rgb prefix and the leading (
             throw ColourParsingError.unexpectedCharacter(source)
         }
@@ -108,18 +131,23 @@ public struct RGBColourParser : ColourParser
         let payload = rightParenComponents.first!
         
         let stringComponents = payload.components(separatedBy: ",")
-        guard  stringComponents.count == 3 else
-        {// need exactly 3 components r,g, b
+        guard  stringComponents.count == parameterCount else
+        {// need exactly parameterCount components r,g, b, a?
             throw ColourParsingError.incomplete(source)
         }
         
-        let red = try self.retrieveColourComponent(component: stringComponents[0])
-        let green = try self.retrieveColourComponent(component: stringComponents[1])
-        let blue = try self.retrieveColourComponent(component: stringComponents[2])
+        let red = try self.retrieveColourComponent(component: stringComponents[0], isAlpha: false)
+        let green = try self.retrieveColourComponent(component: stringComponents[1], isAlpha: false)
+        let blue = try self.retrieveColourComponent(component: stringComponents[2], isAlpha: false)
         
+        var result = Colour.rgb(red: red, green: green, blue: blue, source: source)
         
-        return Colour.rgb(red: red, green: green, blue: blue, source: source)
-        
+        if(isRGBA)
+        {
+            let alpha = try self.retrieveColourComponent(component: stringComponents[3], isAlpha: true)
+            result = Colour.transparent(Colour: result, alpha: alpha)
+        }
+        return result
     }
     
     public init()

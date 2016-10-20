@@ -34,7 +34,7 @@ class ColourParserTests: XCTestCase {
         
         let colorParser = RGBColourParser()
         
-        let tests = ["rgb (12%, 244, 10 )", "rgb(1%, 0, 0)"]
+        let tests = ["rgb (12%, 244, 10 )", "rgb(1%, 0, 0)", "rgba(244, 98%, 1, 0.5)"]
         let badTests = ["rgb (.%, 1, 10 )", "rgb(256, -11, 0)", "rgb bad(1.0, 22, 33), rgb(bad, 1.0, 22), rgb(1.0, 1.0), rgb(1.0, ,1.0)"]
         
         do
@@ -46,7 +46,8 @@ class ColourParserTests: XCTestCase {
                     switch color {
                     case .rgb(red: let red, green: let green, blue: let blue, _):
                         XCTAssertTrue(red > 0 && green <= 255 && blue <= 255)
-                    break
+                    case .transparent(_, let alpha ):
+                        XCTAssertEqual(alpha, 0.5, "Expected alpha to be 0.5")
                     default:
                         
                         XCTFail("Returned unexpected Colour type")
@@ -172,7 +173,7 @@ class ColourParserTests: XCTestCase {
     
     func testGrayDeviceParsing()
     {
-        let badSources = ["device-gray bad (.1)", "device-gray(2.0)" , "device-gray(.1, .2)", "device-gray()", "device-gray(bad)", "device-gray(1.0"]
+        let badSources = ["device-gray bad (.1)" , "device-gray(.1, .2)", "device-gray()", "device-gray(bad)", "device-gray(1.0"]
         self.tryBadParsing(badSources: badSources)
         
         let goodSources = ["device-gray(0.0)", "device-gray (  .4  )"]
@@ -193,7 +194,7 @@ class ColourParserTests: XCTestCase {
     
     func testCMYKDeviceParsing()
     {
-        let badSources = ["device-cmyk bad (.1, .2, .3, .4)", "device-cmyk(", "device-cmyk)", "device-cmyk()", "device-cmyk(.1, .2, .3, .4, .5)", "device-cmyk(1.1, 2.1, 3.1, 4.1)"]
+        let badSources = ["device-cmyk bad (.1, .2, .3, .4)", "device-cmyk(", "device-cmyk)", "device-cmyk()", "device-cmyk(.1, .2, .3, .4, .5)"]
         self.tryBadParsing(badSources: badSources)
         
         let goodSources = ["device-cmyk(.1, .2, .3, .4)", "device-cmyk(.1, .2, .3,    1.0000   )"]
