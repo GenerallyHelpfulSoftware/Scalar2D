@@ -72,7 +72,7 @@ public extension NSBezierPath
                     let quadControlPoint = points.pointee
                     let nextPoint = points.advanced(by: 1).pointee
                     
-                    let startPoint = myself.currentPoint ?? NSPoint(x: 0, y: 0)
+                    let startPoint = myself.currentPoint 
                     
                     let control1X = startPoint.x + ⅔*(quadControlPoint.x-startPoint.x)
                     let control1Y = startPoint.y + ⅔*(quadControlPoint.y-startPoint.y)

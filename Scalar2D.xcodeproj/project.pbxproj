@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2103E55E1DD97E3B005E3A09 /* StyleBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2103E55D1DD97E3B005E3A09 /* StyleBlock.swift */; };
 		211179C71DACAB740054FAA4 /* ColourParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179C61DACAB740054FAA4 /* ColourParserTests.swift */; };
 		211179D71DB19B8D0054FAA4 /* CGColor+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179D61DB19B8D0054FAA4 /* CGColor+Test.swift */; };
 		211179E61DB75EFC0054FAA4 /* CGColor+ColourParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211179DA1DB75EFC0054FAA4 /* CGColor+ColourParser.swift */; };
@@ -33,12 +34,13 @@
 		213D06F41D55F72200A5FD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F31D55F72200A5FD69 /* Assets.xcassets */; };
 		213D06F71D55F72200A5FD69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */; };
 		2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */; };
-		21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
-		21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */; };
+		21B167111DCEAA43006F5481 /* CSSParser+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B167101DCEAA43006F5481 /* CSSParser+Test.swift */; };
+		21B167131DCEABAF006F5481 /* Test.css in Resources */ = {isa = PBXBuildFile; fileRef = 21B167121DCEABAF006F5481 /* Test.css */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
-		21F718FF1D71D08B00C98410 /* CSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F718FE1D71D08B00C98410 /* CSSParser.swift */; };
-		21F719011D71D11D00C98410 /* GraphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719001D71D11D00C98410 /* GraphicStyle.swift */; };
-		21F719041D71D1E600C98410 /* StyleSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719031D71D1E600C98410 /* StyleSelector.swift */; };
+		21E7A9361F348956005FCDCB /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
+		21EF7CBE1DBCFBD600D71CD4 /* StyleSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719031D71D1E600C98410 /* StyleSelector.swift */; };
+		21EF7CBF1DBCFBDF00D71CD4 /* GraphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719001D71D11D00C98410 /* GraphicStyle.swift */; };
+		21EF7CC01DBCFBE300D71CD4 /* CSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F718FE1D71D08B00C98410 /* CSSParser.swift */; };
 		21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFE8C71D63009D003446DF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; };
 		21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -108,6 +110,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2103E55D1DD97E3B005E3A09 /* StyleBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StyleBlock.swift; path = Styling/Source/StyleBlock.swift; sourceTree = SOURCE_ROOT; };
 		211179C61DACAB740054FAA4 /* ColourParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourParserTests.swift; sourceTree = "<group>"; };
 		211179D61DB19B8D0054FAA4 /* CGColor+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGColor+Test.swift"; sourceTree = "<group>"; };
 		211179DA1DB75EFC0054FAA4 /* CGColor+ColourParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGColor+ColourParser.swift"; path = "Source/CGColor+ColourParser.swift"; sourceTree = "<group>"; };
@@ -147,7 +150,8 @@
 		2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_Mac_Test_AppTests.swift; sourceTree = "<group>"; };
 		2157D36E1D5AE3DE00C57462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathTests.swift; sourceTree = "<group>"; };
-		21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Test.swift"; path = "Scalar2DTests/CGPath+Test.swift"; sourceTree = SOURCE_ROOT; };
+		21B167101DCEAA43006F5481 /* CSSParser+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSSParser+Test.swift"; sourceTree = "<group>"; };
+		21B167121DCEABAF006F5481 /* Test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = Test.css; path = TestFiles/Test.css; sourceTree = "<group>"; };
 		21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Iterate.swift"; path = "GraphicPath/Source/CGPath+Iterate.swift"; sourceTree = SOURCE_ROOT; };
 		21B719731D48599A00B0ACBF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
 		21B719741D48599A00B0ACBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -276,6 +280,14 @@
 			path = "Scalar2D Mac Test AppTests";
 			sourceTree = "<group>";
 		};
+		21B167141DCEABB6006F5481 /* TestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				21B167121DCEABAF006F5481 /* Test.css */,
+			);
+			name = TestFiles;
+			sourceTree = "<group>";
+		};
 		21B719661D48599A00B0ACBF = {
 			isa = PBXGroup;
 			children = (
@@ -321,14 +333,15 @@
 		21B7197D1D48599B00B0ACBF /* Scalar2DTests */ = {
 			isa = PBXGroup;
 			children = (
-				21B5ABC71D5FE56300B6E5EA /* CGPath+Test.swift */,
-				21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */,
-				212E78241D5797B0003802D7 /* PathGeneratorTests.swift */,
+				211179D61DB19B8D0054FAA4 /* CGColor+Test.swift */,
 				212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */,
 				211179C61DACAB740054FAA4 /* ColourParserTests.swift */,
-				211179D61DB19B8D0054FAA4 /* CGColor+Test.swift */,
+				21B167101DCEAA43006F5481 /* CSSParser+Test.swift */,
 				2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */,
+				212E78241D5797B0003802D7 /* PathGeneratorTests.swift */,
+				21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */,
 				21B719801D48599B00B0ACBF /* Info.plist */,
+				21B167141DCEABB6006F5481 /* TestFiles */,
 			);
 			path = Scalar2DTests;
 			sourceTree = "<group>";
@@ -352,6 +365,7 @@
 				21F718FE1D71D08B00C98410 /* CSSParser.swift */,
 				21F719001D71D11D00C98410 /* GraphicStyle.swift */,
 				21F719031D71D1E600C98410 /* StyleSelector.swift */,
+				2103E55D1DD97E3B005E3A09 /* StyleBlock.swift */,
 			);
 			name = Styling;
 			path = Scalar2D;
@@ -521,7 +535,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Generally Helpful Software";
 				TargetAttributes = {
 					212E782F1D5832C4003802D7 = {
@@ -532,6 +546,7 @@
 					213D06E91D55F72100A5FD69 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					2157D3691D5AE3DE00C57462 = {
@@ -550,6 +565,7 @@
 					21FFE8C41D63009D003446DF = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -607,6 +623,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21B167131DCEABAF006F5481 /* Test.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +657,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				213D06EF1D55F72200A5FD69 /* ViewController.swift in Sources */,
+				21E7A9361F348956005FCDCB /* CGPath+Iterate.swift in Sources */,
 				213D06ED1D55F72200A5FD69 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -648,7 +666,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B5ABC91D5FE56300B6E5EA /* CGPath+Test.swift in Sources */,
 				2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,10 +678,7 @@
 				211179D71DB19B8D0054FAA4 /* CGColor+Test.swift in Sources */,
 				212E785B1D58ACAF003802D7 /* CGPathGeneratorTests.swift in Sources */,
 				212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */,
-				21B5ABC81D5FE56300B6E5EA /* CGPath+Test.swift in Sources */,
-				21F718FF1D71D08B00C98410 /* CSSParser.swift in Sources */,
-				21F719011D71D11D00C98410 /* GraphicStyle.swift in Sources */,
-				21F719041D71D1E600C98410 /* StyleSelector.swift in Sources */,
+				21B167111DCEAA43006F5481 /* CSSParser+Test.swift in Sources */,
 				21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -685,13 +699,17 @@
 				21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */,
 				21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */,
 				211179EA1DB75EFC0054FAA4 /* DeviceGrayColourParser.swift in Sources */,
+				21EF7CBE1DBCFBD600D71CD4 /* StyleSelector.swift in Sources */,
 				21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */,
 				211179E81DB75EFC0054FAA4 /* DeviceColourParser.swift in Sources */,
+				2103E55E1DD97E3B005E3A09 /* StyleBlock.swift in Sources */,
 				211179F01DB75EFC0054FAA4 /* UIColor+ColourParser.swift in Sources */,
 				211179EE1DB75EFC0054FAA4 /* NSColor+ColourParser.swift in Sources */,
 				211179EF1DB75EFC0054FAA4 /* RGBColourParser.swift in Sources */,
 				21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */,
+				21EF7CC01DBCFBE300D71CD4 /* CSSParser.swift in Sources */,
 				211179EB1DB75EFC0054FAA4 /* DeviceRGBColourParser.swift in Sources */,
+				21EF7CBF1DBCFBDF00D71CD4 /* GraphicStyle.swift in Sources */,
 				21FFE8D21D6300AF003446DF /* DrawStyle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,7 +779,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -781,7 +800,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -798,7 +818,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -814,7 +835,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -834,7 +856,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D Mac Test App.app/Contents/MacOS/Scalar2D Mac Test App";
 			};
 			name = Debug;
@@ -854,7 +877,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D Mac Test App.app/Contents/MacOS/Scalar2D Mac Test App";
 			};
 			name = Release;
@@ -868,14 +892,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -919,14 +951,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -962,7 +1002,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2DTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D iOS Test App.app/Scalar2D iOS Test App";
 			};
 			name = Debug;
@@ -974,7 +1015,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2DTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D iOS Test App.app/Scalar2D iOS Test App";
 			};
 			name = Release;
@@ -996,7 +1038,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1017,7 +1060,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
