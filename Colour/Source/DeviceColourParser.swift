@@ -12,7 +12,7 @@ struct DeviceColourParser
     let componentCount: Int
     static let notRGBParameterSymbols = CharacterSet(charactersIn: "0123456789.").inverted
 
-    private static func retrieveColourComponent(component: String) throws -> ColourFloat
+    private static func retrieve(colourComponent component: String) throws -> ColourFloat
     {
         // obviously this method is going to be pretty forgiving of garbled input.
         let componentString = component.trimmingCharacters(in: DeviceColourParser.notRGBParameterSymbols)
@@ -69,7 +69,7 @@ struct DeviceColourParser
             throw ColourParsingError.incomplete(source)
         }
         
-        let result = try stringComponents.map{return try DeviceColourParser.retrieveColourComponent(component: $0)}
+        let result = try stringComponents.map{return try DeviceColourParser.retrieve(colourComponent: $0)}
         
         return result
         

@@ -25,7 +25,7 @@ class CGColor_Test: XCTestCase {
         
         for aColorDefinition in goodColors
         {
-            XCTAssertNotNil(CGColor.fromString(string: aColorDefinition), "Expected a CGColor for \(aColorDefinition)")
+            XCTAssertNotNil(CGColor.from(string: aColorDefinition), "Expected a CGColor for \(aColorDefinition)")
         }
     }
     

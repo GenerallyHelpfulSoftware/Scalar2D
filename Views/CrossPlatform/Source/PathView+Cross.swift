@@ -77,7 +77,7 @@ extension ShapeView
             self.shapeLayer.path = nil
             return
         }
-        guard let cgPath = CGPath.pathFromSVGPath(svgPath: pathToRender) else
+        guard let cgPath = CGPath.path(fromSVGPath: pathToRender) else
         {
             print("Bad SVG: \(pathToRender)")
             return

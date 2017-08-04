@@ -273,7 +273,6 @@ extension CGMutablePath
                     break
                 }
                 
-                
                 transform = transform.translatedBy(x: centerPoint.x, y: centerPoint.y)
                 
                 transform = transform.rotated(by: CGFloat(xAxisRotationRadians))
@@ -305,17 +304,19 @@ extension CGMutablePath
                         
                         mutablePath.move(to: CGPoint(x: x, y: y))
                         clearControlPoints()
+                    
                     case let .moveToAbsolute(newX, newY):
                         x = newX
                         y = newY
                         mutablePath.move(to: CGPoint(x: x, y: y))
                         clearControlPoints()
-                        
+                    
                     case let .lineTo(deltaX, deltaY):
                         x = x + deltaX
                         y = y + deltaY
                         mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
+                    
                     case let .lineToAbsolute(newX, newY):
                         x = newX
                         y = newY
@@ -326,6 +327,7 @@ extension CGMutablePath
                         x = x + deltaX
                         mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
+                    
                     case .horizontalLineToAbsolute(let newX):
                         x = newX
                         mutablePath.addLine(to: CGPoint(x: x, y: y))
@@ -335,6 +337,7 @@ extension CGMutablePath
                         y = y + deltaY
                         mutablePath.addLine(to: CGPoint(x: x, y: y))
                         clearControlPoints()
+                    
                     case .verticalLineToAbsolute(let newY):
                         y = newY
                         mutablePath.addLine(to: CGPoint(x: x, y: y))
@@ -351,6 +354,7 @@ extension CGMutablePath
                         
                         lastQuadX₁ = x₁
                         lastQuadY₁ = y₁
+                    
                     case let .quadraticBezierToAbsolute(x₁, y₁, newX, newY):
                         x = newX
                         y = newY
@@ -489,7 +493,7 @@ extension CGMutablePath
             - svgPath: a (hopefully) well formatted SVG path.
         - returns: true if the SVG path was valid, false otherwise. 
      **/
-    public func addSVGPath(svgPath: String) -> Bool
+    public func add(svgPath: String) -> Bool
     {
         do
         {
@@ -505,7 +509,7 @@ extension CGMutablePath
         }
     }
 
-    // following crashes the current Swift compiler
+    // following convenience init is not allowed by the current compiler
 //    public convenience init?(svgPath: String)
 //    {
 //        self.init()
@@ -520,16 +524,15 @@ extension CGPath
 {
     /**
      A factory method to create an immutable CGPath from an SVG path string.
-        I am not sure how to make this into a convenience init method.
      
         - parameters:
             - svgPath: A (hopefully) valid path complying to the SVG path specification. 
         - returns: an optional CGPath which will be .Some if the SVG path string was valid.
      **/
-    public static func pathFromSVGPath(svgPath: String) -> CGPath?
+    public static func path(fromSVGPath svgPath: String) -> CGPath?
     {
         let mutableResult = CGMutablePath()
-        if mutableResult.addSVGPath(svgPath: svgPath)
+        if mutableResult.add(svgPath: svgPath)
         {
             return mutableResult.copy()
         }

@@ -39,7 +39,7 @@ import Foundation
     {
         public convenience init?(string: String, colorContext: ColorContext? = nil)
         {
-            guard let cgColor = CGColor.fromString(string: string, colorContext: colorContext) else
+            guard let cgColor = CGColor.from(string: string, colorContext: colorContext) else
             {
                 return nil
             }

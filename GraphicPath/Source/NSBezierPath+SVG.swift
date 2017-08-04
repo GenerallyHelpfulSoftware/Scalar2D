@@ -39,7 +39,7 @@ public extension NSBezierPath
     public convenience init?(svgPath: String)
     {
         let cgPath = CGMutablePath()
-        if cgPath.addSVGPath(svgPath: svgPath, using: nil) == false
+        if cgPath.add(svgPath: svgPath) == false
         {
             return nil // wasn't a valid SVG path
         }
@@ -47,7 +47,6 @@ public extension NSBezierPath
         self.init()
         
         let myself = self
-        
         
         cgPath.iterate { (element) in
             let points = element.points // remember that points are unsafe (thus use of pointee below)
@@ -90,7 +89,5 @@ public extension NSBezierPath
         }
     }
 }
-    
-    
 
 #endif

@@ -37,7 +37,7 @@ public struct RGBColourParser : ColourParser
     static let decimalSymbols = CharacterSet(charactersIn: "0123456789.")
     static let notRGBParameterSymbols = CharacterSet(charactersIn: "0123456789.%").inverted
     
-    private func retrieveColourComponent(component: String, isAlpha: Bool) throws -> ColourFloat
+    private func retrieve(colourComponent component: String, isAlpha: Bool) throws -> ColourFloat
     {
         // obviously this method is going to be pretty forgiving of garbled input.
         var componentString = component.trimmingCharacters(in: RGBColourParser.notRGBParameterSymbols)
@@ -136,15 +136,15 @@ public struct RGBColourParser : ColourParser
             throw ColourParsingError.incomplete(source)
         }
         
-        let red = try self.retrieveColourComponent(component: stringComponents[0], isAlpha: false)
-        let green = try self.retrieveColourComponent(component: stringComponents[1], isAlpha: false)
-        let blue = try self.retrieveColourComponent(component: stringComponents[2], isAlpha: false)
+        let red = try self.retrieve(colourComponent: stringComponents[0], isAlpha: false)
+        let green = try self.retrieve(colourComponent: stringComponents[1], isAlpha: false)
+        let blue = try self.retrieve(colourComponent: stringComponents[2], isAlpha: false)
         
         var result = Colour.rgb(red: red, green: green, blue: blue, source: source)
         
         if(isRGBA)
         {
-            let alpha = try self.retrieveColourComponent(component: stringComponents[3], isAlpha: true)
+            let alpha = try self.retrieve(colourComponent: stringComponents[3], isAlpha: true)
             result = Colour.transparent(Colour: result, alpha: alpha)
         }
         return result

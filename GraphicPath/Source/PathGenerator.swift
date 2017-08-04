@@ -36,7 +36,7 @@ public extension String
 {
     /**
      A function that converts a properly formatted string using the [SVG path specification](http://www.w3.org/TR/SVG/paths.html) to an array of PathTokens.
-     - returns: An arry of PathToken
+     - returns: An array of PathToken
      - throws: a PathToken.FailureReason
      **/
     
@@ -359,8 +359,8 @@ public extension String
         
         let pathString: String
         var resultTokens = [PathToken]()
-        var parseState = ParseState.lookingForFirstOperand
-        var tokenBuilder: TokenBuilder
+        private var parseState = ParseState.lookingForFirstOperand
+        private var tokenBuilder: TokenBuilder
         
         init(pathString: String)
         {
@@ -545,10 +545,10 @@ public enum PathToken : CustomStringConvertible
                 case let .unexpectedCharacter(badCharacter, offset):
                     return "Unexpected character: \(badCharacter) at offset: \(offset)"
                 case let .tooFewParameters(operand, expectedParameterCount, actualParameterCount, offset):
-                    return "Operand '\(operand)' (\(PathToken.nameForOperand(operand: operand))) expects \(expectedParameterCount), but had \(actualParameterCount) at offset: \(offset)"
+                    return "Operand '\(operand)' (\(PathToken.name(forOperand: operand))) expects \(expectedParameterCount), but had \(actualParameterCount) at offset: \(offset)"
                 case let .badParameter(operand, parameterIndex, unexpectedValue, offset):
                     
-                    return "Operand '\(operand)' (\(PathToken.nameForOperand(operand: operand))) had a unexpected parameter '\(unexpectedValue)' for parameter \(parameterIndex) at offset: \(offset)"
+                    return "Operand '\(operand)' (\(PathToken.name(forOperand: operand))) had a unexpected parameter '\(unexpectedValue)' for parameter \(parameterIndex) at offset: \(offset)"
                 
                 case .noOperands:
                     return "Just white space."
@@ -741,7 +741,7 @@ public enum PathToken : CustomStringConvertible
     
     public var description: String
     {
-        let name = PathToken.nameForOperand(operand: self.operand)
+        let name = PathToken.name(forOperand: self.operand)
         switch self
         {
             case let .bad(badOperand, failureReason):
@@ -831,7 +831,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
 
-    fileprivate static func nameForOperand(operand : Character) -> String
+    fileprivate static func name(forOperand  operand: Character) -> String
     {
         var baseName : String
         let operandAsString = String(operand)

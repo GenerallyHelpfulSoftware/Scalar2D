@@ -122,7 +122,7 @@ extension CGColor
             AnyColourParser(ICCColourParser())
         ]
     
-    static public func fromString(string: String, colorContext: ColorContext? = nil) -> CGColor?
+    static public func from(string: String, colorContext: ColorContext? = nil) -> CGColor?
     {
         if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)
         {
