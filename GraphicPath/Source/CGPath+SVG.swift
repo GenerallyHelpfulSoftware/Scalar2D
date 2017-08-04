@@ -541,5 +541,41 @@ extension CGPath
             return nil 
         }
     }
+    
+    public func asString() -> String
+    {
+        let result = NSMutableString()
+        
+        self.iterate { (element) in
+            let points = element.points
+            
+            switch element.type
+            {
+            case .moveToPoint:
+                let newPoint = points.pointee
+                
+                result.append("M (\(newPoint.x), \(newPoint.y))\n")
+            case .addLineToPoint:
+                let newPoint = points.pointee
+                result.append("L (\(newPoint.x), \(newPoint.y))\n")
+            case .closeSubpath:
+                result.append("Z\n")
+            case .addCurveToPoint:
+                let controlPoint1 = points.pointee
+                let controlPoint2 = points.advanced(by: 1).pointee
+                let nextPoint = points.advanced(by: 2).pointee
+                
+                result.append("C (\(controlPoint1.x), \(controlPoint1.y), \(controlPoint2.x), \(controlPoint2.y), \(nextPoint.x), \(nextPoint.y))\n")
+                
+            case .addQuadCurveToPoint:
+                
+                let quadControlPoint = points.pointee
+                let nextPoint = points.advanced(by: 1).pointee
+                result.append("Q (\(quadControlPoint.x), \(quadControlPoint.y), \(nextPoint.x), \(nextPoint.y))\n")
+            }
+            
+        }
+        return result as String
+    }
 }
 

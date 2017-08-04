@@ -35,7 +35,7 @@
 import Foundation
 import CoreGraphics
 
-extension CGPath
+public extension CGPath
 {
     /**
         Declaration of the closure type which will be called with the elements of a CGPath.
