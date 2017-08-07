@@ -1,0 +1,101 @@
+/*/*  A text/css sampler * */
+
+*{
+    fill: transparent;
+    stroke: #FF0;
+    stroke-width: 3.0;
+}
+
+text, tspan
+{
+    font-family:Georgia, system;
+    font-size:31pt;
+   /* font-size:33pt;
+    text-anchor:middle;  */
+   
+   
+   /* /* font-size:33pt;
+    text-anchor:middle;  */
+   
+    fill:#FF1;
+}
+
+rect
+{
+    fill: #FF2;
+    stroke: none;
+}
+
+.named
+{
+    fill: #FF3;
+    stroke-width: 1;
+}
+
+path#specified
+{
+    fill: #FF4;;
+    stroke-width: 3;
+}
+
+
+circle, path
+{
+    fill: #FF5;
+    stroke: blue;
+}
+
+.named path
+{
+    fill: #FF6;
+    stroke: green;
+}
+
+
+g: first-child
+{
+    fill: #FF7;
+}
+
+switch > g > rect
+{
+    fill: #FF8;
+}
+
+g: nth-child(odd)
+{
+    fill: #FF9;
+    stroke-width: 5;
+    stroke: red;
+}
+
+g: nth-child(3n+2)
+{
+    fill: #FFA;
+    stroke-width: 2;
+    stroke: lightblue;
+}
+
+.named rect:first-of-type
+{
+    fill: #FFB;
+    stroke: darkgray;
+}
+
+.named rect:last-of-type
+{
+    fill: #FFC;
+    stroke: teal;
+}
+
+
+circle:not(.named)
+{
+    fill: #FFD;
+    stroke: magenta;
+}
+
+button:hover
+{
+    fill:#CCC;
+}
