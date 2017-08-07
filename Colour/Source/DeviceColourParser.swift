@@ -31,7 +31,7 @@ struct DeviceColourParser
     }
 
 
-    public func deserializeString(source: String, colorContext: ColorContext?) throws -> [ColourFloat]?
+    public func deserializeString(source: String, colorContext: ColorContext? = nil) throws -> [ColourFloat]?
     {
         guard source.hasPrefix(self.prefix) else
         {

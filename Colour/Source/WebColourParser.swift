@@ -188,7 +188,7 @@ public struct WebColourParser : ColourParser
      * It's assumed that source is in lowercase
      */
     
-    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour?
+    public func deserializeString(source: String, colorContext: ColorContext? = nil) throws -> Colour?
     {
         return WebColourParser.table[source]
     }

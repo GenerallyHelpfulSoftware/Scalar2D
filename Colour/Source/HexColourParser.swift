@@ -34,7 +34,7 @@ import Foundation
 
 public struct HexColourParser : ColourParser
 {
-    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour?
+    public func deserializeString(source: String, colorContext: ColorContext? = nil) throws -> Colour?
     {
         guard source.hasPrefix("#") else
         {

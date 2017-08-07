@@ -170,7 +170,7 @@ public struct AnyColourParser : ColourParser
         _deserialize = base.deserializeString
     }
     
-    public func deserializeString(source: String, colorContext: ColorContext?) throws -> Colour? {
+    public func deserializeString(source: String, colorContext: ColorContext? = nil) throws -> Colour? {
         return try self._deserialize(source, colorContext)
     }
 
