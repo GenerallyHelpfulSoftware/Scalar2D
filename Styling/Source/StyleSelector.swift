@@ -203,7 +203,6 @@ public enum CSSElement : CSSRankable
     }
 }
 
-
 public struct StyleSelector : CSSRankable
 {
     let element: CSSElement
@@ -211,7 +210,6 @@ public struct StyleSelector : CSSRankable
     let className: String?
     let pseudoClasses: [PseudoClass]?
     let pseudoElement: PseudoElement?
-    
     
     public init(element: CSSElement  = .none, identifier: String? = nil, className: String? = nil, pseudoClasses: [PseudoClass]? = nil, pseudoElement: PseudoElement? = nil)
     {
@@ -263,31 +261,17 @@ public struct StyleSelector : CSSRankable
             return false
         }
         
-        switch (self.identifier, testItem.identifier)
+        if self.identifier != testItem.identifier
         {
-            case (.some, .some):
-                if self.identifier! != testItem.identifier!
-                {
-                    return false
-                }
-            case (.some, _):
-                return false
-            default:
-            break
+            return false
         }
         
-        switch (self.className, testItem.className)
+        if self.className != testItem.className
         {
-            case (.some, .some):
-                if self.className! != testItem.className!
-                {
-                    return false
-                }
-            case (.some, _):
-                return false
-            default:
-                break
+            return false
         }
+        
+        
         
         if let pseudoClasses = self.pseudoClasses
         {
