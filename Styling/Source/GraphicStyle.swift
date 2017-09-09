@@ -32,13 +32,21 @@
 //
 import Foundation
 
+
+public protocol InheritableProperty
+{
+    var useInitial : Bool {get}
+    var useInherited : Bool {get}
+    var useNormal : Bool {get}
+}
+
 public  enum StyleUnit
 {
     case pixel
     case percent
     case em
     case point
-    
+    case centimeter
 }
 
 public  enum StyleProperty
@@ -48,14 +56,27 @@ public  enum StyleProperty
     case number(Double)
     case colour(Colour)
     case boolean(Bool)
+    
+    // half of any graphics library is dealing with drawing text
+    case fontStyle(FontStyle)
+    case fontVariant(FontVariant)
+    case fontFamilies([FontFamily])
+    case fontWeight(FontWeight)
+    case fontStretch(FontStretch)
+    case fontDecorations([TextDecoration])
+    case lineHeight(LineHeight)
+    case fontSize(FontSize)
+    
     indirect case array([StyleProperty])
+    
+    // remember to update Equatable extension below
 }
 
 public struct GraphicStyle
 {
-    let key: String
-    let value: StyleProperty
-    let important: Bool
+    public let key: String
+    public let value: StyleProperty
+    public let important: Bool
     
     public init(key: String, value: StyleProperty, important: Bool = false)
     {
@@ -104,6 +125,22 @@ extension StyleProperty : Equatable
                 return lhsBool == rhsBool
             case (.array(let lhsArray), .array(let rhsArray)):
                 return lhsArray == rhsArray
+            case (.fontStyle(let lhsStyle), .fontStyle(let rhsStyle)):
+                return lhsStyle == rhsStyle
+            case (.fontVariant(let lhsVariant), .fontVariant(let rhsVariant)):
+                return lhsVariant == rhsVariant
+            case (.fontFamilies(let lhsFamilies), .fontFamilies(let rhsFamilies)):
+                return lhsFamilies == rhsFamilies
+            case (.fontWeight(let lhsWeight), .fontWeight(let rhsWeight)):
+                return lhsWeight == rhsWeight
+            case (.fontDecorations(let lhsDecorations), .fontDecorations(let rhsDecorations)):
+                return lhsDecorations == rhsDecorations
+            case (.lineHeight(let lhsHeight), .lineHeight(let rhsHeight)):
+                return lhsHeight == rhsHeight
+            case (.fontSize(let lhsSize), .fontSize(let rhsSize)):
+                return lhsSize == rhsSize
+            case (.fontStretch(let lhsStretch), .fontStretch(let rhsStretch)):
+                return lhsStretch == rhsStretch
             default:
                 return false
         }
