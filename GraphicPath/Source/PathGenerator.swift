@@ -486,23 +486,12 @@ public enum PathToken : CustomStringConvertible
     #endif
 
     /**
-        In the SVG definition of an Arc, there are almost always 2 ways to get from the starting point to the specified ending point. One way is longer than the other, thus the choice.
+        In the SVG definition of an Arc, there are almost always 2 ways to get from the starting point to the specified ending point. One way is likely longer than the other, thus the choice.
      **/
     public enum ArcChoice : Int
     {
         case large = 1
         case short = 0
-        
-        var useLarge: Bool
-        {
-            switch self
-            {
-                case .large:
-                    return true
-                case .short:
-                    return false
-            }
-        }
     }
     
     /**
@@ -512,17 +501,6 @@ public enum PathToken : CustomStringConvertible
     {
         case clockwise = 0
         case counterclockwise = 1
-        
-        var useClockwise : Bool
-        {
-            switch self
-            {
-                case .clockwise:
-                    return true
-                case .counterclockwise:
-                    return false
-            }
-        }
     }
     /**
         If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
@@ -781,12 +759,12 @@ public enum PathToken : CustomStringConvertible
             case let .smoothQuadraticBezierToAbsolute(x, y):
                 return "\(name) x: \(x), y: \(y)"
             case let .arcTo(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, x, y):
-                let largeArcString = (largeArcFlag.useLarge) ? "true" : "false"
-                let sweepString = (sweepFlag.useClockwise) ? "true" : "false"
+                let largeArcString = (largeArcFlag == .large) ? "true" : "false"
+                let sweepString = (sweepFlag == .clockwise) ? "true" : "false"
                 return "\(name) r_x: \(xRadius), r_y: \(yRadius), Θ: \(tiltAngle)°‚ large Arc: \(largeArcString), clockwise: \(sweepString), ∆x: \(x), ∆y: \(y)"
             case let .arcToAbsolute(xRadius, yRadius, tiltAngle, largeArcFlag, sweepFlag, x, y):
-                let largeArcString = (largeArcFlag.useLarge) ? "true" : "false"
-                let sweepString = (sweepFlag.useClockwise) ? "true" : "false"
+                let largeArcString = (largeArcFlag == .large) ? "true" : "false"
+                let sweepString = (sweepFlag == .clockwise) ? "true" : "false"
                 return "\(name) r_x: \(xRadius), r_y: \(yRadius), Θ: \(tiltAngle)°‚ large Arc: \(largeArcString), clockwise: \(sweepString), x: \(x), y: \(y)"
         }
     }
