@@ -112,7 +112,7 @@ public extension String
         private var activeParameterString: String
         {
             let endIndex = self.pathString.index(self.activeParameterStartIndex, offsetBy: self.activeParameterStringLength)
-            return self.pathString.substring(with: self.activeParameterStartIndex..<endIndex)
+            return String(self.pathString[self.activeParameterStartIndex..<endIndex])
         }
         
         mutating private func completeActiveParameter() throws

@@ -49,7 +49,8 @@ public struct RGBColourParser : ColourParser
         if componentString.hasSuffix("%")
         {
             isPercent = true
-            componentString = componentString.substring(to: componentString.index(before: componentString.endIndex))
+            let lastIndex = componentString.index(before: componentString.endIndex)
+            componentString = String(componentString[componentString.startIndex..<lastIndex])
         }
         
         guard let result = Double(componentString) else

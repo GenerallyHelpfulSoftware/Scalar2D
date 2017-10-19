@@ -34,8 +34,10 @@ import Foundation
 
 #if os(iOS) || os(tvOS) || os(OSX)
     public typealias ColourFloat = CGFloat
+    public typealias NativeColour = CGColor
 #else
     public typealias ColourFloat = Double
+    public typealias NativeColor = Any
 #endif
 
 public enum ColourParsingError : Error
@@ -48,6 +50,7 @@ public enum ColourParsingError : Error
 
 public enum Colour : Equatable, CustomStringConvertible
 {
+    case clear
     case rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat, source: String?)
     case device_rgb(red: ColourFloat, green: ColourFloat, blue: ColourFloat, source: String?)
     case device_gray(gray: ColourFloat, source: String?)
@@ -60,6 +63,8 @@ public enum Colour : Equatable, CustomStringConvertible
     {
         switch(lhs, rhs)
         {
+            case (.clear, .clear):
+                return true
             case (.rgb(let lhsRed, let lhsGreen, let lhsBlue, _), .rgb(let rhsRed, let rhsGreen, let rhsBlue, _)):
                 return lhsRed == rhsRed && lhsGreen == rhsGreen && lhsBlue == rhsBlue
             case (.device_rgb(let lhsRed, let lhsGreen, let lhsBlue, _), .device_rgb(let rhsRed, let rhsGreen, let rhsBlue, _)):
@@ -85,6 +90,8 @@ public enum Colour : Equatable, CustomStringConvertible
         {
             switch self
             {
+                case .clear:
+                    return "none"
                 case .rgb(_, _, _, let source):
                     return source
                 case .device_rgb(_, _, _, let source):
@@ -112,6 +119,8 @@ public enum Colour : Equatable, CustomStringConvertible
         else
         {
             switch self {
+                case .clear:
+                    return "none"
                 case .rgb(let red, let green, let blue, _):
                     return "rgb(\(red*255.0),\(green*255.0),\(blue*255.0))"
                 case .device_rgb(let red, let green, let blue, _):

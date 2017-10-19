@@ -40,12 +40,13 @@ public struct HexColourParser : ColourParser
         {
             return nil
         }
+        
         let index1 = source.index(after:source.startIndex)
         
         switch source.characters.count
         {
             case 4:
-                let hexString = source.substring(from: index1)
+                let hexString = String(source[index1..<source.endIndex])
                 let scanner = Scanner(string: hexString)
                 var rgbInt = UInt32()
                 guard scanner.scanHexInt32(&rgbInt) else
@@ -60,7 +61,7 @@ public struct HexColourParser : ColourParser
                 red = red + red << 4
                 return Colour.rgb(red: ColourFloat(red)/255.0, green: ColourFloat(green)/255.0, blue: ColourFloat(blue)/255.0, source: source)
             case 7:
-                let hexString = source.substring(from: index1)
+                let hexString = String(source[index1..<source.endIndex])
                 let scanner = Scanner(string: hexString)
                 var rgbInt = UInt32()
                 guard scanner.scanHexInt32(&rgbInt) else
