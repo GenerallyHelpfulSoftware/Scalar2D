@@ -53,15 +53,16 @@ class CSSParser_Test: XCTestCase {
     
     fileprivate func buildTestBlocks() -> [StyleBlock]
     {
+        // These correspond to the items in Test.css
         let result : [StyleBlock] = [
             StyleBlock(selectors: [StyleSelector(element: .any)],
-                       styles: [GraphicStyle(key: "fill", value: "transparent"), GraphicStyle(key: "stroke", hexColour: "#FF0"), GraphicStyle(key: "stroke-width", value:.number(3.0))]),
+                       styles: [GraphicStyle(key: "fill", webColour: "transparent"), GraphicStyle(key: "stroke", hexColour: "#FF0"), GraphicStyle(key: "stroke-width", value:.number(3.0))]),
             
             StyleBlock(selectors: [StyleSelector("text"), StyleSelector("tspan")],
-                       styles: [GraphicStyle(key: "font-family", value:.array([.string("Georgia"), .string("system")])), GraphicStyle(key: "font-size", value:.unitNumber(31.0, .point)), GraphicStyle(key: "fill", hexColour: "#FF1")]),
+                       styles: [GraphicStyle(key: "font-family", value:.fontFamilies([FontFamily.named("Georgia"), FontFamily.system])), GraphicStyle(key: "font-size", value:.fontSize(.point(31.0))), GraphicStyle(key: "fill", hexColour: "#FF1")]),
             
             StyleBlock(selectors: [StyleSelector("rect")],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF2"), GraphicStyle(key: "stroke", value: "none")]),
+                       styles: [GraphicStyle(key: "fill", hexColour: "#FF2"), GraphicStyle(key: "stroke", webColour:"none")]),
             
             
             StyleBlock(selectors: [StyleSelector(className: "named")],
@@ -113,18 +114,121 @@ class CSSParser_Test: XCTestCase {
         super.tearDown()
     }
     
-    func testRemoveComments()
+    func testSelectorFromString()
     {
-        let testString = "Test/String /*** ** test/ */ a test"
-        let strippedString = testString.substringWithoutComments()
-        XCTAssertEqual(strippedString, "Test/String  a test")
+        var css = "g"
+        do
+        {
+            var parsed = try StyleSelector(css: css)
+            var testValue = StyleSelector(element: .element(name: "g"))
+        
+            XCTAssertEqual(parsed, testValue, "\(css) not parsed correctly")
+            
+            css = "*.glenn:nth-child(4 n -5)"
+            
+            parsed = try StyleSelector(css: css)
+            testValue = StyleSelector(element: .any, identifier: nil, className: "glenn", pseudoClasses: [.nth_child(.linear(4, -5))])
+            
+            XCTAssertEqual(parsed, testValue, "\(css) not parsed correctly")
+            
+            
+            
+            css = ":not(*.glenn:nth-child(4 n -5))"
+            
+            parsed = try StyleSelector(css: css)
+            testValue = StyleSelector(element: .none, pseudoClasses: [.not(testValue)])
+            
+            XCTAssertEqual(parsed, testValue, "\(css) not parsed correctly")
+            
+            
+            css = "rect#glenn:hover::before"
+            
+            parsed = try StyleSelector(css: css)
+            testValue = StyleSelector(element: .element(name: "rect"), identifier: "glenn", pseudoClasses: [.hover], pseudoElement: .before)
+            
+            XCTAssertEqual(parsed, testValue, "\(css) not parsed correctly")
+        
+        }
+        catch
+        {
+            XCTFail("\(css) failed \(error)")
+        }
     }
+    
+    
+    func testBadSelectorFromString()
+    {
+        XCTAssertThrowsError(try StyleSelector(css: "**"), "Didn't throw **")
+        XCTAssertThrowsError(try StyleSelector(css: "-9"), "Didn't throw -9")
+        XCTAssertThrowsError(try StyleSelector(css: ":nth-child(1 n 9"), "Didn't throw :nth-child(1 n 9")
+        XCTAssertThrowsError(try StyleSelector(css: "::after::before"), "Didn't throw :after::before 2 pseudoelements")
+        XCTAssertThrowsError(try StyleSelector(css: "::after::before"), "Didn't throw :after::before 2 pseudoelements")
+    }
+    
+    func testCombinatorFromString()
+    {
+        var css = " g .glenn:nth-child(5) >> #bob"
+        do
+        {
+            var parsed = try SelectorCombinator.parse(css: css)
+            var testValue = [SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .none, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .none, identifier: "bob"))]
+            
+            XCTAssertEqual(parsed!, testValue, "\(css) not parsed correctly")
+            
+            css = "text + circle:first-child"
+            parsed = try SelectorCombinator.parse(css: css)
+            testValue = [SelectorCombinator.selector(StyleSelector(element: .element(name: "text"))), .adjacentSibling, .selector(StyleSelector(element: .element(name: "circle"),  pseudoClasses: [.first_child]))]
+            XCTAssertEqual(parsed!, testValue, "\(css) not parsed correctly")
+
+        }
+        catch
+        {
+            XCTFail("\(css) failed \(error)")
+        }
+    }
+    
+    func testBadCombinatorFromString()
+    {
+        XCTAssertThrowsError(try SelectorCombinator.parse(css: "* ++ .glenn"), "Didn't throw * ++ .glenn")
+        XCTAssertThrowsError(try SelectorCombinator.parse(css: "g > > g"), "g > > g")
+    }
+    
+    func testGroupSelectorFromString()
+    {
+        let css = " g .glenn:nth-child(5) >> #bob,div.john   "
+        do
+        {
+            if let parsed = try GroupSelector.parse(css: css)
+            {
+                var testValue = [[SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .none, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .none, identifier: "bob"))],
+                             [SelectorCombinator.selector(StyleSelector(element: .element(name: "div"), className: "john"))]] as GroupSelector
+            
+                XCTAssertEqual(parsed.count, testValue.count, "Got \(parsed.count), expected \(testValue.count) GroupSelectors")
+                for index in 0..<parsed.count
+                {
+                    let test = testValue[index]
+                    let parsedValue = parsed[index]
+                    XCTAssertEqual(parsedValue, test, "\(css) not parsed correctly")
+                }
+            }
+            else
+            {
+                XCTAssertNotNil(nil, "Didn't parse \(css)")
+            }
+        }
+        catch
+        {
+            XCTFail("\(css) failed \(error)")
+        }
+    }
+    
     
     func testParsing()
     {
         do
         {
-            let blocks = try cssString.asStyleBlocks()
+            let parser = CSSParser()
+            let blocks = try parser.parse(cssString: cssString)
             XCTAssert(blocks.count > 0, "Expected css parsed to blocks")
             XCTAssert(blocks.count == self.testBlocks.count, "Expected css parsed to blocks")
             
@@ -133,15 +237,55 @@ class CSSParser_Test: XCTestCase {
                 let parsedBlock = blocks[index]
                 let testBlock = self.testBlocks[index]
                 
-                XCTAssertEqual(parsedBlock, testBlock, "Expected equivalent block at index \(index)")
+                let parsedSelector = parsedBlock.combinators
+                let testSelector = testBlock.combinators
+                
+                let parsedValues = parsedBlock.styles
+                let testValues = testBlock.styles
+            
+                XCTAssertEqual(parsedSelector.count, testSelector.count, "Difference in selector count test:\(testSelector.count), parsed: \(parsedSelector.count) at index \(index)")
+                XCTAssertEqual(testValues.count, parsedValues.count, "Difference in value count test:\(testValues.count), parsed: \(parsedValues.count) at index \(index)")
+            
+                for selectorIndex in 0..<parsedSelector.count
+                {
+                    let testCombinators = testSelector[selectorIndex]
+                    let parsedCombinators = parsedSelector[selectorIndex]
+                    
+                    XCTAssertEqual(testCombinators.count, parsedCombinators.count, "Difference in combinator count test:\(testCombinators.count), parsed: \(parsedCombinators.count) at index \(index), selectorIndex: \(selectorIndex)")
+                    
+                    for combinatorIndex in 0..<testCombinators.count
+                    {
+                        let testCombinator = testCombinators[combinatorIndex]
+                        let parsedCombinator = parsedCombinators[combinatorIndex]
+                        
+                        XCTAssertEqual(testCombinator, parsedCombinator, "Difference in combinator at index: \(index), selectorIndex: \(selectorIndex), combinatorIndex: \(combinatorIndex)")
+                    }
+                    
+                }
+                
+                for valueIndex in 0..<parsedValues.count
+                {
+                    let parsedValue = parsedValues[valueIndex]
+                    let testValue = testValues[valueIndex]
+                    
+                    XCTAssertEqual(parsedValue.key, testValue.key, "Value key mismatch at index: \(index), \(parsedValue.key) should be \(testValue.key)")
+                    XCTAssertEqual(parsedValue.important, testValue.important, "Value importatant mismatch at index: \(index), \(parsedValue.important) should be \(testValue.important)")
+                    XCTAssertEqual(parsedValue.value, testValue.value, "Value value mismatch at index: \(index). \(parsedValue.value) should be \(testValue.value)")
+                }
             }
         }
         catch
         {
-            let failureReason = error as? CSSParser.FailureReason
-            XCTAssertNotNil(failureReason, "Expected an FailureReason")
-            
-            XCTFail(failureReason!.description)
+            if let bufferParseError = error as? ParseBufferError
+            {
+                XCTFail(bufferParseError.description(forBuffer: cssString.unicodeScalars))
+            }
+            else
+            {
+                let failureReason = error as CustomStringConvertible
+                XCTAssertNotNil(failureReason, "Expected an FailureReason")
+                XCTFail(failureReason.description)
+            }
         }
     }
     

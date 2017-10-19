@@ -17,7 +17,7 @@ text, tspan
    /* /* font-size:33pt;
     text-anchor:middle;  */
    
-    fill:#FF1;
+   fill:#FF1;
 }
 
 rect
@@ -34,7 +34,7 @@ rect
 
 path#specified
 {
-    fill: #FF4;;
+    fill: #FF4;
     stroke-width: 3;
 }
 
@@ -52,7 +52,7 @@ circle, path
 }
 
 
-g: first-child
+g:first-child
 {
     fill: #FF7;
 }
@@ -62,14 +62,14 @@ switch > g > rect
     fill: #FF8;
 }
 
-g: nth-child(odd)
+g:nth-child(odd)
 {
     fill: #FF9;
     stroke-width: 5;
     stroke: red;
 }
 
-g: nth-child(3n+2)
+g:nth-child(3n+2)
 {
     fill: #FFA;
     stroke-width: 2;
@@ -99,3 +99,9 @@ button:hover
 {
     fill:#CCC;
 }
+
+
+
+
+
+/* end test.css */

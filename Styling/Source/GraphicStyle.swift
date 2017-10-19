@@ -49,12 +49,34 @@ public  enum StyleUnit
     case centimeter
 }
 
+extension String
+{
+    public var asStyleUnit : StyleUnit?
+    {
+        switch self.lowercased()
+        {
+            case "px":
+                return .pixel
+            case "%":
+                return .percent
+            case "em":
+                return .em
+            case "pt":
+                return .point
+            case "cm":
+                return .centimeter
+            default:
+                return nil
+        }
+    }
+}
+
 public  enum StyleProperty
 {
     case string(String)
     case unitNumber(Double, StyleUnit)
     case number(Double)
-    case colour(Colour)
+    case colour(Colour, NativeColour?)
     case boolean(Bool)
     
     // half of any graphics library is dealing with drawing text
@@ -63,7 +85,7 @@ public  enum StyleProperty
     case fontFamilies([FontFamily])
     case fontWeight(FontWeight)
     case fontStretch(FontStretch)
-    case fontDecorations([TextDecoration])
+    case fontDecorations(Set<TextDecoration>)
     case lineHeight(LineHeight)
     case fontSize(FontSize)
     
@@ -95,7 +117,7 @@ public struct GraphicStyle
     public init(key: String, hexColour: String, important: Bool = false)
     {
         let colour = try! HexColourParser().deserializeString(source: hexColour)!
-        self.init(key: key, value: StyleProperty.colour(colour), important: important)
+        self.init(key: key, value: StyleProperty.colour(colour, colour.nativeColour), important: important)
     }
     
     /**
@@ -104,7 +126,7 @@ public struct GraphicStyle
     public init(key: String, webColour: String, important: Bool = false)
     {
         let colour = try! WebColourParser().deserializeString(source: webColour)!
-        self.init(key: key, value: StyleProperty.colour(colour), important: important)
+        self.init(key: key, value: StyleProperty.colour(colour, colour.nativeColour), important: important)
     }
 }
 
@@ -119,8 +141,8 @@ extension StyleProperty : Equatable
                 return lhsNumber == rhsNumber && lhsUnit == rhsUnit
             case (.number(let lhsNumber), .number(let rhsNumber)):
                 return lhsNumber == rhsNumber
-            case (.colour(let lhsColour), .colour(let rhsColour)):
-                return lhsColour == rhsColour
+            case (.colour(let lhsColour, let lhsNative), .colour(let rhsColour, let rhsNative)):
+                return lhsColour == rhsColour  && lhsNative == rhsNative
             case (.boolean(let lhsBool), .boolean(let rhsBool)):
                 return lhsBool == rhsBool
             case (.array(let lhsArray), .array(let rhsArray)):
@@ -153,3 +175,62 @@ extension GraphicStyle : Equatable
         return lhs.important == rhs.important && lhs.key == rhs.key && lhs.value == rhs.value
     }
 }
+
+public extension FontDescription
+{
+ init(properties : [StyleProperty])
+    {
+        var fontSize : FontSize? = nil
+        var families : [FontFamily]? = nil
+        var weight : FontWeight? = nil
+        var stretch : FontStretch? = nil
+        var decorations : Set<TextDecoration>? = nil
+        var style : FontStyle? = nil
+        var variant : FontVariant? = nil
+        var lineHeight : LineHeight? = nil
+        
+        
+        for aProperty in properties
+        {
+            switch aProperty
+            {
+                case .fontDecorations(let newDecorations):
+                    if let oldDecorations = decorations
+                    {
+                        decorations = oldDecorations.union(newDecorations)
+                    }
+                    else
+                    {
+                        decorations = newDecorations
+                    }
+                case .fontFamilies(let newFamilies):
+                    families = newFamilies
+                case .fontSize(let newSize):
+                    fontSize = newSize
+                case .fontStretch(let newStretch):
+                    stretch = newStretch
+                case .fontStyle(let newStyle):
+                    style = newStyle
+                case .lineHeight(let newLineHeight):
+                    lineHeight = newLineHeight
+                case .fontVariant(let newVariant):
+                    variant = newVariant
+                case .fontWeight(let newWeight):
+                    weight = newWeight
+                
+                default:
+                break
+            }
+        }
+        
+        self.init(families: families ?? [.inherit],
+                  size: fontSize ?? .inherit,
+                  weight: weight ?? .inherit,
+                  stretch: stretch ?? .inherit,
+            decorations: decorations ?? [.inherit],
+            style: style ?? .inherit,
+            variant: variant ?? .inherit,
+            lineHeight: lineHeight ?? .inherit)
+    }
+}
+

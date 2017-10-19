@@ -83,12 +83,101 @@ public protocol CSSRankable {
     var specificity: CSSSpecificity{get}
 }
 
+extension String
+{
+    fileprivate  func parenthesisStripped() throws -> String? // just return any content of an interior ()
+    {
+        
+        let unicodeView = self.unicodeScalars
+        var cursor = try unicodeView.findUncommentedIndex()
+        let endCursor = unicodeView.endIndex
+        var leftParen : String.Index? = nil
+        var rightParen : String.Index? = nil
+        
+        while endCursor != cursor
+        {
+            let character = unicodeView[cursor]
+            if character == "(" && leftParen == nil
+            {
+                leftParen = unicodeView.index(after: cursor)
+            }
+            else if character == ")"
+            {
+                if leftParen == nil
+                {
+                    return nil
+                }
+                rightParen = unicodeView.index(before: cursor)
+                
+            }
+            cursor = unicodeView.index(after: cursor)
+        }
+        
+        if let foundLeftParen = leftParen, let foundRightParen = rightParen
+        {
+            let result =  String(unicodeView[foundLeftParen...foundRightParen]).trimmingCharacters(in: .whitespaces)
+            
+            if result.isEmpty
+            {
+                return nil
+            }
+            return result
+        }
+        else
+        {
+            return nil
+        }
+    }
+}
+
 public enum Nth
 {
     case odd
     case even
     case nth(Int)
     case linear(Int, Int)
+    
+    fileprivate init?(string: String) throws // this init will strip off any prefix like "nth-of-type(" and the ")" suffix
+    {
+        guard  let parameterString = try string.parenthesisStripped() else
+        {
+            return nil
+        }
+        switch parameterString
+        {
+            case "odd":
+                self = .odd
+            case "even":
+                self = .even
+            
+            default:
+                let start = parameterString.startIndex
+                let end = parameterString.endIndex
+                if let nLocation = parameterString.index(of: "n")
+                {
+                    if start == nLocation || end == nLocation
+                    {
+                        return nil
+                    }
+                    let startB = parameterString.index(after: nLocation)
+                    guard let a = Int(parameterString[start..<nLocation].trimmingCharacters(in: .whitespaces)), let b = Int(parameterString[startB..<end].trimmingCharacters(in: .whitespaces)) else
+                    {
+                        return nil
+                    }
+                    self = .linear(a, b)
+                }
+                else
+                {
+                    guard let b = Int(parameterString) else
+                    {
+                        return nil
+                    }
+                    self = .nth(b)
+                    
+                }
+        }
+    }
+    
     // case function
 }
 
@@ -96,16 +185,12 @@ public enum PseudoClass  : CSSRankable
 {
     case custom(String)
     case any
-    case not(StyleSelector)
-    case nth_child(Nth)
-    case nth_of_type(Nth)
     case focus
     case last_child
     case active
     case link
     case checked
     case dir
-    case nth_last_of_type
     case disabled
     case empty
     case only_child
@@ -133,6 +218,109 @@ public enum PseudoClass  : CSSRankable
     case visited
     case last_of_type
     case left
+    case not(StyleSelector)
+    case nth_last_of_type(Nth)
+    case nth_child(Nth)
+    case nth_of_type(Nth)
+    
+    
+    public init?(string: String) throws
+    {
+        switch string
+        {
+            case "any":
+                self = .any
+            case "focus":
+                self = .focus
+            case "last-child":
+                self = .last_child
+            case "active":
+                self = .active
+            case "link":
+                self = .link
+            case "checked":
+                self = .checked
+            case "dir":
+                self = .dir
+            case "disabled":
+                self = .disabled
+            case "empty":
+                self = .empty
+            case "only-child":
+                self = .only_child
+            case "enabled":
+                self = .enabled
+            case "only-of-type":
+                self = .only_of_type
+            case "first":
+                self = .first
+            case "optional":
+                self = .optional
+            case "first-child":
+                self = .first_child
+            case "out-of-range":
+                self = .out_of_range
+            case "first-of-type":
+                self = .first_of_type
+            case "read-only":
+                self = .read_only
+            case "fullscreen":
+                self = .fullscreen
+            case "read-write":
+                self = .read_write
+            case "required":
+                self = .required
+            case "hover":
+                self = .hover
+            case "right":
+                self = .right
+            case "indeterminate":
+                self = .indeterminate
+            case "root":
+                self = .root
+            case "in-range":
+                self = .in_range
+            case "scope":
+                self = .scope
+            case "invalid":
+                self = .invalid
+            case "visited":
+                self = .visited
+            case "last-of-type":
+                self = .last_of_type
+            case "left":
+                self = .left
+            default:
+                if string.hasPrefix("nth-of-type")
+                {
+                    guard let nth = try Nth(string: string) else {return nil}
+                    self = .nth_of_type(nth)
+                }
+                else if string.hasPrefix("nth-last-of-type")
+                {
+                    guard let nth = try Nth(string: string) else {return nil}
+                    self = .nth_last_of_type(nth)
+                }
+                else if string.hasPrefix("nth-child")
+                {
+                    guard let nth = try Nth(string: string) else {return nil}
+                    self = .nth_child(nth)
+                }
+                else if string.hasPrefix("not")
+                {
+                    guard let selectorString  = try string.parenthesisStripped() else
+                    {
+                        return nil
+                    }
+                    let selector = try  StyleSelector(css: selectorString)
+                    self = .not(selector)
+                }
+                else
+                {
+                    return nil
+                }
+        }
+    }
     public var specificity: CSSSpecificity
     {
         switch self
@@ -143,6 +331,7 @@ public enum PseudoClass  : CSSRankable
             return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 1, elementPseudoElementCount: 0)
         }
     }
+    
 }
 
 public enum PseudoElement  : CSSRankable
@@ -162,6 +351,35 @@ public enum PseudoElement  : CSSRankable
     public var specificity: CSSSpecificity
     {
         return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 0, elementPseudoElementCount: 1)
+    }
+    
+    public init?(string: String) throws
+    {
+        switch string
+        {
+            case "after":
+                self = .after
+            case "before":
+                    self = .before
+            case "first-letter":
+                    self = .first_letter
+            case "first-line":
+                    self = .first_line
+            case "selection":
+                    self = .selection
+            case "backdrop":
+                    self = .backdrop
+            case "placeholder":
+                    self = .placeholder
+            case "marker":
+                    self = .marker
+            case "spelling-error":
+                    self = .spelling_error
+            case "grammar-error":
+                    self = .grammar_error
+            default:
+            return nil
+        }
     }
 }
 
@@ -210,6 +428,385 @@ public struct StyleSelector : CSSRankable
     let className: String?
     let pseudoClasses: [PseudoClass]?
     let pseudoElement: PseudoElement?
+    
+    /**
+     If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
+     **/
+    public enum FailureReason : CustomStringConvertible, ParseBufferError
+    {
+        case none
+        case emptyString(String.UnicodeScalarView.Index)
+        case disallowedName(String.UnicodeScalarView.Index)
+        case missingSelector(String.UnicodeScalarView.Index)
+        case missingValues(String.UnicodeScalarView.Index)
+        case unexpectedCharacter(badCharacter: Character, location: String.UnicodeScalarView.Index)
+        case unknownPseudoElement(string: String, location: String.UnicodeScalarView.Index)
+        case unexpectedEnding(string: String, location: String.UnicodeScalarView.Index)
+        case multipleIdentifiers(String.UnicodeScalarView.Index)
+        case identifierAfterPseudoClasses(String.UnicodeScalarView.Index)
+        
+        public var description: String
+        {
+            switch self
+            {
+            case .none:
+                return "No Failure"
+            case .emptyString:
+                return "Empty String"
+            case let .unexpectedCharacter(badCharacter):
+                return "Unexpected character: \(badCharacter)"
+            case .missingSelector:
+                return "Missing Selectors"
+            case .missingValues:
+                return "Missing Values"
+            case let .unknownPseudoElement(string):
+                return "Unkown PseudoElement \(string)"
+            case let .unexpectedEnding(string):
+                return "String after finished selector \(string)"
+            case .multipleIdentifiers:
+                return "Multiple Identifiers"
+            case .identifierAfterPseudoClasses:
+                return "Misplaced Identifier"
+            case .disallowedName:
+                return "Bad Name"
+            
+            }
+        }
+        
+        public var failurePoint : String.UnicodeScalarView.Index?
+        {
+            switch self  {
+                case .none:
+                    return nil
+                case .emptyString(let result):
+                    return result
+                case .unexpectedCharacter(badCharacter: _, let result):
+                    return result
+                case .disallowedName(let result):
+                    return result
+                case .identifierAfterPseudoClasses(let result):
+                    return result
+                case .missingValues(let result):
+                    return result
+                case .missingSelector(let result):
+                    return result
+                case .unknownPseudoElement(string: _, let result):
+                    return result
+                case .multipleIdentifiers(let result):
+                    return result
+                case .unexpectedEnding(string: _, let result):
+                    return result
+            }
+        }
+    }
+    
+    public init(buffer: String.UnicodeScalarView, range: Range<String.UnicodeScalarView.Index>) throws
+    {
+        enum ParseState
+        {
+            case inElement
+            case inIdentifier
+            case inClassName
+            case inPseudoClasses
+            case inPseudoElement
+            case inBetweenTokens
+        }
+        
+        
+        var localElement: CSSElement = .none
+        var localIdentifier: String? = nil
+        var localClassname: String? = nil
+        var localPseudoClasses: [PseudoClass]? = nil
+        var localPseudoElement: PseudoElement? = nil
+        
+        
+        
+        
+        
+        if range.isEmpty
+        {
+            throw FailureReason.emptyString(range.lowerBound)
+        }
+        
+        
+        
+        var state = ParseState.inElement
+        var previousCharacter : UnicodeScalar = " "
+        var stringBegin = range.lowerBound
+        let firstCharacter = buffer[range.lowerBound]
+        switch firstCharacter {
+            case "#":
+                localElement = .none
+                previousCharacter  = "#"
+                state = ParseState.inIdentifier
+                stringBegin = try buffer.uncommentedIndex(after: stringBegin)
+            case ".":
+                localElement = .none
+                previousCharacter  = "."
+                state = ParseState.inClassName
+                stringBegin = try buffer.uncommentedIndex(after: stringBegin)
+            case ":":
+                localElement = .none
+                previousCharacter  = ":"
+                state = ParseState.inPseudoClasses
+                stringBegin = try buffer.uncommentedIndex(after: stringBegin)
+            case "*":
+                localElement = .any
+                state = ParseState.inBetweenTokens
+                stringBegin = try buffer.uncommentedIndex(after: stringBegin)
+            case "0"..."9":
+                let badCharacter = Character(buffer.first!)
+                throw FailureReason.unexpectedCharacter(badCharacter: badCharacter, location: range.lowerBound)
+            default:
+                break
+        }
+        
+        var parenthesisCount = 0
+        var inSecondCharacter = range.contains(stringBegin) && stringBegin != range.lowerBound
+        var cursor = stringBegin
+        var stringHasEscape = false
+        var stringHasNonDashNumberOrUnderscore = false
+        
+        
+        loop:        while range.contains(cursor)
+        {
+            var foundTerminal = false
+            let character = buffer[cursor]
+            
+            if character == "\\"
+            {
+                stringHasEscape = true
+            }
+            
+            switch state
+            {
+                case .inBetweenTokens:
+                    inSecondCharacter = true
+                    switch character
+                    {
+                        case "#":
+                            state = ParseState.inIdentifier
+                            stringBegin = try buffer.uncommentedIndex(after: cursor)
+                            if localIdentifier != nil // already have an identifier
+                            {
+                                throw FailureReason.multipleIdentifiers(cursor)
+                            }
+                            if localPseudoClasses != nil
+                            {
+                                throw FailureReason.identifierAfterPseudoClasses(cursor)
+                            }
+                        case ".":
+                            state = ParseState.inClassName
+                            stringBegin = try buffer.uncommentedIndex(after: cursor)
+                        case ":":
+                            state = ParseState.inPseudoClasses
+                            stringBegin = try buffer.uncommentedIndex(after: cursor)
+                        default:
+                            let badCharacter = Character(character)
+                            throw FailureReason.unexpectedCharacter(badCharacter: badCharacter, location: cursor)
+                    }
+                    cursor = stringBegin
+                    continue loop
+                case .inElement:
+                    switch character
+                    {
+                        case "#", ".", ":":
+                            foundTerminal = true
+                        case "0"..."9":
+                            if previousCharacter == "-" && (cursor.encodedOffset-stringBegin.encodedOffset) == 1 // can't start a element string with a hyphen followed by a number
+                            {
+                                throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
+                            }
+                        case  "-", "_":
+                            break
+                        default:
+                            stringHasNonDashNumberOrUnderscore = true
+                    }
+                
+                case .inIdentifier:
+                    switch character
+                    {
+                        case "#":
+                            throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
+                        case ".", ":":
+                            foundTerminal = true
+                        case  "-", "_", "0"..."9":
+                        break
+                        default:
+                            stringHasNonDashNumberOrUnderscore = true
+                    }
+                case .inClassName:
+                    switch character
+                    {
+                        case "#", ".":
+                            throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
+                        case  ":":
+                            foundTerminal = true
+                        case  "-", "_", "0"..."9":
+                            break
+                        default:
+                            stringHasNonDashNumberOrUnderscore = true
+                    }
+                break
+                case .inPseudoClasses:
+                    
+                    switch character // a pseudoclass might be not, which might have internal parenthesis (including not)
+                    {
+                        case "(":
+                            parenthesisCount = parenthesisCount + 1
+                        case ")":
+                            parenthesisCount = parenthesisCount - 1
+                            if parenthesisCount < 0
+                            {
+                                throw FailureReason.unexpectedCharacter(badCharacter: ")", location: cursor)
+                            }
+                        default:
+                        break
+                    }
+                    
+                    if parenthesisCount == 0
+                    {
+                        if inSecondCharacter && character == ":" // a leading double colon indicates a pseudo element instead of a pseudo class
+                        {
+                            state = ParseState.inPseudoElement
+                            stringBegin = try buffer.uncommentedIndex(after: cursor)
+                        }
+                        else
+                        {
+                            switch character
+                            {
+                                case "#", ".":
+                                    throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
+                                case  ":":
+                                    foundTerminal = true
+                                case  "-", "_", "0"..."9":
+                                break
+                                default:
+                                    stringHasNonDashNumberOrUnderscore = true
+                            }
+                        }
+                    }
+            
+                break
+                case .inPseudoElement:
+                        switch character
+                        {
+                        case "#", ".":
+                            throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
+                        case  ":":
+                            foundTerminal = true
+                        case  "-", "_", "0"..."9":
+                        break
+                        default:
+                            stringHasNonDashNumberOrUnderscore = true
+                    }
+                break
+            }
+            
+            previousCharacter = character
+            inSecondCharacter = false
+            
+            var complete = foundTerminal
+            if !foundTerminal
+            {
+                cursor = buffer.index(after: cursor)
+                if !range.contains(cursor)
+                {
+                    complete = true
+                }
+            }
+            
+            if complete //
+            {
+                var subrange = stringBegin..<cursor
+                if !range.contains(cursor)
+                {
+                    subrange = stringBegin..<range.upperBound
+                }
+                let theString = String(buffer[subrange])
+                if stringHasEscape
+                {
+                    //theString = theString
+                }
+                
+                if theString.isEmpty
+                {
+                    throw FailureReason.missingSelector(range.lowerBound)
+                }
+                else if !stringHasNonDashNumberOrUnderscore // have to have something more interesting than "__9"
+                {
+                    throw FailureReason.disallowedName(stringBegin)
+                }
+                
+                switch state
+                {
+                    case .inBetweenTokens:
+                        throw FailureReason.missingSelector(cursor)
+                    case .inElement:
+                        localElement = .element(name: theString)
+                    case .inClassName:
+                        localClassname = theString
+                    case .inIdentifier:
+                        localIdentifier = theString
+                    case .inPseudoClasses:
+                        if let pseudoClass = try PseudoClass(string: theString)
+                        {
+                            if localPseudoClasses == nil
+                            {
+                                localPseudoClasses = [pseudoClass]
+                            }
+                            else
+                            {
+                                localPseudoClasses!.append(pseudoClass)
+                            }
+                        }
+                        else
+                        {
+                            fallthrough // by convention, pseudo-elements do not have to be prefixed with ::
+                        }
+                    case .inPseudoElement:
+                        if let pseudoElement = try PseudoElement(string: theString)
+                        {
+                            localPseudoElement = pseudoElement
+                            
+                            if range.contains(cursor) // the pseudo element has to be at the end
+                            {
+                                let excessString = String(buffer[cursor..<range.upperBound])
+                                throw FailureReason.unexpectedEnding(string: excessString, location: cursor)
+                            }
+                        }
+                        else
+                        {
+                            throw FailureReason.unknownPseudoElement(string: theString, location: stringBegin)
+                        }
+                        break
+                }
+                state = .inBetweenTokens
+                stringHasEscape = false
+                stringHasNonDashNumberOrUnderscore = false
+            }
+        }
+        
+        
+        
+        self.element = localElement
+        self.identifier = localIdentifier
+        self.className = localClassname
+        self.pseudoClasses = localPseudoClasses
+        self.pseudoElement = localPseudoElement
+    }
+    
+    public init(css: String) throws
+    {
+        let trimmedCSS = css.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let unicodeView = trimmedCSS.unicodeScalars
+        if trimmedCSS.isEmpty
+        {
+            throw FailureReason.emptyString(unicodeView.startIndex)
+        }
+        
+        try self.init(buffer: unicodeView, range: unicodeView.startIndex..<unicodeView.endIndex)
+    }
     
     public init(element: CSSElement  = .none, identifier: String? = nil, className: String? = nil, pseudoClasses: [PseudoClass]? = nil, pseudoElement: PseudoElement? = nil)
     {
@@ -270,9 +867,7 @@ public struct StyleSelector : CSSRankable
         {
             return false
         }
-        
-        
-        
+
         if let pseudoClasses = self.pseudoClasses
         {
             for aPseudoClass in pseudoClasses

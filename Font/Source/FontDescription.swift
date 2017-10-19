@@ -9,7 +9,7 @@
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Generally Helpful Software
+//  Copyright (c) 2016-2017 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -32,9 +32,6 @@
 //
 
 import Foundation
-
-
-
 
 public enum FontWeight : InheritableProperty, Equatable
 {
@@ -248,10 +245,10 @@ extension String.UnicodeScalarView
 
 extension String
 {
-    func extractValueAndUnit() -> (Double?, String?)
+    func extractValueAndUnit() throws -> (Double?, String?)
     {
         let scalars = self.unicodeScalars
-        let stringBegin = scalars.startIndex
+        let stringBegin = try scalars.findUncommentedIndex()
         let stringEnd = scalars.endIndex
         return scalars.extractValueAndUnit(fromRange: stringBegin..<stringEnd)
     }
@@ -387,9 +384,9 @@ public enum FontSize : InheritableProperty, Equatable
         }
     }
     
-    init?(string: String)
+    init?(string: String) throws
     {
-        let valueAndUnit = string.extractValueAndUnit()
+        let valueAndUnit = try string.extractValueAndUnit()
         self.init(value: valueAndUnit.0, unit: valueAndUnit.1)
     }
     
@@ -480,9 +477,9 @@ public enum LineHeight  : InheritableProperty, Equatable
         }
     }
 
-    init? (string: String)
+    init? (string: String) throws
     {
-        let valueAndUnit = string.extractValueAndUnit()
+        let valueAndUnit = try string.extractValueAndUnit()
         self.init(value: valueAndUnit.0, unit: valueAndUnit.1)
     }
 }
@@ -505,7 +502,7 @@ public enum FontFamily : InheritableProperty, Equatable
         switch (lhs, rhs)
         {
             case (.initial, .initial), (.inherit, .inherit), (.serif, .serif), (.sansSerif, .sansSerif), (.cursive, .cursive),
-                 (.fantasy, .fantasy), (.monospace, .monospace):
+                 (.fantasy, .fantasy), (.monospace, .monospace), (.system, .system):
                 return true
             case (.named(let lhsValue), .named(let rhsValue)):
                 return lhsValue == rhsValue
@@ -590,7 +587,7 @@ public struct FontDescription
     let size : FontSize
     let weight : FontWeight
     let stretch : FontStretch
-    let decorations : [TextDecoration]
+    let decorations : Set<TextDecoration>
     let style : FontStyle
     let variant : FontVariant
     let lineHeight : LineHeight
@@ -601,7 +598,7 @@ public struct FontDescription
             size : FontSize = .inherit,
             weight : FontWeight = .inherit,
             stretch : FontStretch = .inherit,
-            decorations : [TextDecoration] = [.inherit],
+            decorations : Set<TextDecoration> = [.inherit],
             style : FontStyle = .inherit,
             variant : FontVariant = .inherit,
             lineHeight : LineHeight = .inherit,

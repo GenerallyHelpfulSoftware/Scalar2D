@@ -37,10 +37,14 @@ import CoreGraphics
 
 public extension Colour
 {
-    public var cgColor: CGColor?
+    public var nativeColour: CGColor?
     {
         switch self
         {
+            case .clear:
+                let components = [CGFloat(0.0), 0.0]
+                let colorSpace = CGColorSpaceCreateDeviceGray()
+                return CGColor(colorSpace: colorSpace, components: components)
             case .rgb(let red, let green, let blue, _):
                 let colorSpace = CGColorSpaceCreateDeviceRGB()
                 let components = [red, green, blue, 1.0]
@@ -78,7 +82,7 @@ public extension Colour
             case .placeholder(_):
                 return nil
             case .transparent(let aColour, let alpha):
-                guard  let cgColor = aColour.cgColor else
+                guard  let cgColor = aColour.nativeColour else
                 {
                     return nil
                 }
@@ -89,7 +93,7 @@ public extension Colour
     
     public func toCGColorWithColorContext(_ colorContext: ColorContext? = nil) ->CGColor?
     {
-        guard let cgColor = self.cgColor else
+        guard let cgColor = self.nativeColour else
         {
             var result: CGColor? = nil
             
@@ -112,7 +116,7 @@ public extension Colour
 
 extension CGColor
 {
-    private static let standaloneParsers = [
+     static public let standaloneParsers = [
             AnyColourParser(RGBColourParser()),
             AnyColourParser(WebColourParser()),
             AnyColourParser(HexColourParser()),
@@ -126,7 +130,7 @@ extension CGColor
     {
         if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)
         {
-            return aColorDefinition?.cgColor
+            return aColorDefinition?.nativeColour
         }
         
         return nil

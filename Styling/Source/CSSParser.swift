@@ -25,118 +25,156 @@
 //  THE SOFTWARE.
 //
 //
+
 import Foundation
 
-extension String
+
+
+public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
 {
-    // css does not support nested comments so this is fairly dimwitted.
-    public func substringWithoutComments() -> String
+    case unmatchedCurlyBrace(String.UnicodeScalarView.Index)
+    public var description: String
     {
-        guard let _ = self.range(of: "/*") else
+        switch self
         {
-            return self
+        case .unmatchedCurlyBrace:
+            return "Unmatched curly brace"
         }
-        var result = String()
-        var inComment = false
-        var lastCharacter: Character = " "
-        
-        for aCharacter in self.characters
-        {
-            switch (aCharacter, inComment, lastCharacter)
-            {
-                case ("/", true, "*"):
-                    inComment = false
-                    continue 
-                case ("*", false, "/"):
-                    inComment = true
-                case ("/", false, _):
-                    break
-                case (_, false, "/"):
-                    result.append("/")
-                    result.append(aCharacter)
-                case (_, false, _):
-                    result.append(aCharacter)
-                default:
-                    break
-            }
-            lastCharacter = aCharacter
-        }
-        
-        if(inComment)
-        {
-            print("String.substringWithoutComments returned with an unterminated comment")
-        }
-        
-        
-        return result
     }
     
-    public func asStyleBlocks() throws -> [StyleBlock]
+    public var failurePoint : String.UnicodeScalarView.Index?
     {
-        let parser = CSSParser(cssString: self)
-        
-        try parser.parse()
-        
-        let result = parser.resultBlocks
-        
-        
-        return result
+        switch self
+        {
+            case .unmatchedCurlyBrace(let result):
+                return result
+        }
     }
 }
 
 public  struct CSSParser
 {
+    let propertyInterpreter : StylePropertyInterpreter
+    
+    public init(propertyInterpreter : StylePropertyInterpreter = SVGPropertyInterpreter())
+    {
+        self.propertyInterpreter = propertyInterpreter
+    }
+    
+    public func parse(cssString: String) throws -> [StyleBlock]
+    {
+        enum ParseState
+        {
+            case lookingForSelectorStart
+            case lookingForProperties
+            case lookingForAProperty
+            
+        }
+        var result = [StyleBlock]()
+        var state = ParseState.lookingForSelectorStart
+        
+        let buffer = cssString.unicodeScalars
+        var currentSelectors: [[SelectorCombinator]]? = nil
+        var styles : [GraphicStyle]? = nil
+        
+        var cursor = try buffer.findUncommentedIndex()
+        let range = cursor..<buffer.endIndex
+        
+        var blockBegin = cursor
+        parseLoop: while range.contains(cursor)
+        {
+            let character = buffer[cursor]
+            
+            switch state
+            {
+                case .lookingForSelectorStart:
+                    switch character
+                    {
+                        case " ", "\t", " ", "\n":
+                        break
+                        default:
+                            let (combinators, newCursor) = try GroupSelector.parse(buffer: buffer, range: cursor..<buffer.endIndex)
+                            currentSelectors = combinators
+                            cursor = newCursor
+                            state = .lookingForProperties
+                            continue parseLoop
+                    }
+                case .lookingForProperties:
+                    switch character
+                    {
+                        case "{":
+                            state = .lookingForAProperty
+                            blockBegin = cursor
+                            styles = [GraphicStyle]()
+                        case " ", "\t", " ", "\n":
+                        break
+                        default:
+                            throw StylePropertyFailureReason.unexpectedCharacter(Character(character), cursor)
+                    }
+                case .lookingForAProperty:
+                    switch character
+                    {
+                        case " ", "\t", " ", "\n":
+                        break
+                        case "{", "\"", ";", ":":
+                            throw StylePropertyFailureReason.unexpectedCharacter(Character(character), cursor)
+                        case "}":
+                            state = .lookingForSelectorStart
+                            if !(styles?.isEmpty ?? false)
+                            {
+                                let aBlock = StyleBlock(combinators: currentSelectors!, styles: styles!)
+                                result.append(aBlock)
+                            }
+                            currentSelectors = nil
+                            styles = nil
+                        default:
+                            let (properties, newCursor) = try self.propertyInterpreter.parseProperties(buffer: buffer, range: cursor..<buffer.endIndex)
+                            cursor = newCursor
+                            if styles == nil
+                            {
+                                styles = [GraphicStyle]()
+                            }
+                            styles! += properties
+                            continue parseLoop 
+                    }
+                
+            }
+            cursor = try buffer.uncommentedIndex(after: cursor)
+        }
+        switch state
+        {
+            case .lookingForSelectorStart:
+                break
+            default:
+                throw CSSParserFailureReason.unmatchedCurlyBrace(blockBegin)
+        }
+        return result
+    }
+    
+    /**
+     If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
+     **/
     public enum FailureReason : CustomStringConvertible, Error
     {
+        case none
+        case missingSelector(offset: Int)
+        case missingValues(offset: Int)
         case unexpectedCharacter(badCharacter: Character, offset: Int)
         
         public var description: String
         {
-            switch self {
+            switch self
+            {
+                case .none:
+                    return "No Failure"
                 case let .unexpectedCharacter(badCharacter, offset):
                     return "Unexpected character: \(badCharacter) at offset: \(offset)"
-                
-                
+                case let .missingSelector(offset):
+                    return "Missing Selectors at offset: \(offset)"
+                case let .missingValues(offset):
+                    return "Missing Values at offset:\(offset)"
             }
         }
-    }
-
-    
-    fileprivate struct CSSSelectorBuilder
-    {
-        var selectors = [StyleSelector]()
-        enum SelectorBuildState
-        {
-            case lookingForSelector
-            case inSelector
-            case complete
-        }
-        
-        var state : SelectorBuildState = .lookingForSelector
-        
-        
-        
-    }
-    
-    private enum ParseState
-    {
-        case awaitingSelector
-        case insideSelector
-        case insideBlock
-    }
-    
-    let cssString: String
-    var resultBlocks = [StyleBlock]()
-    private var parseState = ParseState.awaitingSelector
-  //  private var tokenBuilder: BlockBuilder
-    
-    init(cssString: String)
-    {
-        self.cssString = cssString.substringWithoutComments()
-    }
-    
-    public func parse() throws
-    {
     }
 }
 
