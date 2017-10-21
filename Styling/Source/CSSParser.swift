@@ -28,39 +28,78 @@
 
 import Foundation
 
-
-
+/**
+ If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
+ **/
 public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
 {
-    case unmatchedCurlyBrace(String.UnicodeScalarView.Index)
+    case none
+    case missingSelector(String.UnicodeScalarView.Index)
+    case missingValues(String.UnicodeScalarView.Index)
+    case unexpectedCharacter(Character, String.UnicodeScalarView.Index)
+    case unexpectedTermination(String.UnicodeScalarView.Index)
+    
     public var description: String
     {
         switch self
         {
-        case .unmatchedCurlyBrace:
-            return "Unmatched curly brace"
+            case .none:
+                return "No Failure"
+            case  .unexpectedCharacter(let badCharacter, _):
+                return "Unexpected character: \(badCharacter)"
+            case .missingSelector:
+                return "Missing Selectors"
+            case .missingValues:
+                return "Missing Values"
+            case .unexpectedTermination:
+                return "Unexpected Termination"
         }
     }
     
-    public var failurePoint : String.UnicodeScalarView.Index?
+    public var failurePoint: String.UnicodeScalarView.Index?
     {
-        switch self
-        {
-            case .unmatchedCurlyBrace(let result):
-                return result
+        switch self {
+        case .none:
+            return nil
+        case .missingSelector(let result):
+            return result
+        case .missingValues(let result):
+            return result
+        case .unexpectedCharacter(_, let result):
+            return result
+        case .unexpectedTermination(let result):
+            return result
         }
     }
 }
 
 public  struct CSSParser
 {
+    /**
+         This property provides knowledge of the document object model for the flavor of css
+         being parsed to this parser. It is responsible for assigning knowledge of type to properties. For example that a "fill" property will be a colour.
+     
+         default: SVGPropertyInterpreter
+     */
     let propertyInterpreter : StylePropertyInterpreter
     
+    /**
+         init method
+     
+     - parameter propertyInterpreter:StylePropertyInterpreter  - an object that can interpret properties and assign them types, such as colours or font styles
+     */
     public init(propertyInterpreter : StylePropertyInterpreter = SVGPropertyInterpreter())
     {
         self.propertyInterpreter = propertyInterpreter
     }
     
+    /**
+         the primary method of the parser, takes a string thought to be css and converts ito to a list of style blocks.
+     
+     - parameter cssString:String    CSS format
+         - throws an error if string cannot be interpretted
+         - returns a list of StyleBlock
+     */
     public func parse(cssString: String) throws -> [StyleBlock]
     {
         enum ParseState
@@ -74,14 +113,15 @@ public  struct CSSParser
         var state = ParseState.lookingForSelectorStart
         
         let buffer = cssString.unicodeScalars
-        var currentSelectors: [[SelectorCombinator]]? = nil
-        var styles : [GraphicStyle]? = nil
+        var currentSelectors: [[SelectorCombinator]]? = nil // StyleBlocks are composed of collections of selectors and styles
+        var currentStyles : [GraphicStyle]? = nil
         
-        var cursor = try buffer.findUncommentedIndex()
+        var cursor = try buffer.findUncommentedIndex() // find the first index not in a comment
         let range = cursor..<buffer.endIndex
         
-        var blockBegin = cursor
-        parseLoop: while range.contains(cursor)
+        var blockBegin = cursor // beginning of block of properties
+        
+        parseLoop: while range.contains(cursor) // loop over the characters in the string
         {
             let character = buffer[cursor]
             
@@ -97,7 +137,7 @@ public  struct CSSParser
                             currentSelectors = combinators
                             cursor = newCursor
                             state = .lookingForProperties
-                            continue parseLoop
+                            continue parseLoop // avoid updating the cursor for one loop
                     }
                 case .lookingForProperties:
                     switch character
@@ -105,11 +145,11 @@ public  struct CSSParser
                         case "{":
                             state = .lookingForAProperty
                             blockBegin = cursor
-                            styles = [GraphicStyle]()
+                            currentStyles = [GraphicStyle]()
                         case " ", "\t", " ", "\n":
                         break
                         default:
-                            throw StylePropertyFailureReason.unexpectedCharacter(Character(character), cursor)
+                            throw CSSParserFailureReason.unexpectedCharacter(Character(character), cursor)
                     }
                 case .lookingForAProperty:
                     switch character
@@ -117,25 +157,25 @@ public  struct CSSParser
                         case " ", "\t", " ", "\n":
                         break
                         case "{", "\"", ";", ":":
-                            throw StylePropertyFailureReason.unexpectedCharacter(Character(character), cursor)
+                            throw CSSParserFailureReason.unexpectedCharacter(Character(character), cursor)
                         case "}":
                             state = .lookingForSelectorStart
-                            if !(styles?.isEmpty ?? false)
+                            if !(currentStyles?.isEmpty ?? false)
                             {
-                                let aBlock = StyleBlock(combinators: currentSelectors!, styles: styles!)
+                                let aBlock = StyleBlock(combinators: currentSelectors!, styles: currentStyles!)
                                 result.append(aBlock)
                             }
                             currentSelectors = nil
-                            styles = nil
+                            currentStyles = nil
                         default:
                             let (properties, newCursor) = try self.propertyInterpreter.parseProperties(buffer: buffer, range: cursor..<buffer.endIndex)
                             cursor = newCursor
-                            if styles == nil
+                            if currentStyles == nil
                             {
-                                styles = [GraphicStyle]()
+                                currentStyles = [GraphicStyle]()
                             }
-                            styles! += properties
-                            continue parseLoop 
+                            currentStyles! += properties
+                            continue parseLoop  // avoid updating the cursor for one loop
                     }
                 
             }
@@ -145,36 +185,11 @@ public  struct CSSParser
         {
             case .lookingForSelectorStart:
                 break
-            default:
-                throw CSSParserFailureReason.unmatchedCurlyBrace(blockBegin)
+            default: // finished in the middle of parsing a block
+                throw CSSParserFailureReason.unexpectedTermination(blockBegin)
         }
         return result
     }
-    
-    /**
-     If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
-     **/
-    public enum FailureReason : CustomStringConvertible, Error
-    {
-        case none
-        case missingSelector(offset: Int)
-        case missingValues(offset: Int)
-        case unexpectedCharacter(badCharacter: Character, offset: Int)
-        
-        public var description: String
-        {
-            switch self
-            {
-                case .none:
-                    return "No Failure"
-                case let .unexpectedCharacter(badCharacter, offset):
-                    return "Unexpected character: \(badCharacter) at offset: \(offset)"
-                case let .missingSelector(offset):
-                    return "Missing Selectors at offset: \(offset)"
-                case let .missingValues(offset):
-                    return "Missing Values at offset:\(offset)"
-            }
-        }
-    }
 }
+
 

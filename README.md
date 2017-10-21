@@ -23,4 +23,4 @@ This is all very early in development. I'm gradually building up parsers, editor
 
 
 # Requirements
-Xcode 8, Swift 3, Right now only the iOS framework is setup.
+Xcode 9, Swift 4, Right now only the iOS framework is setup.

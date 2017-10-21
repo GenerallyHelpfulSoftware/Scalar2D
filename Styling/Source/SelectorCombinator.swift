@@ -314,7 +314,7 @@ extension SelectorCombinator : Equatable
 
 extension Array where Element == SelectorCombinator
 {
-    // an combinator path will be valid if it begins and ends on a selector, and alternates between selectors and conbinator operations internally
+    // a combinator path will be valid if it begins and ends on a selector, and alternates between selectors and conbinator operations internally
     var isValid : Bool
     {
         if self.isEmpty
