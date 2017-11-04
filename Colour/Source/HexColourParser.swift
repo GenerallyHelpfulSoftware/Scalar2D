@@ -42,8 +42,8 @@ public struct HexColourParser : ColourParser
         }
         
         let index1 = source.index(after:source.startIndex)
-        
-        switch source.characters.count
+        let sourceLength = source.count
+        switch sourceLength
         {
             case 4:
                 let hexString = String(source[index1..<source.endIndex])
@@ -74,14 +74,14 @@ public struct HexColourParser : ColourParser
                 
                 return Colour.rgb(red: ColourFloat(red)/255.0, green: ColourFloat(green)/255.0, blue: ColourFloat(blue)/255.0, source: source)
             default:
-                if source.characters.count < 4 || source.characters.count == 5 || source.characters.count == 6
+                if sourceLength < 4 || sourceLength == 5 || sourceLength == 6
                 {
                     throw ColourParsingError.incomplete(source)
                 }
-            else
+                else
                 {
                     throw ColourParsingError.unknown(source)
-            }
+                }
         }
     }
     

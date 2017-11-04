@@ -91,7 +91,7 @@ class CGPathGeneratorTests: XCTestCase {
     
     func testCubicToArc()
     {
-        guard let cgPath = CGPath.path(fromSVGPath: "M 170 207C139 183 40 199 41 109 A18 18 0 1 1 56 75") else
+        guard let cgPath = CGPath.path(fromSVGPath: "M 170 207C139 183 40 199 41 109 A18 18 0 1 1 56 75Z") else
         {
             XCTFail("Arc not created")
             return

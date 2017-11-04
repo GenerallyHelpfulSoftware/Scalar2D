@@ -42,21 +42,9 @@ public extension String
     
     public func asPathTokens() throws -> [PathToken]
     {
-        var cursorIndex = self.startIndex
-        let endIndex = self.endIndex
+        var parser = PathParser()
+        return try parser.parse(pathString: self)
         
-        var parser = PathParser(pathString: self)
-        
-        while cursorIndex < endIndex
-        {
-            let aCharacter = self[cursorIndex]
-            
-            try parser.handleCharacter(character: aCharacter, atIndex: cursorIndex)
-            
-            cursorIndex = self.index(after: cursorIndex)
-        }
-        
-        return try parser.complete()
     }
     /**
         SVG path strings (the "d" parameter of a <path> element) are faily complicated because they use various tricks for compactness. Thus parameters and operands can be separated by nothing(operand immediately followed by the start of its first parameter), commas, +, -, white space, and even a period if the preceding parameter already has a period. Also, operands can be implied to be the same as the previous operand, unless it was a move, in which case the implied operand is a line, or a close path in which case the use of an implied operand is an error. 
@@ -72,31 +60,48 @@ public extension String
             case insideParameter
             case complete
         }
-        
-        let pathString: String
-        let operand: Character
+    
+        let operand: UnicodeScalar
         let numberOfParameters: Int
         var lookingForParameter: Bool
-        var activeParameterStartIndex: String.CharacterView.Index
-        var activeParameterStringLength: Int
+        var activeParameterStartIndex: String.UnicodeScalarView.Index
+        let buffer: String.UnicodeScalarView
+        var activeParameterEndIndex: String.UnicodeScalarView.Index?
         var seenPeriod: Bool
         var seenExponent: Bool
         var seenDigit: Bool
         var completedParameters: [PathToken.PathParameter]
         
-        init(pathString: String, operand: Character)
+        init(buffer: String.UnicodeScalarView, startIndex: String.UnicodeScalarView.Index, operand: UnicodeScalar, firstCharacter : UnicodeScalar? = nil)
         {
-            self.pathString = pathString
+            self.buffer = buffer
             self.operand = operand
             self.numberOfParameters = PathToken.parametersPerOperand(operand: operand)
-            self.activeParameterStringLength = 0
-            self.activeParameterStartIndex = pathString.startIndex
-            self.lookingForParameter = true
+            self.activeParameterStartIndex = startIndex
+            self.activeParameterEndIndex = nil
             self.seenPeriod = false
-            self.seenExponent = false
             self.seenDigit = false
+            self.lookingForParameter = true
+            
+            
+            self.seenExponent = false
             self.completedParameters = Array<PathToken.PathParameter>()
             self.completedParameters.reserveCapacity(self.numberOfParameters)
+            
+            if let startCharacter = firstCharacter
+            {
+                switch startCharacter
+                {
+                case ".":
+                    self.seenPeriod = true
+                case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
+                    self.seenDigit = true
+                default:
+                    break
+                }
+                self.beginParameterAtIndex(index: startIndex)
+            }
+            
         }
         
         private var activeParameterIndex: Int
@@ -109,23 +114,30 @@ public extension String
             return self.completedParameters.count == self.numberOfParameters
         }
         
-        private var activeParameterString: String
+        private var activeParameterString: String?
         {
-            let endIndex = self.pathString.index(self.activeParameterStartIndex, offsetBy: self.activeParameterStringLength)
-            return String(self.pathString[self.activeParameterStartIndex..<endIndex])
+            guard let endIndex = self.activeParameterEndIndex else
+            {
+                return nil
+            }
+            let range = self.activeParameterStartIndex...endIndex
+            return String(self.buffer[range])
         }
         
         mutating private func completeActiveParameter() throws
         {
-            let completedParameterString = self.activeParameterString
+            guard let completedParameterString = self.activeParameterString, let endIndex = self.activeParameterEndIndex else
+            {
+                throw PathToken.FailureReason.tooFewParameters(operand: self.operand, expectedParameterCount: self.numberOfParameters, actualParameterCount: self.completedParameters.count, offset: self.activeParameterStartIndex)
+            }
             
             if !self.seenDigit
             {
-                throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: endIndex)
             }
             else if completedParameterString.hasSuffix("e") // exponent without value
             {
-                throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: endIndex)
             }
             else if !self.seenExponent && !self.seenPeriod
             {
@@ -135,7 +147,7 @@ public extension String
                 }
                 else
                 {
-                    throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                    throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: endIndex)
                 }
             }
             else
@@ -146,10 +158,10 @@ public extension String
                 }
                 else
                 {
-                    throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                    throw PathToken.FailureReason.badParameter(operand: self.operand, parameterIndex: self.activeParameterIndex, unexpectedValue: completedParameterString, offset: endIndex)
                 }
             }
-            self.activeParameterStringLength = 0
+            self.activeParameterEndIndex = nil
             if !self.completed
             {
                 self.seenPeriod = false
@@ -158,14 +170,14 @@ public extension String
             }
         }
         
-        private mutating func beginParameterAtIndex(index: String.CharacterView.Index)
+        private mutating func beginParameterAtIndex(index: String.UnicodeScalarView.Index)
         {
             self.activeParameterStartIndex = index
-            self.activeParameterStringLength = 1
+            self.activeParameterEndIndex = index
             self.lookingForParameter = false
         }
         
-        mutating func testCompletionCharacter(character: Character, atIndex index: String.CharacterView.Index) throws -> TokenBuildState
+        mutating func testCompletionCharacter(character: UnicodeScalar, atIndex index: String.UnicodeScalarView.Index) throws -> TokenBuildState
         {
             if self.completed
             {
@@ -191,7 +203,7 @@ public extension String
                         self.seenDigit = true
                         
                     default:
-                        throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                        throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: index)
                 }
                 
                 if foundNumber
@@ -210,7 +222,7 @@ public extension String
                     case ".":
                         if(self.seenExponent)
                         {
-                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: index)
                         }
                         else if (self.seenPeriod)
                         {
@@ -223,26 +235,26 @@ public extension String
                             }
                             else
                             {
-                                throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                                throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: index)
                             }
                         }
                         else
                         {
                             self.seenPeriod = true
-                            self.activeParameterStringLength += 1
+                            self.activeParameterEndIndex = index
                         }
                     
                     case "e" where !self.seenExponent:
                         fallthrough
                     case "E" where !self.seenExponent:
                         self.seenExponent = true
-                        self.activeParameterStringLength += 1
+                        self.activeParameterEndIndex = index
                         
                     case "-", "+":
-                        let lastCharacter = self.lastCharacter
+                        let lastCharacter = self.previousCharacter
                         if lastCharacter == "e" || lastCharacter == "E"
                         {
-                            self.activeParameterStringLength += 1
+                            self.activeParameterEndIndex = index
                         }
                         else if self.seenDigit
                         {
@@ -252,14 +264,14 @@ public extension String
                         }
                         else
                         {
-                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: index)
                         }
                     
                     case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
                         self.seenDigit = true
-                        self.activeParameterStringLength += 1
+                        self.activeParameterEndIndex = index
                     default:
-                        throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                        throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: index)
                 }
             }
             
@@ -278,16 +290,21 @@ public extension String
             }
         }
         
-        private var lastCharacter : Character
+        private var previousCharacter : UnicodeScalar
         {
-            let lastCharacterIndex = self.pathString.index(self.activeParameterStartIndex, offsetBy: self.activeParameterStringLength-1)
-            return self.pathString[lastCharacterIndex]
+            guard let endIndex = self.activeParameterEndIndex else
+            {
+                return buffer[self.activeParameterStartIndex]
+            }
+            
+            let result = buffer[endIndex]
+            return result 
         }
         
-        fileprivate func isCompletionCharacter(testCharacter: Character) -> Bool
+        fileprivate func isCompletionCharacter(testCharacter: UnicodeScalar) -> Bool
         {
             let onLastParameter = self.numberOfParameters == (self.activeParameterIndex+1)
-                && self.activeParameterStringLength > 0
+                && self.activeParameterEndIndex != nil
                 && !self.lookingForParameter
             
             switch testCharacter
@@ -297,8 +314,8 @@ public extension String
                 case "+", "-":
                     
                     if onLastParameter
-                        && self.lastCharacter != "e"
-                        && self.lastCharacter != "E" // might be of the form 1e-3
+                        && self.previousCharacter != "e"
+                        && self.previousCharacter != "E" // might be of the form 1e-3
                     {
                         return true
                     }
@@ -332,18 +349,18 @@ public extension String
         
         mutating fileprivate func buildToken() throws -> PathToken
         {
-            if self.activeParameterStringLength > 0
+            if self.self.activeParameterEndIndex != nil 
             {
                 try self.completeActiveParameter()
             }
             
             if self.completed
             {
-                return try PathToken(operand: self.operand, parameters: self.completedParameters, atOffset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                return try PathToken(operand: self.operand, parameters: self.completedParameters, atOffset: self.activeParameterStartIndex)
             }
             else
             {
-                throw PathToken.FailureReason.tooFewParameters(operand: self.operand, expectedParameterCount: self.numberOfParameters, actualParameterCount: self.activeParameterStringLength, offset: self.pathString.distance(from: self.pathString.startIndex, to: self.activeParameterStartIndex))
+                throw PathToken.FailureReason.tooFewParameters(operand: self.operand, expectedParameterCount: self.numberOfParameters, actualParameterCount: self.completedParameters.count, offset: self.activeParameterStartIndex)
             }
         }
     }
@@ -357,18 +374,39 @@ public extension String
             case buildingToken
         }
         
-        let pathString: String
         var resultTokens = [PathToken]()
         private var parseState = ParseState.lookingForFirstOperand
-        private var tokenBuilder: TokenBuilder
+        private var tokenBuilder: TokenBuilder!
+        private var buffer : String.UnicodeScalarView!
         
-        init(pathString: String)
+        fileprivate init()
         {
-            self.pathString = pathString
-            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: "M")
+            
         }
         
-        fileprivate mutating func handleCharacter(character: Character, atIndex index: String.CharacterView.Index) throws
+        fileprivate mutating func parse(pathString: String) throws -> [PathToken]
+        {
+            self.parseState = ParseState.lookingForFirstOperand
+            self.resultTokens = [PathToken]()
+            
+            self.buffer = pathString.unicodeScalars
+            var cursor = buffer.startIndex
+            let range = cursor..<buffer.endIndex
+            self.tokenBuilder = TokenBuilder(buffer: self.buffer, startIndex: cursor, operand: "M")
+            
+            while range.contains(cursor)
+            {
+                let aCharacter = buffer[cursor]
+                
+                try self.handleCharacter(character: aCharacter, atCursor: cursor)
+                
+                cursor = buffer.index(after: cursor)
+            }
+            
+            return try self.complete()
+        }
+        
+        fileprivate mutating func handleCharacter(character: UnicodeScalar, atCursor cursor: String.UnicodeScalarView.Index) throws
         {
             switch parseState
             {
@@ -380,9 +418,9 @@ public extension String
                         case "m", "M":
                             self.parseState = .buildingToken
                         case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a":
-                            throw PathToken.FailureReason.missingMoveAtStart
+                            throw PathToken.FailureReason.missingMoveAtStart(offset: cursor)
                         default:
-                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
+                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: cursor)
                     }
                     
                 case .lookingForOperand:
@@ -393,28 +431,26 @@ public extension String
                         case "z", "Z":
                             resultTokens.append(PathToken.close)
                         case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M":
-                            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: character)
+                            self.tokenBuilder = TokenBuilder(buffer: self.buffer, startIndex: cursor, operand: character)
                             parseState = .buildingToken
                         case "-", "+", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".": // an implied
                             guard  let mostRecentToken = self.resultTokens.last else
                             {
-                                throw PathToken.FailureReason.missingMoveAtStart
+                                throw PathToken.FailureReason.missingMoveAtStart(offset: cursor)
                             }
                             
                             guard mostRecentToken.impliesSubsequentOperand else
                             {
-                                throw PathToken.FailureReason.missingMoveAtStart
+                                throw PathToken.FailureReason.missingMoveAtStart(offset: cursor)
                             }
                             
-                            self.tokenBuilder = TokenBuilder(pathString: pathString, operand: mostRecentToken.impliedSubsequentOperand)
+                            self.tokenBuilder = TokenBuilder(buffer: self.buffer, startIndex: cursor, operand: mostRecentToken.impliedSubsequentOperand, firstCharacter: character)
                             parseState = .buildingToken
-                            let _ = try self.tokenBuilder.testCompletionCharacter(character: character, atIndex: index) // I know it's not completed
+                            let _ = try self.tokenBuilder.testCompletionCharacter(character: character, atIndex: cursor) // I know it's not completed
                             
                             
                         default:
-                            let failureReason = PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: self.pathString.distance(from: self.pathString.startIndex, to: index))
-                            resultTokens.append(PathToken.bad(character, failureReason))
-                            throw failureReason
+                            throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: cursor)
                     }
                     
                 case .buildingToken:
@@ -431,7 +467,7 @@ public extension String
                                 resultTokens.append(PathToken.close)
                                 parseState = .lookingForOperand
                             case "l", "L", "H", "h", "Q", "q", "V", "v", "C", "c", "T", "t", "S", "s", "A", "a", "m", "M":
-                                self.tokenBuilder = TokenBuilder(pathString: pathString, operand: character)
+                                self.tokenBuilder = TokenBuilder(buffer: self.buffer, startIndex: cursor, operand: character)
                                 parseState = .buildingToken
                             case " ", "\t", "\n", "\r", ",":
                                 parseState = .lookingForOperand
@@ -439,15 +475,15 @@ public extension String
                                 
                                 guard newToken.impliesSubsequentOperand else
                                 {
-                                    throw PathToken.FailureReason.missingMoveAtStart
+                                    throw PathToken.FailureReason.missingMoveAtStart(offset: cursor)
                                 }
-                                self.tokenBuilder = TokenBuilder(pathString: pathString, operand: newToken.impliedSubsequentOperand)
+                                self.tokenBuilder = TokenBuilder(buffer: self.buffer, startIndex: cursor, operand: newToken.impliedSubsequentOperand, firstCharacter : character) // already found the parameter
                                 parseState = .buildingToken
                         }
                     }
                     else
                     {
-                        if case .complete =  try self.tokenBuilder.testCompletionCharacter(character: character, atIndex: index)
+                        if case .complete =  try self.tokenBuilder.testCompletionCharacter(character: character, atIndex: cursor)
                         {
                             resultTokens.append(try self.tokenBuilder.buildToken())
                             self.parseState = .lookingForOperand
@@ -463,7 +499,7 @@ public extension String
                 case .lookingForOperand:
                     break
                 case .lookingForFirstOperand:
-                    throw PathToken.FailureReason.noOperands
+                    throw PathToken.FailureReason.noOperands(offset: self.buffer.startIndex)
                 case .buildingToken:
                     let lastToken = try self.tokenBuilder.buildToken()
                     self.resultTokens.append(lastToken)
@@ -505,14 +541,33 @@ public enum PathToken : CustomStringConvertible
     /**
         If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.
      **/
-    public enum FailureReason : CustomStringConvertible, Error
+    public enum FailureReason : CustomStringConvertible, ParseBufferError
     {
+        
         case none
-        case missingMoveAtStart
-        case unexpectedCharacter(badCharacter: Character, offset: Int)
-        case tooFewParameters(operand: Character, expectedParameterCount: Int, actualParameterCount: Int, offset: Int)
-        case badParameter(operand: Character, parameterIndex: Int, unexpectedValue: String, offset: Int)
-        case noOperands
+        case missingMoveAtStart(offset: String.UnicodeScalarView.Index)
+        case unexpectedCharacter(badCharacter: UnicodeScalar, offset: String.UnicodeScalarView.Index)
+        case tooFewParameters(operand: UnicodeScalar, expectedParameterCount: Int, actualParameterCount: Int, offset: String.UnicodeScalarView.Index)
+        case badParameter(operand: UnicodeScalar, parameterIndex: Int, unexpectedValue: String, offset: String.UnicodeScalarView.Index)
+        case noOperands(offset: String.UnicodeScalarView.Index)
+        
+        public var failurePoint: String.UnicodeScalarView.Index?
+        {
+            switch self {
+            case .none:
+                return nil
+            case .missingMoveAtStart(let result):
+                return result
+            case .unexpectedCharacter(_, let result):
+                return result
+            case .tooFewParameters(_, _, _, let result):
+                return result
+            case .badParameter(_, _, _,let result):
+                return result
+            case .noOperands(let result):
+                return result
+            }
+        }
         
         public var description: String
         {
@@ -525,9 +580,7 @@ public enum PathToken : CustomStringConvertible
                 case let .tooFewParameters(operand, expectedParameterCount, actualParameterCount, offset):
                     return "Operand '\(operand)' (\(PathToken.name(forOperand: operand))) expects \(expectedParameterCount), but had \(actualParameterCount) at offset: \(offset)"
                 case let .badParameter(operand, parameterIndex, unexpectedValue, offset):
-                    
                     return "Operand '\(operand)' (\(PathToken.name(forOperand: operand))) had a unexpected parameter '\(unexpectedValue)' for parameter \(parameterIndex) at offset: \(offset)"
-                
                 case .noOperands:
                     return "Just white space."
                 case .missingMoveAtStart:
@@ -536,7 +589,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    case bad(Character, FailureReason)
+    case bad(UnicodeScalar, FailureReason)
     case close
     case moveTo(PathParameter, PathParameter)
     case moveToAbsolute(PathParameter, PathParameter)
@@ -558,7 +611,7 @@ public enum PathToken : CustomStringConvertible
     case arcToAbsolute(PathParameter, PathParameter, Double, ArcChoice, ArcSweep, PathParameter, PathParameter)
     
     
-    public  init(operand: Character, parameters: [PathParameter], atOffset offset: Int) throws
+    public  init(operand: UnicodeScalar, parameters: [PathParameter], atOffset offset: String.UnicodeScalarView.Index) throws
     {
         switch operand
         {
@@ -643,7 +696,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    public var operand: Character
+    public var operand: UnicodeScalar
     {
         get
         {
@@ -704,7 +757,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    fileprivate var impliedSubsequentOperand: Character
+    fileprivate var impliedSubsequentOperand: UnicodeScalar
     {
         switch self
         {
@@ -769,7 +822,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    fileprivate static func isValidOperand(operand : Character) -> Bool
+    fileprivate static func isValidOperand(operand : UnicodeScalar) -> Bool
     {
         switch String(operand).lowercased()
         {
@@ -780,7 +833,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
     
-    fileprivate static func parametersPerOperand(operand : Character) -> Int
+    fileprivate static func parametersPerOperand(operand : UnicodeScalar) -> Int
     {
         switch String(operand).lowercased()
         {
@@ -809,7 +862,7 @@ public enum PathToken : CustomStringConvertible
         }
     }
 
-    fileprivate static func name(forOperand  operand: Character) -> String
+    fileprivate static func name(forOperand  operand: UnicodeScalar) -> String
     {
         var baseName : String
         let operandAsString = String(operand)
