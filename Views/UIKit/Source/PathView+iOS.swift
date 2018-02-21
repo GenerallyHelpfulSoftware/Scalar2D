@@ -32,6 +32,42 @@
 
 import UIKit
 
+extension UIViewContentMode
+{
+    var layerContentGravity: String
+    {
+        switch self
+        {
+            case .scaleAspectFill:
+                return kCAGravityResizeAspectFill
+            case .scaleAspectFit:
+                return kCAGravityResizeAspect
+            case .bottom:
+                return kCAGravityBottom
+            case .top:
+                return kCAGravityTop
+            case .left:
+                return kCAGravityLeft
+            case .right:
+                return kCAGravityRight
+            case .bottomLeft:
+                return kCAGravityBottomLeft
+            case .bottomRight:
+                return kCAGravityBottomRight
+            case .topRight:
+                return kCAGravityTopRight
+            case .topLeft:
+                return kCAGravityTopLeft
+            case .center:
+                return kCAGravityCenter
+            case .redraw:
+                return kCAGravityCenter
+            case .scaleToFill:
+                return kCAGravityResizeAspectFill
+        }
+    }
+}
+
 @IBDesignable public class PathView: UIView, ShapeView {
 
     @IBInspectable public var lineWidth: CGFloat = 1
@@ -63,6 +99,14 @@ import UIKit
         didSet
         {
             self.setPathString(pathString: svgPath)
+        }
+    }
+    
+    override public var contentMode: UIViewContentMode
+    {
+        didSet
+        {
+            self.layer.contentsGravity = contentMode.layerContentGravity
         }
     }
     

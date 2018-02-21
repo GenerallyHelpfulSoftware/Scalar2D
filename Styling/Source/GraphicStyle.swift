@@ -91,7 +91,7 @@ public  enum StyleProperty
     
     indirect case array([StyleProperty])
     
-    // remember to update Equatable extension below
+    // remember to update Equatable extension below if you add another case
 }
 
 public struct GraphicStyle
@@ -178,7 +178,7 @@ extension GraphicStyle : Equatable
 
 public extension FontDescription
 {
- init(properties : [StyleProperty])
+    init(properties : [StyleProperty])
     {
         var fontSize : FontSize? = nil
         var families : [FontFamily]? = nil

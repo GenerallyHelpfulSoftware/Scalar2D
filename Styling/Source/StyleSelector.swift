@@ -32,9 +32,9 @@ import Foundation
 
 public protocol CSSIdentifiable
 {
-    var identifier: String? {get}
-    var className: String? {get}
-    var elementName: String? {get}
+    var styleIdentifier: String? {get}
+    var styleClassName: String? {get}
+    var styleableElementName: String? {get}
 }
 
 /**
@@ -391,6 +391,10 @@ public enum AttributePosition
     case contains
 }
 
+
+/**
+     enum that indicates what kind of object this is, such as path, group, button, etc. Or any. 
+*/
 public enum CSSElement : CSSRankable
 {
     case any
@@ -416,7 +420,7 @@ public enum CSSElement : CSSRankable
             case .any, .none:
                 return true
             case .element(let name):
-                return element.elementName == name
+                return element.styleableElementName == name
         }
     }
 }
@@ -424,8 +428,8 @@ public enum CSSElement : CSSRankable
 public struct StyleSelector : CSSRankable
 {
     let element: CSSElement
-    let identifier: String?
-    let className: String?
+    let styleIdentifier: String?
+    let styleClassName: String?
     let pseudoClasses: [PseudoClass]?
     let pseudoElement: PseudoElement?
     
@@ -514,8 +518,8 @@ public struct StyleSelector : CSSRankable
         
         
         var localElement: CSSElement = .none
-        var localIdentifier: String? = nil
-        var localClassname: String? = nil
+        var localStyleIdentifier: String? = nil
+        var localStyleClassName: String? = nil
         var localPseudoClasses: [PseudoClass]? = nil
         var localPseudoElement: PseudoElement? = nil
         
@@ -587,7 +591,7 @@ public struct StyleSelector : CSSRankable
                         case "#":
                             state = ParseState.inIdentifier
                             stringBegin = try buffer.uncommentedIndex(after: cursor)
-                            if localIdentifier != nil // already have an identifier
+                            if localStyleIdentifier != nil // already have a styleIdentifier
                             {
                                 throw FailureReason.multipleIdentifiers(cursor)
                             }
@@ -745,9 +749,9 @@ public struct StyleSelector : CSSRankable
                     case .inElement:
                         localElement = .element(name: theString)
                     case .inClassName:
-                        localClassname = theString
+                        localStyleClassName = theString
                     case .inIdentifier:
-                        localIdentifier = theString
+                        localStyleIdentifier = theString
                     case .inPseudoClasses:
                         if let pseudoClass = try PseudoClass(string: theString)
                         {
@@ -790,8 +794,8 @@ public struct StyleSelector : CSSRankable
         
         
         self.element = localElement
-        self.identifier = localIdentifier
-        self.className = localClassname
+        self.styleIdentifier = localStyleIdentifier
+        self.styleClassName = localStyleClassName
         self.pseudoClasses = localPseudoClasses
         self.pseudoElement = localPseudoElement
     }
@@ -811,8 +815,8 @@ public struct StyleSelector : CSSRankable
     public init(element: CSSElement  = .none, identifier: String? = nil, className: String? = nil, pseudoClasses: [PseudoClass]? = nil, pseudoElement: PseudoElement? = nil)
     {
         self.element = element
-        self.identifier = identifier
-        self.className = className
+        self.styleIdentifier = identifier
+        self.styleClassName = className
         self.pseudoClasses = pseudoClasses
         self.pseudoElement = pseudoElement
     }
@@ -825,12 +829,12 @@ public struct StyleSelector : CSSRankable
     public var specificity: CSSSpecificity
     {
         var result = self.element.specificity
-        if let _ = self.identifier
+        if let _ = self.styleIdentifier
         {
             result = result + CSSSpecificity(identifierCount: 1, classesAttributesPseudoClassesCount: 0, elementPseudoElementCount: 0)
         }
         
-        if let _ = self.className
+        if let _ = self.styleClassName
         {
             result = result + CSSSpecificity(identifierCount:  0, classesAttributesPseudoClassesCount: 1, elementPseudoElementCount: 0)
         }
@@ -858,12 +862,12 @@ public struct StyleSelector : CSSRankable
             return false
         }
         
-        if self.identifier != testItem.identifier
+        if self.styleIdentifier != testItem.styleIdentifier
         {
             return false
         }
         
-        if self.className != testItem.className
+        if self.styleClassName != testItem.styleClassName
         {
             return false
         }
@@ -981,7 +985,7 @@ extension StyleSelector : Equatable
             return false
         }
         
-        if lhs.identifier != rhs.identifier
+        if lhs.styleIdentifier != rhs.styleIdentifier
         {
             return false
         }

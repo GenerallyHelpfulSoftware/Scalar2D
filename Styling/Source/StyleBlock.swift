@@ -94,54 +94,76 @@ fileprivate struct RankedGraphicStyle
     let specificity: CSSSpecificity
 }
 
-//extension Array where Element: StyleBlock
-//{
-//    
-//    public func properties(for element: CSSIdentifiable, given context: CSSContext) -> [GraphicStyle]
-//    {
-//        var propertyMap = [String: RankedGraphicStyle]()
-//        
-//        for aStyleBlock in self
-//        {
-//            var bestSpecifity : CSSSpecificity?
-//            for aSelector in aStyleBlock.selectors
-//            {
-//                if aSelector.applies(to: element, given: context)
-//                {
-//                    let specificity = aSelector.specificity
-//                    if let oldSpecificty = bestSpecifity
-//                    {
-//                        bestSpecifity = (oldSpecificty < specificity) ? specificity : oldSpecificty
-//                    }
-//                    else
-//                    {
-//                        bestSpecifity = specificity
-//                    }
-//                }
-//            }
-//            
-//            if let thisSpecificty = bestSpecifity
-//            {
-//                for aStyle in aStyleBlock.styles
-//                {
-//                    let key = aStyle.key
-//                    if let oldValue = propertyMap[key]
-//                    {
-//                        if aStyle.value.important || oldValue.specificty <= thisSpecificty
-//                        {
-//                            propertyMap[key] = RankedGraphicStyle(graphicStyle: aStyle.value, specificity: thisSpecificty)
-//                        }
-//                    }
-//                    else
-//                    {
-//                        propertyMap[key] = RankedGraphicStyle(graphicStyle: aStyle.value, specificity: thisSpecificty)
-//                    }
-//                }
-//            }
-//        }
-//        
-//        
-//        return propertyMap.map{return $0.graphicStyle}
-//    }
-//}
+extension Array where Element == SelectorCombinator
+{
+    fileprivate func applies(toElement element: CSSIdentifiable, givenContext context: CSSContext) -> Bool
+    {
+        guard let firstElement = self.first else
+        {
+            return false
+        }
+        switch (firstElement) {
+        case .selector(let selector):
+            if selector.applies(to: element, given: context)
+            {
+                
+            }
+        default:
+            return false
+        }
+        
+        return false
+    }
+}
+
+extension Array where Element == StyleBlock
+{
+    
+    public func properties(for element: CSSIdentifiable, given context: CSSContext) -> [GraphicStyle]
+    {
+        var propertyMap = [String: RankedGraphicStyle]()
+        
+        for aStyleBlock in self
+        {
+            var bestSpecifity : CSSSpecificity? = nil
+            for aCombinator in aStyleBlock.combinators
+            {
+                if aCombinator.applies(toElement: element, givenContext: context)
+                {
+                    let specificity = aCombinator.specificity
+                    if let oldSpecificty = bestSpecifity
+                    {
+                        bestSpecifity = (oldSpecificty < specificity) ? specificity : oldSpecificty
+                    }
+                    else
+                    {
+                        bestSpecifity = specificity
+                    }
+                }
+            }
+            
+            if let thisSpecificity = bestSpecifity
+            {
+                for aStyle in aStyleBlock.styles
+                {
+                    let key = aStyle.key
+                    if let oldValue = propertyMap[key]
+                    {
+                        if aStyle.important || oldValue.specificity <= thisSpecificity
+                        {
+                            propertyMap[key] = RankedGraphicStyle(graphicStyle: aStyle, specificity: thisSpecificity)
+                        }
+                    }
+                    else
+                    {
+                        propertyMap[key] = RankedGraphicStyle(graphicStyle: aStyle, specificity: thisSpecificity)
+                    }
+                }
+            }
+        }
+        
+        
+        return propertyMap.map{return $0.value.graphicStyle}
+    }
+}
 
