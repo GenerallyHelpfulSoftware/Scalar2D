@@ -35,6 +35,8 @@ import Foundation
 
 public enum FontWeight : InheritableProperty, Equatable
 {
+    public static let boldWeight = 700
+    public static let normalWeight = 400
     case initial
     case inherit
     
@@ -56,19 +58,61 @@ public enum FontWeight : InheritableProperty, Equatable
         }
     }
     
+    //InheritableProperty
     public var useInitial: Bool
     {
         return  .initial == self
     }
-    
+    //InheritableProperty
     public var useInherited: Bool
     {
         return  .inherit == self
     }
-    
+    //InheritableProperty
     public var useNormal: Bool
     {
         return  .normal == self
+    }
+    
+    public func equivalentWeight(forStartWeight startWeight: Int) -> Int?
+    {
+        switch self
+        {
+            case .inherit:
+                return startWeight
+            case .initial:
+                return nil
+            case .normal:
+                return FontWeight.normalWeight
+            case .bold:
+                return FontWeight.boldWeight
+            case .bolder:
+                switch startWeight
+                {
+                    case 0..<400:
+                        return FontWeight.normalWeight
+                    case 400..<600:
+                        return FontWeight.boldWeight
+                    case 600...900:
+                        return 900
+                    default:
+                        return nil
+                }
+            case .lighter:
+                switch startWeight
+                {
+                    case 100..<600:
+                        return 100
+                    case 600..<800:
+                        return FontWeight.normalWeight
+                    case 800...900:
+                        return FontWeight.boldWeight
+                    default:
+                        return nil
+                }
+            case .custom(let result):
+                return result
+        }
     }
 }
 
@@ -389,7 +433,6 @@ public enum FontSize : InheritableProperty, Equatable
         let valueAndUnit = try string.extractValueAndUnit()
         self.init(value: valueAndUnit.0, unit: valueAndUnit.1)
     }
-    
 }
 
 public enum LineHeight  : InheritableProperty, Equatable
@@ -416,17 +459,17 @@ public enum LineHeight  : InheritableProperty, Equatable
                 return false
         }
     }
-    
+    //InheritableProperty
     public var useInitial: Bool
     {
         return  .initial == self
     }
-    
+    //InheritableProperty
     public var useInherited: Bool
     {
         return  .inherit == self
     }
-    
+    //InheritableProperty
     public var useNormal: Bool
     {
         return  .normal == self
@@ -580,7 +623,9 @@ public enum FontFamily : InheritableProperty, Equatable
         }
     }
 }
-
+/**
+    FontDescription is a collection of all the standard properties that describe a font.
+*/
 public struct FontDescription
 {
     let families : [FontFamily]

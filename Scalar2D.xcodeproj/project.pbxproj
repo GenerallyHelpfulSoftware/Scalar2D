@@ -50,6 +50,7 @@
 		21D8BDDD1F479E2D002B5BE7 /* GroupSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8BDDB1F479DE5002B5BE7 /* GroupSelector.swift */; };
 		21D8BDDF1F491BAC002B5BE7 /* StylePropertyInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */; };
 		21DA69061F98476500392CBB /* SVGPropertyInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */; };
+		21DE653D1FFC5D7000673520 /* CoreText+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DE653C1FFC5D7000673520 /* CoreText+Test.swift */; };
 		21E7A9361F348956005FCDCB /* CGPath+Iterate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */; };
 		21EF7CBE1DBCFBD600D71CD4 /* StyleSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719031D71D1E600C98410 /* StyleSelector.swift */; };
 		21EF7CBF1DBCFBDF00D71CD4 /* GraphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719001D71D11D00C98410 /* GraphicStyle.swift */; };
@@ -186,6 +187,7 @@
 		21D8BDDB1F479DE5002B5BE7 /* GroupSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSelector.swift; path = Styling/Source/GroupSelector.swift; sourceTree = SOURCE_ROOT; };
 		21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StylePropertyInterpreter.swift; path = Styling/Source/StylePropertyInterpreter.swift; sourceTree = SOURCE_ROOT; };
 		21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SVGPropertyInterpreter.swift; path = Styling/Source/SVGPropertyInterpreter.swift; sourceTree = SOURCE_ROOT; };
+		21DE653C1FFC5D7000673520 /* CoreText+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreText+Test.swift"; sourceTree = "<group>"; };
 		21E326C81D5B411900B64C7C /* PathView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathView+iOS.swift"; path = "Views/UIKit/Source/PathView+iOS.swift"; sourceTree = SOURCE_ROOT; };
 		21F718FE1D71D08B00C98410 /* CSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSSParser.swift; path = Styling/Source/CSSParser.swift; sourceTree = SOURCE_ROOT; };
 		21F719001D71D11D00C98410 /* GraphicStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicStyle.swift; path = Styling/Source/GraphicStyle.swift; sourceTree = SOURCE_ROOT; };
@@ -382,6 +384,7 @@
 				212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */,
 				211179C61DACAB740054FAA4 /* ColourParserTests.swift */,
 				21B167101DCEAA43006F5481 /* CSSParser+Test.swift */,
+				21DE653C1FFC5D7000673520 /* CoreText+Test.swift */,
 				2149818E1F5F7C5700275D0F /* CSSPropertyTests.swift */,
 				2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */,
 				212E78241D5797B0003802D7 /* PathGeneratorTests.swift */,
@@ -737,6 +740,7 @@
 				212E78251D5797B0003802D7 /* PathGeneratorTests.swift in Sources */,
 				21B167111DCEAA43006F5481 /* CSSParser+Test.swift in Sources */,
 				21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */,
+				21DE653D1FFC5D7000673520 /* CoreText+Test.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
