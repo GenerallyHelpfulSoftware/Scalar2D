@@ -33,6 +33,9 @@
 
 import Foundation
 
+/**
+  Protocol promises to return a name of a property (presumably found in some css being parsed)
+*/
 public protocol ParseableEnum
 {
     var cssName : String {get}
@@ -40,9 +43,15 @@ public protocol ParseableEnum
 
 public protocol SimpleParseableEnum : ParseableEnum
 {
+    /**
+        implementers of this protocol provide a list of all the known css property names
+    */
     static var all : [ParseableEnum] {get}
 }
 
+/**
+    enumeration of possible font style keys (as opposed to variants, weights, etc.)
+*/
 extension FontStyle : SimpleParseableEnum
 {
     public var cssName : String
@@ -68,6 +77,9 @@ extension FontStyle : SimpleParseableEnum
 }
 
 
+/**
+ enumeration of possible font variant keys (as opposed to styles, weights, etc.)
+ */
 extension FontVariant : SimpleParseableEnum
 {
     public var cssName : String
@@ -90,6 +102,9 @@ extension FontVariant : SimpleParseableEnum
     }
 }
 
+/**
+ enumeration of possible font weights keys (as opposed to styles, variants, etc.)
+ */
 extension FontWeight : SimpleParseableEnum
 {
     public var cssName : String
@@ -117,7 +132,9 @@ extension FontWeight : SimpleParseableEnum
         return [FontWeight.inherit, FontWeight.initial, FontWeight.bold, FontWeight.bolder, FontWeight.lighter]
     }
 }
-
+/**
+    enumeration of possible font stretchs keys (as opposed to styles, variants, etc.), allows the letters to be squished together or stretched apart.
+ */
 extension FontStretch : SimpleParseableEnum
 {
     public var cssName : String
@@ -155,17 +172,29 @@ extension FontStretch : SimpleParseableEnum
         FontStretch.ultraCondensed]
     }
 }
-
+/**
+ enumeration of possible font names, wether explicit or by function .
+ */
 extension FontFamily : SimpleParseableEnum
 {
-    
     public static var all : [ParseableEnum]
     {
         return [FontFamily.inherit, FontFamily.initial, FontFamily.cursive, FontFamily.fantasy, FontFamily.monospace, FontFamily.sansSerif, FontFamily.serif]
     }
 }
 
-
+/**
+    Look through a string buffer for a given prefix and return it's index, if found.
+ 
+ - parameter prefix:String    usually a key like "inherited"
+ - parameter inBuffer: String.UnicodeScalarView the buffer to look though
+ - parameter atValueRange: the portion of the inBuffer to search though
+ 
+ 
+ - throws an error if an error such as an unexpected ending happens
+ 
+ - returns optional location after the end of the prefix, nil if not found.
+*/
 public func findPrefix(_ prefix: String, inBuffer buffer: String.UnicodeScalarView, atValueRange valueRange: Range<String.UnicodeScalarView.Index>) throws -> String.UnicodeScalarView.Index?
 {
     let prefixBuffer = prefix.unicodeScalars
@@ -204,6 +233,9 @@ public func findPrefix(_ prefix: String, inBuffer buffer: String.UnicodeScalarVi
 
 extension Unicode.Scalar
 {
+    /**
+        can we treat this scalar character as white space. Might be missing some.
+    */
     var isAcceptableWhitespace : Bool
     {
         return self == " " || self == "\t" || self == " "
@@ -212,6 +244,17 @@ extension Unicode.Scalar
 
 extension SimpleParseableEnum
 {
+    /**
+        given a buffer and a range, search for this enum's cssName
+     - parameter inBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter atValueRange: the portion of the inBuffer to search though
+     
+     
+     - throws an error if an error such as an unexpected ending is found
+     
+     - returns optional location after the prefix, nil if not found. and a Parseable enum as a tuple
+     
+    */
     static func find(inBuffer buffer: String.UnicodeScalarView, atValueRange valueRange: Range<String.UnicodeScalarView.Index>) throws -> (String.UnicodeScalarView.Index, ParseableEnum)?
     {
         
@@ -231,8 +274,24 @@ extension SimpleParseableEnum
     }
 }
 
+/**
+    Class devoted to parsing css like content
+*/
 open class CommonStyleInterpretter : StylePropertyInterpreter
 {
+    /**
+        The ! operator in css indicates overriding the normal styling cascade (exists to make my life difficult). This method is called when
+        a ! is found in the text.
+     
+     - parameter buffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as an unexpected ending is found
+     
+     - returns optional location after the prefix, nil if not found.
+     
+    */
     public final func interpretImportant(buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> String.UnicodeScalarView.Index
     {
         guard let result = try findPrefix("!important", inBuffer: buffer, atValueRange: valueRange) else
@@ -241,7 +300,16 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         }
         return result
     }
-    
+    /**
+        Called at a point where some name of a font is expected, either an explicit name or a functional type like sanserif
+     
+     - parameter buffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     - throws an error if an error such as an unexpected ending is found
+     
+    - returns a tuple containing a list of FontFamily enumerations, the location after the find, and a Bool flag indicating this styling is important
+    */
     final fileprivate func extractFontNames(buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([FontFamily], String.UnicodeScalarView.Index, Bool)
     {
         enum State
@@ -365,7 +433,19 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         }
         return (families, cursor, isImportant)
     }
-    
+    /**
+        Look through a buffer for a variety of font related properties
+     
+     - parameter buffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as an unexpected ending is found
+     
+     - returns a tuple containing a list of GraphicStyles and the location after the find
+     
+     
+    */
     final fileprivate func interpretFontProperty(buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
     {
         enum State
@@ -532,7 +612,18 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         return (result, cursor)
         
     }
-    
+    /**
+        Look through a buffer for a well formed property
+     
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as a badly formed property
+     
+        - returns a tuple with the range of the found property, a flag indicating it's important and the index after the property
+    */
     fileprivate func extract(key: String,  fromBuffer buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> (Range<String.UnicodeScalarView.Index>, Bool, String.UnicodeScalarView.Index)
     {
         var cursor = valueRange.lowerBound
@@ -566,6 +657,19 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         return (propertyRange!, isImportant, cursor)
     }
     
+    /**
+        The beginning of a color property has been detected, extract out the color styles.
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+     */
+    
     fileprivate func interpretColour(key: String, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
     {
         let (propertyRange, isImportant, cursor) = try self.extract(key: key, fromBuffer: buffer, valueRange: valueRange)
@@ -582,6 +686,19 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         }
     }
     
+    /**
+        The beginning of a dimensional property (pixels, points, etc.) has been detected. This function extracts out the associated styles.
+    
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+    */
     fileprivate func interpretDimension(key: String, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
     {
         let (propertyRange, isImportant, cursor) = try self.extract(key: key, fromBuffer: buffer, valueRange: valueRange)
@@ -614,13 +731,24 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                 
                 let property = StyleProperty.number(actualValue)
                 return ([GraphicStyle(key: key, value: property, important: isImportant)], cursor)
-                
             }
         }
         
         throw StylePropertyFailureReason.incompleteProperty(key, valueRange.lowerBound)
     }
     
+    /**
+     The beginning of a font size property has been detected. This function extracts out the associated styles.
+     
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+     */
     fileprivate func interpretFontSize(key: String, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
     {
         let (propertyRange, isImportant, cursor) = try self.extract(key: key, fromBuffer: buffer, valueRange: valueRange)
@@ -641,6 +769,18 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         throw StylePropertyFailureReason.incompleteProperty(key, valueRange.lowerBound)
     }
     
+    /**
+     The beginning of a font-name property (or the like) has been detected. This function extracts out the associated styles.
+     
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+     */
     fileprivate func interpretFontFamilies(key: String, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
     {
         let (families, cursor, isImportant) = try extractFontNames(buffer: buffer, valueRange: valueRange)
@@ -649,6 +789,18 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         
     }
     
+    /**
+     The beginning of some property has been detected. This function extracts out the associated styles.
+     
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+     */
     public func interpret(key: String, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index) {
 
         switch key
