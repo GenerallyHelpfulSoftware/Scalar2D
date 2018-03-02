@@ -79,12 +79,18 @@ public struct CSSSpecificity : Comparable
     }
 }
 
+/**
+    Protocol to return a calculation of how specific a selector is. More specific selectors are chosen over less specific selectors when applying styling.
+*/
 public protocol CSSRankable {
     var specificity: CSSSpecificity{get}
 }
 
 extension String
 {
+    /**
+        - returns the contents of a parenthesis.
+    */
     fileprivate  func parenthesisStripped() throws -> String? // just return any content of an interior ()
     {
         
@@ -130,6 +136,9 @@ extension String
     }
 }
 
+/**
+   Enumeration encoding where in a list, a selector is targeting.
+*/
 public enum Nth
 {
     case odd
@@ -149,7 +158,6 @@ public enum Nth
                 self = .odd
             case "even":
                 self = .even
-            
             default:
                 let start = parameterString.startIndex
                 let end = parameterString.endIndex
@@ -173,14 +181,16 @@ public enum Nth
                         return nil
                     }
                     self = .nth(b)
-                    
                 }
         }
     }
     
     // case function
 }
-
+/**
+    Enumeration of possible standard (and custom) pseudo classes as defined in the css specification.
+    Used to target objects with certain identifying characteristics.
+*/
 public enum PseudoClass  : CSSRankable
 {
     case custom(String)
@@ -321,19 +331,22 @@ public enum PseudoClass  : CSSRankable
                 }
         }
     }
+    // implement CSSRankable
     public var specificity: CSSSpecificity
     {
         switch self
         {
-        case .not(let selector):
-            return selector.specificity
-        default:
-            return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 1, elementPseudoElementCount: 0)
+            case .not(let selector):
+                return selector.specificity
+            default:
+                return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 1, elementPseudoElementCount: 0)
         }
     }
-    
 }
-
+/**
+For pretty subtle reasons, a pseudo element is different from a pseudo class.
+ 
+*/
 public enum PseudoElement  : CSSRankable
 {
     case custom(String)
@@ -348,6 +361,7 @@ public enum PseudoElement  : CSSRankable
     case spelling_error
     case grammar_error
     
+    // implement CSSRankable
     public var specificity: CSSSpecificity
     {
         return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 0, elementPseudoElementCount: 1)
@@ -516,24 +530,17 @@ public struct StyleSelector : CSSRankable
             case inBetweenTokens
         }
         
-        
         var localElement: CSSElement = .none
         var localStyleIdentifier: String? = nil
         var localStyleClassName: String? = nil
         var localPseudoClasses: [PseudoClass]? = nil
         var localPseudoElement: PseudoElement? = nil
         
-        
-        
-        
-        
         if range.isEmpty
         {
             throw FailureReason.emptyString(range.lowerBound)
         }
-        
-        
-        
+
         var state = ParseState.inElement
         var previousCharacter : UnicodeScalar = " "
         var stringBegin = range.lowerBound
@@ -570,7 +577,6 @@ public struct StyleSelector : CSSRankable
         var cursor = stringBegin
         var stringHasEscape = false
         var stringHasNonDashNumberOrUnderscore = false
-        
         
         loop:        while range.contains(cursor)
         {
@@ -651,7 +657,6 @@ public struct StyleSelector : CSSRankable
                         default:
                             stringHasNonDashNumberOrUnderscore = true
                     }
-                break
                 case .inPseudoClasses:
                     
                     switch character // a pseudoclass might be not, which might have internal parenthesis (including not)
@@ -690,11 +695,10 @@ public struct StyleSelector : CSSRankable
                             }
                         }
                     }
-            
-                break
+
                 case .inPseudoElement:
-                        switch character
-                        {
+                    switch character
+                    {
                         case "#", ".":
                             throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
                         case  ":":
@@ -704,7 +708,6 @@ public struct StyleSelector : CSSRankable
                         default:
                             stringHasNonDashNumberOrUnderscore = true
                     }
-                break
             }
             
             previousCharacter = character
@@ -783,16 +786,13 @@ public struct StyleSelector : CSSRankable
                         {
                             throw FailureReason.unknownPseudoElement(string: theString, location: stringBegin)
                         }
-                        break
                 }
                 state = .inBetweenTokens
                 stringHasEscape = false
                 stringHasNonDashNumberOrUnderscore = false
             }
         }
-        
-        
-        
+
         self.element = localElement
         self.styleIdentifier = localStyleIdentifier
         self.styleClassName = localStyleClassName
@@ -918,7 +918,7 @@ extension PseudoClass : Equatable
                  (.valid, .valid), (.visited, .visited), (.last_of_type, .last_of_type), (.left, .left):
                     return true
             default:
-                    return false
+                return false
         }
     }
 }

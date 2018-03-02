@@ -258,7 +258,6 @@ public enum SelectorCombinator : CSSRankable
                             }
                             state = .inSelector
                             stringBegin = cursor
-                        break
                     }
             }
             previousCharacter = character

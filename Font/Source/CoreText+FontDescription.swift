@@ -91,12 +91,10 @@ extension FontWeight : CoreTextProperty
             case .normal:
                 explicitWeight = nil
                 symbolicTraits.remove(.boldTrait)
-            break
             case .inherit:
             return
             case .initial:
                 explicitWeight = nil
-            break
         }
         if let weightToSet = explicitWeight
         {
@@ -426,7 +424,6 @@ public extension FontContext
                     case .serif:
                         stylisticTraits = .classModernSerifs
                     case .named(let name):
-                        
                         if let attributes = Self.fontAttributes(forName: name)
                         {
                             if fallbacks != nil
@@ -439,7 +436,6 @@ public extension FontContext
                             }
                             return
                         }
-                    break
                     case .initial:
                         break
                     case .inherit:
