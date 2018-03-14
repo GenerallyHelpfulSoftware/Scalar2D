@@ -75,6 +75,9 @@ extension UIViewContentMode
         didSet
         {
             self.shapeLayer.lineWidth = lineWidth
+            self.invalidateIntrinsicContentSize()
+            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     
@@ -83,6 +86,7 @@ extension UIViewContentMode
         didSet
         {
             self.shapeLayer.fillColor = fillColor?.cgColor
+            setNeedsDisplay()
         }
     }
     
@@ -91,6 +95,7 @@ extension UIViewContentMode
         didSet
         {
             self.shapeLayer.strokeColor = strokeColor?.cgColor
+            setNeedsDisplay()
         }
     }
     
@@ -99,6 +104,9 @@ extension UIViewContentMode
         didSet
         {
             self.setPathString(pathString: svgPath)
+            self.invalidateIntrinsicContentSize()
+            setNeedsLayout()
+            setNeedsDisplay()
         }
     }
     
@@ -120,4 +128,9 @@ extension UIViewContentMode
         return CAShapeLayer.self
     }
 
+    public override var intrinsicContentSize: CGSize {
+        let pathSize = shapeLayer.path?.boundingBoxOfPath.size ?? .zero
+        let sizeWithLineWidth = CGRect(origin: .zero, size: pathSize).insetBy(dx: 2 * lineWidth, dy: 2 * lineWidth).size
+        return sizeWithLineWidth
+    }
 }
