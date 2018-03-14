@@ -73,6 +73,7 @@
 		21FFE8E51D646669003446DF /* PathView+Cross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFE8E41D646669003446DF /* PathView+Cross.swift */; };
 		21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FFE8E41D646669003446DF /* PathView+Cross.swift */; };
 		21FFE8EA1D6473D3003446DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8E91D6473D3003446DF /* CoreGraphics.framework */; };
+		36CFD08720595A02007355EF /* PathView+iOS.swift in Headers */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView+iOS.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -488,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */,
+				36CFD08720595A02007355EF /* PathView+iOS.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
