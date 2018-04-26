@@ -75,7 +75,7 @@ public struct ICCColourParser : ColourParser
         
         let profileName = stringComponents.removeFirst().trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         let doubleComponents = stringComponents.map{Double($0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines))}
-        let noNullDoubleComponents = doubleComponents.flatMap{$0}
+        let noNullDoubleComponents = doubleComponents.compactMap{$0}
         
         guard noNullDoubleComponents.count == doubleComponents.count else
         {
