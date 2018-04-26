@@ -298,6 +298,12 @@ extension CGMutablePath
                 {
                     case .close:
                         mutablePath.closeSubpath()
+                        if !mutablePath.isEmpty // move the start point to the 
+                        {
+                            let startPoint = mutablePath.currentPoint
+                            x = startPoint.x
+                            y = startPoint.y
+                        }
                     case let .moveTo(deltaX, deltaY):
                         x = x + deltaX
                         y = y + deltaY
