@@ -101,10 +101,9 @@ public extension Colour
             {
                 if let profileData = context.profileNamed(name: name)
                 {
-                    if let colorSpace = CGColorSpace(iccProfileData: profileData as CFData)
-                    {
-                        result = CGColor(colorSpace: colorSpace, components: components)
-                    }
+                    let colorSpace = CGColorSpace(iccData: profileData as CFData)
+                    result = CGColor(colorSpace: colorSpace, components: components)
+                    
                 }
             }
             return result
