@@ -55,6 +55,8 @@
 		21EF7CBE1DBCFBD600D71CD4 /* StyleSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719031D71D1E600C98410 /* StyleSelector.swift */; };
 		21EF7CBF1DBCFBDF00D71CD4 /* GraphicStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F719001D71D11D00C98410 /* GraphicStyle.swift */; };
 		21EF7CC01DBCFBE300D71CD4 /* CSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F718FE1D71D08B00C98410 /* CSSParser.swift */; };
+		21F16AC42061FC61002F4913 /* SVGElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F16AC32061FC61002F4913 /* SVGElements.swift */; };
+		21F16AC6206884D9002F4913 /* SVGElements+CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F16AC5206884D9002F4913 /* SVGElements+CoreGraphics.swift */; };
 		21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFE8C71D63009D003446DF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; };
 		21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -189,6 +191,8 @@
 		21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SVGPropertyInterpreter.swift; path = Styling/Source/SVGPropertyInterpreter.swift; sourceTree = SOURCE_ROOT; };
 		21DE653C1FFC5D7000673520 /* CoreText+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreText+Test.swift"; sourceTree = "<group>"; };
 		21E326C81D5B411900B64C7C /* PathView+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "PathView+iOS.swift"; path = "Views/UIKit/Source/PathView+iOS.swift"; sourceTree = SOURCE_ROOT; };
+		21F16AC32061FC61002F4913 /* SVGElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SVGElements.swift; path = SVG/Source/SVGElements.swift; sourceTree = SOURCE_ROOT; };
+		21F16AC5206884D9002F4913 /* SVGElements+CoreGraphics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "SVGElements+CoreGraphics.swift"; path = "SVG/Source/SVGElements+CoreGraphics.swift"; sourceTree = SOURCE_ROOT; };
 		21F718FE1D71D08B00C98410 /* CSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSSParser.swift; path = Styling/Source/CSSParser.swift; sourceTree = SOURCE_ROOT; };
 		21F719001D71D11D00C98410 /* GraphicStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicStyle.swift; path = Styling/Source/GraphicStyle.swift; sourceTree = SOURCE_ROOT; };
 		21F719031D71D1E600C98410 /* StyleSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StyleSelector.swift; path = Styling/Source/StyleSelector.swift; sourceTree = SOURCE_ROOT; };
@@ -341,6 +345,7 @@
 				21B719721D48599A00B0ACBF /* Scalar2D */,
 				21F719021D71D12C00C98410 /* Styling */,
 				211179D81DB75EFC0054FAA4 /* Colour */,
+				21F16AC22061FBDB002F4913 /* SVG */,
 				21B719901D4A35BD00B0ACBF /* GraphicPath */,
 				21FFE8E11D6465EB003446DF /* Views */,
 				21B7197D1D48599B00B0ACBF /* Scalar2DTests */,
@@ -406,6 +411,16 @@
 			);
 			name = GraphicPath;
 			path = Scalar2D;
+			sourceTree = "<group>";
+		};
+		21F16AC22061FBDB002F4913 /* SVG */ = {
+			isa = PBXGroup;
+			children = (
+				21F16AC32061FC61002F4913 /* SVGElements.swift */,
+				21F16AC5206884D9002F4913 /* SVGElements+CoreGraphics.swift */,
+			);
+			name = SVG;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		21F719021D71D12C00C98410 /* Styling */ = {
@@ -592,7 +607,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Generally Helpful Software";
 				TargetAttributes = {
 					212E782F1D5832C4003802D7 = {
@@ -759,9 +774,11 @@
 				211179EC1DB75EFC0054FAA4 /* HexColourParser.swift in Sources */,
 				211179E91DB75EFC0054FAA4 /* DeviceCYMKColourParser.swift in Sources */,
 				211179E61DB75EFC0054FAA4 /* CGColor+ColourParser.swift in Sources */,
+				21F16AC42061FC61002F4913 /* SVGElements.swift in Sources */,
 				21D8BDDF1F491BAC002B5BE7 /* StylePropertyInterpreter.swift in Sources */,
 				21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */,
 				21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */,
+				21F16AC6206884D9002F4913 /* SVGElements+CoreGraphics.swift in Sources */,
 				21B41B131FAC0888003C974F /* Parsing.swift in Sources */,
 				211179EA1DB75EFC0054FAA4 /* DeviceGrayColourParser.swift in Sources */,
 				21EF7CBE1DBCFBD600D71CD4 /* StyleSelector.swift in Sources */,
@@ -967,6 +984,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -974,6 +992,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -1026,6 +1045,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -1033,6 +1053,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

@@ -641,7 +641,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
             case ";":
                 break parseLoop
             default:
-                break;
+                break
             }
             
             cursor = try buffer.uncommentedIndex(after: cursor)

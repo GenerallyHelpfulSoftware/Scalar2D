@@ -20,7 +20,4 @@ public extension StyleableObject
     {
         return nil
     }
-    
-    
-
 }
