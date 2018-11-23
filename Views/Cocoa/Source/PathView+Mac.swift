@@ -33,7 +33,9 @@
 import Cocoa
 import CoreGraphics
 
-
+#if os(OSX)
+import Foundation
+import Cocoa
 @IBDesignable public  class PathView: NSView, ShapeView {
     
     public required init?(coder: NSCoder) {
@@ -86,3 +88,5 @@ import CoreGraphics
         return self.layer as! CAShapeLayer
     }
 }
+
+#endif

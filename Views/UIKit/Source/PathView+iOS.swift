@@ -32,38 +32,38 @@
 
 import UIKit
 
-extension UIViewContentMode
+extension UIView.ContentMode
 {
     var layerContentGravity: String
     {
         switch self
         {
             case .scaleAspectFill:
-                return kCAGravityResizeAspectFill
+                return CALayerContentsGravity.resizeAspectFill.rawValue
             case .scaleAspectFit:
-                return kCAGravityResizeAspect
+                return CALayerContentsGravity.resizeAspect.rawValue
             case .bottom:
-                return kCAGravityBottom
+                return CALayerContentsGravity.bottom.rawValue
             case .top:
-                return kCAGravityTop
+                return CALayerContentsGravity.top.rawValue
             case .left:
-                return kCAGravityLeft
+                return CALayerContentsGravity.left.rawValue
             case .right:
-                return kCAGravityRight
+                return CALayerContentsGravity.right.rawValue
             case .bottomLeft:
-                return kCAGravityBottomLeft
+                return CALayerContentsGravity.bottomLeft.rawValue
             case .bottomRight:
-                return kCAGravityBottomRight
+                return CALayerContentsGravity.bottomRight.rawValue
             case .topRight:
-                return kCAGravityTopRight
+                return CALayerContentsGravity.topRight.rawValue
             case .topLeft:
-                return kCAGravityTopLeft
+                return CALayerContentsGravity.topLeft.rawValue
             case .center:
-                return kCAGravityCenter
+                return CALayerContentsGravity.center.rawValue
             case .redraw:
-                return kCAGravityCenter
+                return CALayerContentsGravity.center.rawValue
             case .scaleToFill:
-                return kCAGravityResizeAspectFill
+                return CALayerContentsGravity.resizeAspectFill.rawValue
         }
     }
 }
@@ -102,11 +102,11 @@ extension UIViewContentMode
         }
     }
     
-    override public var contentMode: UIViewContentMode
+    override public var contentMode: UIView.ContentMode
     {
         didSet
         {
-            self.layer.contentsGravity = contentMode.layerContentGravity
+            self.layer.contentsGravity = CALayerContentsGravity(rawValue: contentMode.layerContentGravity)
         }
     }
     

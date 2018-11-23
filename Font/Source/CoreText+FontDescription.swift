@@ -164,13 +164,13 @@ extension TextDecoration : CoreTextProperty
         switch self
         {
             case .none, .initial:
-                properties.removeValue(forKey: NSAttributedStringKey.underlineStyle)
+                properties.removeValue(forKey: NSAttributedString.Key.underlineStyle)
             case .inherit:
                 return
             case .underline:
-                properties[NSAttributedStringKey.underlineStyle] = NSNumber(value: 1)
+                properties[NSAttributedString.Key.underlineStyle] = NSNumber(value: 1)
             case .lineThrough:
-                properties[NSAttributedStringKey.strikethroughStyle] = NSNumber(value: 1)
+                properties[NSAttributedString.Key.strikethroughStyle] = NSNumber(value: 1)
             case .overline: // don't know how to render this
                 break
         }

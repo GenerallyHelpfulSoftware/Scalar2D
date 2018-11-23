@@ -33,6 +33,7 @@
 #if os(OSX)
 import Foundation
 import Cocoa
+
     
 public extension NSBezierPath
 {

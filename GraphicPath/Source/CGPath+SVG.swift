@@ -146,8 +146,8 @@ extension CGMutablePath
             }
             else // actually try to draw an arc
             {
-                var xRadius = fabs(radX) // make sure radius are positive
-                var yRadius = fabs(radY)
+                var xRadius = abs(radX) // make sure radius are positive
+                var yRadius = abs(radY)
                 let xAxisRotationDegrees = fmod(tiltAngle, 360.0)
                 
                 let xAxisRotationRadians = xAxisRotationDegrees*kDegreesToRadiansConstant

@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import Scalar2D_mac
+
 
 class TestView: NSView
 {

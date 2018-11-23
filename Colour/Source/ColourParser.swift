@@ -151,7 +151,7 @@ public enum Colour : Equatable, CustomStringConvertible
             default:
                 enumString = self.asString
         }
-        return "<Colour \(enumString)>"
+        return "<Colour \(enumString!)>"
     }
     
 }
