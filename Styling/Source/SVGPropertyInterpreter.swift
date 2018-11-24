@@ -487,27 +487,27 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                         case ";":
                             throw StylePropertyFailureReason.unexpectedSemiColon(cursor)
                         case " ", "\t", " ", "\n":
-                        break
+                            cursor = try buffer.uncommentedIndex(after: cursor)
                         default: // see if there is style, weight or variant in this list
                             let availableRange = cursor..<valueRange.upperBound
                             if let theStyle = try FontStyle.find(inBuffer: buffer, atValueRange: availableRange) as? (String.UnicodeScalarView.Index, FontStyle)
                             {
-                                cursor = theStyle.0
+                                cursor = try buffer.uncommentedIndex(after: theStyle.0)
                                 style = theStyle.1
                             }
                             else if let theWeight = try FontWeight.find(inBuffer: buffer, atValueRange: availableRange) as?  (String.UnicodeScalarView.Index, FontWeight)
                             {
-                                cursor = theWeight.0
+                                cursor = try buffer.uncommentedIndex(after: theWeight.0)
                                 weight = theWeight.1
                             }
                             else if let theVariant = try FontVariant.find(inBuffer: buffer, atValueRange: availableRange)  as?  (String.UnicodeScalarView.Index, FontVariant)
                             {
-                                cursor = theVariant.0
+                                cursor = try buffer.uncommentedIndex(after: theVariant.0)
                                 variant = theVariant.1
                             }
                             else if let theStretch = try FontStretch.find(inBuffer: buffer, atValueRange: availableRange)  as?  (String.UnicodeScalarView.Index, FontStretch)
                             {
-                                cursor = theStretch.0
+                                cursor = try buffer.uncommentedIndex(after: theStretch.0)
                                 stretch = theStretch.1
                             }
 
@@ -520,7 +520,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                     switch character
                     {
                         case "0"..."9":
-                        break
+                            cursor = try buffer.uncommentedIndex(after: cursor)
                         case ".":
                             if seenPeriod
                             {
@@ -540,24 +540,27 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                             let sizeString = String(buffer[sectionBegin..<cursor])
                             fontSize = try FontSize(string: sizeString)
                             sectionBegin = try buffer.uncommentedIndex(after: cursor)
+                            cursor = sectionBegin
                             seenPeriod = false
                         default:
                             if !character.isASCII
                             {
                                 throw StylePropertyFailureReason.unexpectedCharacter(Character(character), cursor)
                             }
+                            cursor = try buffer.uncommentedIndex(after: cursor)
                     }
                 case .awaitingEndLineHeight:
                     switch character
                     {
                         case "0"..."9":
-                        break
+                            cursor = try buffer.uncommentedIndex(after: cursor)
                         case ".":
                             if seenPeriod
                             {
                                 throw StylePropertyFailureReason.unexpectedCharacter(Character(character), cursor)
                             }
                             seenPeriod = true
+                            cursor = try buffer.uncommentedIndex(after: cursor)
                         case " ", "\t", " ", "\n":
                             let lineHeightString = String(buffer[sectionBegin..<cursor])
                             lineHeight = try LineHeight(string: lineHeightString)
