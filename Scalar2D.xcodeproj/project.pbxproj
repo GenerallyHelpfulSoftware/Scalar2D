@@ -30,6 +30,10 @@
 		212E78371D5832C4003802D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212E78361D5832C4003802D7 /* Assets.xcassets */; };
 		212E783A1D5832C4003802D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212E78381D5832C4003802D7 /* Main.storyboard */; };
 		212E785B1D58ACAF003802D7 /* CGPathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */; };
+		2134CAB021C9FC5500568393 /* CSSApply+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */; };
+		2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */; };
+		2134CAB421E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
+		2134CAB521E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
 		21384F7F21A8A20C00FC4F71 /* Scalar2D_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 21384F7D21A8A20C00FC4F71 /* Scalar2D_mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21384F8221A8A20C00FC4F71 /* Scalar2D_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */; };
 		21384F8321A8A20C00FC4F71 /* Scalar2D_mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -196,6 +200,9 @@
 		212E78491D5834C2003802D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212E78591D5835BA003802D7 /* Scalar2D Mac Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalar2D Mac Playground.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPathGeneratorTests.swift; sourceTree = "<group>"; };
+		2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSSApply+Test.swift"; sourceTree = "<group>"; };
+		2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingFrogViewController.swift; sourceTree = "<group>"; };
+		2134CAB321E15D7400568393 /* PathViewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathViewLayer.swift; sourceTree = "<group>"; };
 		21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21384F7D21A8A20C00FC4F71 /* Scalar2D_mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D_mac.h; sourceTree = "<group>"; };
 		21384F7E21A8A20C00FC4F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -350,6 +357,7 @@
 				21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */,
 				213D06EC1D55F72200A5FD69 /* AppDelegate.swift */,
 				213D06EE1D55F72200A5FD69 /* ViewController.swift */,
+				2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */,
 				213D06F01D55F72200A5FD69 /* Main.storyboard */,
 				213D06F31D55F72200A5FD69 /* Assets.xcassets */,
 				213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */,
@@ -448,6 +456,7 @@
 				212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */,
 				211179C61DACAB740054FAA4 /* ColourParserTests.swift */,
 				21B167101DCEAA43006F5481 /* CSSParser+Test.swift */,
+				2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */,
 				21DE653C1FFC5D7000673520 /* CoreText+Test.swift */,
 				2149818E1F5F7C5700275D0F /* CSSPropertyTests.swift */,
 				2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */,
@@ -541,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				21FFE8E41D646669003446DF /* PathView+Cross.swift */,
+				2134CAB321E15D7400568393 /* PathViewLayer.swift */,
 				211267691F9B864800ABBF05 /* StyleableObject.swift */,
 			);
 			name = CrossPlatform;
@@ -840,6 +850,7 @@
 				21384F8721A8A2CC00FC4F71 /* Parsing.swift in Sources */,
 				21384F9421A8A2F200FC4F71 /* UnicodeScalarView+Utils.swift in Sources */,
 				21384FA221A8A2FF00FC4F71 /* SVGElements+CoreGraphics.swift in Sources */,
+				2134CAB521E15D7400568393 /* PathViewLayer.swift in Sources */,
 				21384FA021A8A2FA00FC4F71 /* WebColourParser.swift in Sources */,
 				21384FA121A8A2FF00FC4F71 /* SVGElements.swift in Sources */,
 				21384F9D21A8A2FA00FC4F71 /* NSColor+ColourParser.swift in Sources */,
@@ -866,6 +877,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				213D06EF1D55F72200A5FD69 /* ViewController.swift in Sources */,
+				2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */,
 				213D06ED1D55F72200A5FD69 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,6 +895,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				211179C71DACAB740054FAA4 /* ColourParserTests.swift in Sources */,
+				2134CAB021C9FC5500568393 /* CSSApply+Test.swift in Sources */,
 				2149818F1F5F7C5700275D0F /* CSSPropertyTests.swift in Sources */,
 				211179D71DB19B8D0054FAA4 /* CGColor+Test.swift in Sources */,
 				212E785B1D58ACAF003802D7 /* CGPathGeneratorTests.swift in Sources */,
@@ -900,6 +913,7 @@
 				21DA69061F98476500392CBB /* SVGPropertyInterpreter.swift in Sources */,
 				211179ED1DB75EFC0054FAA4 /* ICCColourParser.swift in Sources */,
 				211179E71DB75EFC0054FAA4 /* ColourParser.swift in Sources */,
+				2134CAB421E15D7400568393 /* PathViewLayer.swift in Sources */,
 				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
 				211179F11DB75EFC0054FAA4 /* WebColourParser.swift in Sources */,
 				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,

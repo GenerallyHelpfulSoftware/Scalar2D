@@ -49,6 +49,28 @@ class CSSPropertyTests: XCTestCase {
         super.tearDown()
     }
     
+    func testUltraCondensed()
+    {
+        let testString = "ultra-condensed italic"
+        let buffer = testString.unicodeScalars
+        
+        do
+        {
+            if let foundEnd = try findPrefix(FontStretch.ultraCondensed.cssName, inBuffer: buffer, atValueRange: buffer.startIndex..<buffer.endIndex)
+            {
+                
+                let cursor = try buffer.uncommentedIndex(after: foundEnd)
+                let remainder = buffer[cursor..<buffer.endIndex]
+                let remainderString = String(remainder)
+                XCTAssertEqual(remainderString, " italic")
+            }
+        }
+        catch
+        {
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
     func testFontProperty() {
         
         let property = "ultra-condensed italic small-caps bold 16px/1.4 Georgia \"Times New Roman\" serif SAN-SERIF system"
@@ -106,5 +128,4 @@ class CSSPropertyTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-    
 }

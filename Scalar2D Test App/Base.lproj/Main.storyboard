@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,50 +18,34 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oBF-so-nSu">
-                                <rect key="frame" x="16" y="28" width="343" height="639"/>
-                                <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CkA-cW-YQ8">
-                                        <rect key="frame" x="111" y="0.0" width="121" height="29"/>
-                                        <segments>
-                                            <segment title="First"/>
-                                            <segment title="Second"/>
-                                        </segments>
-                                    </segmentedControl>
-                                    <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mPX-AQ-MWe" customClass="PathView" customModule="Scalar2D">
-                                        <rect key="frame" x="51.5" y="28" width="240" height="611"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="svgPath">
-                                                <string key="value">M185 212C139 183 40 199 39 108A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 38C170 29 193 62 220 161L225 110Q231 84 260 115C260 142 265 217 235 213Q210 210 215 242C222 265 161 249 125 248A6 6 325 1 0 126 263C176 268 243 277 230 241Q226 225 246 225  261 227 269 194C274 167 276 106 260 96L243 85C245 86 209 65 216 133 200 46 176 19 132 26A28 28 0 0 0 81 40Q61 46 52 63A27 28 0 0 0 27 110C33 192 70 192 145 205Z</string>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
-                                                <color key="value" red="0.023529411760000001" green="0.72156862749999995" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
-                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="styleClassName" value="path"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                            </stackView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CkA-cW-YQ8">
+                                <rect key="frame" x="273" y="8" width="121" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uni-LF-JvD">
+                                <rect key="frame" x="20" y="44" width="627" height="331"/>
+                                <connections>
+                                    <segue destination="FTt-kZ-GXt" kind="embed" id="IbG-HP-93C"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <accessibility key="accessibilityConfiguration">
                             <accessibilityTraits key="traits" image="YES"/>
                         </accessibility>
                         <constraints>
-                            <constraint firstItem="oBF-so-nSu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="181-Aq-vbu"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oBF-so-nSu" secondAttribute="bottom" id="2lr-6d-sHm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="oBF-so-nSu" secondAttribute="trailing" id="4R6-Sz-lbP"/>
-                            <constraint firstItem="oBF-so-nSu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="PaO-4a-2cT"/>
+                            <constraint firstItem="CkA-cW-YQ8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="As9-xf-IHG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uni-LF-JvD" secondAttribute="trailing" id="R0K-2o-sJu"/>
+                            <constraint firstItem="Uni-LF-JvD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="TPe-tM-l97"/>
+                            <constraint firstItem="CkA-cW-YQ8" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Uo5-8W-NmU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Uni-LF-JvD" secondAttribute="bottom" id="VdF-9p-3Kv"/>
+                            <constraint firstItem="Uni-LF-JvD" firstAttribute="top" secondItem="CkA-cW-YQ8" secondAttribute="bottom" constant="8" symbolic="YES" id="h2j-rd-TaA"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="styleClassName" value="root"/>
@@ -70,6 +54,82 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-54.422788605697157" y="141.59999999999999"/>
+        </scene>
+        <!--Animating Frog View Controller-->
+        <scene sceneID="7HN-ER-qAa">
+            <objects>
+                <viewController id="FTt-kZ-GXt" customClass="AnimatingFrogViewController" customModule="Scalar2D_iOS_Test_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vBm-9z-FH8">
+                        <rect key="frame" x="0.0" y="0.0" width="627" height="331"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="SpH-yf-Wfx" customClass="PathView" customModule="Scalar2D">
+                                <rect key="frame" x="0.0" y="0.0" width="627" height="331"/>
+                                <color key="backgroundColor" red="0.84653228520000001" green="0.85643321279999995" blue="0.7686153054" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="svgPath">
+                                        <string key="value">M185 212C139 183 40 199 39 108A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 38C170 29 193 62 220 161L225 110Q231 84 260 115C260 142 265 205 241 198Q215 193 227 230C236 249 161 249 125 248A5 5 325 1 0 122 259C192 264 248 249 237 226Q230 206 247 211
+ 266 210 272 161C273 139 276 106 252 93 245 86 209 65 216 133 200 46 176 19 132 26A28 28 0 0 0 81 40Q61 46 52 63A27 28 0 0 0 27 110C33 192 70 192 145 205Z</string>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" red="0.32252982260000002" green="0.306888938" blue="0.43138667939999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClassName" value="path"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uQB-2b-CKU" customClass="PathView" customModule="Scalar2D">
+                                <rect key="frame" x="0.0" y="0.0" width="627" height="331"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="svgPath">
+                                        <string key="value">M100 250 C167 256 217 249 224 244S234 238 229 218 235 203 249 204 270 157 265 115
+C260 100 236 81 228 95 S 221 137 220 145 207 19 135 30 C116 9 86 18 85 43Q66 45 53 68C21 68 17 96 32 112 43 205 113 189 185 212</string>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="strokeColor">
+                                        <color key="value" red="0.84653228520000001" green="0.85643321279999995" blue="0.7686153054" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
+                                        <real key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="styleClassName" value="path"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="strokeEnd">
+                                        <real key="value" value="0.39000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="top" secondItem="vBm-9z-FH8" secondAttribute="topMargin" id="0yD-ej-LeZ"/>
+                            <constraint firstAttribute="trailing" secondItem="SpH-yf-Wfx" secondAttribute="trailing" id="2wh-27-Qu6"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="centerX" secondItem="vBm-9z-FH8" secondAttribute="centerX" id="8XG-Je-9LW"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="bottom" secondItem="uQB-2b-CKU" secondAttribute="bottom" id="9Gy-wi-qLU"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="top" secondItem="uQB-2b-CKU" secondAttribute="top" id="FCg-gU-jCK"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="leading" secondItem="uQB-2b-CKU" secondAttribute="leading" id="IKb-1H-g7U"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="SpH-yf-Wfx" secondAttribute="bottom" id="Vs5-Za-YpF"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="centerY" secondItem="vBm-9z-FH8" secondAttribute="centerY" id="dXX-fk-wp0"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="trailing" secondItem="uQB-2b-CKU" secondAttribute="trailing" id="oaQ-HM-7XW"/>
+                            <constraint firstItem="SpH-yf-Wfx" firstAttribute="leading" secondItem="vBm-9z-FH8" secondAttribute="leading" id="vgE-eK-ThY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="frogView" destination="SpH-yf-Wfx" id="iFX-D2-wsl"/>
+                        <outlet property="strokeView" destination="uQB-2b-CKU" id="MIQ-7F-jHx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="js2-8Q-Mgy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.40000000000001" y="-564.46776611694156"/>
         </scene>
     </scenes>
 </document>

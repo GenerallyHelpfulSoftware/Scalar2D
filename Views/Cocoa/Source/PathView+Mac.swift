@@ -41,7 +41,7 @@ import Cocoa
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.wantsLayer = true
-        let myLayer = CAShapeLayer()
+        let myLayer = PathViewLayer()
         self.layer = myLayer
     }
     
@@ -77,7 +77,23 @@ import Cocoa
             self.shapeLayer.strokeColor = strokeColor?.cgColor
         }
     }
+    
+    @IBInspectable public var strokeStart : CGFloat = 0.0
+    {
+        didSet
+        {
+            self.shapeLayer.strokeStart = self.strokeStart
+        }
+    }
 
+    @IBInspectable public var strokeEnd : CGFloat = 1.0
+    {
+        didSet
+        {
+            self.shapeLayer.strokeEnd = self.strokeEnd
+        }
+    }
+    
     override public var isFlipped: Bool // to be like the iOS version
     {
         return true
@@ -85,7 +101,7 @@ import Cocoa
     
     public var shapeLayer: CAShapeLayer
     {
-        return self.layer as! CAShapeLayer
+        return (self.layer as! PathViewLayer).shapeLayer
     }
 }
 

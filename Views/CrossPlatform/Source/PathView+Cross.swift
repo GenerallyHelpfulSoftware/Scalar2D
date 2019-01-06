@@ -82,6 +82,9 @@ extension ShapeView
             print("Bad SVG: \(pathToRender)")
             return
         }
-        self.shapeLayer.path = cgPath
+        let bounds = cgPath.boundingBox
+        var transform = CGAffineTransform(translationX: -bounds.minX, y: -bounds.minY)
+        let offsetPath = cgPath.copy(using: &transform) // setting path to be zero point based
+        self.shapeLayer.path = offsetPath
     }
 }

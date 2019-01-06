@@ -75,6 +75,7 @@ extension UIView.ContentMode
         didSet
         {
             self.shapeLayer.lineWidth = lineWidth
+            self.invalidateIntrinsicContentSize()
         }
     }
     
@@ -99,6 +100,23 @@ extension UIView.ContentMode
         didSet
         {
             self.setPathString(pathString: svgPath)
+            self.invalidateIntrinsicContentSize()
+        }
+    }
+    
+    @IBInspectable public var strokeStart : CGFloat = 0.0
+    {
+        didSet
+        {
+            self.shapeLayer.strokeStart = self.strokeStart
+        }
+    }
+    
+    @IBInspectable public var strokeEnd : CGFloat = 1.0
+    {
+        didSet
+        {
+            self.shapeLayer.strokeEnd = self.strokeEnd
         }
     }
     
@@ -106,18 +124,31 @@ extension UIView.ContentMode
     {
         didSet
         {
-            self.layer.contentsGravity = CALayerContentsGravity(rawValue: contentMode.layerContentGravity)
+            let layerMode = contentMode.layerContentGravity
+            self.layer.contentsGravity = CALayerContentsGravity(rawValue: layerMode)
+            self.invalidateIntrinsicContentSize()
         }
+    }
+    
+    override public var intrinsicContentSize: CGSize
+    {
+        return (self.shapeLayer.path?.boundingBox ?? CGRect.zero).size
     }
     
     public var shapeLayer: CAShapeLayer
     {
-        return self.layer as! CAShapeLayer
+        return (self.layer as! PathViewLayer).shapeLayer
     }
     
     override public class var layerClass: Swift.AnyClass
     {
-        return CAShapeLayer.self
+        return PathViewLayer.self
     }
+    
+//    override public func layoutSubviews() {
+//        super.layoutSubviews()
+//        self.layer.frame = self.bounds
+//        self.layer.needsLayout()
+//    }
 
 }
