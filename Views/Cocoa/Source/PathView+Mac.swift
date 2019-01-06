@@ -45,6 +45,7 @@ import Cocoa
         self.layer = myLayer
     }
     
+    
     @IBInspectable public var svgPath: String?
     {
         didSet
