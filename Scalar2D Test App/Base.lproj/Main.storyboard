@@ -129,7 +129,7 @@ C260 100 236 81 228 95 S 221 137 220 145 207 19 135 30 C116 9 86 18 85 43Q66 45 
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="js2-8Q-Mgy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="134.40000000000001" y="-564.46776611694156"/>
+            <point key="canvasLocation" x="144" y="-746"/>
         </scene>
     </scenes>
 </document>

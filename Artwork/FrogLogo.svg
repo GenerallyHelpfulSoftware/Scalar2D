@@ -17,15 +17,16 @@
         <rect x="7.045" y="86.959" width="315.715" height="6.009" style="fill:rgb(215,219,194);"/>
     </g>
     <g transform="matrix(1,0,0,1,4,-1)">
-        <g transform="matrix(0.593473,0.0652083,-0.0647814,0.589588,83.4378,135.895)">
-            <path fill="none" stroke="rgb(83,78,113)" stroke-width="7" d="M 170 207C139 183 40 199 41 109A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 40C170 29 193 62 212 173L225 110Q241 70 252 120L253 156 C253 180 265 223 235 214Q210 210 215 242 C222 265 161 249 125 248" />
+        <g transform="matrix(0.593473,0.0652083,-0.0647814,0.589588,83.4378,120)">
+            <path fill="rgb(83,78,113)" stroke-width="7" d="M185 212C139 183 40 199 39 108A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 38C170 29 193 62 220 161L225 110Q231 84 260 115C260 142 265 205 241 198Q211 191 227 230C236 249 161 249 125 248A6 6 325 1 0 126 263C176 268 246 262 237 226Q230 208 247 211
+ 266 215 272 161C273 139 276 106 260 96L243 85C245 86 209 65 216 133 200 46 176 19 132 26A28 28 0 0 0 81 40Q61 46 52 63A27 28 0 0 0 27 110C33 192 70 192 145 205Z" />
         </g>
     </g>
     <g transform="matrix(1,0,0,1,-89.3761,-2.65339)">
         <text x="147.736px" y="54.757px" style="font-family:'SanFranciscoDisplay-Regular',system,sans-serif;font-weight:500;font-size:48px;fill:rgb(215,219,194);">(Generally)</text>
     </g>
     <g transform="matrix(1.37772,0,0,1.37772,-180.792,42.495)">
-        <text x="174.807px" y="54.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:48px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Helpful</text>
-        <text x="250.51px" y="74.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:20px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Software</text>
+        <text x="179px" y="54.757px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:48px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Helpful</text>
+        <text x="265px" y="75px" style="font-family:'SanFranciscoDisplay-Bold',system,sans-serif;font-weight:bold;font-size:20px;fill:rgb(83,78,113);stroke-width:0.73px;stroke-linecap:butt;stroke:rgb(230,230,230);">Software</text>
     </g>
 </svg>
