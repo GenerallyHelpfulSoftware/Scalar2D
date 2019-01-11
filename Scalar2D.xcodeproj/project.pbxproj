@@ -34,6 +34,7 @@
 		2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */; };
 		2134CAB421E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
 		2134CAB521E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
+		2134CAB621E8464B00568393 /* PathView+iOS.swift in Headers */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView+iOS.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		21384F7F21A8A20C00FC4F71 /* Scalar2D_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 21384F7D21A8A20C00FC4F71 /* Scalar2D_mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21384F8221A8A20C00FC4F71 /* Scalar2D_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */; };
 		21384F8321A8A20C00FC4F71 /* Scalar2D_mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -580,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */,
+				2134CAB621E8464B00568393 /* PathView+iOS.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
