@@ -235,7 +235,7 @@ public extension String
                             }
                             else
                             {
-                                throw PathToken.FailureReason.unexpectedCharacter(badCharacter: character, offset: index)
+                                self.activeParameterEndIndex = index
                             }
                         }
                         else
