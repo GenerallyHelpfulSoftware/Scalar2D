@@ -445,14 +445,12 @@ extension CGMutablePath
                             x₁ -= (previousCubicX₂-x₁)
                             y₁ -= (previousCubicY₂-y₁)
                         }
-                    
-                        
-                        x = x + deltaX
-                        y = y + deltaY
-                        
                         
                         lastCubicX₂ = x + deltaX₂
                         lastCubicY₂ = y + deltaY₂
+
+                        x = x + deltaX
+                        y = y + deltaY
                         
                         mutablePath.addCurve(to: CGPoint(x: x, y: y), control1: CGPoint(x: x₁, y: y₁), control2: CGPoint(x: lastCubicX₂!, y: lastCubicY₂!))
                         
