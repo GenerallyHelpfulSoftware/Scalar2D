@@ -92,6 +92,8 @@ public extension String
             {
                 switch startCharacter
                 {
+                    case ".":
+                        self.seenPeriod = true
                     case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
                         self.seenDigit = true
                     default:

@@ -61,11 +61,11 @@ class PathGeneratorTests: XCTestCase {
     func testLeadingPeriodSeparator()
     {
         
-        let stressfullSeparators = "M0,0 L1.2 3 .4 5.6 z"
+        let stressfullSeparators = "M0,0L.1.2.1.2ZM0,0 L1.2 3 .4 5.6 z"
         do
         {
             let tokens = try stressfullSeparators.asPathTokens()
-            XCTAssertEqual(tokens.count, 4)
+            XCTAssertEqual(tokens.count, 8)
             
             XCTAssertEqual(tokens[0].operand, "M")
         }
