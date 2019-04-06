@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="landscape">
+    <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,18 +18,18 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" userInteractionEnabled="NO" contentMode="scaleAspectFit" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="CkA-cW-YQ8">
-                                <rect key="frame" x="273" y="8" width="121" height="29"/>
+                                <rect key="frame" x="451.5" y="28" width="121" height="29"/>
                                 <segments>
                                     <segment title="First"/>
                                     <segment title="Second"/>
                                 </segments>
                             </segmentedControl>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uni-LF-JvD">
-                                <rect key="frame" x="20" y="44" width="627" height="331"/>
+                                <rect key="frame" x="20" y="64" width="984" height="1302"/>
                                 <connections>
                                     <segue destination="FTt-kZ-GXt" kind="embed" id="IbG-HP-93C"/>
                                 </connections>
@@ -60,12 +60,16 @@
         <scene sceneID="7HN-ER-qAa">
             <objects>
                 <viewController id="FTt-kZ-GXt" customClass="AnimatingFrogViewController" customModule="Scalar2D_iOS_Test_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T3H-Vw-bZJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="m3M-qc-S2q"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vBm-9z-FH8">
-                        <rect key="frame" x="0.0" y="0.0" width="627" height="331"/>
+                        <rect key="frame" x="0.0" y="0.0" width="984" height="1302"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="SpH-yf-Wfx" customClass="PathView" customModule="Scalar2D">
-                                <rect key="frame" x="0.0" y="0.0" width="627" height="331"/>
+                                <rect key="frame" x="0.0" y="20" width="984" height="1282"/>
                                 <color key="backgroundColor" red="0.84653228520000001" green="0.85643321279999995" blue="0.7686153054" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="svgPath">
@@ -85,7 +89,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="uQB-2b-CKU" customClass="PathView" customModule="Scalar2D">
-                                <rect key="frame" x="0.0" y="0.0" width="627" height="331"/>
+                                <rect key="frame" x="0.0" y="20" width="984" height="1282"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="svgPath">
