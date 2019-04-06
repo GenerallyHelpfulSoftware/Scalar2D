@@ -30,11 +30,17 @@
 		212E78371D5832C4003802D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212E78361D5832C4003802D7 /* Assets.xcassets */; };
 		212E783A1D5832C4003802D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212E78381D5832C4003802D7 /* Main.storyboard */; };
 		212E785B1D58ACAF003802D7 /* CGPathGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */; };
+		21344CA622028FD2002C9837 /* CAShapeLayer+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21344CA522028FD2002C9837 /* CAShapeLayer+Style.swift */; };
+		21344CA722028FD2002C9837 /* CAShapeLayer+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21344CA522028FD2002C9837 /* CAShapeLayer+Style.swift */; };
+		21344CA92203CA34002C9837 /* StyleAcceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21344CA82203CA34002C9837 /* StyleAcceptor.swift */; };
+		21344CAA2203CA34002C9837 /* StyleAcceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21344CA82203CA34002C9837 /* StyleAcceptor.swift */; };
 		2134CAB021C9FC5500568393 /* CSSApply+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */; };
 		2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */; };
 		2134CAB421E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
 		2134CAB521E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
 		2134CAB621E8464B00568393 /* PathView+iOS.swift in Headers */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView+iOS.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		2134CAB821F02DA800568393 /* PathStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB721F02DA800568393 /* PathStyle.swift */; };
+		2134CAB921F02DA800568393 /* PathStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB721F02DA800568393 /* PathStyle.swift */; };
 		21384F7F21A8A20C00FC4F71 /* Scalar2D_mac.h in Headers */ = {isa = PBXBuildFile; fileRef = 21384F7D21A8A20C00FC4F71 /* Scalar2D_mac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21384F8221A8A20C00FC4F71 /* Scalar2D_mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */; };
 		21384F8321A8A20C00FC4F71 /* Scalar2D_mac.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -201,9 +207,12 @@
 		212E78491D5834C2003802D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		212E78591D5835BA003802D7 /* Scalar2D Mac Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalar2D Mac Playground.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		212E785A1D58ACAF003802D7 /* CGPathGeneratorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPathGeneratorTests.swift; sourceTree = "<group>"; };
+		21344CA522028FD2002C9837 /* CAShapeLayer+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CAShapeLayer+Style.swift"; path = "Views/CrossPlatform/Source/CAShapeLayer+Style.swift"; sourceTree = SOURCE_ROOT; };
+		21344CA82203CA34002C9837 /* StyleAcceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StyleAcceptor.swift; path = Styling/Source/StyleAcceptor.swift; sourceTree = SOURCE_ROOT; };
 		2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSSApply+Test.swift"; sourceTree = "<group>"; };
 		2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingFrogViewController.swift; sourceTree = "<group>"; };
 		2134CAB321E15D7400568393 /* PathViewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathViewLayer.swift; sourceTree = "<group>"; };
+		2134CAB721F02DA800568393 /* PathStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PathStyle.swift; path = Styling/Source/PathStyle.swift; sourceTree = SOURCE_ROOT; };
 		21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21384F7D21A8A20C00FC4F71 /* Scalar2D_mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D_mac.h; sourceTree = "<group>"; };
 		21384F7E21A8A20C00FC4F71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -501,9 +510,11 @@
 				21F719031D71D1E600C98410 /* StyleSelector.swift */,
 				21D8BDDB1F479DE5002B5BE7 /* GroupSelector.swift */,
 				2103E55D1DD97E3B005E3A09 /* StyleBlock.swift */,
+				2134CAB721F02DA800568393 /* PathStyle.swift */,
 				21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */,
 				2126E3C21F373C5A00A26C49 /* SelectorCombinator.swift */,
 				21BD53AF1F9623710085B6ED /* UnicodeScalarView+Utils.swift */,
+				21344CA82203CA34002C9837 /* StyleAcceptor.swift */,
 			);
 			name = Styling;
 			path = Scalar2D;
@@ -553,6 +564,7 @@
 				21FFE8E41D646669003446DF /* PathView+Cross.swift */,
 				2134CAB321E15D7400568393 /* PathViewLayer.swift */,
 				211267691F9B864800ABBF05 /* StyleableObject.swift */,
+				21344CA522028FD2002C9837 /* CAShapeLayer+Style.swift */,
 			);
 			name = CrossPlatform;
 			sourceTree = "<group>";
@@ -721,7 +733,7 @@
 					213D06E91D55F72100A5FD69 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					2157D3691D5AE3DE00C57462 = {
@@ -734,14 +746,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
 						DevelopmentTeamName = "Generally Helpful Software";
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 213D06E91D55F72100A5FD69;
 					};
 					21FFE8C41D63009D003446DF = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -751,6 +763,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -834,6 +847,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21344CA722028FD2002C9837 /* CAShapeLayer+Style.swift in Sources */,
+				2134CAB921F02DA800568393 /* PathStyle.swift in Sources */,
 				21384F8F21A8A2F200FC4F71 /* StyleSelector.swift in Sources */,
 				21384F9F21A8A2FA00FC4F71 /* UIColor+ColourParser.swift in Sources */,
 				21384F8E21A8A2F200FC4F71 /* SVGPropertyInterpreter.swift in Sources */,
@@ -864,6 +879,7 @@
 				21384FA421A8A30A00FC4F71 /* CGPath+SVG.swift in Sources */,
 				21384F9721A8A2FA00FC4F71 /* DeviceColourParser.swift in Sources */,
 				21384F8921A8A2D300FC4F71 /* FontDescription.swift in Sources */,
+				21344CAA2203CA34002C9837 /* StyleAcceptor.swift in Sources */,
 				21384F9B21A8A2FA00FC4F71 /* HexColourParser.swift in Sources */,
 				21384F8D21A8A2F200FC4F71 /* GraphicStyle.swift in Sources */,
 				21384FAA21A8A31E00FC4F71 /* NSBezierPath+SVG.swift in Sources */,
@@ -938,8 +954,11 @@
 				2103E55E1DD97E3B005E3A09 /* StyleBlock.swift in Sources */,
 				21ABB1391F64331400967245 /* CoreText+FontDescription.swift in Sources */,
 				211179F01DB75EFC0054FAA4 /* UIColor+ColourParser.swift in Sources */,
+				21344CA92203CA34002C9837 /* StyleAcceptor.swift in Sources */,
 				211179EF1DB75EFC0054FAA4 /* RGBColourParser.swift in Sources */,
 				21ABB1381F64331000967245 /* FontDescription.swift in Sources */,
+				2134CAB821F02DA800568393 /* PathStyle.swift in Sources */,
+				21344CA622028FD2002C9837 /* CAShapeLayer+Style.swift in Sources */,
 				21FFE8D31D6300BA003446DF /* PathGenerator.swift in Sources */,
 				21EF7CC01DBCFBE300D71CD4 /* CSSParser.swift in Sources */,
 				2112676C1F9B866A00ABBF05 /* UIView+Styling.swift in Sources */,
@@ -1121,7 +1140,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1137,7 +1156,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Test-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1309,7 +1328,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2DTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D iOS Test App.app/Scalar2D iOS Test App";
 			};
 			name = Debug;
@@ -1321,7 +1340,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2DTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D iOS Test App.app/Scalar2D iOS Test App";
 			};
 			name = Release;
@@ -1343,7 +1362,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1364,7 +1383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2D;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
