@@ -93,7 +93,7 @@ public enum StylePropertyFailureReason : CustomStringConvertible, ParseBufferErr
 
 public protocol StylePropertyInterpreter
 {
-    func interpret(key: String, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
+    func interpret(key: PropertyKey, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
 }
 
 fileprivate enum ParseState
@@ -183,7 +183,11 @@ extension StylePropertyInterpreter
                     switch character
                     {
                         case ";":
-                            let properties = try self.interpret(key: key!, buffer: buffer, valueRange: stringBegin..<cursor).0
+                            guard let fullKey = key, !fullKey.isEmpty, let property = PropertyKey(rawValue: fullKey) else
+                            {
+                                throw StylePropertyFailureReason.unexpectedSemiColon(cursor)
+                            }
+                            let properties = try self.interpret(key: property, buffer: buffer, valueRange: stringBegin..<cursor).0
                             result = result + properties
                             state = .awaitingKey
                         default:

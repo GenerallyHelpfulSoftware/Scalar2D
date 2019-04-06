@@ -576,6 +576,8 @@ extension CGPath
                 let quadControlPoint = points.pointee
                 let nextPoint = points.advanced(by: 1).pointee
                 result.append("Q (\(quadControlPoint.x), \(quadControlPoint.y), \(nextPoint.x), \(nextPoint.y))\n")
+            default:
+                break 
             }
             
         }

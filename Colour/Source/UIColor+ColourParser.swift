@@ -37,7 +37,7 @@ import Foundation
     
     public extension UIColor
     {
-        public convenience init?(string: String, colorContext: ColorContext? = nil)
+        convenience init?(string: String, colorContext: ColorContext? = nil)
         {
             guard let cgColor = CGColor.from(string: string, colorContext: colorContext) else
             {

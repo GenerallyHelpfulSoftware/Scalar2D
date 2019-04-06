@@ -16,7 +16,7 @@ public protocol StyleableObject
 }
 public extension StyleableObject 
 {
-    public var styleableElementName : String?
+    var styleableElementName : String?
     {
         return nil
     }

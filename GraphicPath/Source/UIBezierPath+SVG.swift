@@ -36,7 +36,7 @@ import UIKit
 
 public extension UIBezierPath
 {
-    public convenience init?(svgPath: String)
+    convenience init?(svgPath: String)
     {
         guard let cgPath = CGPath.path(fromSVGPath: svgPath) else
         {

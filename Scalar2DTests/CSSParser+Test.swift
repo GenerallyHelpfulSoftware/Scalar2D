@@ -56,53 +56,61 @@ class CSSParser_Test: XCTestCase {
         // These correspond to the items in Test.css
         let result : [StyleBlock] = [
             StyleBlock(selectors: [StyleSelector(element: .any)],
-                       styles: [GraphicStyle(key: "fill", webColour: "transparent"), GraphicStyle(key: "stroke", hexColour: "#FF0"), GraphicStyle(key: "stroke-width", value:.number(3.0))]),
+                       styles: [GraphicStyle(key: .fill, webColour: "transparent"), GraphicStyle(key: .stroke, hexColour: "#FF0"), GraphicStyle(key: .stroke_width, value:.number(3.0))]),
             
             StyleBlock(selectors: [StyleSelector("text"), StyleSelector("tspan")],
-                       styles: [GraphicStyle(key: "font-family", value:.fontFamilies([FontFamily.named("Georgia"), FontFamily.system])), GraphicStyle(key: "font-size", value:.fontSize(.point(31.0))), GraphicStyle(key: "fill", hexColour: "#FF1")]),
+                       styles: [GraphicStyle(key: .font_family, value:.fontFamilies([FontFamily.named("Georgia"), FontFamily.system])), GraphicStyle(key: .font_size, value:.fontSize(.point(31.0))), GraphicStyle(key: .fill, hexColour: "#FF1")]),
             
             StyleBlock(selectors: [StyleSelector("rect")],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF2"), GraphicStyle(key: "stroke", webColour:"none")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF2"), GraphicStyle(key: .stroke, webColour:"none")]),
             
             
             StyleBlock(selectors: [StyleSelector(className: "named")],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF3"), GraphicStyle(key: "stroke-width", value: .number(1.0))]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF3"), GraphicStyle(key: .stroke_width, value: .number(1.0))]),
             
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "path"), identifier: "specified")],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF4"), GraphicStyle(key: "stroke-width", value: .number(3.0))]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF4"), GraphicStyle(key: .stroke_width, value: .number(3.0))]),
             
             StyleBlock(selectors: [StyleSelector("circle"), StyleSelector("path")],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF5"), GraphicStyle(key: "stroke", webColour: "blue")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF5"), GraphicStyle(key: .stroke, webColour: "blue")]),
             
             StyleBlock(combinators: [[.selector(StyleSelector(className: "named")), .descendant, .selector(StyleSelector("path"))]],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF6"), GraphicStyle(key: "stroke", webColour: "green")]),
+                       styles:
+                        [GraphicStyle(key: .fill, hexColour: "#FF6"),
+                         GraphicStyle(key: .stroke, webColour: "green")
+//                         ,GraphicStyle(key: .line_cap, value: .lineCap(.square)),
+//                         GraphicStyle(key: .line_join, value: .lineJoin(.miter)),
+//                         GraphicStyle(key: .stroke_dash_offset, value: .number(4.0)),
+//                         GraphicStyle(key: .miter_limit, value: .number(4.0))
+                
+                ]),
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "g"), pseudoClasses: [.first_child])],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF7")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF7")]),
             
             
             StyleBlock(combinators: [[.selector(StyleSelector("switch")), .child, .selector(StyleSelector("g")), .child, .selector(StyleSelector("rect"))]],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF8")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF8")]),
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "g"), pseudoClasses: [.nth_child(.odd)])],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FF9"), GraphicStyle(key: "stroke-width", value: .number(5.0)), GraphicStyle(key: "stroke", webColour: "red")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF9"), GraphicStyle(key: .stroke_width, value: .number(5.0)), GraphicStyle(key: .stroke, webColour: "red")]),
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "g"), pseudoClasses: [.nth_child(.linear(3, 2))])],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FFA"), GraphicStyle(key: "stroke-width", value: .number(2.0)), GraphicStyle(key: "stroke", webColour: "lightblue")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FFA"), GraphicStyle(key: .stroke_width, value: .number(2.0)), GraphicStyle(key: .stroke, webColour: "lightblue")]),
             
             StyleBlock(combinators: [[.selector(StyleSelector(className: "named")), .descendant, .selector(StyleSelector(element: .element(name: "rect")
                 , pseudoClasses: [.first_of_type]))]],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FFB"), GraphicStyle(key: "stroke", webColour: "darkgray")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FFB"), GraphicStyle(key: .stroke, webColour: "darkgray")]),
             
             StyleBlock(combinators: [[.selector(StyleSelector(className: "named")), .descendant, .selector(StyleSelector(element: .element(name: "rect")
                 , pseudoClasses: [.last_of_type]))]],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FFC"), GraphicStyle(key: "stroke", webColour: "teal")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FFC"), GraphicStyle(key: .stroke, webColour: "teal")]),
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "circle"), pseudoClasses: [.not(StyleSelector(className: "named"))])],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#FFD"), GraphicStyle(key: "stroke", webColour: "magenta")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FFD"), GraphicStyle(key: .stroke, webColour: "magenta")]),
             StyleBlock(selectors: [StyleSelector(element: .element(name: "button"), pseudoClasses: [.hover])],
-                       styles: [GraphicStyle(key: "fill", hexColour: "#CCC")])
+                       styles: [GraphicStyle(key: .fill, hexColour: "#CCC")])
             
         ]
         
@@ -260,7 +268,6 @@ class CSSParser_Test: XCTestCase {
                         
                         XCTAssertEqual(testCombinator, parsedCombinator, "Difference in combinator at index: \(index), selectorIndex: \(selectorIndex), combinatorIndex: \(combinatorIndex)")
                     }
-                    
                 }
                 
                 for valueIndex in 0..<parsedValues.count

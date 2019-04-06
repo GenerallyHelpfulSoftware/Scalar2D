@@ -19,7 +19,7 @@ fileprivate var STYLECLASSIDENTIFIERKEY: String = "com.genhelp.scalar2D.c"
 public extension UIView
 {
     
-    @IBInspectable public var styleIdentifier: String?
+    @IBInspectable var styleIdentifier: String?
     {
         set
         {
@@ -33,7 +33,7 @@ public extension UIView
         }
     }
     
-    @IBInspectable public var styleClassName: String?
+    @IBInspectable var styleClassName: String?
     {
         set
         {

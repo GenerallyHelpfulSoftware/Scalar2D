@@ -37,7 +37,7 @@ import CoreGraphics
 
 public extension Colour
 {
-    public var nativeColour: CGColor?
+    var nativeColour: CGColor?
     {
         switch self
         {
@@ -91,7 +91,7 @@ public extension Colour
         return nil 
     }
     
-    public func toCGColorWithColorContext(_ colorContext: ColorContext? = nil) ->CGColor?
+    func toCGColorWithColorContext(_ colorContext: ColorContext? = nil) ->CGColor?
     {
         guard let cgColor = self.nativeColour else
         {
@@ -132,7 +132,7 @@ extension CGColor
     
     static public func from(string: String, colorContext: ColorContext? = nil) -> CGColor?
     {
-        if let aColorDefinition = try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)
+        if let aColorDefinition = ((try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)) as Colour??)
         {
             return aColorDefinition?.nativeColour
         }

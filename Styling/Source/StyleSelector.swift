@@ -161,7 +161,7 @@ public enum Nth
             default:
                 let start = parameterString.startIndex
                 let end = parameterString.endIndex
-                if let nLocation = parameterString.index(of: "n")
+                if let nLocation = parameterString.firstIndex(of: "n")
                 {
                     if start == nLocation || end == nLocation
                     {
@@ -623,7 +623,7 @@ public struct StyleSelector : CSSRankable
                         case "#", ".", ":":
                             foundTerminal = true
                         case "0"..."9":
-                            if previousCharacter == "-" && (cursor.encodedOffset-stringBegin.encodedOffset) == 1 // can't start a element string with a hyphen followed by a number
+                            if previousCharacter == "-" && buffer.index(before: cursor) == stringBegin // can't start a element string with a hyphen followed by a number
                             {
                                 throw FailureReason.unexpectedCharacter(badCharacter: Character(character), location: cursor)
                             }

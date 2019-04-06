@@ -64,6 +64,8 @@ extension UIView.ContentMode
                 return CALayerContentsGravity.center.rawValue
             case .scaleToFill:
                 return CALayerContentsGravity.resizeAspectFill.rawValue
+            default:
+                return CALayerContentsGravity.center.rawValue
         }
     }
 }

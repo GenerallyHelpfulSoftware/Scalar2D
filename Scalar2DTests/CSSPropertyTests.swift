@@ -78,14 +78,14 @@ class CSSPropertyTests: XCTestCase {
         
         do
         {
-            let (parsed, _) = try parser.interpret(key: "font", buffer: buffer, valueRange: buffer.startIndex..<buffer.endIndex)
+            let (parsed, _) = try parser.interpret(key: .font, buffer: buffer, valueRange: buffer.startIndex..<buffer.endIndex)
             XCTAssertEqual(parsed.count, 7, "Expected 7 got \(parsed.count)")
-            XCTAssert(parsed.contains(GraphicStyle(key: "font-size", value: StyleProperty.fontSize(FontSize.pixel(16)))))
-            XCTAssert(parsed.contains(GraphicStyle(key: "font-weight", value: StyleProperty.fontWeight(FontWeight.bold))))
-            XCTAssert(parsed.contains(GraphicStyle(key: "font-style", value: StyleProperty.fontStyle(FontStyle.italic))))
-            XCTAssert(parsed.contains(GraphicStyle(key: "font-variant", value: StyleProperty.fontVariant(FontVariant.smallCaps))))
-            XCTAssert(parsed.contains(GraphicStyle(key: "line-height", value: StyleProperty.lineHeight(LineHeight.multiplier(1.4)))))
-            XCTAssert(parsed.contains(GraphicStyle(key: "font-stretch", value: StyleProperty.fontStretch(FontStretch.ultraCondensed))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_size, value: StyleProperty.fontSize(FontSize.pixel(16)))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_weight, value: StyleProperty.fontWeight(FontWeight.bold))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_style, value: StyleProperty.fontStyle(FontStyle.italic))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_variant, value: StyleProperty.fontVariant(FontVariant.smallCaps))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_line_height, value: StyleProperty.lineHeight(LineHeight.multiplier(1.4)))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_stretch, value: StyleProperty.fontStretch(FontStretch.ultraCondensed))))
             
         }
         catch
@@ -94,7 +94,7 @@ class CSSPropertyTests: XCTestCase {
         }
     }
     
-    func propertyTest(named name: String, withPayload payload: String, expectingStyles styles: [GraphicStyle])
+    func propertyTest(named name: PropertyKey, withPayload payload: String, expectingStyles styles: [GraphicStyle])
     {
         let buffer = payload.unicodeScalars
         do
@@ -115,11 +115,15 @@ class CSSPropertyTests: XCTestCase {
     
     func testFillProperty()
     {
-        propertyTest(named: "fill", withPayload: "#FF3", expectingStyles: [GraphicStyle(key: "fill", hexColour: "#FF3")])
-        propertyTest(named: "fill", withPayload: "black !important", expectingStyles: [GraphicStyle(key: "fill", webColour: "black", important: true)])
-        propertyTest(named: "stroke", withPayload: "#FF00FF !important", expectingStyles: [GraphicStyle(key: "stroke", hexColour: "#FF00FF", important: true)])
-        propertyTest(named: "stroke-width", withPayload: "5pt", expectingStyles: [GraphicStyle(key: "stroke-width", value: .unitNumber(5, .point))])
-        propertyTest(named: "stroke", withPayload: "none", expectingStyles: [GraphicStyle(key: "stroke", value: StyleProperty.colour(Colour.clear, Colour.clear.nativeColour))])
+        propertyTest(named: .fill, withPayload: "#FF3", expectingStyles: [GraphicStyle(key: .fill, hexColour: "#FF3")])
+        propertyTest(named: .fill, withPayload: "black !important", expectingStyles: [GraphicStyle(key: .fill, webColour: "black", important: true)])
+    }
+    
+    func testStrokeProperties()
+    {
+        propertyTest(named: .stroke, withPayload: "#FF00FF !important", expectingStyles: [GraphicStyle(key: .stroke, hexColour: "#FF00FF", important: true)])
+        propertyTest(named: .stroke_width, withPayload: "5pt", expectingStyles: [GraphicStyle(key: .stroke_width, value: .unitNumber(5, .point))])
+        propertyTest(named: .stroke, withPayload: "none", expectingStyles: [GraphicStyle(key: .stroke, value: StyleProperty.colour(Colour.clear, Colour.clear.nativeColour))])
     }
     
     func testPerformanceExample() {

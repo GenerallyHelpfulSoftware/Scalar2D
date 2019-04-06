@@ -10,7 +10,7 @@
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -58,9 +58,6 @@ public protocol CoreTextProperty : InheritableProperty
 {
     func merge(properties: inout Dictionary<AnyHashable, Any>, withContext context: FontContext)
 }
-
-
-
 
 extension FontWeight : CoreTextProperty
 {
@@ -276,7 +273,7 @@ public extension FontContext
         return defaultFontSize
     }
     
-    public func fontSize(fromFontSize fontSize: FontSize) -> CGFloat
+    func fontSize(fromFontSize fontSize: FontSize) -> CGFloat
     {
         let standardScaling: CGFloat = 1.2
         switch fontSize
@@ -379,7 +376,7 @@ public extension FontContext
         return nil
     }
     
-    public func fontFamilyProperties(from fontDescriptor: FontDescription) -> [AnyHashable : Any]
+    func fontFamilyProperties(from fontDescriptor: FontDescription) -> [AnyHashable : Any]
     {
         let fontFamilies = fontDescriptor.families
         if fontFamilies.isEmpty
@@ -480,7 +477,7 @@ public class DefaultFontContext : FontContext
 
 public extension FontDescription
 {
-    public var symbolicTraits : CTFontSymbolicTraits
+    var symbolicTraits : CTFontSymbolicTraits
     {
         var result = CTFontSymbolicTraits(rawValue: 0)
         switch self.weight
@@ -504,7 +501,7 @@ public extension FontDescription
         return result
     }
     
-    public var ctDescriptor : CTFontDescriptor
+    var ctDescriptor : CTFontDescriptor
     {
         return self.coreTextDescriptor()
     }
@@ -515,7 +512,7 @@ public extension FontDescription
         
     }
     
-    public func coreTextDescriptor(context: FontContext = DefaultFontContext.shared) -> CTFontDescriptor
+    func coreTextDescriptor(context: FontContext = DefaultFontContext.shared) -> CTFontDescriptor
     {
         var record = context.baseFontAttributes
         

@@ -187,7 +187,7 @@ public struct AnyColourParser : ColourParser
 
 public extension Array where Element : ColourParser
 {
-    public func parseString(source: String, colorContext: ColorContext?) throws -> Colour?
+    func parseString(source: String, colorContext: ColorContext?) throws -> Colour?
     {
         var result : Colour?
         let normalizedsource = source.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()

@@ -73,7 +73,7 @@ public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
     }
 }
 
-public  struct CSSParser
+public struct CSSParser
 {
     /**
          This property provides knowledge of the document object model for the flavor of css

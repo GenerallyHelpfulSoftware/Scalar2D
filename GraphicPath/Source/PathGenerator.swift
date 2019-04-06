@@ -40,7 +40,7 @@ public extension String
      - throws: a PathToken.FailureReason
      **/
     
-    public func asPathTokens() throws -> [PathToken]
+    func asPathTokens() throws -> [PathToken]
     {
         var parser = PathParser()
         return try parser.parse(pathString: self)

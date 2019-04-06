@@ -34,7 +34,7 @@ import Foundation
 import CoreGraphics
 import QuartzCore
 
-protocol ShapeView {
+protocol ShapeView : StyleableObject {
     
     var lineWidth: CGFloat {get set}
     var fill: CGColor? {get set}

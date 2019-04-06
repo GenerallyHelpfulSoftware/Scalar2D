@@ -40,7 +40,7 @@ public extension CGPath
     /**
         Declaration of the closure type which will be called with the elements of a CGPath.
     **/
-    public typealias ElementIterator = (_ element: CGPathElement)->Void
+    typealias ElementIterator = (_ element: CGPathElement)->Void
 
     /**
      
@@ -49,7 +49,7 @@ public extension CGPath
         - parameters:
             - callback: a closure that takes a CGPathElemnt as the sole parameter.
      **/
-    public func iterate( _ callback: @escaping ElementIterator)
+    func iterate( _ callback: @escaping ElementIterator)
     {
         var localCallback = callback
         

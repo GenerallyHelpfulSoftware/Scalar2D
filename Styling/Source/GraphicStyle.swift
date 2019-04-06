@@ -32,6 +32,11 @@
 //
 import Foundation
 
+#if os(iOS) || os(tvOS) || os(OSX)
+public typealias NativeDimension = CGFloat
+#else
+public typealias NativeDimension = Double
+#endif
 
 public protocol InheritableProperty
 {
@@ -74,7 +79,7 @@ extension String
 public  enum StyleProperty
 {
     case string(String)
-    case unitNumber(Double, StyleUnit)
+    case unitNumber(NativeDimension, StyleUnit)
     case number(Double)
     case colour(Colour, NativeColour?)
     case boolean(Bool)
@@ -89,32 +94,52 @@ public  enum StyleProperty
     case lineHeight(LineHeight)
     case fontSize(FontSize)
     
+    // stroke properties
+    case lineCap(LineCap)
+    case lineJoin(LineJoin)
+    
     indirect case array([StyleProperty])
     
     // remember to update Equatable extension below if you add another case
 }
 
+public struct   PropertyKey : RawRepresentable
+{
+    public let rawValue : String
+    
+    
+    public init?(rawValue: String)
+    {
+        self.rawValue = rawValue
+    }
+}
+
+extension PropertyKey : Hashable
+{
+    
+}
+
 public struct GraphicStyle
 {
-    public let key: String
+    public let key: PropertyKey
     public let value: StyleProperty
     public let important: Bool
     
-    public init(key: String, value: StyleProperty, important: Bool = false)
+    public init(key: PropertyKey, value: StyleProperty, important: Bool = false)
     {
         self.key = key
         self.value = value
         self.important = important
     }
     
-    public init(key: String, value: String, important: Bool = false)
+    public init(key: PropertyKey, value: String, important: Bool = false)
     {
         self.init(key: key, value: StyleProperty.string(value), important: important)
     }
     /**
          convenient alternate init for creating a graphic style from a constant # style colour description
      **/
-    public init(key: String, hexColour: String, important: Bool = false)
+    public init(key: PropertyKey, hexColour: String, important: Bool = false)
     {
         let colour = try! HexColourParser().deserializeString(source: hexColour)!
         self.init(key: key, value: StyleProperty.colour(colour, colour.nativeColour), important: important)
@@ -123,12 +148,44 @@ public struct GraphicStyle
     /**
      convenient alternate init for creating a graphic style from a constant named web colour description
      **/
-    public init(key: String, webColour: String, important: Bool = false)
+    public init(key: PropertyKey, webColour: String, important: Bool = false)
     {
         let colour = try! WebColourParser().deserializeString(source: webColour)!
         self.init(key: key, value: StyleProperty.colour(colour, colour.nativeColour), important: important)
     }
 }
+
+/**
+    Such a context will be able to resolve an inherited property (for example by looking up the style chain)
+**/
+public protocol StyleContext
+{
+    func resolve(property : GraphicStyle) -> StyleProperty?
+    func points(fromUnit unit: StyleUnit) -> NativeDimension?
+}
+
+public extension StyleContext
+{
+    // default implementation
+    func resolve(property : GraphicStyle) -> StyleProperty?
+    {
+        return property.value
+    }
+    
+    // default implementation
+    func points(value: NativeDimension, fromUnit unit: StyleUnit) -> NativeDimension?
+    {
+        switch unit
+        {
+            case .point:
+                return value
+            default:
+                return nil 
+        }
+    }
+}
+
+
 
 extension StyleProperty : Equatable
 {

@@ -59,7 +59,8 @@ public struct StyleBlock
     }
 }
 
-extension StyleBlock: Equatable {
+extension StyleBlock: Equatable
+{
     public static func == (lhs: StyleBlock, rhs: StyleBlock) -> Bool
     {
         if lhs.styles != rhs.styles
@@ -118,10 +119,9 @@ extension Array where Element == SelectorCombinator
 
 extension Array where Element == StyleBlock
 {
-    
     public func properties(for element: CSSIdentifiable, given context: CSSContext) -> [GraphicStyle]
     {
-        var propertyMap = [String: RankedGraphicStyle]()
+        var propertyMap = [PropertyKey: RankedGraphicStyle]()
         
         for aStyleBlock in self
         {

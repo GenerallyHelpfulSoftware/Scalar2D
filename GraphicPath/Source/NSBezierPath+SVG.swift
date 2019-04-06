@@ -37,7 +37,7 @@ import Cocoa
     
 public extension NSBezierPath
 {
-    public convenience init?(svgPath: String)
+    convenience init?(svgPath: String)
     {
         let cgPath = CGMutablePath()
         if cgPath.add(svgPath: svgPath) == false
@@ -86,6 +86,8 @@ public extension NSBezierPath
                     let controlPoint2 = NSPoint(x: control2X, y: control2Y)
                     
                     myself.curve(to: nextPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
+                default:
+                break
             }
         }
     }
