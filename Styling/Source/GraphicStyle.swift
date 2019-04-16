@@ -76,10 +76,21 @@ extension String
     }
 }
 
+public struct UnitDimension : Equatable
+{
+    public let dimension: NativeDimension
+    public let unit : StyleUnit
+    public init(dimension: NativeDimension, unit: StyleUnit)
+    {
+        self.dimension = dimension
+        self.unit = unit
+    }
+}
+
 public  enum StyleProperty
 {
     case string(String)
-    case unitNumber(NativeDimension, StyleUnit)
+    case unitNumber(UnitDimension)
     case number(Double)
     case colour(Colour, NativeColour?)
     case boolean(Bool)
@@ -91,7 +102,7 @@ public  enum StyleProperty
     case fontWeight(FontWeight)
     case fontStretch(FontStretch)
     case fontDecorations(Set<TextDecoration>)
-    case lineHeight(LineHeight)
+    case distance(Distance)
     case fontSize(FontSize)
     
     // stroke properties
@@ -99,6 +110,7 @@ public  enum StyleProperty
     case lineJoin(LineJoin)
     
     indirect case array([StyleProperty])
+    indirect case dimensionArray([UnitDimension])
     
     // remember to update Equatable extension below if you add another case
 }
@@ -194,8 +206,8 @@ extension StyleProperty : Equatable
         {
             case (.string(let lhsString), .string(let rhsString)):
                 return lhsString == rhsString
-            case (.unitNumber(let  lhsNumber, let lhsUnit), .unitNumber(let rhsNumber, let rhsUnit)):
-                return lhsNumber == rhsNumber && lhsUnit == rhsUnit
+            case (.unitNumber(let  lhsDimension), .unitNumber(let rhsDimension)):
+                return lhsDimension == rhsDimension
             case (.number(let lhsNumber), .number(let rhsNumber)):
                 return lhsNumber == rhsNumber
             case (.colour(let lhsColour, let lhsNative), .colour(let rhsColour, let rhsNative)):
@@ -214,12 +226,18 @@ extension StyleProperty : Equatable
                 return lhsWeight == rhsWeight
             case (.fontDecorations(let lhsDecorations), .fontDecorations(let rhsDecorations)):
                 return lhsDecorations == rhsDecorations
-            case (.lineHeight(let lhsHeight), .lineHeight(let rhsHeight)):
+            case (.distance(let lhsHeight), .distance(let rhsHeight)):
                 return lhsHeight == rhsHeight
             case (.fontSize(let lhsSize), .fontSize(let rhsSize)):
                 return lhsSize == rhsSize
             case (.fontStretch(let lhsStretch), .fontStretch(let rhsStretch)):
                 return lhsStretch == rhsStretch
+            case (.lineCap(let lhsCap), .lineCap(let rhsCap)):
+                return lhsCap == rhsCap
+            case (.lineJoin(let lhsJoin), .lineJoin(let rhsJoin)):
+                return lhsJoin == rhsJoin
+            case (.dimensionArray(let lhsArray), .dimensionArray(let rhsArray)):
+                return lhsArray == rhsArray
             default:
                 return false
         }
@@ -244,7 +262,7 @@ public extension FontDescription
         var decorations : Set<TextDecoration>? = nil
         var style : FontStyle? = nil
         var variant : FontVariant? = nil
-        var lineHeight : LineHeight? = nil
+        var lineHeight : Distance? = nil
         
         
         for aProperty in properties
@@ -268,7 +286,7 @@ public extension FontDescription
                     stretch = newStretch
                 case .fontStyle(let newStyle):
                     style = newStyle
-                case .lineHeight(let newLineHeight):
+                case .distance(let newLineHeight):
                     lineHeight = newLineHeight
                 case .fontVariant(let newVariant):
                     variant = newVariant

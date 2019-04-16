@@ -59,7 +59,12 @@ class CSSParser_Test: XCTestCase {
                        styles: [GraphicStyle(key: .fill, webColour: "transparent"), GraphicStyle(key: .stroke, hexColour: "#FF0"), GraphicStyle(key: .stroke_width, value:.number(3.0))]),
             
             StyleBlock(selectors: [StyleSelector("text"), StyleSelector("tspan")],
-                       styles: [GraphicStyle(key: .font_family, value:.fontFamilies([FontFamily.named("Georgia"), FontFamily.system])), GraphicStyle(key: .font_size, value:.fontSize(.point(31.0))), GraphicStyle(key: .fill, hexColour: "#FF1")]),
+                       styles: [GraphicStyle(key: .font_family, value:.fontFamilies([FontFamily.named("Georgia"), FontFamily.system])), GraphicStyle(key: .font_size, value:.fontSize(.point(31.0))),
+                                GraphicStyle(key: .font_weight, value: .fontWeight(.bold)),
+                                GraphicStyle(key: .fill, hexColour: "#FF1"),
+                                GraphicStyle(key: .font_stretch, value: .fontStretch(.extraExpanded)),
+                
+                ]),
             
             StyleBlock(selectors: [StyleSelector("rect")],
                        styles: [GraphicStyle(key: .fill, hexColour: "#FF2"), GraphicStyle(key: .stroke, webColour:"none")]),
@@ -70,7 +75,14 @@ class CSSParser_Test: XCTestCase {
             
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "path"), identifier: "specified")],
-                       styles: [GraphicStyle(key: .fill, hexColour: "#FF4"), GraphicStyle(key: .stroke_width, value: .number(3.0))]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF4"),
+                                GraphicStyle(key: .stroke_width, value: .number(3.0)),
+                                GraphicStyle(key: .line_cap, value: .lineCap(.square)),
+                                GraphicStyle(key: .stroke_line_join, value: .lineJoin(.miter)),
+                                GraphicStyle(key: .stroke_miter_limit, value: .number(3.0)),
+                                GraphicStyle(key: .stroke_dash_offset, value: StyleProperty.unitNumber(UnitDimension(dimension: 75.0, unit: .percent))),
+                                GraphicStyle(key: .stroke_dash_array, value:StyleProperty.dimensionArray([UnitDimension(dimension: 10.0, unit: .percent), UnitDimension(dimension: 20.0, unit: .percent)]))
+                ]),
             
             StyleBlock(selectors: [StyleSelector("circle"), StyleSelector("path")],
                        styles: [GraphicStyle(key: .fill, hexColour: "#FF5"), GraphicStyle(key: .stroke, webColour: "blue")]),
@@ -80,7 +92,7 @@ class CSSParser_Test: XCTestCase {
                         [GraphicStyle(key: .fill, hexColour: "#FF6"),
                          GraphicStyle(key: .stroke, webColour: "green")
 //                         ,GraphicStyle(key: .line_cap, value: .lineCap(.square)),
-//                         GraphicStyle(key: .line_join, value: .lineJoin(.miter)),
+//                         GraphicStyle(key: .stroke_line_join, value: .lineJoin(.miter)),
 //                         GraphicStyle(key: .stroke_dash_offset, value: .number(4.0)),
 //                         GraphicStyle(key: .miter_limit, value: .number(4.0))
                 
@@ -260,24 +272,31 @@ class CSSParser_Test: XCTestCase {
                     let parsedCombinators = parsedSelector[selectorIndex]
                     
                     XCTAssertEqual(testCombinators.count, parsedCombinators.count, "Difference in combinator count test:\(testCombinators.count), parsed: \(parsedCombinators.count) at index \(index), selectorIndex: \(selectorIndex)")
-                    
-                    for combinatorIndex in 0..<testCombinators.count
+                    if testCombinators.count == parsedCombinators.count
                     {
-                        let testCombinator = testCombinators[combinatorIndex]
-                        let parsedCombinator = parsedCombinators[combinatorIndex]
-                        
-                        XCTAssertEqual(testCombinator, parsedCombinator, "Difference in combinator at index: \(index), selectorIndex: \(selectorIndex), combinatorIndex: \(combinatorIndex)")
+                        for combinatorIndex in 0..<testCombinators.count
+                        {
+                            let testCombinator = testCombinators[combinatorIndex]
+                            let parsedCombinator = parsedCombinators[combinatorIndex]
+                            
+                            XCTAssertEqual(testCombinator, parsedCombinator, "Difference in combinator at index: \(index), selectorIndex: \(selectorIndex), combinatorIndex: \(combinatorIndex)")
+                        }
                     }
                 }
                 
-                for valueIndex in 0..<parsedValues.count
+                
+                XCTAssertEqual(parsedValues.count, testValues.count, "Difference in values count test:\(testValues.count), parsed: \(parsedValues.count) at index \(index)")
+                if parsedValues.count == testValues.count
                 {
-                    let parsedValue = parsedValues[valueIndex]
-                    let testValue = testValues[valueIndex]
-                    
-                    XCTAssertEqual(parsedValue.key, testValue.key, "Value key mismatch at index: \(index), \(parsedValue.key) should be \(testValue.key)")
-                    XCTAssertEqual(parsedValue.important, testValue.important, "Value importatant mismatch at index: \(index), \(parsedValue.important) should be \(testValue.important)")
-                    XCTAssertEqual(parsedValue.value, testValue.value, "Value value mismatch at index: \(index). \(parsedValue.value) should be \(testValue.value)")
+                    for valueIndex in 0..<parsedValues.count
+                    {
+                        let parsedValue = parsedValues[valueIndex]
+                        let testValue = testValues[valueIndex]
+                        
+                        XCTAssertEqual(parsedValue.key, testValue.key, "Value key mismatch at index: \(index), \(parsedValue.key) should be \(testValue.key)")
+                        XCTAssertEqual(parsedValue.important, testValue.important, "Value importatant mismatch at index: \(index), \(parsedValue.important) should be \(testValue.important)")
+                        XCTAssertEqual(parsedValue.value, testValue.value, "Value value mismatch at index: \(index). \(parsedValue.value) should be \(testValue.value)")
+                    }
                 }
             }
         }

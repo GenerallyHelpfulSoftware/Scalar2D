@@ -116,7 +116,7 @@ public enum FontWeight : InheritableProperty, Equatable
     }
 }
 
-public enum FontVariant : InheritableProperty, Equatable
+public enum FontVariant : InheritableProperty, Equatable, CaseIterable
 {
     case inherit
     case initial
@@ -140,7 +140,7 @@ public enum FontVariant : InheritableProperty, Equatable
     }
 }
 
-public enum FontStyle : InheritableProperty, Equatable
+public enum FontStyle : InheritableProperty, Equatable, CaseIterable
 {
     case initial
     case inherit
@@ -191,7 +191,7 @@ public enum TextDecoration : InheritableProperty, Equatable
     }
 }
 
-public enum FontStretch : InheritableProperty, Equatable
+public enum FontStretch : InheritableProperty, Equatable, CaseIterable
 {
     case normal
     case initial
@@ -252,44 +252,72 @@ public enum DynamicSize : Equatable
 
 extension String.UnicodeScalarView
 {
-    func extractValueAndUnit(fromRange range: Range<String.UnicodeScalarView.Index>) -> (Double?, String?)
+    func extractValueAndUnit(fromRange range: Range<String.UnicodeScalarView.Index>) -> (Double?, String?, String.UnicodeScalarView.Index)
     {
         let stringBegin = range.lowerBound
+        var unitsBegin = range.upperBound
         var cursor = stringBegin
         var hadPeriod = false
+        var findingUnits = false
+        var valueString = String(self[range])
         
-        while range.contains(cursor)
+        characterLoop: while range.contains(cursor)
         {
             let character = self[cursor]
-            switch(character)
+            if findingUnits
             {
-            case "0"..."9":
-                break
-            case ".":
-                if hadPeriod // two periods
+                switch character
                 {
-                    return (nil, nil)
+                    case " ", "\t", " ", "\n":
+                    break characterLoop
+                    default:
+                    break
                 }
-                else
+            }
+            else
+            {
+                switch(character)
                 {
-                    hadPeriod = true
+                    case "0"..."9":
+                        break
+                    case ".":
+                        if hadPeriod // two periods
+                        {
+                            return (nil, nil, cursor)
+                        }
+                        else
+                        {
+                            hadPeriod = true
+                        }
+                    
+                    case " ", "\t", " ", "\n":
+                        valueString = String(self[stringBegin..<cursor])
+                        break characterLoop
+                    default:
+                        valueString = String(self[stringBegin..<cursor])
+                        findingUnits = true
+                        unitsBegin = cursor
                 }
-            default:
-                let valueString = String(self[stringBegin..<cursor])
-                let unitString = String(self[cursor..<range.upperBound]).lowercased()
-                let value = Double(valueString)
-                return (value, unitString)
             }
             cursor = self.index(after: cursor)
         }
-        let valueString = String(self[range])
-        return (Double(valueString), nil)
+        if findingUnits && cursor != unitsBegin
+        {
+            let unitRange = unitsBegin..<cursor
+            let unitString = String(self[unitRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+            if !unitString.isEmpty
+            {
+                return (Double(valueString), unitString, cursor)
+            }
+        }
+        
+        return (Double(valueString), nil, cursor)
     }
 }
 
 extension String
 {
-    func extractValueAndUnit() throws -> (Double?, String?)
+    func extractValueAndUnit() throws -> (Double?, String?, String.UnicodeScalarView.Index)
     {
         let scalars = self.unicodeScalars
         let stringBegin = try scalars.findUncommentedIndex()
@@ -435,7 +463,7 @@ public enum FontSize : InheritableProperty, Equatable
     }
 }
 
-public enum LineHeight  : InheritableProperty, Equatable
+public enum Distance  : InheritableProperty, Equatable
 {
     case initial
     case inherit
@@ -444,7 +472,7 @@ public enum LineHeight  : InheritableProperty, Equatable
     case multiplier(Double)
     case inUnits(Double, StyleUnit)
     
-    public static func ==(lhs: LineHeight, rhs: LineHeight) -> Bool {
+    public static func ==(lhs: Distance, rhs: Distance) -> Bool {
         switch (lhs, rhs)
         {
             case (.initial, .initial), (.inherit, .inherit), (.normal, .normal):
@@ -484,20 +512,20 @@ public enum LineHeight  : InheritableProperty, Equatable
                 switch unit
                 {
                 case "%":
-                    self = LineHeight.inUnits(value, .percent)
+                    self = Distance.inUnits(value, .percent)
                 case "px":
-                    self = LineHeight.inUnits(value, .pixel)
+                    self = Distance.inUnits(value, .pixel)
                 case "pt":
-                    self = LineHeight.inUnits(value, .point)
+                    self = Distance.inUnits(value, .point)
                 case "cm":
-                    self = LineHeight.inUnits(value, .centimeter)
+                    self = Distance.inUnits(value, .centimeter)
                 default:
                     return nil
                 }
             }
             else
             {
-                self = LineHeight.multiplier(value)
+                self = Distance.multiplier(value)
             }
         }
         else if let enumeration = unit
@@ -505,11 +533,11 @@ public enum LineHeight  : InheritableProperty, Equatable
             switch enumeration
             {
                 case "initial":
-                    self = LineHeight.initial
+                    self = Distance.initial
                 case "inherit":
-                    self = LineHeight.inherit
+                    self = Distance.inherit
                 case "normal":
-                    self = LineHeight.normal
+                    self = Distance.normal
                 default:
                     return nil
             }
@@ -635,7 +663,7 @@ public struct FontDescription
     let decorations : Set<TextDecoration>
     let style : FontStyle
     let variant : FontVariant
-    let lineHeight : LineHeight
+    let lineHeight : Distance
     let characterSetLimit : CharacterSet?
     
     public init(
@@ -646,7 +674,7 @@ public struct FontDescription
             decorations : Set<TextDecoration> = [.inherit],
             style : FontStyle = .inherit,
             variant : FontVariant = .inherit,
-            lineHeight : LineHeight = .inherit,
+            lineHeight : Distance = .inherit,
             characterSetLimit : CharacterSet? = nil
     )
     {

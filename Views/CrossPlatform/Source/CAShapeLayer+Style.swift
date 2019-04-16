@@ -15,8 +15,8 @@ extension CAShapeLayer : StyleAcceptor
     {
         switch (key, property)
         {
-            case (.stroke_width, .unitNumber(let param, let unit)):
-                self.lineWidth = CGFloat(context.points(value: param, fromUnit: unit)  ?? 0.0)
+            case (.stroke_width, .unitNumber(let dimension)):
+                self.lineWidth = CGFloat(context.points(value: dimension.dimension, fromUnit: dimension.unit)  ?? 0.0)
             case (.stroke, .colour(let color, let nativeColor)):
                 if let cgColor = nativeColor ?? color.toCGColorWithColorContext(context)
                 {

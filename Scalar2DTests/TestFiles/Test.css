@@ -10,14 +10,9 @@ text, tspan
 {
     font-family:Georgia, system;
     font-size:31pt;
-   /* font-size:33pt;
-    text-anchor:middle;  */
-   
-   
-   /* /* font-size:33pt;
-    text-anchor:middle;  */
-   
+    font-weight:bold;
    fill:#FF1;
+   font-stretch: extra-expanded;
 }
 
 rect
@@ -36,6 +31,11 @@ path#specified
 {
     fill: #FF4;
     stroke-width: 3;
+    stroke-linecap:square;
+    stroke-linejoin:miter;
+    stroke-miterlimit: 3;
+    stroke-dashoffset: 75.0%;
+    stroke-dasharray: 10% 20% ;
 }
 
 circle, path

@@ -175,6 +175,8 @@ extension StylePropertyInterpreter
                             throw StylePropertyFailureReason.unexpectedSemiColon(cursor)
                         case ":":
                             throw StylePropertyFailureReason.unexpectedColon(cursor)
+                        case " ", "\t", " ", "\n":   // allow space between colon and the beginning of the property
+                        break
                         default:
                             state = .inProperty
                             stringBegin = cursor

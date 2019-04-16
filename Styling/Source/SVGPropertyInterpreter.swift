@@ -39,15 +39,11 @@ import Foundation
 public protocol ParseableEnum
 {
     var cssName : String {get}
+    func encapsulate() -> StyleProperty
 }
 
-public protocol SimpleParseableEnum : ParseableEnum
-{
-    /**
-        implementers of this protocol provide a list of all the known css property names
-    */
-    static var all : [ParseableEnum] {get}
-}
+public typealias SimpleParseableEnum = ParseableEnum & CaseIterable
+
 
 public extension PropertyKey // compositing
 {
@@ -76,8 +72,8 @@ public extension PropertyKey // path
     static let stroke = PropertyKey(rawValue: "stroke")!
     
     static let line_cap = PropertyKey(rawValue: "stroke-linecap")!
-    static let miter_limit = PropertyKey(rawValue: "stroke-miterlimit")!
-    static let line_join = PropertyKey(rawValue: "stroke-linejoin")!
+    static let stroke_miter_limit = PropertyKey(rawValue: "stroke-miterlimit")!
+    static let stroke_line_join = PropertyKey(rawValue: "stroke-linejoin")!
     static let stroke_dash_array = PropertyKey(rawValue: "stroke-dasharray")!
     static let stroke_dash_offset = PropertyKey(rawValue: "stroke-dashoffset")!
 }
@@ -85,8 +81,12 @@ public extension PropertyKey // path
 /**
     enumeration of possible font style keys (as opposed to variants, weights, etc.)
 */
-extension FontStyle : SimpleParseableEnum
+extension FontStyle : ParseableEnum
 {
+    public func encapsulate() -> StyleProperty {
+        return .fontStyle(self)
+    }
+    
     public var cssName : String
     {
         switch self
@@ -103,18 +103,17 @@ extension FontStyle : SimpleParseableEnum
                 return "oblique"
         }
     }
-    public static var all : [ParseableEnum]
-    {
-        return [FontStyle.inherit, FontStyle.initial, FontStyle.italic, FontStyle.normal, FontStyle.oblique]
-    }
 }
-
 
 /**
  enumeration of possible font variant keys (as opposed to styles, weights, etc.)
  */
-extension FontVariant : SimpleParseableEnum
+extension FontVariant : ParseableEnum
 {
+    public func encapsulate() -> StyleProperty {
+        return StyleProperty.fontVariant(self)
+    }
+    
     public var cssName : String
     {
         switch self
@@ -129,17 +128,17 @@ extension FontVariant : SimpleParseableEnum
                 return "normal"
         }
     }
-    public static var all : [ParseableEnum]
-    {
-        return [FontVariant.inherit, FontVariant.initial, FontVariant.normal, FontVariant.smallCaps]
-    }
 }
 
 /**
  enumeration of possible font weights keys (as opposed to styles, variants, etc.)
  */
-extension FontWeight : SimpleParseableEnum
+extension FontWeight : ParseableEnum
 {
+    public func encapsulate() -> StyleProperty {
+        return StyleProperty.fontWeight(self)
+    }
+    
     public var cssName : String
     {
         switch self
@@ -156,20 +155,20 @@ extension FontWeight : SimpleParseableEnum
                 return "lighter"
             case .normal:
                 return "normal"
-            case .custom(_):
-                return ""
+            case .custom(let value):
+                return "\(value)"
         }
-    }
-    public static var all : [ParseableEnum]
-    {
-        return [FontWeight.inherit, FontWeight.initial, FontWeight.bold, FontWeight.bolder, FontWeight.lighter]
     }
 }
 /**
     enumeration of possible font stretchs keys (as opposed to styles, variants, etc.), allows the letters to be squished together or stretched apart.
  */
-extension FontStretch : SimpleParseableEnum
+extension FontStretch : ParseableEnum
 {
+    public func encapsulate() -> StyleProperty {
+        return StyleProperty.fontStretch(self)
+    }
+    
     public var cssName : String
     {
         switch self
@@ -198,26 +197,24 @@ extension FontStretch : SimpleParseableEnum
                 return "ultra-condensed"
         }
     }
-    public static var all : [ParseableEnum]
-    {
-        return [FontStretch.inherit, FontStretch.initial, FontStretch.condensed, FontStretch.expanded, FontStretch.extraCondensed,
-        FontStretch.extraExpanded, FontStretch.normal, FontStretch.semiExpanded, FontStretch.semiCondensed, FontStretch.ultraExpanded,
-        FontStretch.ultraCondensed]
-    }
 }
+
 /**
  enumeration of possible font names, wether explicit or by function .
  */
-extension FontFamily : SimpleParseableEnum
+extension FontFamily
 {
-    public static var all : [ParseableEnum]
-    {
-        return [FontFamily.inherit, FontFamily.initial, FontFamily.cursive, FontFamily.fantasy, FontFamily.monospace, FontFamily.sansSerif, FontFamily.serif]
+    public func encapsulate() -> StyleProperty {
+        return StyleProperty.fontFamilies([self])
     }
 }
 
-extension LineCap : SimpleParseableEnum
+extension LineCap : ParseableEnum
 {
+    public func encapsulate() -> StyleProperty {
+        return StyleProperty.lineCap(self)
+    }
+    
     public var cssName: String {
         switch self
         {
@@ -235,10 +232,34 @@ extension LineCap : SimpleParseableEnum
                 return "square"
         }
     }
+}
+
+
+extension LineJoin : ParseableEnum
+{
+    public func encapsulate() -> StyleProperty {
+        return StyleProperty.lineJoin(self)
+    }
     
-    public static var all : [ParseableEnum]
-    {
-        return [LineCap.inherit, LineCap.initial, LineCap.butt, LineCap.normal, LineCap.round, LineCap.square]
+    public var cssName: String {
+        switch self
+        {
+            case .inherit:
+                return "inherit"
+            case .initial:
+                return "initial"
+            case .normal:
+                return "normal"
+            case .miter:
+                return "miter"
+            case .round:
+                return "round"
+            case .miter_clip:
+                return "miter-clip"
+            case .bevel:
+                return "bevel"
+            
+        }
     }
 }
 
@@ -269,7 +290,7 @@ public func findPrefix(_ prefix: String, inBuffer buffer: String.UnicodeScalarVi
             if testCharacter.isASCII
             {
                 let testValue = testCharacter.value
-                if testValue >= 65 && testValue <= 90
+                if (65...90).contains(testValue)
                 { // uppercase ascii
                     testCharacter = UnicodeScalar(testValue+32)! // convert to lowercased ASCII as CSS is not (in general) case sensitive
                 }
@@ -301,34 +322,62 @@ extension Unicode.Scalar
     }
 }
 
-extension SimpleParseableEnum
+extension ParseableEnum
 {
     /**
         given a buffer and a range, search for this enum's cssName
      - parameter inBuffer: String.UnicodeScalarView the buffer to look though
      - parameter atValueRange: the portion of the inBuffer to search though
-     
+     - parameter usingCases: an array of possible values for this enum
      
      - throws an error if an error such as an unexpected ending is found
      
      - returns optional location after the prefix, nil if not found. and a Parseable enum as a tuple
      
     */
-    static func find(inBuffer buffer: String.UnicodeScalarView, atValueRange valueRange: Range<String.UnicodeScalarView.Index>) throws -> (String.UnicodeScalarView.Index, ParseableEnum)?
+    static func find(inBuffer buffer: String.UnicodeScalarView, atValueRange valueRange: Range<String.UnicodeScalarView.Index>, usingCases cases: [ParseableEnum]) throws -> (String.UnicodeScalarView.Index, StyleProperty)?
     {
-        
-        let tries = self.all
-        for aTry in tries
+        for aTry in cases
         {
             if let foundEnd = try findPrefix(aTry.cssName, inBuffer: buffer, atValueRange: valueRange)
             {
                 let nextEnd = try buffer.uncommentedIndex(after: foundEnd)
                 if(!valueRange.contains(nextEnd) || buffer[nextEnd].isAcceptableWhitespace)
                 {
-                    return (foundEnd, aTry)
+                    return (foundEnd, aTry.encapsulate())
                 }
             }
         }
+        return nil
+    }
+}
+
+extension FontWeight
+{
+    /**
+     given a buffer and a range, search for this enum's cssName
+     - parameter inBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter atValueRange: the portion of the inBuffer to search though
+     - parameter usingCases: an array of possible values for this enum
+     
+     - throws an error if an error such as an unexpected ending is found
+     
+     - returns optional location after the prefix, nil if not found. and a Parseable enum as a tuple
+     
+     */
+    static func find(inBuffer buffer: String.UnicodeScalarView, atValueRange valueRange: Range<String.UnicodeScalarView.Index>) throws -> (String.UnicodeScalarView.Index, StyleProperty)?
+    {
+        let cases : [FontWeight] = [.bold, .bolder, .inherit, .initial, .lighter, .normal]
+        
+        if let result = try FontWeight.find(inBuffer: buffer, atValueRange: valueRange, usingCases: cases)
+        {
+            return result
+        }
+        else // try to look for a custom one
+        {
+            
+        }
+        
         return nil
     }
 }
@@ -520,12 +569,12 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         var sectionBegin = cursor
         var seenPeriod = false
         
-        var style: FontStyle?
-        var weight: FontWeight?
-        var variant: FontVariant?
+        var style: StyleProperty?
+        var weight: StyleProperty?
+        var variant: StyleProperty?
         var fontSize : FontSize?
-        var stretch : FontStretch?
-        var lineHeight : LineHeight?
+        var stretch : StyleProperty?
+        var lineHeight : Distance?
         var families = [FontFamily]()
         
         var isImportant = false
@@ -549,22 +598,23 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                             cursor = try buffer.uncommentedIndex(after: cursor)
                         default: // see if there is style, weight or variant in this list
                             let availableRange = cursor..<valueRange.upperBound
-                            if let theStyle = try FontStyle.find(inBuffer: buffer, atValueRange: availableRange) as? (String.UnicodeScalarView.Index, FontStyle)
+                            
+                            if let theStyle = try FontStyle.find(inBuffer: buffer, atValueRange: availableRange, usingCases: FontStyle.allCases)
                             {
                                 cursor = try buffer.uncommentedIndex(after: theStyle.0)
                                 style = theStyle.1
                             }
-                            else if let theWeight = try FontWeight.find(inBuffer: buffer, atValueRange: availableRange) as?  (String.UnicodeScalarView.Index, FontWeight)
+                            else if let theWeight = try FontWeight.find(inBuffer: buffer, atValueRange: availableRange)
                             {
                                 cursor = try buffer.uncommentedIndex(after: theWeight.0)
                                 weight = theWeight.1
                             }
-                            else if let theVariant = try FontVariant.find(inBuffer: buffer, atValueRange: availableRange)  as?  (String.UnicodeScalarView.Index, FontVariant)
+                            else if let theVariant = try FontVariant.find(inBuffer: buffer, atValueRange: availableRange, usingCases: FontVariant.allCases)
                             {
                                 cursor = try buffer.uncommentedIndex(after: theVariant.0)
                                 variant = theVariant.1
                             }
-                            else if let theStretch = try FontStretch.find(inBuffer: buffer, atValueRange: availableRange)  as?  (String.UnicodeScalarView.Index, FontStretch)
+                            else if let theStretch = try FontStretch.find(inBuffer: buffer, atValueRange: availableRange, usingCases: FontStretch.allCases)
                             {
                                 cursor = try buffer.uncommentedIndex(after: theStretch.0)
                                 stretch = theStretch.1
@@ -622,7 +672,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                             cursor = try buffer.uncommentedIndex(after: cursor)
                         case " ", "\t", " ", "\n":
                             let lineHeightString = String(buffer[sectionBegin..<cursor])
-                            lineHeight = try LineHeight(string: lineHeightString)
+                            lineHeight = try Distance(string: lineHeightString)
                             let (newFontFamilies, newCursor, newImportant) = try self.extractFontNames(buffer: buffer, valueRange: cursor..<valueRange.upperBound)
                             families = newFontFamilies
                             cursor = newCursor
@@ -634,7 +684,6 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
             }
         }
         
-        
         if let theSize = fontSize
         {
             result.append(GraphicStyle(key: .font_size, value: StyleProperty.fontSize(theSize), important: isImportant))
@@ -642,20 +691,20 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         
         if let theWeight = weight
         {
-            result.append(GraphicStyle(key: .font_weight, value: StyleProperty.fontWeight(theWeight), important: isImportant))
+            result.append(GraphicStyle(key: .font_weight, value: theWeight, important: isImportant))
         }
         if let theStyle = style
         {
-            result.append(GraphicStyle(key: .font_style, value: StyleProperty.fontStyle(theStyle), important: isImportant))
+            result.append(GraphicStyle(key: .font_style, value: theStyle, important: isImportant))
         }
         if let theVariant = variant
         {
-            result.append(GraphicStyle(key: .font_variant, value: StyleProperty.fontVariant(theVariant), important: isImportant))
+            result.append(GraphicStyle(key: .font_variant, value: theVariant, important: isImportant))
         }
         
         if let theHeight = lineHeight
         {
-            result.append(GraphicStyle(key: .font_line_height, value: StyleProperty.lineHeight(theHeight), important: isImportant))
+            result.append(GraphicStyle(key: .font_line_height, value: StyleProperty.distance(theHeight), important: isImportant))
         }
         
         if !families.isEmpty
@@ -666,7 +715,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
 
         if let theStretch = stretch
         {
-            result.append(GraphicStyle(key: .font_stretch, value: StyleProperty.fontStretch(theStretch), important: isImportant))
+            result.append(GraphicStyle(key: .font_stretch, value: theStretch, important: isImportant))
         }
         
         return (result, cursor)
@@ -746,6 +795,44 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
     }
     
     /**
+     The beginning of a double property has been detected, extract out a double style, like the miter limit.
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+     */
+    fileprivate func interpretDouble(key: PropertyKey, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
+    {
+        let (propertyRange, isImportant, cursor) = try self.extract(key: key, fromBuffer: buffer, valueRange: valueRange)
+        let propertyString = String(buffer[propertyRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+        do
+        {
+            let formatter = NumberFormatter()
+            formatter.locale = Locale(identifier: "EN")
+            
+            guard let number = formatter.number(from: propertyString) else
+            {
+                throw StylePropertyFailureReason.badProperty(propertyString, propertyRange.lowerBound)
+            }
+            
+            let value = number.doubleValue
+            
+            let property = StyleProperty.number(value)
+            return ([GraphicStyle(key: key, value: property, important: isImportant)], cursor)
+        }
+        catch
+        {
+            throw StylePropertyFailureReason.badProperty(propertyString, propertyRange.lowerBound)
+        }
+    }
+    
+    
+    /**
         The beginning of a dimensional property (pixels, points, etc.) has been detected. This function extracts out the associated styles.
     
      - parameter key of the property (used for informational purposes if an error is thrown)
@@ -763,7 +850,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         let (propertyRange, isImportant, cursor) = try self.extract(key: key, fromBuffer: buffer, valueRange: valueRange)
         let propertyString = String(buffer[propertyRange]).trimmingCharacters(in: .whitespacesAndNewlines)
         
-        var rawProperty : (Double?, String?)!
+        var rawProperty : (Double?, String?, String.UnicodeScalarView.Index)!
         
         do
         {
@@ -782,7 +869,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
                 {
                     throw StylePropertyFailureReason.unexpectedCharacter(actualUnit.first!, propertyRange.lowerBound)
                 }
-                let property = StyleProperty.unitNumber(NativeDimension(actualValue), styleUnit)
+                let property = StyleProperty.unitNumber(UnitDimension(dimension: NativeDimension(actualValue), unit:styleUnit))
                 return ([GraphicStyle(key: key, value: property, important: isImportant)], cursor)
             }
             else
@@ -795,6 +882,75 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         
         throw StylePropertyFailureReason.incompleteProperty(key.rawValue, valueRange.lowerBound)
     }
+    
+    /**
+     The beginning of an array of dimensional property (pixels, points, etc.) has been detected. This function extracts out the associated styles.
+     
+     - parameter key of the property (used for informational purposes if an error is thrown)
+     - parameter fromBuffer: String.UnicodeScalarView the buffer to look though
+     - parameter valueRange: the portion of the buffer to search though
+     
+     
+     - throws an error if an error such as a badly formed property
+     
+     - returns a tuple with an array of detected GraphicStyles and the index after the property
+     
+     */
+    fileprivate func interpretDimensionArray(key: PropertyKey, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
+    {
+        let (propertyRange, isImportant, cursor) = try self.extract(key: key, fromBuffer: buffer, valueRange: valueRange)
+        var propertyString = String(buffer[propertyRange]).trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        var innerCursor = propertyString.unicodeScalars.startIndex
+        var dimensions = [UnitDimension]()
+        while innerCursor != propertyString.unicodeScalars.endIndex // look for an array of values+units
+        {
+            var rawProperty : (Double?, String?, String.UnicodeScalarView.Index)!
+            
+            do
+            {
+                rawProperty = try propertyString.trimmingCharacters(in: .whitespacesAndNewlines).extractValueAndUnit()
+                innerCursor = rawProperty.2
+                if innerCursor != propertyString.endIndex
+                {
+                    propertyString = String(propertyString[innerCursor..<propertyString.endIndex]).trimmingCharacters(in: .whitespacesAndNewlines)
+                    innerCursor = propertyString.unicodeScalars.startIndex
+                    
+                }
+            }
+            catch
+            {
+                throw StylePropertyFailureReason.badProperty(propertyString, propertyRange.lowerBound)
+            }
+            
+            if let actualValue = rawProperty.0
+            {
+                if let actualUnit = rawProperty.1, !actualUnit.isEmpty
+                {
+                    guard let styleUnit = actualUnit.asStyleUnit else
+                    {
+                        throw StylePropertyFailureReason.unexpectedCharacter(actualUnit.first!, propertyRange.lowerBound)
+                    }
+                    dimensions.append(UnitDimension(dimension: NativeDimension(actualValue), unit:styleUnit))
+                }
+                else
+                {
+                    dimensions.append(UnitDimension(dimension: NativeDimension(Double(actualValue)), unit: .point))
+                }
+            }
+        }
+        if dimensions.isEmpty
+        {
+            throw StylePropertyFailureReason.incompleteProperty(key.rawValue, valueRange.lowerBound)
+        }
+        else
+        {
+            let property = StyleProperty.dimensionArray(dimensions)
+            return ([GraphicStyle(key: key, value: property, important: isImportant)], cursor)
+        }
+    }
+    
+    
     
     /**
      The beginning of a font size property has been detected. This function extracts out the associated styles.
@@ -864,17 +1020,40 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
 
         switch key
         {
-            case .font:
-                return try self.interpretFontProperty(buffer: buffer, valueRange: valueRange)
             case .fill, .stroke, .colour:
                 return try self.interpretColour(key: key, buffer: buffer, valueRange: valueRange)
-            case .stroke_width:
+            case .stroke_width, .stroke_dash_offset:
                 return try self.interpretDimension(key: key, buffer: buffer, valueRange: valueRange)
+            case .stroke_dash_array:
+                return try self.interpretDimensionArray(key: key, buffer: buffer, valueRange: valueRange)
+            case .line_cap:
+                if let tuple = try LineCap.find(inBuffer: buffer, atValueRange: valueRange, usingCases: LineCap.allCases)
+                {
+                    return ([GraphicStyle(key: key, value: tuple.1)], tuple.0)
+                }
+            case .stroke_line_join:
+                if let tuple = try LineJoin.find(inBuffer: buffer, atValueRange: valueRange, usingCases: LineJoin.allCases)
+                {
+                    return ([GraphicStyle(key: key, value: tuple.1)], tuple.0)
+                }
+            case .stroke_miter_limit:
+                return try self.interpretDouble(key: key, buffer: buffer, valueRange: valueRange)
+            case .font:
+                return try self.interpretFontProperty(buffer: buffer, valueRange: valueRange)
             case .font_family:
                 return try self.interpretFontFamilies(key: key, buffer: buffer, valueRange: valueRange)
             case .font_size:
                 return try self.interpretFontSize(key: key, buffer: buffer, valueRange: valueRange)
-            
+            case .font_weight:
+                if let tuple = try FontWeight.find(inBuffer: buffer, atValueRange: valueRange)
+                {
+                    return ([GraphicStyle(key: key, value: tuple.1)], tuple.0)
+                }
+            case .font_stretch:
+                if let tuple = try FontStretch.find(inBuffer: buffer, atValueRange: valueRange, usingCases: FontStretch.allCases)
+                {
+                    return ([GraphicStyle(key: key, value: tuple.1)], tuple.0)
+                }
             default:
             break
         }

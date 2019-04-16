@@ -84,7 +84,7 @@ class CSSPropertyTests: XCTestCase {
             XCTAssert(parsed.contains(GraphicStyle(key: .font_weight, value: StyleProperty.fontWeight(FontWeight.bold))))
             XCTAssert(parsed.contains(GraphicStyle(key: .font_style, value: StyleProperty.fontStyle(FontStyle.italic))))
             XCTAssert(parsed.contains(GraphicStyle(key: .font_variant, value: StyleProperty.fontVariant(FontVariant.smallCaps))))
-            XCTAssert(parsed.contains(GraphicStyle(key: .font_line_height, value: StyleProperty.lineHeight(LineHeight.multiplier(1.4)))))
+            XCTAssert(parsed.contains(GraphicStyle(key: .font_line_height, value: StyleProperty.distance(Distance.multiplier(1.4)))))
             XCTAssert(parsed.contains(GraphicStyle(key: .font_stretch, value: StyleProperty.fontStretch(FontStretch.ultraCondensed))))
             
         }
@@ -122,7 +122,7 @@ class CSSPropertyTests: XCTestCase {
     func testStrokeProperties()
     {
         propertyTest(named: .stroke, withPayload: "#FF00FF !important", expectingStyles: [GraphicStyle(key: .stroke, hexColour: "#FF00FF", important: true)])
-        propertyTest(named: .stroke_width, withPayload: "5pt", expectingStyles: [GraphicStyle(key: .stroke_width, value: .unitNumber(5, .point))])
+        propertyTest(named: .stroke_width, withPayload: "5pt", expectingStyles: [GraphicStyle(key: .stroke_width, value: StyleProperty.unitNumber(UnitDimension(dimension: 5, unit: .point)))])
         propertyTest(named: .stroke, withPayload: "none", expectingStyles: [GraphicStyle(key: .stroke, value: StyleProperty.colour(Colour.clear, Colour.clear.nativeColour))])
     }
     

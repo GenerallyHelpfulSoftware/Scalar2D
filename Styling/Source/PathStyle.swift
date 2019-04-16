@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum LineCap : InheritableProperty, Equatable
+public enum LineCap : InheritableProperty, Equatable, CaseIterable
 {
     case inherit
     case initial
@@ -53,7 +53,7 @@ public enum LineCap : InheritableProperty, Equatable
     }
 }
 
-public enum LineJoin : InheritableProperty, Equatable
+public enum LineJoin : InheritableProperty, Equatable, CaseIterable
 {
     case inherit
     case initial
