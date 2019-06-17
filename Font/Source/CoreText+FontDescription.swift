@@ -3,7 +3,7 @@
 //  Scalar2D
 //
 //  Created by Glenn Howes on 9/8/17.
-//  Copyright © 2017 Generally Helpful Software. All rights reserved.
+//  Copyright © 2017-2019 Generally Helpful Software. All rights reserved.
 //
 //
 //
@@ -160,7 +160,7 @@ extension TextDecoration : CoreTextProperty
     {
         switch self
         {
-            case .none, .initial:
+            case .noDecoration, .initial:
                 properties.removeValue(forKey: NSAttributedString.Key.underlineStyle)
             case .inherit:
                 return

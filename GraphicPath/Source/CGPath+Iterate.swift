@@ -3,14 +3,14 @@
 //  Scalar2D
 //
 //  Created by Glenn Howes on 8/13/16.
-//  Copyright © 2016 Generally Helpful Software. All rights reserved.
+//  Copyright © 2016-2019 Generally Helpful Software. All rights reserved.
 //
 // based upon tutorial found at http://oleb.net/blog/2015/06/c-callbacks-in-swift/
 //
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal

@@ -3,14 +3,14 @@
 //  Scalar2D
 //
 //  Created by Glenn Howes on 8/19/17.
-//  Copyright © 2017 Generally Helpful Software. All rights reserved.
+//  Copyright © 2017-2019 Generally Helpful Software. All rights reserved.
 //
 //
 //
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Generally Helpful Software
+//  Copyright (c) 2017-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -93,7 +93,7 @@ public enum StylePropertyFailureReason : CustomStringConvertible, ParseBufferErr
 
 public protocol StylePropertyInterpreter
 {
-    func interpret(key: PropertyKey, buffer: String.UnicodeScalarView, valueRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
+    func interpret(key: PropertyKey, buffer: String.UnicodeScalarView, inBufferRange bufferRange: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
 }
 
 fileprivate enum ParseState
@@ -189,7 +189,7 @@ extension StylePropertyInterpreter
                             {
                                 throw StylePropertyFailureReason.unexpectedSemiColon(cursor)
                             }
-                            let properties = try self.interpret(key: property, buffer: buffer, valueRange: stringBegin..<cursor).0
+                            let properties = try self.interpret(key: property, buffer: buffer, inBufferRange: stringBegin..<cursor).0
                             result = result + properties
                             state = .awaitingKey
                         default:

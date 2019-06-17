@@ -37,10 +37,10 @@ import Scalar2D
 
 class CSSPropertyTests: XCTestCase {
     
-    var parser : SVGPropertyInterpreter!
+    var parser : ViewStyleInterpreter!
     override func setUp() {
         super.setUp()
-        parser = SVGPropertyInterpreter()
+        parser = ViewStyleInterpreter()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
@@ -56,7 +56,7 @@ class CSSPropertyTests: XCTestCase {
         
         do
         {
-            if let foundEnd = try findPrefix(FontStretch.ultraCondensed.cssName, inBuffer: buffer, atValueRange: buffer.startIndex..<buffer.endIndex)
+            if let foundEnd = try findPrefix(FontStretch.ultraCondensed.cssName, inBuffer: buffer, inBufferRange: buffer.startIndex..<buffer.endIndex)
             {
                 
                 let cursor = try buffer.uncommentedIndex(after: foundEnd)
@@ -78,7 +78,7 @@ class CSSPropertyTests: XCTestCase {
         
         do
         {
-            let (parsed, _) = try parser.interpret(key: .font, buffer: buffer, valueRange: buffer.startIndex..<buffer.endIndex)
+            let (parsed, _) = try parser.interpret(key: .font, buffer: buffer, inBufferRange: buffer.startIndex..<buffer.endIndex)
             XCTAssertEqual(parsed.count, 7, "Expected 7 got \(parsed.count)")
             XCTAssert(parsed.contains(GraphicStyle(key: .font_size, value: StyleProperty.fontSize(FontSize.pixel(16)))))
             XCTAssert(parsed.contains(GraphicStyle(key: .font_weight, value: StyleProperty.fontWeight(FontWeight.bold))))
@@ -99,7 +99,7 @@ class CSSPropertyTests: XCTestCase {
         let buffer = payload.unicodeScalars
         do
         {
-            let (parsed, _) = try parser.interpret(key: name, buffer: buffer, valueRange: buffer.startIndex..<buffer.endIndex)
+            let (parsed, _) = try parser.interpret(key: name, buffer: buffer, inBufferRange: buffer.startIndex..<buffer.endIndex)
             
             XCTAssertEqual(parsed.count, styles.count, "Expected 1 got \(parsed.count)")
             for aStyle in styles

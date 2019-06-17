@@ -3,13 +3,13 @@
 //  Scalar2D
 //
 //  Created by Glenn Howes on 8/26/17.
-//  Copyright © 2017 Generally Helpful Software. All rights reserved.
+//  Copyright © 2017-2019 Generally Helpful Software. All rights reserved.
 //
 //
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016-2017 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -169,7 +169,7 @@ public enum TextDecoration : InheritableProperty, Equatable
 {
     case initial
     case inherit
-    case none
+    case noDecoration
     
     case underline
     case overline
@@ -187,7 +187,7 @@ public enum TextDecoration : InheritableProperty, Equatable
     
     public var useNormal: Bool
     {
-        return  .none == self
+        return  .noDecoration == self
     }
 }
 

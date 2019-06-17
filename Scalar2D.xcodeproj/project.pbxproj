@@ -36,8 +36,6 @@
 		21344CAA2203CA34002C9837 /* StyleAcceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21344CA82203CA34002C9837 /* StyleAcceptor.swift */; };
 		2134CAB021C9FC5500568393 /* CSSApply+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */; };
 		2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */; };
-		2134CAB421E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
-		2134CAB521E15D7400568393 /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB321E15D7400568393 /* PathViewLayer.swift */; };
 		2134CAB621E8464B00568393 /* PathView+iOS.swift in Headers */ = {isa = PBXBuildFile; fileRef = 21E326C81D5B411900B64C7C /* PathView+iOS.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		2134CAB821F02DA800568393 /* PathStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB721F02DA800568393 /* PathStyle.swift */; };
 		2134CAB921F02DA800568393 /* PathStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB721F02DA800568393 /* PathStyle.swift */; };
@@ -87,6 +85,10 @@
 		213D06F71D55F72200A5FD69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */; };
 		2149818F1F5F7C5700275D0F /* CSSPropertyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2149818E1F5F7C5700275D0F /* CSSPropertyTests.swift */; };
 		2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */; };
+		216A7DA72266C63400F99A96 /* CoreGraphics+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A7DA62266C63400F99A96 /* CoreGraphics+Styling.swift */; };
+		218340AC226AB63B004B3DDF /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218340AB226AB63B004B3DDF /* PathViewLayer.swift */; };
+		218340AD226AB63B004B3DDF /* PathViewLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218340AB226AB63B004B3DDF /* PathViewLayer.swift */; };
+		218340B3226D5828004B3DDF /* ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218340B2226D5828004B3DDF /* ViewStyle.swift */; };
 		21ABB1381F64331000967245 /* FontDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180EC371F64329C00D7FE92 /* FontDescription.swift */; };
 		21ABB1391F64331400967245 /* CoreText+FontDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180EC381F64329C00D7FE92 /* CoreText+FontDescription.swift */; };
 		21B167111DCEAA43006F5481 /* CSSParser+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B167101DCEAA43006F5481 /* CSSParser+Test.swift */; };
@@ -94,6 +96,11 @@
 		21B41B131FAC0888003C974F /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B41B121FAC0888003C974F /* Parsing.swift */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
 		21BD53B01F9623710085B6ED /* UnicodeScalarView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD53AF1F9623710085B6ED /* UnicodeScalarView+Utils.swift */; };
+		21C68812227682A800176E48 /* CommonStyleInterpretter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C68811227682A800176E48 /* CommonStyleInterpretter.swift */; };
+		21C688142276832000176E48 /* ViewStyleInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C688132276832000176E48 /* ViewStyleInterpreter.swift */; };
+		21C688152276AC2600176E48 /* ViewStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218340B2226D5828004B3DDF /* ViewStyle.swift */; };
+		21C688162276AC3100176E48 /* CommonStyleInterpretter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C68811227682A800176E48 /* CommonStyleInterpretter.swift */; };
+		21C688172276AC3600176E48 /* ViewStyleInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C688132276832000176E48 /* ViewStyleInterpreter.swift */; };
 		21D8BDDD1F479E2D002B5BE7 /* GroupSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8BDDB1F479DE5002B5BE7 /* GroupSelector.swift */; };
 		21D8BDDF1F491BAC002B5BE7 /* StylePropertyInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */; };
 		21DA69061F98476500392CBB /* SVGPropertyInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */; };
@@ -211,7 +218,6 @@
 		21344CA82203CA34002C9837 /* StyleAcceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StyleAcceptor.swift; path = Styling/Source/StyleAcceptor.swift; sourceTree = SOURCE_ROOT; };
 		2134CAAF21C9FC5500568393 /* CSSApply+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CSSApply+Test.swift"; sourceTree = "<group>"; };
 		2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingFrogViewController.swift; sourceTree = "<group>"; };
-		2134CAB321E15D7400568393 /* PathViewLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathViewLayer.swift; sourceTree = "<group>"; };
 		2134CAB721F02DA800568393 /* PathStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PathStyle.swift; path = Styling/Source/PathStyle.swift; sourceTree = SOURCE_ROOT; };
 		21384F7B21A8A20B00FC4F71 /* Scalar2D_mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D_mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21384F7D21A8A20C00FC4F71 /* Scalar2D_mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D_mac.h; sourceTree = "<group>"; };
@@ -228,8 +234,11 @@
 		2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_Mac_Test_AppTests.swift; sourceTree = "<group>"; };
 		2157D36E1D5AE3DE00C57462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2157D3741D5AE40500C57462 /* NSBezierPathTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSBezierPathTests.swift; sourceTree = "<group>"; };
+		216A7DA62266C63400F99A96 /* CoreGraphics+Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreGraphics+Styling.swift"; path = "CoreGraphics/Source/CoreGraphics+Styling.swift"; sourceTree = SOURCE_ROOT; };
 		2180EC371F64329C00D7FE92 /* FontDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FontDescription.swift; path = Font/Source/FontDescription.swift; sourceTree = SOURCE_ROOT; };
 		2180EC381F64329C00D7FE92 /* CoreText+FontDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "CoreText+FontDescription.swift"; path = "Font/Source/CoreText+FontDescription.swift"; sourceTree = SOURCE_ROOT; };
+		218340AB226AB63B004B3DDF /* PathViewLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathViewLayer.swift; path = Views/CrossPlatform/Source/PathViewLayer.swift; sourceTree = SOURCE_ROOT; };
+		218340B2226D5828004B3DDF /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewStyle.swift; path = Styling/Source/ViewStyle.swift; sourceTree = SOURCE_ROOT; };
 		21B167101DCEAA43006F5481 /* CSSParser+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSSParser+Test.swift"; sourceTree = "<group>"; };
 		21B167121DCEABAF006F5481 /* Test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = Test.css; path = TestFiles/Test.css; sourceTree = "<group>"; };
 		21B41B121FAC0888003C974F /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Parsing.swift; path = Source/Parsing.swift; sourceTree = "<group>"; };
@@ -243,6 +252,8 @@
 		21B7198C1D4A2DBF00B0ACBF /* DrawStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawStyle.swift; path = Source/DrawStyle.swift; sourceTree = "<group>"; };
 		21B7198E1D4A35B000B0ACBF /* PathGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathGenerator.swift; path = GraphicPath/Source/PathGenerator.swift; sourceTree = SOURCE_ROOT; };
 		21BD53AF1F9623710085B6ED /* UnicodeScalarView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UnicodeScalarView+Utils.swift"; path = "Styling/Source/UnicodeScalarView+Utils.swift"; sourceTree = SOURCE_ROOT; };
+		21C68811227682A800176E48 /* CommonStyleInterpretter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommonStyleInterpretter.swift; path = Styling/Source/CommonStyleInterpretter.swift; sourceTree = SOURCE_ROOT; };
+		21C688132276832000176E48 /* ViewStyleInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewStyleInterpreter.swift; path = Styling/Source/ViewStyleInterpreter.swift; sourceTree = SOURCE_ROOT; };
 		21D8BDDB1F479DE5002B5BE7 /* GroupSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GroupSelector.swift; path = Styling/Source/GroupSelector.swift; sourceTree = SOURCE_ROOT; };
 		21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StylePropertyInterpreter.swift; path = Styling/Source/StylePropertyInterpreter.swift; sourceTree = SOURCE_ROOT; };
 		21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SVGPropertyInterpreter.swift; path = Styling/Source/SVGPropertyInterpreter.swift; sourceTree = SOURCE_ROOT; };
@@ -386,6 +397,15 @@
 			path = "Scalar2D Mac Test AppTests";
 			sourceTree = "<group>";
 		};
+		216A7DA82266C65400F99A96 /* CoreGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				216A7DA62266C63400F99A96 /* CoreGraphics+Styling.swift */,
+			);
+			name = CoreGraphics;
+			path = Scalar2D;
+			sourceTree = "<group>";
+		};
 		2180EC361F64311A00D7FE92 /* Font */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,6 +442,7 @@
 				211179D81DB75EFC0054FAA4 /* Colour */,
 				21F16AC22061FBDB002F4913 /* SVG */,
 				21B719901D4A35BD00B0ACBF /* GraphicPath */,
+				216A7DA82266C65400F99A96 /* CoreGraphics */,
 				21FFE8E11D6465EB003446DF /* Views */,
 				21B7197D1D48599B00B0ACBF /* Scalar2DTests */,
 				213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */,
@@ -504,17 +525,20 @@
 		21F719021D71D12C00C98410 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
+				21C68811227682A800176E48 /* CommonStyleInterpretter.swift */,
 				21F718FE1D71D08B00C98410 /* CSSParser.swift */,
 				21F719001D71D11D00C98410 /* GraphicStyle.swift */,
-				21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */,
-				21F719031D71D1E600C98410 /* StyleSelector.swift */,
 				21D8BDDB1F479DE5002B5BE7 /* GroupSelector.swift */,
-				2103E55D1DD97E3B005E3A09 /* StyleBlock.swift */,
 				2134CAB721F02DA800568393 /* PathStyle.swift */,
-				21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */,
 				2126E3C21F373C5A00A26C49 /* SelectorCombinator.swift */,
-				21BD53AF1F9623710085B6ED /* UnicodeScalarView+Utils.swift */,
 				21344CA82203CA34002C9837 /* StyleAcceptor.swift */,
+				2103E55D1DD97E3B005E3A09 /* StyleBlock.swift */,
+				21D8BDDE1F491BAC002B5BE7 /* StylePropertyInterpreter.swift */,
+				21F719031D71D1E600C98410 /* StyleSelector.swift */,
+				21DA69051F98476400392CBB /* SVGPropertyInterpreter.swift */,
+				21BD53AF1F9623710085B6ED /* UnicodeScalarView+Utils.swift */,
+				21C688132276832000176E48 /* ViewStyleInterpreter.swift */,
+				218340B2226D5828004B3DDF /* ViewStyle.swift */,
 			);
 			name = Styling;
 			path = Scalar2D;
@@ -562,9 +586,9 @@
 			isa = PBXGroup;
 			children = (
 				21FFE8E41D646669003446DF /* PathView+Cross.swift */,
-				2134CAB321E15D7400568393 /* PathViewLayer.swift */,
 				211267691F9B864800ABBF05 /* StyleableObject.swift */,
 				21344CA522028FD2002C9837 /* CAShapeLayer+Style.swift */,
+				218340AB226AB63B004B3DDF /* PathViewLayer.swift */,
 			);
 			name = CrossPlatform;
 			sourceTree = "<group>";
@@ -850,6 +874,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21C688152276AC2600176E48 /* ViewStyle.swift in Sources */,
 				21344CA722028FD2002C9837 /* CAShapeLayer+Style.swift in Sources */,
 				2134CAB921F02DA800568393 /* PathStyle.swift in Sources */,
 				21384F8F21A8A2F200FC4F71 /* StyleSelector.swift in Sources */,
@@ -859,9 +884,11 @@
 				21384F9A21A8A2FA00FC4F71 /* DeviceRGBColourParser.swift in Sources */,
 				21384F9021A8A2F200FC4F71 /* GroupSelector.swift in Sources */,
 				21384F9C21A8A2FA00FC4F71 /* ICCColourParser.swift in Sources */,
+				21C688162276AC3100176E48 /* CommonStyleInterpretter.swift in Sources */,
 				21384F9521A8A2FA00FC4F71 /* CGColor+ColourParser.swift in Sources */,
 				21384FB121A8A34200FC4F71 /* NSView+Styling.swift in Sources */,
 				21384FAB21A8A32900FC4F71 /* PathView+Cross.swift in Sources */,
+				21C688172276AC3600176E48 /* ViewStyleInterpreter.swift in Sources */,
 				21384FA521A8A30A00FC4F71 /* CGPath+Iterate.swift in Sources */,
 				21384FAC21A8A32900FC4F71 /* StyleableObject.swift in Sources */,
 				21384F9221A8A2F200FC4F71 /* StylePropertyInterpreter.swift in Sources */,
@@ -869,8 +896,8 @@
 				21384FB021A8A34200FC4F71 /* PathView+Mac.swift in Sources */,
 				21384F8721A8A2CC00FC4F71 /* Parsing.swift in Sources */,
 				21384F9421A8A2F200FC4F71 /* UnicodeScalarView+Utils.swift in Sources */,
+				218340AD226AB63B004B3DDF /* PathViewLayer.swift in Sources */,
 				21384FA221A8A2FF00FC4F71 /* SVGElements+CoreGraphics.swift in Sources */,
-				2134CAB521E15D7400568393 /* PathViewLayer.swift in Sources */,
 				21384FA021A8A2FA00FC4F71 /* WebColourParser.swift in Sources */,
 				21384FA121A8A2FF00FC4F71 /* SVGElements.swift in Sources */,
 				21384F9D21A8A2FA00FC4F71 /* NSColor+ColourParser.swift in Sources */,
@@ -931,19 +958,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218340B3226D5828004B3DDF /* ViewStyle.swift in Sources */,
 				21DA69061F98476500392CBB /* SVGPropertyInterpreter.swift in Sources */,
 				211179ED1DB75EFC0054FAA4 /* ICCColourParser.swift in Sources */,
 				211179E71DB75EFC0054FAA4 /* ColourParser.swift in Sources */,
-				2134CAB421E15D7400568393 /* PathViewLayer.swift in Sources */,
 				21FFE8D61D6300BA003446DF /* UIBezierPath+SVG.swift in Sources */,
 				211179F11DB75EFC0054FAA4 /* WebColourParser.swift in Sources */,
 				21FFE8D11D6300AC003446DF /* DocumentContext.swift in Sources */,
 				21FFE8D51D6300BA003446DF /* CGPath+Iterate.swift in Sources */,
 				21BD53B01F9623710085B6ED /* UnicodeScalarView+Utils.swift in Sources */,
 				211179EC1DB75EFC0054FAA4 /* HexColourParser.swift in Sources */,
+				21C68812227682A800176E48 /* CommonStyleInterpretter.swift in Sources */,
 				211179E91DB75EFC0054FAA4 /* DeviceCYMKColourParser.swift in Sources */,
 				211179E61DB75EFC0054FAA4 /* CGColor+ColourParser.swift in Sources */,
 				21F16AC42061FC61002F4913 /* SVGElements.swift in Sources */,
+				21C688142276832000176E48 /* ViewStyleInterpreter.swift in Sources */,
 				21D8BDDF1F491BAC002B5BE7 /* StylePropertyInterpreter.swift in Sources */,
 				21FFE8D81D630108003446DF /* PathView+iOS.swift in Sources */,
 				21FFE8E61D646669003446DF /* PathView+Cross.swift in Sources */,
@@ -951,6 +980,7 @@
 				21B41B131FAC0888003C974F /* Parsing.swift in Sources */,
 				211179EA1DB75EFC0054FAA4 /* DeviceGrayColourParser.swift in Sources */,
 				21EF7CBE1DBCFBD600D71CD4 /* StyleSelector.swift in Sources */,
+				218340AC226AB63B004B3DDF /* PathViewLayer.swift in Sources */,
 				21FFE8D41D6300BA003446DF /* CGPath+SVG.swift in Sources */,
 				2126E3C31F373C5A00A26C49 /* SelectorCombinator.swift in Sources */,
 				211179E81DB75EFC0054FAA4 /* DeviceColourParser.swift in Sources */,
@@ -959,6 +989,7 @@
 				211179F01DB75EFC0054FAA4 /* UIColor+ColourParser.swift in Sources */,
 				21344CA92203CA34002C9837 /* StyleAcceptor.swift in Sources */,
 				211179EF1DB75EFC0054FAA4 /* RGBColourParser.swift in Sources */,
+				216A7DA72266C63400F99A96 /* CoreGraphics+Styling.swift in Sources */,
 				21ABB1381F64331000967245 /* FontDescription.swift in Sources */,
 				2134CAB821F02DA800568393 /* PathStyle.swift in Sources */,
 				21344CA622028FD2002C9837 /* CAShapeLayer+Style.swift in Sources */,
@@ -1257,7 +1288,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1312,7 +1343,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";

@@ -3,13 +3,13 @@
 //  Scalar2D
 //
 //  Created by Glenn Howes on 8/27/16.
-//  Copyright © 2016 Generally Helpful Software. All rights reserved.
+//  Copyright © 2016-2019 Generally Helpful Software. All rights reserved.
 //
 //
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016-2017 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -109,11 +109,17 @@ public  enum StyleProperty
     case lineCap(LineCap)
     case lineJoin(LineJoin)
     
+    // view properties
+    case border([BorderRecord])
+    case cornerRadius(CornerRadius)
+    
     indirect case array([StyleProperty])
     indirect case dimensionArray([UnitDimension])
     
     // remember to update Equatable extension below if you add another case
 }
+
+
 
 public struct   PropertyKey : RawRepresentable
 {
@@ -174,6 +180,7 @@ public protocol StyleContext
 {
     func resolve(property : GraphicStyle) -> StyleProperty?
     func points(fromUnit unit: StyleUnit) -> NativeDimension?
+    var hairlineWidth : NativeDimension {get}
 }
 
 public extension StyleContext
@@ -238,6 +245,10 @@ extension StyleProperty : Equatable
                 return lhsJoin == rhsJoin
             case (.dimensionArray(let lhsArray), .dimensionArray(let rhsArray)):
                 return lhsArray == rhsArray
+            case (.border(let lhsTypes), .border(let rhsTypes)):
+                return lhsTypes == rhsTypes
+            case (.cornerRadius(let lhsCorner), .cornerRadius(let rhsCorner)):
+                return lhsCorner == rhsCorner
             default:
                 return false
         }

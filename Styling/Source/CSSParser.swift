@@ -4,7 +4,7 @@
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016-2017 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ import Foundation
  **/
 public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
 {
-    case none
+    case none // be careful, might conflict with Optional.none
     case missingSelector(String.UnicodeScalarView.Index)
     case missingValues(String.UnicodeScalarView.Index)
     case unexpectedCharacter(Character, String.UnicodeScalarView.Index)

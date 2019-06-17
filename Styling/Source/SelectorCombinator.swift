@@ -3,14 +3,14 @@
 //  Scalar2D
 //
 //  Created by Glenn Howes on 8/6/17.
-//  Copyright © 2017 Generally Helpful Software. All rights reserved.
+//  Copyright © 2017-2019 Generally Helpful Software. All rights reserved.
 //
 //
 //
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -92,7 +92,7 @@ public enum SelectorCombinator : CSSRankable
      **/
     public enum FailureReason : CustomStringConvertible, ParseBufferError
     {
-        case none
+        case noFailure
         case emptyString(String.UnicodeScalarView.Index)
         case unmatchedParenthesis(String.UnicodeScalarView.Index)
         case startsWithCombinator(SelectorCombinator, String.UnicodeScalarView.Index)
@@ -104,7 +104,7 @@ public enum SelectorCombinator : CSSRankable
         {
             switch self
             {
-            case .none:
+            case .noFailure:
                 return "No Failure"
             case .emptyString:
                 return "Empty String"
@@ -128,7 +128,7 @@ public enum SelectorCombinator : CSSRankable
         public var failurePoint : String.UnicodeScalarView.Index?
         {
             switch self {
-                case .none:
+                case .noFailure:
                     return nil
                 case .emptyString(let result):
                     return result

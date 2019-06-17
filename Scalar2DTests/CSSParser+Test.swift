@@ -77,7 +77,7 @@ class CSSParser_Test: XCTestCase {
             StyleBlock(selectors: [StyleSelector(element: .element(name: "path"), identifier: "specified")],
                        styles: [GraphicStyle(key: .fill, hexColour: "#FF4"),
                                 GraphicStyle(key: .stroke_width, value: .number(3.0)),
-                                GraphicStyle(key: .line_cap, value: .lineCap(.square)),
+                                GraphicStyle(key: .stroke_line_cap, value: .lineCap(.square)),
                                 GraphicStyle(key: .stroke_line_join, value: .lineJoin(.miter)),
                                 GraphicStyle(key: .stroke_miter_limit, value: .number(3.0)),
                                 GraphicStyle(key: .stroke_dash_offset, value: StyleProperty.unitNumber(UnitDimension(dimension: 75.0, unit: .percent))),
@@ -91,15 +91,16 @@ class CSSParser_Test: XCTestCase {
                        styles:
                         [GraphicStyle(key: .fill, hexColour: "#FF6"),
                          GraphicStyle(key: .stroke, webColour: "green")
-//                         ,GraphicStyle(key: .line_cap, value: .lineCap(.square)),
-//                         GraphicStyle(key: .stroke_line_join, value: .lineJoin(.miter)),
-//                         GraphicStyle(key: .stroke_dash_offset, value: .number(4.0)),
-//                         GraphicStyle(key: .miter_limit, value: .number(4.0))
                 
                 ]),
             
             StyleBlock(selectors: [StyleSelector(element: .element(name: "g"), pseudoClasses: [.first_child])],
-                       styles: [GraphicStyle(key: .fill, hexColour: "#FF7")]),
+                       styles: [GraphicStyle(key: .fill, hexColour: "#FF7"),
+                                GraphicStyle(key: .background_color, webColour: "orange"),
+                                GraphicStyle(key: .view_border_style, value: StyleProperty.border([BorderRecord(types: BorderTypes.horizontal, style: .initial), BorderRecord(types: [BorderTypes.vertical], style: .empty)])),
+                                GraphicStyle(key: .view_border_width, value: StyleProperty.border([BorderRecord(types: [BorderTypes.horizontal], width: .custom(UnitDimension(dimension: 3.0, unit: .pixel))), BorderRecord(types: [BorderTypes.vertical], width: .thick)]))
+                                
+                ]),
             
             
             StyleBlock(combinators: [[.selector(StyleSelector("switch")), .child, .selector(StyleSelector("g")), .child, .selector(StyleSelector("rect"))]],
@@ -220,7 +221,7 @@ class CSSParser_Test: XCTestCase {
         {
             if let parsed = try GroupSelector.parse(css: css)
             {
-                var testValue = [[SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .none, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .none, identifier: "bob"))],
+                let testValue = [[SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .none, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .none, identifier: "bob"))],
                              [SelectorCombinator.selector(StyleSelector(element: .element(name: "div"), className: "john"))]] as GroupSelector
             
                 XCTAssertEqual(parsed.count, testValue.count, "Got \(parsed.count), expected \(testValue.count) GroupSelectors")
@@ -247,7 +248,7 @@ class CSSParser_Test: XCTestCase {
     {
         do
         {
-            let parser = CSSParser()
+            let parser = CSSParser(propertyInterpreter: ViewStyleInterpreter())
             let blocks = try parser.parse(cssString: cssString)
             XCTAssert(blocks.count > 0, "Expected css parsed to blocks")
             XCTAssert(blocks.count == self.testBlocks.count, "Expected css parsed to blocks")

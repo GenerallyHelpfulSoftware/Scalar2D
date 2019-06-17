@@ -4,7 +4,7 @@
 //
 // The MIT License (MIT)
 
-//  Copyright (c) 2016-2018 Generally Helpful Software
+//  Copyright (c) 2016-2019 Generally Helpful Software
 
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 //  Created by Glenn Howes on 3/25/18.
-//  Copyright © 2018 Generally Helpful Software. All rights reserved.
+//  Copyright © 2018-2019 Generally Helpful Software. All rights reserved.
 //
 
 import Foundation

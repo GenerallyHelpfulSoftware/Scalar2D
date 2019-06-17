@@ -11,8 +11,8 @@ text, tspan
     font-family:Georgia, system;
     font-size:31pt;
     font-weight:bold;
-   fill:#FF1;
-   font-stretch: extra-expanded;
+    fill:#FF1;
+    font-stretch: extra-expanded;
 }
 
 rect
@@ -53,6 +53,9 @@ circle, path
 g:first-child
 {
     fill: #FF7;
+    background-color: orange;
+    border-style: initial none;
+    border-width: 3px thick;
 }
 
 switch > g > rect
