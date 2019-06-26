@@ -157,7 +157,7 @@ class CSSParser_Test: XCTestCase {
             css = ":not(*.glenn:nth-child(4 n -5))"
             
             parsed = try StyleSelector(css: css)
-            testValue = StyleSelector(element: .none, pseudoClasses: [.not(testValue)])
+            testValue = StyleSelector(element: .empty, pseudoClasses: [.not(testValue)])
             
             XCTAssertEqual(parsed, testValue, "\(css) not parsed correctly")
             
@@ -192,7 +192,7 @@ class CSSParser_Test: XCTestCase {
         do
         {
             var parsed = try SelectorCombinator.parse(css: css)
-            var testValue = [SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .none, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .none, identifier: "bob"))]
+            var testValue = [SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .empty, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .empty, identifier: "bob"))]
             
             XCTAssertEqual(parsed!, testValue, "\(css) not parsed correctly")
             
@@ -221,7 +221,7 @@ class CSSParser_Test: XCTestCase {
         {
             if let parsed = try GroupSelector.parse(css: css)
             {
-                let testValue = [[SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .none, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .none, identifier: "bob"))],
+                let testValue = [[SelectorCombinator.selector(StyleSelector(element: .element(name: "g"))), .descendant, .selector(StyleSelector(element: .empty, className: "glenn", pseudoClasses: [.nth_child(.nth(5))])), .descendant, .selector(StyleSelector(element: .empty, identifier: "bob"))],
                              [SelectorCombinator.selector(StyleSelector(element: .element(name: "div"), className: "john"))]] as GroupSelector
             
                 XCTAssertEqual(parsed.count, testValue.count, "Got \(parsed.count), expected \(testValue.count) GroupSelectors")

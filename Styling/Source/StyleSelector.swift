@@ -412,13 +412,13 @@ public enum AttributePosition
 public enum CSSElement : CSSRankable
 {
     case any
-    case none
+    case empty // when "none" is specified. empty instead of none to avoid conflicts wition Optional.none
     case element(name:String)
     
     public var specificity: CSSSpecificity
     {
         switch self {
-        case .none:
+        case .empty:
             return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 0, elementPseudoElementCount: 0)
         case .any:
             return CSSSpecificity(identifierCount: 0, classesAttributesPseudoClassesCount: 0, elementPseudoElementCount: 0)
@@ -431,7 +431,7 @@ public enum CSSElement : CSSRankable
     {
         switch self
         {
-            case .any, .none:
+            case .any, .empty:
                 return true
             case .element(let name):
                 return element.styleableElementName == name
@@ -452,7 +452,7 @@ public struct StyleSelector : CSSRankable
      **/
     public enum FailureReason : CustomStringConvertible, ParseBufferError
     {
-        case none
+        case noReason
         case emptyString(String.UnicodeScalarView.Index)
         case disallowedName(String.UnicodeScalarView.Index)
         case missingSelector(String.UnicodeScalarView.Index)
@@ -467,7 +467,7 @@ public struct StyleSelector : CSSRankable
         {
             switch self
             {
-            case .none:
+            case .noReason:
                 return "No Failure"
             case .emptyString:
                 return "Empty String"
@@ -494,7 +494,7 @@ public struct StyleSelector : CSSRankable
         public var failurePoint : String.UnicodeScalarView.Index?
         {
             switch self  {
-                case .none:
+                case .noReason:
                     return nil
                 case .emptyString(let result):
                     return result
@@ -530,7 +530,7 @@ public struct StyleSelector : CSSRankable
             case inBetweenTokens
         }
         
-        var localElement: CSSElement = .none
+        var localElement: CSSElement = .empty
         var localStyleIdentifier: String? = nil
         var localStyleClassName: String? = nil
         var localPseudoClasses: [PseudoClass]? = nil
@@ -547,17 +547,17 @@ public struct StyleSelector : CSSRankable
         let firstCharacter = buffer[range.lowerBound]
         switch firstCharacter {
             case "#":
-                localElement = .none
+                localElement = .empty
                 previousCharacter  = "#"
                 state = ParseState.inIdentifier
                 stringBegin = try buffer.uncommentedIndex(after: stringBegin)
             case ".":
-                localElement = .none
+                localElement = .empty
                 previousCharacter  = "."
                 state = ParseState.inClassName
                 stringBegin = try buffer.uncommentedIndex(after: stringBegin)
             case ":":
-                localElement = .none
+                localElement = .empty
                 previousCharacter  = ":"
                 state = ParseState.inPseudoClasses
                 stringBegin = try buffer.uncommentedIndex(after: stringBegin)
@@ -812,7 +812,7 @@ public struct StyleSelector : CSSRankable
         try self.init(buffer: unicodeView, range: unicodeView.startIndex..<unicodeView.endIndex)
     }
     
-    public init(element: CSSElement  = .none, identifier: String? = nil, className: String? = nil, pseudoClasses: [PseudoClass]? = nil, pseudoElement: PseudoElement? = nil)
+    public init(element: CSSElement  = .empty, identifier: String? = nil, className: String? = nil, pseudoClasses: [PseudoClass]? = nil, pseudoElement: PseudoElement? = nil)
     {
         self.element = element
         self.styleIdentifier = identifier
@@ -966,7 +966,7 @@ extension CSSElement : Equatable
     {
         switch(lhs, rhs)
         {
-            case (.any, .any), (.none, .none):
+            case (.any, .any), (.empty, .empty):
                 return true
             case (.element(let lhsName), .element(let rhsName)):
                     return lhsName == rhsName

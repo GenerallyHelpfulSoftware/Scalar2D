@@ -33,7 +33,7 @@ import Foundation
  **/
 public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
 {
-    case none // be careful, might conflict with Optional.none
+    case noReason
     case missingSelector(String.UnicodeScalarView.Index)
     case missingValues(String.UnicodeScalarView.Index)
     case unexpectedCharacter(Character, String.UnicodeScalarView.Index)
@@ -43,7 +43,7 @@ public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
     {
         switch self
         {
-            case .none:
+            case .noReason:
                 return "No Failure"
             case  .unexpectedCharacter(let badCharacter, _):
                 return "Unexpected character: \(badCharacter)"
@@ -59,7 +59,7 @@ public enum CSSParserFailureReason : CustomStringConvertible, ParseBufferError
     public var failurePoint: String.UnicodeScalarView.Index?
     {
         switch self {
-        case .none:
+        case .noReason:
             return nil
         case .missingSelector(let result):
             return result

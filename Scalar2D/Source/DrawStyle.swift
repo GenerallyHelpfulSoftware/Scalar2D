@@ -40,14 +40,14 @@ typealias DrawDimension = CGFloat
 
 enum ColorStyle
 {
-    case none // be careful, might conflict with Optional.none
+    case empty
     case current
     case defined(DrawColor)
 }
 
 enum StrokeWidth
 {
-    case none
+    case empty
     case fixed(DrawDimension)
     case absolute(DrawDimension)
 }

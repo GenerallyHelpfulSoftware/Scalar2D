@@ -543,7 +543,7 @@ public enum PathToken : CustomStringConvertible
     public enum FailureReason : CustomStringConvertible, ParseBufferError
     {
         
-        case none
+        case noReason
         case missingMoveAtStart(offset: String.UnicodeScalarView.Index)
         case unexpectedCharacter(badCharacter: UnicodeScalar, offset: String.UnicodeScalarView.Index)
         case tooFewParameters(operand: UnicodeScalar, expectedParameterCount: Int, actualParameterCount: Int, offset: String.UnicodeScalarView.Index)
@@ -553,7 +553,7 @@ public enum PathToken : CustomStringConvertible
         public var failurePoint: String.UnicodeScalarView.Index?
         {
             switch self {
-            case .none:
+            case .noReason:
                 return nil
             case .missingMoveAtStart(let result):
                 return result
@@ -572,7 +572,7 @@ public enum PathToken : CustomStringConvertible
         {
             switch self
             {
-                case .none:
+                case .noReason:
                     return "No Failure"
                 case let .unexpectedCharacter(badCharacter, offset):
                     return "Unexpected character: \(badCharacter) at offset: \(offset)"
