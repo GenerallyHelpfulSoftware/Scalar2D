@@ -92,7 +92,6 @@
 		21ABB1381F64331000967245 /* FontDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180EC371F64329C00D7FE92 /* FontDescription.swift */; };
 		21ABB1391F64331400967245 /* CoreText+FontDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2180EC381F64329C00D7FE92 /* CoreText+FontDescription.swift */; };
 		21B167111DCEAA43006F5481 /* CSSParser+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B167101DCEAA43006F5481 /* CSSParser+Test.swift */; };
-		21B167131DCEABAF006F5481 /* Test.css in Resources */ = {isa = PBXBuildFile; fileRef = 21B167121DCEABAF006F5481 /* Test.css */; };
 		21B41B131FAC0888003C974F /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B41B121FAC0888003C974F /* Parsing.swift */; };
 		21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B7197E1D48599B00B0ACBF /* Scalar2DTests.swift */; };
 		21BD53B01F9623710085B6ED /* UnicodeScalarView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BD53AF1F9623710085B6ED /* UnicodeScalarView+Utils.swift */; };
@@ -110,6 +109,7 @@
 		21EF7CC01DBCFBE300D71CD4 /* CSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F718FE1D71D08B00C98410 /* CSSParser.swift */; };
 		21F16AC42061FC61002F4913 /* SVGElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F16AC32061FC61002F4913 /* SVGElements.swift */; };
 		21F16AC6206884D9002F4913 /* SVGElements+CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F16AC5206884D9002F4913 /* SVGElements+CoreGraphics.swift */; };
+		21FCC90222C4302D00CCCD7F /* TestCSS_001.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FCC90122C4302D00CCCD7F /* TestCSS_001.swift */; };
 		21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFE8C71D63009D003446DF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; };
 		21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -240,7 +240,6 @@
 		218340AB226AB63B004B3DDF /* PathViewLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PathViewLayer.swift; path = Views/CrossPlatform/Source/PathViewLayer.swift; sourceTree = SOURCE_ROOT; };
 		218340B2226D5828004B3DDF /* ViewStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewStyle.swift; path = Styling/Source/ViewStyle.swift; sourceTree = SOURCE_ROOT; };
 		21B167101DCEAA43006F5481 /* CSSParser+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CSSParser+Test.swift"; sourceTree = "<group>"; };
-		21B167121DCEABAF006F5481 /* Test.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = Test.css; path = TestFiles/Test.css; sourceTree = "<group>"; };
 		21B41B121FAC0888003C974F /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Parsing.swift; path = Source/Parsing.swift; sourceTree = "<group>"; };
 		21B5ABCB1D60037D00B6E5EA /* CGPath+Iterate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGPath+Iterate.swift"; path = "GraphicPath/Source/CGPath+Iterate.swift"; sourceTree = SOURCE_ROOT; };
 		21B719731D48599A00B0ACBF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
@@ -264,6 +263,7 @@
 		21F718FE1D71D08B00C98410 /* CSSParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSSParser.swift; path = Styling/Source/CSSParser.swift; sourceTree = SOURCE_ROOT; };
 		21F719001D71D11D00C98410 /* GraphicStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphicStyle.swift; path = Styling/Source/GraphicStyle.swift; sourceTree = SOURCE_ROOT; };
 		21F719031D71D1E600C98410 /* StyleSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StyleSelector.swift; path = Styling/Source/StyleSelector.swift; sourceTree = SOURCE_ROOT; };
+		21FCC90122C4302D00CCCD7F /* TestCSS_001.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestCSS_001.swift; path = TestFiles/TestCSS_001.swift; sourceTree = "<group>"; };
 		21FFE8C51D63009D003446DF /* Scalar2D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Scalar2D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		21FFE8C71D63009D003446DF /* Scalar2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Scalar2D.h; sourceTree = "<group>"; };
 		21FFE8C81D63009D003446DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 		21B167141DCEABB6006F5481 /* TestFiles */ = {
 			isa = PBXGroup;
 			children = (
-				21B167121DCEABAF006F5481 /* Test.css */,
+				21FCC90122C4302D00CCCD7F /* TestCSS_001.swift */,
 			);
 			name = TestFiles;
 			sourceTree = "<group>";
@@ -847,7 +847,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21B167131DCEABAF006F5481 /* Test.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,6 +950,7 @@
 				21B167111DCEAA43006F5481 /* CSSParser+Test.swift in Sources */,
 				21B7197F1D48599B00B0ACBF /* Scalar2DTests.swift in Sources */,
 				21DE653D1FFC5D7000673520 /* CoreText+Test.swift in Sources */,
+				21FCC90222C4302D00CCCD7F /* TestCSS_001.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

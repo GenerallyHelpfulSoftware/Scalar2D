@@ -35,15 +35,17 @@
 import XCTest
 import Scalar2D
 
+
+
+
 class CSSParser_Test: XCTestCase {
+    
     var cssString: String!
     var testBlocks : [StyleBlock]!
     override func setUp() {
         super.setUp()
-        let myBundle = Bundle(for: type(of: self))
-        let testFile = myBundle.url(forResource: "Test", withExtension: "css")
 
-        cssString = try! String(contentsOf: testFile!)
+        cssString = testCSS_001
         
         
         testBlocks = buildTestBlocks()
