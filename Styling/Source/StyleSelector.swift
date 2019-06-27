@@ -407,14 +407,16 @@ public enum AttributePosition
 
 
 /**
-     enum that indicates what kind of object this is, such as path, group, button, etc. Or any. 
-*/
+ enum that indicates what kind of object this is, such as path, group, button, etc. Or any.
+ */
 public enum CSSElement : CSSRankable
 {
     case any
-    case empty // when "none" is specified. empty instead of none to avoid conflicts wition Optional.none
+    /// case where no style selector has been explicitly specified
+    case empty // empty instead of none to avoid conflicts wition Optional.none
     case element(name:String)
     
+    /// The rules of CSS are such that the more specific the description of a style's description, the more it is to be prefered in assigning the style to an object.
     public var specificity: CSSSpecificity
     {
         switch self {
@@ -439,6 +441,8 @@ public enum CSSElement : CSSRankable
     }
 }
 
+/// A style selector is used to choose which items a style block is going to be applied
+/// See the css specification for such concepts as pseudo classes, and pseudo elements
 public struct StyleSelector : CSSRankable
 {
     let element: CSSElement
@@ -826,6 +830,7 @@ public struct StyleSelector : CSSRankable
         self.init(element: .element(name: elementName))
     }
     
+    /// in CSS, style selectors are ranked in order in which they will be applied to an element. This ranking prefers the more specific over the general.
     public var specificity: CSSSpecificity
     {
         var result = self.element.specificity
@@ -855,6 +860,10 @@ public struct StyleSelector : CSSRankable
         return result
     }
     
+    /// Answers the question if this style selector could apply to an item. Whether it's name, class, id, location in the hierarchy, etc. is compatible.
+    /// - Parameter testItem: an item to be inspected for compatibility
+    /// - Parameter context: the context to answer questions about where the test item appears in the hierarchy
+    /// - returns: true if the testItem is compatible with this selector
     public func applies(to testItem:CSSIdentifiable, given context: CSSContext ) -> Bool
     {
         if !self.element.compatible(with: testItem)
@@ -891,7 +900,6 @@ public struct StyleSelector : CSSRankable
         return true
     }
 }
-
 extension PseudoClass : Equatable
 {
     public static func == (lhs: PseudoClass, rhs: PseudoClass) -> Bool

@@ -47,6 +47,7 @@ enum ColorStyle
 
 enum StrokeWidth
 {
+    /// use "none" or no stroke
     case empty
     case fixed(DrawDimension)
     case absolute(DrawDimension)

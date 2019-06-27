@@ -34,6 +34,7 @@
 
 import Foundation
 
+/// enumeraton of common reasons that parsing a css style element might fail
 public enum StylePropertyFailureReason : CustomStringConvertible, ParseBufferError
 {
     case unexpectedSemiColon(String.UnicodeScalarView.Index)
@@ -108,6 +109,11 @@ fileprivate enum ParseState
 
 extension StylePropertyInterpreter
 {
+    /// A css style property has a key, a colon, a value, and a semicolon terminator. This function parses it
+    /// - Parameter buffer: contents of a text buffer presumably the beginning will contain a css property
+    /// - Parameter range: the portion of the text buffer that's valid for parsing
+    /// - throws: a StylePropertyFailureReason
+    /// - returns: tuple containing a list of graphic style elements and the index after the found semi-colon
     public func parseProperties(buffer: String.UnicodeScalarView, range: Range<String.UnicodeScalarView.Index>) throws -> ([GraphicStyle], String.UnicodeScalarView.Index)
     {
         var result = [GraphicStyle]()
@@ -210,6 +216,11 @@ extension StylePropertyInterpreter
         
         return (result, cursor)
     }
+    
+    /// A css style property has a key, a colon, a value, and a semicolon terminator. This function parses a single line beginnig with this combination
+    /// - Parameter string: a string presumed to begin with a css property description line
+    /// - returns: a list of GraphicStyle elements
+    /// - throws: a StylePropertyFailureReason if format is bad
     public func parseProperties(string: String) throws -> [GraphicStyle]
     {
         let scalars = string.unicodeScalars
