@@ -110,6 +110,7 @@
 		21F16AC42061FC61002F4913 /* SVGElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F16AC32061FC61002F4913 /* SVGElements.swift */; };
 		21F16AC6206884D9002F4913 /* SVGElements+CoreGraphics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F16AC5206884D9002F4913 /* SVGElements+CoreGraphics.swift */; };
 		21FCC90222C4302D00CCCD7F /* TestCSS_001.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FCC90122C4302D00CCCD7F /* TestCSS_001.swift */; };
+		21FCC90822C5883E00CCCD7F /* CoreGraphics+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216A7DA62266C63400F99A96 /* CoreGraphics+Styling.swift */; };
 		21FFE8C91D63009D003446DF /* Scalar2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 21FFE8C71D63009D003446DF /* Scalar2D.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		21FFE8CC1D63009D003446DF /* Scalar2D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; };
 		21FFE8CD1D63009D003446DF /* Scalar2D.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8C51D63009D003446DF /* Scalar2D.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -883,6 +884,7 @@
 				21384F9A21A8A2FA00FC4F71 /* DeviceRGBColourParser.swift in Sources */,
 				21384F9021A8A2F200FC4F71 /* GroupSelector.swift in Sources */,
 				21384F9C21A8A2FA00FC4F71 /* ICCColourParser.swift in Sources */,
+				21FCC90822C5883E00CCCD7F /* CoreGraphics+Styling.swift in Sources */,
 				21C688162276AC3100176E48 /* CommonStyleInterpretter.swift in Sources */,
 				21384F9521A8A2FA00FC4F71 /* CGColor+ColourParser.swift in Sources */,
 				21384FB121A8A34200FC4F71 /* NSView+Styling.swift in Sources */,
