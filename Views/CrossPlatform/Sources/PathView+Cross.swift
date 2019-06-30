@@ -30,11 +30,16 @@
 //
 //
 
+
+#if os(iOS) || os(tvOS) || os(OSX)
 import Foundation
 import CoreGraphics
 import QuartzCore
+import Scalar2D_GraphicPath
+import Scalar2D_Styling
 
-protocol ShapeView : StyleableObject {
+
+public protocol ShapeView : StyleableObject {
     
     var lineWidth: CGFloat {get set}
     var fill: CGColor? {get set}
@@ -88,3 +93,6 @@ extension ShapeView
         self.shapeLayer.path = offsetPath
     }
 }
+
+#endif
+

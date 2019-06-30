@@ -30,7 +30,13 @@
 //  THE SOFTWARE.
 //
 //
+
+#if os(iOS) || os(tvOS) || os(OSX) // no core animation or core graphics on watchOS
+
 import CoreGraphics
+import QuartzCore
+import Scalar2D_Styling
+import Scalar2D_CoreGraphics
 
 extension CAShapeLayer
 {
@@ -149,3 +155,4 @@ extension CAShapeLayer : StyleAcceptor
     
 }
 
+#endif

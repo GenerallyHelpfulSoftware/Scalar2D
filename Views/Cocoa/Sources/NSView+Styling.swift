@@ -31,11 +31,13 @@
 //
 //
 import Foundation
-
+#if os(OSX)
 import Cocoa
 import CoreGraphics
+import Scalar2D_CoreViews
 
 extension NSView : StyleableObject
 {
     
 }
+#endif

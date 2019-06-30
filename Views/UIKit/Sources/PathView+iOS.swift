@@ -31,6 +31,7 @@
 //
 
 import UIKit
+import Scalar2D_CoreViews
 
 extension UIView.ContentMode
 {

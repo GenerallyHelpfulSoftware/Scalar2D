@@ -30,7 +30,7 @@
 //
 
 import XCTest
-import Scalar2D
+import Scalar2D_GraphicPath
 
 class PathGeneratorTests: XCTestCase {
     

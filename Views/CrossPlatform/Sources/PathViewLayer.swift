@@ -30,11 +30,16 @@
 //  THE SOFTWARE.
 //
 //
-import CoreGraphics
 
-class PathViewLayer: CALayer {
-    let shapeLayer  = CAShapeLayer()
-    override func layoutSublayers() {
+#if os(iOS) || os(tvOS) || os(OSX)
+
+import CoreGraphics
+import Scalar2D_Colour
+import QuartzCore
+
+open class PathViewLayer: CALayer {
+    public let shapeLayer  = CAShapeLayer()
+    override open func layoutSublayers() {
         super.layoutSublayers()
         
         if self.shapeLayer.superlayer == nil
@@ -126,3 +131,4 @@ class PathViewLayer: CALayer {
         shapeLayer.setNeedsDisplay()
     }
 }
+#endif

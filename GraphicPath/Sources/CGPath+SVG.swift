@@ -32,8 +32,6 @@
 
 import Foundation
 import CoreGraphics
-
-
 fileprivate struct Vector2D
 {
     let deltaX: CGFloat

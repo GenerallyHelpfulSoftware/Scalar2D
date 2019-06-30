@@ -33,8 +33,10 @@
 //
 
 import XCTest
-import Scalar2D
 
+@testable import Scalar2D_Styling
+@testable import Scalar2D_FontDescription
+@testable import Scalar2D_Utils
 
 
 

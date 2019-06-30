@@ -31,6 +31,7 @@
 //
 //
 import CoreGraphics
+import Scalar2D_Styling
 
 public extension LineJoin
 {

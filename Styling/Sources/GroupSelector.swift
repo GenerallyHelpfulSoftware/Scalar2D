@@ -33,6 +33,7 @@
 //
 
 import Foundation
+import Scalar2D_Utils
 
 public typealias GroupSelector = [[SelectorCombinator]]
 

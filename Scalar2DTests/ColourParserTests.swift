@@ -33,7 +33,7 @@
 //
 
 import XCTest
-import Scalar2D
+@testable import Scalar2D_Colour
 
 class ColourParserTests: XCTestCase {
     let allParsers = [

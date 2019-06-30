@@ -34,6 +34,12 @@
 //
 import Foundation
 import CoreText
+import Scalar2D_Utils
+#if os(iOS) || os(tvOS) || os(watchOS) 
+import UIKit // for NSAttributedString.Key.underlineStyle
+#elseif os(OSX)
+import AppKit // for NSAttributedString.Key.underlineStyle
+#endif
 
 
 fileprivate let gSystemFontProperties : [AnyHashable : Any] = {return createSystemFontProperties()}()

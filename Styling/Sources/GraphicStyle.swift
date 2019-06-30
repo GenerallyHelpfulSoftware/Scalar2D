@@ -31,28 +31,16 @@
 //
 //
 import Foundation
-
-#if os(iOS) || os(tvOS) || os(OSX)
+import Scalar2D_Colour
+import Scalar2D_FontDescription
+#if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
+import CoreGraphics
 public typealias NativeDimension = CGFloat
 #else
 public typealias NativeDimension = Double
 #endif
 
-public protocol InheritableProperty
-{
-    var useInitial : Bool {get}
-    var useInherited : Bool {get}
-    var useNormal : Bool {get}
-}
 
-public  enum StyleUnit
-{
-    case pixel
-    case percent
-    case em
-    case point
-    case centimeter
-}
 
 extension String
 {

@@ -31,6 +31,12 @@
 //
 
 import Foundation
+import Scalar2D_Utils
+
+
+#if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
+import CoreGraphics
+#endif
 
 public extension String
 {
@@ -514,7 +520,7 @@ public extension String
 **/
 public enum PathToken : CustomStringConvertible
 {
-    #if os(iOS) || os(tvOS) || os(OSX)
+    #if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
     public typealias PathParameter = CGFloat
     #else
     public typealias PathParameter = Double

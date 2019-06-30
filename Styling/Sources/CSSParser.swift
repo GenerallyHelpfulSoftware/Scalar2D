@@ -27,6 +27,7 @@
 //
 
 import Foundation
+import Scalar2D_Utils
 
 /**
  If the parsing of a string fails, and it turns out to not be a valid SVG path string. These errors will be thrown.

@@ -48,8 +48,8 @@ public struct HexColourParser : ColourParser
             case 4:
                 let hexString = String(source[index1..<source.endIndex])
                 let scanner = Scanner(string: hexString)
-                var rgbInt = UInt32()
-                guard scanner.scanHexInt32(&rgbInt) else
+                var rgbInt = UInt64()
+                guard scanner.scanHexInt64(&rgbInt) else
                 {
                     return nil
                 }
@@ -63,8 +63,8 @@ public struct HexColourParser : ColourParser
             case 7:
                 let hexString = String(source[index1..<source.endIndex])
                 let scanner = Scanner(string: hexString)
-                var rgbInt = UInt32()
-                guard scanner.scanHexInt32(&rgbInt) else
+                var rgbInt = UInt64()
+                guard scanner.scanHexInt64(&rgbInt) else
                 {
                     return nil
                 }

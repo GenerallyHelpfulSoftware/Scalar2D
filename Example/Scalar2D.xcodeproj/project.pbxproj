@@ -1,0 +1,1730 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		211B7F3A22C904AC0022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3922C904AC0022952D /* Scalar2D_Colour */; };
+		211B7F3C22C904AC0022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3B22C904AC0022952D /* Scalar2D_CoreGraphics */; };
+		211B7F3E22C904AC0022952D /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3D22C904AC0022952D /* Scalar2D_CoreViews */; };
+		211B7F4022C904AC0022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3F22C904AC0022952D /* Scalar2D_FontDescription */; };
+		211B7F4222C904AC0022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4122C904AC0022952D /* Scalar2D_GraphicPath */; };
+		211B7F4422C904AC0022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4322C904AC0022952D /* Scalar2D_Styling */; };
+		211B7F4622C904AC0022952D /* Scalar2D_UIKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4522C904AC0022952D /* Scalar2D_UIKitViews */; };
+		211B7F4822C904AC0022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4722C904AC0022952D /* Scalar2D_Utils */; };
+		211B7F4A22C92A020022952D /* Scalar2D_AppKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4922C92A020022952D /* Scalar2D_AppKitViews */; };
+		211B7F4C22C92A020022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4B22C92A020022952D /* Scalar2D_Colour */; };
+		211B7F4E22C92A020022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4D22C92A020022952D /* Scalar2D_CoreGraphics */; };
+		211B7F5022C92A020022952D /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4F22C92A020022952D /* Scalar2D_CoreViews */; };
+		211B7F5222C92A020022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5122C92A020022952D /* Scalar2D_FontDescription */; };
+		211B7F5422C92A020022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5322C92A020022952D /* Scalar2D_GraphicPath */; };
+		211B7F5622C92A020022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5522C92A020022952D /* Scalar2D_Styling */; };
+		211B7F5822C92A020022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5722C92A020022952D /* Scalar2D_Utils */; };
+		211B7F5A22C9409B0022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5922C9409B0022952D /* Scalar2D_SVG */; };
+		211B7F5C22C9409B0022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5B22C9409B0022952D /* Scalar2D_SwiftUI */; };
+		211B7F5E22C940A30022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5D22C940A30022952D /* Scalar2D_SVG */; };
+		211B7F6022C940A30022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5F22C940A30022952D /* Scalar2D_SwiftUI */; };
+		211B7F6222C942630022952D /* SwiftUIFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F6122C942630022952D /* SwiftUIFrogView.swift */; };
+		211B7F6322C942630022952D /* SwiftUIFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F6122C942630022952D /* SwiftUIFrogView.swift */; };
+		211B7F6A22C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		211B7F7022C943340022952D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F6E22C943340022952D /* Interface.storyboard */; };
+		211B7F7222C943350022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F7122C943350022952D /* Assets.xcassets */; };
+		211B7F7922C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		211B7F7E22C943350022952D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F7D22C943350022952D /* ContentView.swift */; };
+		211B7F8022C943350022952D /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F7F22C943350022952D /* HostingController.swift */; };
+		211B7F8222C943350022952D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F8122C943350022952D /* ExtensionDelegate.swift */; };
+		211B7F8422C943360022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F8322C943360022952D /* Assets.xcassets */; };
+		211B7F8722C943360022952D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F8622C943360022952D /* Preview Assets.xcassets */; };
+		211B7F9522C943AF0022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9422C943AF0022952D /* Scalar2D_Colour */; };
+		211B7F9722C943AF0022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9622C943AF0022952D /* Scalar2D_CoreGraphics */; };
+		211B7F9922C943AF0022952D /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9822C943AF0022952D /* Scalar2D_CoreViews */; };
+		211B7F9B22C943AF0022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9A22C943AF0022952D /* Scalar2D_FontDescription */; };
+		211B7F9D22C943AF0022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9C22C943AF0022952D /* Scalar2D_GraphicPath */; };
+		211B7F9F22C943AF0022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9E22C943AF0022952D /* Scalar2D_Styling */; };
+		211B7FA122C943AF0022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FA022C943AF0022952D /* Scalar2D_SVG */; };
+		211B7FA322C943AF0022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FA222C943AF0022952D /* Scalar2D_SwiftUI */; };
+		211B7FA522C943AF0022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FA422C943AF0022952D /* Scalar2D_Utils */; };
+		211B7FAD22C964000022952D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FAC22C964000022952D /* AppDelegate.swift */; };
+		211B7FAF22C964000022952D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FAE22C964000022952D /* ContentView.swift */; };
+		211B7FB122C964030022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7FB022C964030022952D /* Assets.xcassets */; };
+		211B7FB422C964030022952D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7FB322C964030022952D /* Preview Assets.xcassets */; };
+		211B7FBF22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FBE22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift */; };
+		211B7FC822C964290022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FC722C964290022952D /* Scalar2D_Colour */; };
+		211B7FCA22C964290022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FC922C964290022952D /* Scalar2D_CoreGraphics */; };
+		211B7FCC22C964290022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FCB22C964290022952D /* Scalar2D_FontDescription */; };
+		211B7FCE22C964290022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FCD22C964290022952D /* Scalar2D_GraphicPath */; };
+		211B7FD022C964290022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FCF22C964290022952D /* Scalar2D_Styling */; };
+		211B7FD222C964290022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FD122C964290022952D /* Scalar2D_SVG */; };
+		211B7FD422C964290022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FD322C964290022952D /* Scalar2D_SwiftUI */; };
+		211B7FD622C964290022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FD522C964290022952D /* Scalar2D_Utils */; };
+		211B7FD922C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
+		211B7FDA22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
+		211B7FDB22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
+		211B7FDC22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
+		212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78321D5832C4003802D7 /* AppDelegate.swift */; };
+		212E78351D5832C4003802D7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E78341D5832C4003802D7 /* ViewController.swift */; };
+		212E78371D5832C4003802D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 212E78361D5832C4003802D7 /* Assets.xcassets */; };
+		212E783A1D5832C4003802D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 212E78381D5832C4003802D7 /* Main.storyboard */; };
+		2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */; };
+		213D06ED1D55F72200A5FD69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213D06EC1D55F72200A5FD69 /* AppDelegate.swift */; };
+		213D06EF1D55F72200A5FD69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213D06EE1D55F72200A5FD69 /* ViewController.swift */; };
+		213D06F21D55F72200A5FD69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F01D55F72200A5FD69 /* Main.storyboard */; };
+		213D06F41D55F72200A5FD69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F31D55F72200A5FD69 /* Assets.xcassets */; };
+		213D06F71D55F72200A5FD69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */; };
+		2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */; };
+		21FFE8EA1D6473D3003446DF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21FFE8E91D6473D3003446DF /* CoreGraphics.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		211B7F6B22C943340022952D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 211B7F6822C943340022952D;
+			remoteInfo = "Scalar2D watchOS TestApp WatchKit App";
+		};
+		211B7F7A22C943350022952D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 211B7F7722C943350022952D;
+			remoteInfo = "Scalar2D watchOS TestApp WatchKit Extension";
+		};
+		211B7FBB22C964030022952D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 211B7FA922C964000022952D;
+			remoteInfo = "Scalar2D tVOS Test App";
+		};
+		212E78261D579C29003802D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 213D06E91D55F72100A5FD69;
+			remoteInfo = "Scalar2D Test App";
+		};
+		2157D36F1D5AE3DE00C57462 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 212E782F1D5832C4003802D7;
+			remoteInfo = "Scalar2D Mac Test App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		211B7F8C22C943360022952D /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				211B7F7922C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7F9022C943360022952D /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				211B7F6A22C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		212E78521D5834C3003802D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		211B7F6122C942630022952D /* SwiftUIFrogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftUIFrogView.swift; path = "../../../Scalar2D/Example/Scalar2D Test App/SwiftUIFrogView.swift"; sourceTree = "<group>"; };
+		211B7F6622C943340022952D /* Scalar2D watchOS TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D watchOS TestApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D watchOS TestApp WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211B7F6F22C943340022952D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		211B7F7122C943350022952D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		211B7F7322C943350022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Scalar2D watchOS TestApp WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211B7F7D22C943350022952D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		211B7F7F22C943350022952D /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		211B7F8122C943350022952D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		211B7F8322C943360022952D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		211B7F8622C943360022952D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		211B7F8822C943360022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		211B7FAA22C964000022952D /* Scalar2D tVOS Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D tVOS Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211B7FAC22C964000022952D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		211B7FAE22C964000022952D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		211B7FB022C964030022952D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		211B7FB322C964030022952D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		211B7FB522C964030022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		211B7FBA22C964030022952D /* Scalar2D tVOS Test AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Scalar2D tVOS Test AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211B7FBE22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_tVOS_Test_AppUITests.swift; sourceTree = "<group>"; };
+		211B7FC022C964030022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		211B7FD822C964B90022952D /* TestFrogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestFrogView.swift; path = "../../../Scalar2D/Example/Shared Test UI/TestFrogView.swift"; sourceTree = "<group>"; };
+		212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D Mac Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		212E78321D5832C4003802D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		212E78341D5832C4003802D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		212E78361D5832C4003802D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		212E78391D5832C4003802D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		212E783B1D5832C4003802D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		212E78591D5835BA003802D7 /* Scalar2D Mac Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalar2D Mac Playground.playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingFrogViewController.swift; sourceTree = "<group>"; };
+		213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D iOS Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		213D06EC1D55F72200A5FD69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		213D06EE1D55F72200A5FD69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		213D06F11D55F72200A5FD69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		213D06F31D55F72200A5FD69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		213D06F61D55F72200A5FD69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		213D06F81D55F72200A5FD69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2157D36A1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Scalar2D Mac Test AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_Mac_Test_AppTests.swift; sourceTree = "<group>"; };
+		2157D36E1D5AE3DE00C57462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Scalar2DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C87F1922C8FEEB00CC4C70 /* Scalar2d */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scalar2d; path = ..; sourceTree = "<group>"; };
+		21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalard2D (iOS).playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		21FFE8E91D6473D3003446DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		211B7F7522C943350022952D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F9722C943AF0022952D /* Scalar2D_CoreGraphics in Frameworks */,
+				211B7F9F22C943AF0022952D /* Scalar2D_Styling in Frameworks */,
+				211B7FA122C943AF0022952D /* Scalar2D_SVG in Frameworks */,
+				211B7F9522C943AF0022952D /* Scalar2D_Colour in Frameworks */,
+				211B7F9D22C943AF0022952D /* Scalar2D_GraphicPath in Frameworks */,
+				211B7FA522C943AF0022952D /* Scalar2D_Utils in Frameworks */,
+				211B7F9B22C943AF0022952D /* Scalar2D_FontDescription in Frameworks */,
+				211B7FA322C943AF0022952D /* Scalar2D_SwiftUI in Frameworks */,
+				211B7F9922C943AF0022952D /* Scalar2D_CoreViews in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7FA722C964000022952D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7FCA22C964290022952D /* Scalar2D_CoreGraphics in Frameworks */,
+				211B7FD422C964290022952D /* Scalar2D_SwiftUI in Frameworks */,
+				211B7FD622C964290022952D /* Scalar2D_Utils in Frameworks */,
+				211B7FD222C964290022952D /* Scalar2D_SVG in Frameworks */,
+				211B7FC822C964290022952D /* Scalar2D_Colour in Frameworks */,
+				211B7FCE22C964290022952D /* Scalar2D_GraphicPath in Frameworks */,
+				211B7FCC22C964290022952D /* Scalar2D_FontDescription in Frameworks */,
+				211B7FD022C964290022952D /* Scalar2D_Styling in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7FB722C964030022952D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		212E782D1D5832C4003802D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F5422C92A020022952D /* Scalar2D_GraphicPath in Frameworks */,
+				211B7F5E22C940A30022952D /* Scalar2D_SVG in Frameworks */,
+				211B7F4C22C92A020022952D /* Scalar2D_Colour in Frameworks */,
+				211B7F4A22C92A020022952D /* Scalar2D_AppKitViews in Frameworks */,
+				211B7F5222C92A020022952D /* Scalar2D_FontDescription in Frameworks */,
+				211B7F6022C940A30022952D /* Scalar2D_SwiftUI in Frameworks */,
+				211B7F4E22C92A020022952D /* Scalar2D_CoreGraphics in Frameworks */,
+				211B7F5822C92A020022952D /* Scalar2D_Utils in Frameworks */,
+				211B7F5622C92A020022952D /* Scalar2D_Styling in Frameworks */,
+				211B7F5022C92A020022952D /* Scalar2D_CoreViews in Frameworks */,
+				21FFE8EA1D6473D3003446DF /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		213D06E71D55F72100A5FD69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F3E22C904AC0022952D /* Scalar2D_CoreViews in Frameworks */,
+				211B7F3A22C904AC0022952D /* Scalar2D_Colour in Frameworks */,
+				211B7F4622C904AC0022952D /* Scalar2D_UIKitViews in Frameworks */,
+				211B7F4422C904AC0022952D /* Scalar2D_Styling in Frameworks */,
+				211B7F4222C904AC0022952D /* Scalar2D_GraphicPath in Frameworks */,
+				211B7F4822C904AC0022952D /* Scalar2D_Utils in Frameworks */,
+				211B7F5C22C9409B0022952D /* Scalar2D_SwiftUI in Frameworks */,
+				211B7F3C22C904AC0022952D /* Scalar2D_CoreGraphics in Frameworks */,
+				211B7F5A22C9409B0022952D /* Scalar2D_SVG in Frameworks */,
+				211B7F4022C904AC0022952D /* Scalar2D_FontDescription in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2157D3671D5AE3DE00C57462 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21B719761D48599B00B0ACBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		211B7F6D22C943340022952D /* Scalar2D watchOS TestApp WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				211B7F6E22C943340022952D /* Interface.storyboard */,
+				211B7F7122C943350022952D /* Assets.xcassets */,
+				211B7F7322C943350022952D /* Info.plist */,
+			);
+			path = "Scalar2D watchOS TestApp WatchKit App";
+			sourceTree = "<group>";
+		};
+		211B7F7C22C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				211B7F7D22C943350022952D /* ContentView.swift */,
+				211B7F7F22C943350022952D /* HostingController.swift */,
+				211B7F8122C943350022952D /* ExtensionDelegate.swift */,
+				211B7F8322C943360022952D /* Assets.xcassets */,
+				211B7F8822C943360022952D /* Info.plist */,
+				211B7F8522C943360022952D /* Preview Content */,
+			);
+			path = "Scalar2D watchOS TestApp WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		211B7F8522C943360022952D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				211B7F8622C943360022952D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		211B7FAB22C964000022952D /* Scalar2D tVOS Test App */ = {
+			isa = PBXGroup;
+			children = (
+				211B7FAC22C964000022952D /* AppDelegate.swift */,
+				211B7FAE22C964000022952D /* ContentView.swift */,
+				211B7FB022C964030022952D /* Assets.xcassets */,
+				211B7FB522C964030022952D /* Info.plist */,
+				211B7FB222C964030022952D /* Preview Content */,
+			);
+			path = "Scalar2D tVOS Test App";
+			sourceTree = "<group>";
+		};
+		211B7FB222C964030022952D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				211B7FB322C964030022952D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		211B7FBD22C964030022952D /* Scalar2D tVOS Test AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				211B7FBE22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift */,
+				211B7FC022C964030022952D /* Info.plist */,
+			);
+			path = "Scalar2D tVOS Test AppUITests";
+			sourceTree = "<group>";
+		};
+		211B7FD722C964820022952D /* Shared Test UI */ = {
+			isa = PBXGroup;
+			children = (
+				211B7FD822C964B90022952D /* TestFrogView.swift */,
+			);
+			path = "Shared Test UI";
+			sourceTree = "<group>";
+		};
+		212E78311D5832C4003802D7 /* Scalar2D Mac Test App */ = {
+			isa = PBXGroup;
+			children = (
+				212E78591D5835BA003802D7 /* Scalar2D Mac Playground.playground */,
+				212E78321D5832C4003802D7 /* AppDelegate.swift */,
+				212E78341D5832C4003802D7 /* ViewController.swift */,
+				212E78361D5832C4003802D7 /* Assets.xcassets */,
+				212E78381D5832C4003802D7 /* Main.storyboard */,
+				212E783B1D5832C4003802D7 /* Info.plist */,
+			);
+			path = "Scalar2D Mac Test App";
+			sourceTree = "<group>";
+		};
+		213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */,
+				213D06EC1D55F72200A5FD69 /* AppDelegate.swift */,
+				213D06EE1D55F72200A5FD69 /* ViewController.swift */,
+				2134CAB121DEDE6100568393 /* AnimatingFrogViewController.swift */,
+				211B7F6122C942630022952D /* SwiftUIFrogView.swift */,
+				213D06F01D55F72200A5FD69 /* Main.storyboard */,
+				213D06F31D55F72200A5FD69 /* Assets.xcassets */,
+				213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */,
+				213D06F81D55F72200A5FD69 /* Info.plist */,
+			);
+			name = "Scalar2D iOS Test App";
+			path = "Scalar2D Test App";
+			sourceTree = "<group>";
+		};
+		2157D36B1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */,
+				2157D36E1D5AE3DE00C57462 /* Info.plist */,
+			);
+			path = "Scalar2D Mac Test AppTests";
+			sourceTree = "<group>";
+		};
+		21B719661D48599A00B0ACBF = {
+			isa = PBXGroup;
+			children = (
+				21C87F1922C8FEEB00CC4C70 /* Scalar2d */,
+				213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */,
+				211B7FD722C964820022952D /* Shared Test UI */,
+				212E78311D5832C4003802D7 /* Scalar2D Mac Test App */,
+				2157D36B1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */,
+				211B7F6D22C943340022952D /* Scalar2D watchOS TestApp WatchKit App */,
+				211B7F7C22C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */,
+				211B7FAB22C964000022952D /* Scalar2D tVOS Test App */,
+				211B7FBD22C964030022952D /* Scalar2D tVOS Test AppUITests */,
+				21B719711D48599A00B0ACBF /* Products */,
+				21FFE8E81D6473D3003446DF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		21B719711D48599A00B0ACBF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */,
+				213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */,
+				212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */,
+				2157D36A1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests.xctest */,
+				211B7F6622C943340022952D /* Scalar2D watchOS TestApp.app */,
+				211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */,
+				211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */,
+				211B7FAA22C964000022952D /* Scalar2D tVOS Test App.app */,
+				211B7FBA22C964030022952D /* Scalar2D tVOS Test AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21FFE8E81D6473D3003446DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21FFE8E91D6473D3003446DF /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		211B7F6522C943340022952D /* Scalar2D watchOS TestApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 211B7F9122C943360022952D /* Build configuration list for PBXNativeTarget "Scalar2D watchOS TestApp" */;
+			buildPhases = (
+				211B7F6422C943340022952D /* Resources */,
+				211B7F9022C943360022952D /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				211B7F6C22C943340022952D /* PBXTargetDependency */,
+			);
+			name = "Scalar2D watchOS TestApp";
+			productName = "Scalar2D watchOS TestApp";
+			productReference = 211B7F6622C943340022952D /* Scalar2D watchOS TestApp.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		211B7F6822C943340022952D /* Scalar2D watchOS TestApp WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 211B7F8D22C943360022952D /* Build configuration list for PBXNativeTarget "Scalar2D watchOS TestApp WatchKit App" */;
+			buildPhases = (
+				211B7F6722C943340022952D /* Resources */,
+				211B7F8C22C943360022952D /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				211B7F7B22C943350022952D /* PBXTargetDependency */,
+			);
+			name = "Scalar2D watchOS TestApp WatchKit App";
+			productName = "Scalar2D watchOS TestApp WatchKit App";
+			productReference = 211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		211B7F7722C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 211B7F8922C943360022952D /* Build configuration list for PBXNativeTarget "Scalar2D watchOS TestApp WatchKit Extension" */;
+			buildPhases = (
+				211B7F7422C943350022952D /* Sources */,
+				211B7F7522C943350022952D /* Frameworks */,
+				211B7F7622C943350022952D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Scalar2D watchOS TestApp WatchKit Extension";
+			packageProductDependencies = (
+				211B7F9422C943AF0022952D /* Scalar2D_Colour */,
+				211B7F9622C943AF0022952D /* Scalar2D_CoreGraphics */,
+				211B7F9822C943AF0022952D /* Scalar2D_CoreViews */,
+				211B7F9A22C943AF0022952D /* Scalar2D_FontDescription */,
+				211B7F9C22C943AF0022952D /* Scalar2D_GraphicPath */,
+				211B7F9E22C943AF0022952D /* Scalar2D_Styling */,
+				211B7FA022C943AF0022952D /* Scalar2D_SVG */,
+				211B7FA222C943AF0022952D /* Scalar2D_SwiftUI */,
+				211B7FA422C943AF0022952D /* Scalar2D_Utils */,
+			);
+			productName = "Scalar2D watchOS TestApp WatchKit Extension";
+			productReference = 211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		211B7FA922C964000022952D /* Scalar2D tVOS Test App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 211B7FC122C964030022952D /* Build configuration list for PBXNativeTarget "Scalar2D tVOS Test App" */;
+			buildPhases = (
+				211B7FA622C964000022952D /* Sources */,
+				211B7FA722C964000022952D /* Frameworks */,
+				211B7FA822C964000022952D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Scalar2D tVOS Test App";
+			packageProductDependencies = (
+				211B7FC722C964290022952D /* Scalar2D_Colour */,
+				211B7FC922C964290022952D /* Scalar2D_CoreGraphics */,
+				211B7FCB22C964290022952D /* Scalar2D_FontDescription */,
+				211B7FCD22C964290022952D /* Scalar2D_GraphicPath */,
+				211B7FCF22C964290022952D /* Scalar2D_Styling */,
+				211B7FD122C964290022952D /* Scalar2D_SVG */,
+				211B7FD322C964290022952D /* Scalar2D_SwiftUI */,
+				211B7FD522C964290022952D /* Scalar2D_Utils */,
+			);
+			productName = "Scalar2D tVOS Test App";
+			productReference = 211B7FAA22C964000022952D /* Scalar2D tVOS Test App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		211B7FB922C964030022952D /* Scalar2D tVOS Test AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 211B7FC422C964030022952D /* Build configuration list for PBXNativeTarget "Scalar2D tVOS Test AppUITests" */;
+			buildPhases = (
+				211B7FB622C964030022952D /* Sources */,
+				211B7FB722C964030022952D /* Frameworks */,
+				211B7FB822C964030022952D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				211B7FBC22C964030022952D /* PBXTargetDependency */,
+			);
+			name = "Scalar2D tVOS Test AppUITests";
+			productName = "Scalar2D tVOS Test AppUITests";
+			productReference = 211B7FBA22C964030022952D /* Scalar2D tVOS Test AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		212E782F1D5832C4003802D7 /* Scalar2D Mac Test App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 212E783C1D5832C4003802D7 /* Build configuration list for PBXNativeTarget "Scalar2D Mac Test App" */;
+			buildPhases = (
+				212E782C1D5832C4003802D7 /* Sources */,
+				212E782D1D5832C4003802D7 /* Frameworks */,
+				212E782E1D5832C4003802D7 /* Resources */,
+				212E78521D5834C3003802D7 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Scalar2D Mac Test App";
+			packageProductDependencies = (
+				211B7F4922C92A020022952D /* Scalar2D_AppKitViews */,
+				211B7F4B22C92A020022952D /* Scalar2D_Colour */,
+				211B7F4D22C92A020022952D /* Scalar2D_CoreGraphics */,
+				211B7F4F22C92A020022952D /* Scalar2D_CoreViews */,
+				211B7F5122C92A020022952D /* Scalar2D_FontDescription */,
+				211B7F5322C92A020022952D /* Scalar2D_GraphicPath */,
+				211B7F5522C92A020022952D /* Scalar2D_Styling */,
+				211B7F5722C92A020022952D /* Scalar2D_Utils */,
+				211B7F5D22C940A30022952D /* Scalar2D_SVG */,
+				211B7F5F22C940A30022952D /* Scalar2D_SwiftUI */,
+			);
+			productName = "Scalar2D Mac Test App";
+			productReference = 212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		213D06E91D55F72100A5FD69 /* Scalar2D iOS Test App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 213D06F91D55F72200A5FD69 /* Build configuration list for PBXNativeTarget "Scalar2D iOS Test App" */;
+			buildPhases = (
+				213D06E61D55F72100A5FD69 /* Sources */,
+				213D06E71D55F72100A5FD69 /* Frameworks */,
+				213D06E81D55F72100A5FD69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Scalar2D iOS Test App";
+			packageProductDependencies = (
+				211B7F3922C904AC0022952D /* Scalar2D_Colour */,
+				211B7F3B22C904AC0022952D /* Scalar2D_CoreGraphics */,
+				211B7F3D22C904AC0022952D /* Scalar2D_CoreViews */,
+				211B7F3F22C904AC0022952D /* Scalar2D_FontDescription */,
+				211B7F4122C904AC0022952D /* Scalar2D_GraphicPath */,
+				211B7F4322C904AC0022952D /* Scalar2D_Styling */,
+				211B7F4522C904AC0022952D /* Scalar2D_UIKitViews */,
+				211B7F4722C904AC0022952D /* Scalar2D_Utils */,
+				211B7F5922C9409B0022952D /* Scalar2D_SVG */,
+				211B7F5B22C9409B0022952D /* Scalar2D_SwiftUI */,
+			);
+			productName = "Scalar2D Test App";
+			productReference = 213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2157D3691D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2157D3711D5AE3DE00C57462 /* Build configuration list for PBXNativeTarget "Scalar2D Mac Test AppTests" */;
+			buildPhases = (
+				2157D3661D5AE3DE00C57462 /* Sources */,
+				2157D3671D5AE3DE00C57462 /* Frameworks */,
+				2157D3681D5AE3DE00C57462 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2157D3701D5AE3DE00C57462 /* PBXTargetDependency */,
+			);
+			name = "Scalar2D Mac Test AppTests";
+			productName = "Scalar2D Mac Test AppTests";
+			productReference = 2157D36A1D5AE3DE00C57462 /* Scalar2D Mac Test AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		21B719781D48599B00B0ACBF /* Scalar2DTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21B719871D48599B00B0ACBF /* Build configuration list for PBXNativeTarget "Scalar2DTests" */;
+			buildPhases = (
+				21B719751D48599B00B0ACBF /* Sources */,
+				21B719761D48599B00B0ACBF /* Frameworks */,
+				21B719771D48599B00B0ACBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				212E78271D579C29003802D7 /* PBXTargetDependency */,
+			);
+			name = Scalar2DTests;
+			productName = Scalar2DTests;
+			productReference = 21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21B719671D48599A00B0ACBF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+				ORGANIZATIONNAME = "Generally Helpful Software";
+				TargetAttributes = {
+					211B7F6522C943340022952D = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					211B7F6822C943340022952D = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					211B7F7722C943350022952D = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					211B7FA922C964000022952D = {
+						CreatedOnToolsVersion = 11.0;
+					};
+					211B7FB922C964030022952D = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 211B7FA922C964000022952D;
+					};
+					212E782F1D5832C4003802D7 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 626532Z6AM;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+					213D06E91D55F72100A5FD69 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 626532Z6AM;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+					};
+					2157D3691D5AE3DE00C57462 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 626532Z6AM;
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 212E782F1D5832C4003802D7;
+					};
+					21B719781D48599B00B0ACBF = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 626532Z6AM;
+						DevelopmentTeamName = "Generally Helpful Software";
+						LastSwiftMigration = 1020;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 213D06E91D55F72100A5FD69;
+					};
+				};
+			};
+			buildConfigurationList = 21B7196A1D48599A00B0ACBF /* Build configuration list for PBXProject "Scalar2D" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 21B719661D48599A00B0ACBF;
+			productRefGroup = 21B719711D48599A00B0ACBF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				21B719781D48599B00B0ACBF /* Scalar2DTests */,
+				213D06E91D55F72100A5FD69 /* Scalar2D iOS Test App */,
+				212E782F1D5832C4003802D7 /* Scalar2D Mac Test App */,
+				2157D3691D5AE3DE00C57462 /* Scalar2D Mac Test AppTests */,
+				211B7F6522C943340022952D /* Scalar2D watchOS TestApp */,
+				211B7F6822C943340022952D /* Scalar2D watchOS TestApp WatchKit App */,
+				211B7F7722C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */,
+				211B7FA922C964000022952D /* Scalar2D tVOS Test App */,
+				211B7FB922C964030022952D /* Scalar2D tVOS Test AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		211B7F6422C943340022952D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7F6722C943340022952D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F7222C943350022952D /* Assets.xcassets in Resources */,
+				211B7F7022C943340022952D /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7F7622C943350022952D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F8722C943360022952D /* Preview Assets.xcassets in Resources */,
+				211B7F8422C943360022952D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7FA822C964000022952D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7FB422C964030022952D /* Preview Assets.xcassets in Resources */,
+				211B7FB122C964030022952D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7FB822C964030022952D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		212E782E1D5832C4003802D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				212E78371D5832C4003802D7 /* Assets.xcassets in Resources */,
+				212E783A1D5832C4003802D7 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		213D06E81D55F72100A5FD69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				213D06F71D55F72200A5FD69 /* LaunchScreen.storyboard in Resources */,
+				213D06F41D55F72200A5FD69 /* Assets.xcassets in Resources */,
+				213D06F21D55F72200A5FD69 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2157D3681D5AE3DE00C57462 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21B719771D48599B00B0ACBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		211B7F7422C943350022952D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F8022C943350022952D /* HostingController.swift in Sources */,
+				211B7F7E22C943350022952D /* ContentView.swift in Sources */,
+				211B7FDB22C964B90022952D /* TestFrogView.swift in Sources */,
+				211B7F8222C943350022952D /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7FA622C964000022952D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7FAF22C964000022952D /* ContentView.swift in Sources */,
+				211B7FDC22C964B90022952D /* TestFrogView.swift in Sources */,
+				211B7FAD22C964000022952D /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		211B7FB622C964030022952D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7FBF22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		212E782C1D5832C4003802D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				212E78351D5832C4003802D7 /* ViewController.swift in Sources */,
+				211B7F6322C942630022952D /* SwiftUIFrogView.swift in Sources */,
+				211B7FDA22C964B90022952D /* TestFrogView.swift in Sources */,
+				212E78331D5832C4003802D7 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		213D06E61D55F72100A5FD69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				211B7F6222C942630022952D /* SwiftUIFrogView.swift in Sources */,
+				213D06EF1D55F72200A5FD69 /* ViewController.swift in Sources */,
+				2134CAB221DEDE6100568393 /* AnimatingFrogViewController.swift in Sources */,
+				211B7FD922C964B90022952D /* TestFrogView.swift in Sources */,
+				213D06ED1D55F72200A5FD69 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2157D3661D5AE3DE00C57462 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2157D36D1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		21B719751D48599B00B0ACBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		211B7F6C22C943340022952D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 211B7F6822C943340022952D /* Scalar2D watchOS TestApp WatchKit App */;
+			targetProxy = 211B7F6B22C943340022952D /* PBXContainerItemProxy */;
+		};
+		211B7F7B22C943350022952D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 211B7F7722C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */;
+			targetProxy = 211B7F7A22C943350022952D /* PBXContainerItemProxy */;
+		};
+		211B7FBC22C964030022952D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 211B7FA922C964000022952D /* Scalar2D tVOS Test App */;
+			targetProxy = 211B7FBB22C964030022952D /* PBXContainerItemProxy */;
+		};
+		212E78271D579C29003802D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 213D06E91D55F72100A5FD69 /* Scalar2D iOS Test App */;
+			targetProxy = 212E78261D579C29003802D7 /* PBXContainerItemProxy */;
+		};
+		2157D3701D5AE3DE00C57462 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 212E782F1D5832C4003802D7 /* Scalar2D Mac Test App */;
+			targetProxy = 2157D36F1D5AE3DE00C57462 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		211B7F6E22C943340022952D /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				211B7F6F22C943340022952D /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+		212E78381D5832C4003802D7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				212E78391D5832C4003802D7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		213D06F01D55F72200A5FD69 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				213D06F11D55F72200A5FD69 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		213D06F51D55F72200A5FD69 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				213D06F61D55F72200A5FD69 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		211B7F8A22C943360022952D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Scalar2D watchOS TestApp WatchKit Extension\"/Preview\\ Content";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Scalar2D watchOS TestApp WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-watchOS-TestApp.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		211B7F8B22C943360022952D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Scalar2D watchOS TestApp WatchKit Extension\"/Preview\\ Content";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Scalar2D watchOS TestApp WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-watchOS-TestApp.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		211B7F8E22C943360022952D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = Scalar2D_watchOS_TestApp_WatchKit_Extension;
+				INFOPLIST_FILE = "Scalar2D watchOS TestApp WatchKit App/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-watchOS-TestApp.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		211B7F8F22C943360022952D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IBSC_MODULE = Scalar2D_watchOS_TestApp_WatchKit_Extension;
+				INFOPLIST_FILE = "Scalar2D watchOS TestApp WatchKit App/Info.plist";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-watchOS-TestApp.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		211B7F9222C943360022952D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-watchOS-TestApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		211B7F9322C943360022952D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-watchOS-TestApp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		211B7FC222C964030022952D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Scalar2D tVOS Test App\"/Preview\\ Content";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Scalar2D tVOS Test App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-tVOS-Test-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		211B7FC322C964030022952D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Scalar2D tVOS Test App\"/Preview\\ Content";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Scalar2D tVOS Test App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-tVOS-Test-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Release;
+		};
+		211B7FC522C964030022952D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Scalar2D tVOS Test AppUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-tVOS-Test-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "Scalar2D tVOS Test App";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		211B7FC622C964030022952D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "Scalar2D tVOS Test AppUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-tVOS-Test-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TEST_TARGET_NAME = "Scalar2D tVOS Test App";
+				TVOS_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Release;
+		};
+		212E783D1D5832C4003802D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				INFOPLIST_FILE = "Scalar2D Mac Test App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		212E783E1D5832C4003802D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				INFOPLIST_FILE = "Scalar2D Mac Test App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		213D06FA1D55F72200A5FD69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				INFOPLIST_FILE = "Scalar2D Test App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Test-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		213D06FB1D55F72200A5FD69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				INFOPLIST_FILE = "Scalar2D Test App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Test-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2157D3721D5AE3DE00C57462 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				INFOPLIST_FILE = "Scalar2D Mac Test AppTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D Mac Test App.app/Contents/MacOS/Scalar2D Mac Test App";
+			};
+			name = Debug;
+		};
+		2157D3731D5AE3DE00C57462 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 626532Z6AM;
+				INFOPLIST_FILE = "Scalar2D Mac Test AppTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-Mac-Test-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D Mac Test App.app/Contents/MacOS/Scalar2D Mac Test App";
+			};
+			name = Release;
+		};
+		21B719821D48599B00B0ACBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		21B719831D48599B00B0ACBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		21B719881D48599B00B0ACBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Scalar2DTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2DTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D iOS Test App.app/Scalar2D iOS Test App";
+			};
+			name = Debug;
+		};
+		21B719891D48599B00B0ACBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Scalar2DTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.genhelp.Scalar2DTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scalar2D iOS Test App.app/Scalar2D iOS Test App";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		211B7F8922C943360022952D /* Build configuration list for PBXNativeTarget "Scalar2D watchOS TestApp WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211B7F8A22C943360022952D /* Debug */,
+				211B7F8B22C943360022952D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		211B7F8D22C943360022952D /* Build configuration list for PBXNativeTarget "Scalar2D watchOS TestApp WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211B7F8E22C943360022952D /* Debug */,
+				211B7F8F22C943360022952D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		211B7F9122C943360022952D /* Build configuration list for PBXNativeTarget "Scalar2D watchOS TestApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211B7F9222C943360022952D /* Debug */,
+				211B7F9322C943360022952D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		211B7FC122C964030022952D /* Build configuration list for PBXNativeTarget "Scalar2D tVOS Test App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211B7FC222C964030022952D /* Debug */,
+				211B7FC322C964030022952D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		211B7FC422C964030022952D /* Build configuration list for PBXNativeTarget "Scalar2D tVOS Test AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				211B7FC522C964030022952D /* Debug */,
+				211B7FC622C964030022952D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		212E783C1D5832C4003802D7 /* Build configuration list for PBXNativeTarget "Scalar2D Mac Test App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				212E783D1D5832C4003802D7 /* Debug */,
+				212E783E1D5832C4003802D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		213D06F91D55F72200A5FD69 /* Build configuration list for PBXNativeTarget "Scalar2D iOS Test App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				213D06FA1D55F72200A5FD69 /* Debug */,
+				213D06FB1D55F72200A5FD69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2157D3711D5AE3DE00C57462 /* Build configuration list for PBXNativeTarget "Scalar2D Mac Test AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2157D3721D5AE3DE00C57462 /* Debug */,
+				2157D3731D5AE3DE00C57462 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21B7196A1D48599A00B0ACBF /* Build configuration list for PBXProject "Scalar2D" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21B719821D48599B00B0ACBF /* Debug */,
+				21B719831D48599B00B0ACBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21B719871D48599B00B0ACBF /* Build configuration list for PBXNativeTarget "Scalar2DTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21B719881D48599B00B0ACBF /* Debug */,
+				21B719891D48599B00B0ACBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		211B7F3922C904AC0022952D /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Colour;
+		};
+		211B7F3B22C904AC0022952D /* Scalar2D_CoreGraphics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreGraphics;
+		};
+		211B7F3D22C904AC0022952D /* Scalar2D_CoreViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreViews;
+		};
+		211B7F3F22C904AC0022952D /* Scalar2D_FontDescription */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_FontDescription;
+		};
+		211B7F4122C904AC0022952D /* Scalar2D_GraphicPath */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_GraphicPath;
+		};
+		211B7F4322C904AC0022952D /* Scalar2D_Styling */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Styling;
+		};
+		211B7F4522C904AC0022952D /* Scalar2D_UIKitViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_UIKitViews;
+		};
+		211B7F4722C904AC0022952D /* Scalar2D_Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Utils;
+		};
+		211B7F4922C92A020022952D /* Scalar2D_AppKitViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_AppKitViews;
+		};
+		211B7F4B22C92A020022952D /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Colour;
+		};
+		211B7F4D22C92A020022952D /* Scalar2D_CoreGraphics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreGraphics;
+		};
+		211B7F4F22C92A020022952D /* Scalar2D_CoreViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreViews;
+		};
+		211B7F5122C92A020022952D /* Scalar2D_FontDescription */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_FontDescription;
+		};
+		211B7F5322C92A020022952D /* Scalar2D_GraphicPath */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_GraphicPath;
+		};
+		211B7F5522C92A020022952D /* Scalar2D_Styling */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Styling;
+		};
+		211B7F5722C92A020022952D /* Scalar2D_Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Utils;
+		};
+		211B7F5922C9409B0022952D /* Scalar2D_SVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SVG;
+		};
+		211B7F5B22C9409B0022952D /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SwiftUI;
+		};
+		211B7F5D22C940A30022952D /* Scalar2D_SVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SVG;
+		};
+		211B7F5F22C940A30022952D /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SwiftUI;
+		};
+		211B7F9422C943AF0022952D /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Colour;
+		};
+		211B7F9622C943AF0022952D /* Scalar2D_CoreGraphics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreGraphics;
+		};
+		211B7F9822C943AF0022952D /* Scalar2D_CoreViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreViews;
+		};
+		211B7F9A22C943AF0022952D /* Scalar2D_FontDescription */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_FontDescription;
+		};
+		211B7F9C22C943AF0022952D /* Scalar2D_GraphicPath */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_GraphicPath;
+		};
+		211B7F9E22C943AF0022952D /* Scalar2D_Styling */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Styling;
+		};
+		211B7FA022C943AF0022952D /* Scalar2D_SVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SVG;
+		};
+		211B7FA222C943AF0022952D /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SwiftUI;
+		};
+		211B7FA422C943AF0022952D /* Scalar2D_Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Utils;
+		};
+		211B7FC722C964290022952D /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Colour;
+		};
+		211B7FC922C964290022952D /* Scalar2D_CoreGraphics */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_CoreGraphics;
+		};
+		211B7FCB22C964290022952D /* Scalar2D_FontDescription */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_FontDescription;
+		};
+		211B7FCD22C964290022952D /* Scalar2D_GraphicPath */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_GraphicPath;
+		};
+		211B7FCF22C964290022952D /* Scalar2D_Styling */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Styling;
+		};
+		211B7FD122C964290022952D /* Scalar2D_SVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SVG;
+		};
+		211B7FD322C964290022952D /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_SwiftUI;
+		};
+		211B7FD522C964290022952D /* Scalar2D_Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Scalar2D_Utils;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 21B719671D48599A00B0ACBF /* Project object */;
+}

@@ -32,6 +32,8 @@
 //
 //
 
+import Foundation
+
 struct DeviceColourParser
 {
     let prefix: String

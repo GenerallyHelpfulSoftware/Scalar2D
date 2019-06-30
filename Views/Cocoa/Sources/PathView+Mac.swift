@@ -30,10 +30,11 @@
 //
 //
 
+#if os(OSX)
 import Cocoa
 import CoreGraphics
+import Scalar2D_CoreViews
 
-#if os(OSX)
 import Foundation
 import Cocoa
 @IBDesignable public  class PathView: NSView, ShapeView {

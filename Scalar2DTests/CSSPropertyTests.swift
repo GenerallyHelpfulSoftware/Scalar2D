@@ -33,7 +33,9 @@
 //
 
 import XCTest
-import Scalar2D
+import Scalar2D_Styling
+@testable import Scalar2D_FontDescription
+@testable import Scalar2D_Colour
 
 class CSSPropertyTests: XCTestCase {
     

@@ -8,6 +8,8 @@ The intent here is to put together a package of types devoted to cross-platform 
 
 This is all very early in development. I'm gradually building up parsers, editors and data structures which should be platform agnostic, and the means to do rendering on Apple platforms. Hopefully, much of this code would be useful to someone on Linux. 
 
+At one point, I'd intended to provide a widget catalog, but with Apple's introduction of SwiftUI, it seems like that will be unneeded, and I should concentrate on integration with SwiftUI. Also, at some point Apple's likely to introduce an SVG rendering library of its own, so I will have to see what needs remain in that future ecosystem. 
+
 ✔︎ SVG Path Parser ✔︎ Color Parser ❌CSS Parser ❌SVG Parser
 
 ✔︎ Path ➤ CGPath ✔︎ Path ➤ UIBezierPath ✔︎ Path ➤ NSBezierPath
@@ -16,11 +18,11 @@ This is all very early in development. I'm gradually building up parsers, editor
 
 ❌SVG Rendering  ❌ CSS Styling
 
-✔︎ PathView • iOS • macOS ❌ ScalarView ❌ Button ❌ TabItem ❌ Segmented Control
+✔︎ PathView • iOS • macOS 
 
 ❌ Document Editor ❌ Output
 
 
 
 # Requirements
-Xcode 9, Swift 4, Right now only the iOS framework is setup.
+Because of Swift Package Manager, and Swift UI. Xcode 11, Swift 5.0.1, I've moved to providing a set of Swift Package Manager packages, and I presume that will become the norm.  

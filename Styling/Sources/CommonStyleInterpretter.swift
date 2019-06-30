@@ -31,7 +31,9 @@
 //
 
 import Foundation
-
+import Scalar2D_Utils
+import Scalar2D_Colour
+import Scalar2D_FontDescription
 
 /**
  Protocol promises to return a name of a property (presumably found in some css being parsed)
@@ -434,7 +436,15 @@ extension FontWeight
  */
 open class CommonStyleInterpretter : StylePropertyInterpreter
 {
-    
+    static public let standaloneParsers = [
+        AnyColourParser(RGBColourParser()),
+        AnyColourParser(WebColourParser()),
+        AnyColourParser(HexColourParser()),
+        AnyColourParser(DeviceRGBColourParser()),
+        AnyColourParser(DeviceGrayColourParser()),
+        AnyColourParser(DeviceCYMKColourParser()),
+        AnyColourParser(ICCColourParser())
+    ]
     /**
      The ! operator in css indicates overriding the normal styling cascade (exists to make my life difficult). This method is called when
      a ! is found in the text.
@@ -831,7 +841,7 @@ open class CommonStyleInterpretter : StylePropertyInterpreter
         let propertyString = String(buffer[propertyRange]).trimmingCharacters(in: .whitespacesAndNewlines)
         do
         {
-            if let aColorDefinition = try CGColor.standaloneParsers.parseString(source: propertyString,  colorContext: nil)
+            if let aColorDefinition = try Self.standaloneParsers.parseString(source: propertyString,  colorContext: nil)
             {
                 let property = StyleProperty.colour(aColorDefinition, aColorDefinition.nativeColour)
                 return ([GraphicStyle(key: key, value: property, important: isImportant)], cursor)

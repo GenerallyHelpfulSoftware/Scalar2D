@@ -33,6 +33,7 @@
 //
 
 import Foundation
+import Scalar2D_Utils
 
 /// enumeraton of common reasons that parsing a css style element might fail
 public enum StylePropertyFailureReason : CustomStringConvertible, ParseBufferError

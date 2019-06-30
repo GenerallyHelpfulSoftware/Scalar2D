@@ -32,6 +32,8 @@
 //
 
 import Foundation
+import Scalar2D_Colour
+import Scalar2D_Utils
 
 public struct BorderTypes : OptionSet
 {

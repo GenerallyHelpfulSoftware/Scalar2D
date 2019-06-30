@@ -32,7 +32,8 @@
 //
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(OSX)
+#if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
+import CoreGraphics
     public typealias ColourFloat = CGFloat
     public typealias NativeColour = CGColor
 #else

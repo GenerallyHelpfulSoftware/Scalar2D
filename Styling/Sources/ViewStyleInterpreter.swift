@@ -32,6 +32,8 @@
 //
 
 import Foundation
+import Scalar2D_Colour
+import Scalar2D_FontDescription
 
 public extension PropertyKey // view
 {

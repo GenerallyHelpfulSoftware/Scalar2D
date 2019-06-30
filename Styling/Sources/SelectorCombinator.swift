@@ -32,6 +32,7 @@
 //
 //
 import Foundation
+import Scalar2D_Utils
 
 public enum SelectorCombinator : CSSRankable
 {

@@ -30,7 +30,7 @@
 //
 
 import XCTest
-@testable import Scalar2D
+@testable import Scalar2D_Styling
 
 class Scalar2DTests: XCTestCase {
     

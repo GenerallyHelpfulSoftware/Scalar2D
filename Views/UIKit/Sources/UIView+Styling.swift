@@ -32,6 +32,8 @@
 //
 
 import UIKit
+import Scalar2D_Styling
+import Scalar2D_CoreViews
 
 extension UIView : StyleableObject, CSSIdentifiable
 {

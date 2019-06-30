@@ -31,8 +31,9 @@
 //
 
 import Foundation
+import Scalar2D_Colour
 
-#if os(iOS) || os(tvOS) || os(OSX)
+#if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
 public typealias NativeRenderingContext = StyleContext & ColorContext
 #else
 public typealias NativeRenderingContext = StyleContext

@@ -32,6 +32,17 @@
 //
 
 import Foundation
+import Scalar2D_Utils
+
+
+public  enum StyleUnit
+{
+    case pixel
+    case percent
+    case em
+    case point
+    case centimeter
+}
 
 public enum FontWeight : InheritableProperty, Equatable
 {
@@ -252,7 +263,7 @@ public enum DynamicSize : Equatable
 
 extension String.UnicodeScalarView
 {
-    func extractValueAndUnit(fromRange range: Range<String.UnicodeScalarView.Index>) -> (Double?, String?, String.UnicodeScalarView.Index)
+    public func extractValueAndUnit(fromRange range: Range<String.UnicodeScalarView.Index>) -> (Double?, String?, String.UnicodeScalarView.Index)
     {
         let stringBegin = range.lowerBound
         var unitsBegin = range.upperBound
@@ -317,7 +328,7 @@ extension String.UnicodeScalarView
 
 extension String
 {
-    func extractValueAndUnit() throws -> (Double?, String?, String.UnicodeScalarView.Index)
+    public func extractValueAndUnit() throws -> (Double?, String?, String.UnicodeScalarView.Index)
     {
         let scalars = self.unicodeScalars
         let stringBegin = try scalars.findUncommentedIndex()
@@ -456,7 +467,7 @@ public enum FontSize : InheritableProperty, Equatable
         }
     }
     
-    init?(string: String) throws
+    public init?(string: String) throws
     {
         let valueAndUnit = try string.extractValueAndUnit()
         self.init(value: valueAndUnit.0, unit: valueAndUnit.1)
@@ -503,7 +514,7 @@ public enum Distance  : InheritableProperty, Equatable
         return  .normal == self
     }
     
-    init?(value: Double?, unit: String?)
+    public init?(value: Double?, unit: String?)
     {
         if let value = value
         {
@@ -548,7 +559,7 @@ public enum Distance  : InheritableProperty, Equatable
         }
     }
 
-    init? (string: String) throws
+    public init? (string: String) throws
     {
         let valueAndUnit = try string.extractValueAndUnit()
         self.init(value: valueAndUnit.0, unit: valueAndUnit.1)
@@ -622,7 +633,7 @@ public enum FontFamily : InheritableProperty, Equatable
         }
     }
     
-    init?(string: String)
+    public init?(string: String)
     {
         switch string {
             case "inherit":

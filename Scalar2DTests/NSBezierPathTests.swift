@@ -30,7 +30,7 @@
 //
 
 import XCTest
-
+#if os(OSX)
 class NSBezierPathTests: XCTestCase {
     
     override func setUp() {
@@ -62,3 +62,4 @@ class NSBezierPathTests: XCTestCase {
     }
     
 }
+#endif

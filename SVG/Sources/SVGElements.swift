@@ -32,6 +32,7 @@
 import Foundation
 
 #if os(iOS) || os(tvOS) || os(OSX)
+import CoreGraphics
     public typealias NativePath = CGPath
     public typealias NativeImage = CGImage
     public typealias NativeGradient = CGGradient
