@@ -46,10 +46,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Scalar2DTests"
-               BuildableName = "Scalar2DTests"
+               BlueprintIdentifier = "21B719781D48599B00B0ACBF"
+               BuildableName = "Scalar2DTests.xctest"
                BlueprintName = "Scalar2DTests"
-               ReferencedContainer = "container:..">
+               ReferencedContainer = "container:Scalar2D.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

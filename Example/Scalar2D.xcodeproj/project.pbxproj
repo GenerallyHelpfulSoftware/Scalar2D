@@ -7,26 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		211B7F3A22C904AC0022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3922C904AC0022952D /* Scalar2D_Colour */; };
-		211B7F3C22C904AC0022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3B22C904AC0022952D /* Scalar2D_CoreGraphics */; };
-		211B7F3E22C904AC0022952D /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3D22C904AC0022952D /* Scalar2D_CoreViews */; };
-		211B7F4022C904AC0022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F3F22C904AC0022952D /* Scalar2D_FontDescription */; };
-		211B7F4222C904AC0022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4122C904AC0022952D /* Scalar2D_GraphicPath */; };
-		211B7F4422C904AC0022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4322C904AC0022952D /* Scalar2D_Styling */; };
-		211B7F4622C904AC0022952D /* Scalar2D_UIKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4522C904AC0022952D /* Scalar2D_UIKitViews */; };
-		211B7F4822C904AC0022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4722C904AC0022952D /* Scalar2D_Utils */; };
-		211B7F4A22C92A020022952D /* Scalar2D_AppKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4922C92A020022952D /* Scalar2D_AppKitViews */; };
-		211B7F4C22C92A020022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4B22C92A020022952D /* Scalar2D_Colour */; };
-		211B7F4E22C92A020022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4D22C92A020022952D /* Scalar2D_CoreGraphics */; };
-		211B7F5022C92A020022952D /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F4F22C92A020022952D /* Scalar2D_CoreViews */; };
-		211B7F5222C92A020022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5122C92A020022952D /* Scalar2D_FontDescription */; };
-		211B7F5422C92A020022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5322C92A020022952D /* Scalar2D_GraphicPath */; };
-		211B7F5622C92A020022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5522C92A020022952D /* Scalar2D_Styling */; };
-		211B7F5822C92A020022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5722C92A020022952D /* Scalar2D_Utils */; };
-		211B7F5A22C9409B0022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5922C9409B0022952D /* Scalar2D_SVG */; };
-		211B7F5C22C9409B0022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5B22C9409B0022952D /* Scalar2D_SwiftUI */; };
-		211B7F5E22C940A30022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5D22C940A30022952D /* Scalar2D_SVG */; };
-		211B7F6022C940A30022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F5F22C940A30022952D /* Scalar2D_SwiftUI */; };
+		2105B26622C9754B00BAB0C1 /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B26522C9754B00BAB0C1 /* Scalar2D_Utils */; };
+		2105B26822C9754B00BAB0C1 /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B26722C9754B00BAB0C1 /* Scalar2D_GraphicPath */; };
+		2105B26A22C9754B00BAB0C1 /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B26922C9754B00BAB0C1 /* Scalar2D_Colour */; };
+		2105B26C22C9754B00BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B26B22C9754B00BAB0C1 /* Scalar2D_CoreGraphics */; };
+		2105B26E22C9754B00BAB0C1 /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B26D22C9754B00BAB0C1 /* Scalar2D_CoreViews */; };
+		2105B27022C9754B00BAB0C1 /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B26F22C9754B00BAB0C1 /* Scalar2D_SVG */; };
+		2105B27222C9754B00BAB0C1 /* Scalar2D_AppKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27122C9754B00BAB0C1 /* Scalar2D_AppKitViews */; };
+		2105B27422C9754B00BAB0C1 /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27322C9754B00BAB0C1 /* Scalar2D_Styling */; };
+		2105B27622C9754B00BAB0C1 /* Scalar2D_UIKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27522C9754B00BAB0C1 /* Scalar2D_UIKitViews */; };
+		2105B27822C9754B00BAB0C1 /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27722C9754B00BAB0C1 /* Scalar2D_FontDescription */; };
+		2105B27A22C9754B00BAB0C1 /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27922C9754B00BAB0C1 /* Scalar2D_SwiftUI */; };
+		2105B27C22C9759300BAB0C1 /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27B22C9759300BAB0C1 /* Scalar2D_Colour */; };
+		2105B27E22C9759300BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27D22C9759300BAB0C1 /* Scalar2D_CoreGraphics */; };
+		2105B28022C9759300BAB0C1 /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B27F22C9759300BAB0C1 /* Scalar2D_CoreViews */; };
+		2105B28222C9759300BAB0C1 /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28122C9759300BAB0C1 /* Scalar2D_FontDescription */; };
+		2105B28422C9759300BAB0C1 /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28322C9759300BAB0C1 /* Scalar2D_GraphicPath */; };
+		2105B28622C9759300BAB0C1 /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28522C9759300BAB0C1 /* Scalar2D_Styling */; };
+		2105B28822C9759300BAB0C1 /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28722C9759300BAB0C1 /* Scalar2D_SVG */; };
+		2105B28A22C9759300BAB0C1 /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28922C9759300BAB0C1 /* Scalar2D_SwiftUI */; };
+		2105B28C22C9759300BAB0C1 /* Scalar2D_UIKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28B22C9759300BAB0C1 /* Scalar2D_UIKitViews */; };
+		2105B28E22C9759300BAB0C1 /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28D22C9759300BAB0C1 /* Scalar2D_Utils */; };
+		2105B29022C9759F00BAB0C1 /* Scalar2D_AppKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B28F22C9759F00BAB0C1 /* Scalar2D_AppKitViews */; };
+		2105B29222C9759F00BAB0C1 /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29122C9759F00BAB0C1 /* Scalar2D_Colour */; };
+		2105B29422C9759F00BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29322C9759F00BAB0C1 /* Scalar2D_CoreGraphics */; };
+		2105B29622C9759F00BAB0C1 /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29522C9759F00BAB0C1 /* Scalar2D_CoreViews */; };
+		2105B29822C9759F00BAB0C1 /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29722C9759F00BAB0C1 /* Scalar2D_FontDescription */; };
+		2105B29A22C9759F00BAB0C1 /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29922C9759F00BAB0C1 /* Scalar2D_GraphicPath */; };
+		2105B29C22C9759F00BAB0C1 /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29B22C9759F00BAB0C1 /* Scalar2D_Styling */; };
+		2105B29E22C9759F00BAB0C1 /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29D22C9759F00BAB0C1 /* Scalar2D_SVG */; };
+		2105B2A022C9759F00BAB0C1 /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B29F22C9759F00BAB0C1 /* Scalar2D_SwiftUI */; };
+		2105B2A222C9759F00BAB0C1 /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2A122C9759F00BAB0C1 /* Scalar2D_Utils */; };
+		2105B2A422C975C200BAB0C1 /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2A322C975C200BAB0C1 /* Scalar2D_Colour */; };
+		2105B2A622C975C200BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2A522C975C200BAB0C1 /* Scalar2D_CoreGraphics */; };
+		2105B2A822C975C200BAB0C1 /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2A722C975C200BAB0C1 /* Scalar2D_FontDescription */; };
+		2105B2AA22C975C200BAB0C1 /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2A922C975C200BAB0C1 /* Scalar2D_GraphicPath */; };
+		2105B2AC22C975C200BAB0C1 /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2AB22C975C200BAB0C1 /* Scalar2D_Styling */; };
+		2105B2AE22C975C200BAB0C1 /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2AD22C975C200BAB0C1 /* Scalar2D_SVG */; };
+		2105B2B022C975C200BAB0C1 /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2AF22C975C200BAB0C1 /* Scalar2D_SwiftUI */; };
+		2105B2B222C975C200BAB0C1 /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2B122C975C200BAB0C1 /* Scalar2D_Utils */; };
+		2105B2B422C975D400BAB0C1 /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2B322C975D400BAB0C1 /* Scalar2D_Colour */; };
+		2105B2B622C975D400BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2B522C975D400BAB0C1 /* Scalar2D_CoreGraphics */; };
+		2105B2B822C975D400BAB0C1 /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2B722C975D400BAB0C1 /* Scalar2D_CoreViews */; };
+		2105B2BA22C975D400BAB0C1 /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2B922C975D400BAB0C1 /* Scalar2D_FontDescription */; };
+		2105B2BC22C975D400BAB0C1 /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2BB22C975D400BAB0C1 /* Scalar2D_GraphicPath */; };
+		2105B2BE22C975D400BAB0C1 /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2BD22C975D400BAB0C1 /* Scalar2D_Styling */; };
+		2105B2C022C975D400BAB0C1 /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2BF22C975D400BAB0C1 /* Scalar2D_SVG */; };
+		2105B2C222C975D400BAB0C1 /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2C122C975D400BAB0C1 /* Scalar2D_SwiftUI */; };
+		2105B2C422C975D400BAB0C1 /* Scalar2D_UIKitViews in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2C322C975D400BAB0C1 /* Scalar2D_UIKitViews */; };
+		2105B2C622C975D400BAB0C1 /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2105B2C522C975D400BAB0C1 /* Scalar2D_Utils */; };
 		211B7F6222C942630022952D /* SwiftUIFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F6122C942630022952D /* SwiftUIFrogView.swift */; };
 		211B7F6322C942630022952D /* SwiftUIFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F6122C942630022952D /* SwiftUIFrogView.swift */; };
 		211B7F6A22C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -38,28 +67,11 @@
 		211B7F8222C943350022952D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F8122C943350022952D /* ExtensionDelegate.swift */; };
 		211B7F8422C943360022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F8322C943360022952D /* Assets.xcassets */; };
 		211B7F8722C943360022952D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F8622C943360022952D /* Preview Assets.xcassets */; };
-		211B7F9522C943AF0022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9422C943AF0022952D /* Scalar2D_Colour */; };
-		211B7F9722C943AF0022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9622C943AF0022952D /* Scalar2D_CoreGraphics */; };
-		211B7F9922C943AF0022952D /* Scalar2D_CoreViews in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9822C943AF0022952D /* Scalar2D_CoreViews */; };
-		211B7F9B22C943AF0022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9A22C943AF0022952D /* Scalar2D_FontDescription */; };
-		211B7F9D22C943AF0022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9C22C943AF0022952D /* Scalar2D_GraphicPath */; };
-		211B7F9F22C943AF0022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7F9E22C943AF0022952D /* Scalar2D_Styling */; };
-		211B7FA122C943AF0022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FA022C943AF0022952D /* Scalar2D_SVG */; };
-		211B7FA322C943AF0022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FA222C943AF0022952D /* Scalar2D_SwiftUI */; };
-		211B7FA522C943AF0022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FA422C943AF0022952D /* Scalar2D_Utils */; };
 		211B7FAD22C964000022952D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FAC22C964000022952D /* AppDelegate.swift */; };
 		211B7FAF22C964000022952D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FAE22C964000022952D /* ContentView.swift */; };
 		211B7FB122C964030022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7FB022C964030022952D /* Assets.xcassets */; };
 		211B7FB422C964030022952D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7FB322C964030022952D /* Preview Assets.xcassets */; };
 		211B7FBF22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FBE22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift */; };
-		211B7FC822C964290022952D /* Scalar2D_Colour in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FC722C964290022952D /* Scalar2D_Colour */; };
-		211B7FCA22C964290022952D /* Scalar2D_CoreGraphics in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FC922C964290022952D /* Scalar2D_CoreGraphics */; };
-		211B7FCC22C964290022952D /* Scalar2D_FontDescription in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FCB22C964290022952D /* Scalar2D_FontDescription */; };
-		211B7FCE22C964290022952D /* Scalar2D_GraphicPath in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FCD22C964290022952D /* Scalar2D_GraphicPath */; };
-		211B7FD022C964290022952D /* Scalar2D_Styling in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FCF22C964290022952D /* Scalar2D_Styling */; };
-		211B7FD222C964290022952D /* Scalar2D_SVG in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FD122C964290022952D /* Scalar2D_SVG */; };
-		211B7FD422C964290022952D /* Scalar2D_SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FD322C964290022952D /* Scalar2D_SwiftUI */; };
-		211B7FD622C964290022952D /* Scalar2D_Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 211B7FD522C964290022952D /* Scalar2D_Utils */; };
 		211B7FD922C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
 		211B7FDA22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
 		211B7FDB22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
@@ -194,7 +206,6 @@
 		2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_Mac_Test_AppTests.swift; sourceTree = "<group>"; };
 		2157D36E1D5AE3DE00C57462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Scalar2DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		21C87F1922C8FEEB00CC4C70 /* Scalar2d */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Scalar2d; path = ..; sourceTree = "<group>"; };
 		21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalard2D (iOS).playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		21FFE8E91D6473D3003446DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -204,15 +215,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211B7F9722C943AF0022952D /* Scalar2D_CoreGraphics in Frameworks */,
-				211B7F9F22C943AF0022952D /* Scalar2D_Styling in Frameworks */,
-				211B7FA122C943AF0022952D /* Scalar2D_SVG in Frameworks */,
-				211B7F9522C943AF0022952D /* Scalar2D_Colour in Frameworks */,
-				211B7F9D22C943AF0022952D /* Scalar2D_GraphicPath in Frameworks */,
-				211B7FA522C943AF0022952D /* Scalar2D_Utils in Frameworks */,
-				211B7F9B22C943AF0022952D /* Scalar2D_FontDescription in Frameworks */,
-				211B7FA322C943AF0022952D /* Scalar2D_SwiftUI in Frameworks */,
-				211B7F9922C943AF0022952D /* Scalar2D_CoreViews in Frameworks */,
+				2105B2A622C975C200BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */,
+				2105B2B022C975C200BAB0C1 /* Scalar2D_SwiftUI in Frameworks */,
+				2105B2B222C975C200BAB0C1 /* Scalar2D_Utils in Frameworks */,
+				2105B2AE22C975C200BAB0C1 /* Scalar2D_SVG in Frameworks */,
+				2105B2A422C975C200BAB0C1 /* Scalar2D_Colour in Frameworks */,
+				2105B2AA22C975C200BAB0C1 /* Scalar2D_GraphicPath in Frameworks */,
+				2105B2A822C975C200BAB0C1 /* Scalar2D_FontDescription in Frameworks */,
+				2105B2AC22C975C200BAB0C1 /* Scalar2D_Styling in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,14 +230,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211B7FCA22C964290022952D /* Scalar2D_CoreGraphics in Frameworks */,
-				211B7FD422C964290022952D /* Scalar2D_SwiftUI in Frameworks */,
-				211B7FD622C964290022952D /* Scalar2D_Utils in Frameworks */,
-				211B7FD222C964290022952D /* Scalar2D_SVG in Frameworks */,
-				211B7FC822C964290022952D /* Scalar2D_Colour in Frameworks */,
-				211B7FCE22C964290022952D /* Scalar2D_GraphicPath in Frameworks */,
-				211B7FCC22C964290022952D /* Scalar2D_FontDescription in Frameworks */,
-				211B7FD022C964290022952D /* Scalar2D_Styling in Frameworks */,
+				2105B2C422C975D400BAB0C1 /* Scalar2D_UIKitViews in Frameworks */,
+				2105B2B622C975D400BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */,
+				2105B2BE22C975D400BAB0C1 /* Scalar2D_Styling in Frameworks */,
+				2105B2C022C975D400BAB0C1 /* Scalar2D_SVG in Frameworks */,
+				2105B2B422C975D400BAB0C1 /* Scalar2D_Colour in Frameworks */,
+				2105B2BC22C975D400BAB0C1 /* Scalar2D_GraphicPath in Frameworks */,
+				2105B2C622C975D400BAB0C1 /* Scalar2D_Utils in Frameworks */,
+				2105B2BA22C975D400BAB0C1 /* Scalar2D_FontDescription in Frameworks */,
+				2105B2C222C975D400BAB0C1 /* Scalar2D_SwiftUI in Frameworks */,
+				2105B2B822C975D400BAB0C1 /* Scalar2D_CoreViews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,16 +254,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211B7F5422C92A020022952D /* Scalar2D_GraphicPath in Frameworks */,
-				211B7F5E22C940A30022952D /* Scalar2D_SVG in Frameworks */,
-				211B7F4C22C92A020022952D /* Scalar2D_Colour in Frameworks */,
-				211B7F4A22C92A020022952D /* Scalar2D_AppKitViews in Frameworks */,
-				211B7F5222C92A020022952D /* Scalar2D_FontDescription in Frameworks */,
-				211B7F6022C940A30022952D /* Scalar2D_SwiftUI in Frameworks */,
-				211B7F4E22C92A020022952D /* Scalar2D_CoreGraphics in Frameworks */,
-				211B7F5822C92A020022952D /* Scalar2D_Utils in Frameworks */,
-				211B7F5622C92A020022952D /* Scalar2D_Styling in Frameworks */,
-				211B7F5022C92A020022952D /* Scalar2D_CoreViews in Frameworks */,
+				2105B29A22C9759F00BAB0C1 /* Scalar2D_GraphicPath in Frameworks */,
+				2105B29222C9759F00BAB0C1 /* Scalar2D_Colour in Frameworks */,
+				2105B29022C9759F00BAB0C1 /* Scalar2D_AppKitViews in Frameworks */,
+				2105B29822C9759F00BAB0C1 /* Scalar2D_FontDescription in Frameworks */,
+				2105B2A222C9759F00BAB0C1 /* Scalar2D_Utils in Frameworks */,
+				2105B29422C9759F00BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */,
+				2105B29C22C9759F00BAB0C1 /* Scalar2D_Styling in Frameworks */,
+				2105B2A022C9759F00BAB0C1 /* Scalar2D_SwiftUI in Frameworks */,
+				2105B29622C9759F00BAB0C1 /* Scalar2D_CoreViews in Frameworks */,
+				2105B29E22C9759F00BAB0C1 /* Scalar2D_SVG in Frameworks */,
 				21FFE8EA1D6473D3003446DF /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,16 +272,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211B7F3E22C904AC0022952D /* Scalar2D_CoreViews in Frameworks */,
-				211B7F3A22C904AC0022952D /* Scalar2D_Colour in Frameworks */,
-				211B7F4622C904AC0022952D /* Scalar2D_UIKitViews in Frameworks */,
-				211B7F4422C904AC0022952D /* Scalar2D_Styling in Frameworks */,
-				211B7F4222C904AC0022952D /* Scalar2D_GraphicPath in Frameworks */,
-				211B7F4822C904AC0022952D /* Scalar2D_Utils in Frameworks */,
-				211B7F5C22C9409B0022952D /* Scalar2D_SwiftUI in Frameworks */,
-				211B7F3C22C904AC0022952D /* Scalar2D_CoreGraphics in Frameworks */,
-				211B7F5A22C9409B0022952D /* Scalar2D_SVG in Frameworks */,
-				211B7F4022C904AC0022952D /* Scalar2D_FontDescription in Frameworks */,
+				2105B28C22C9759300BAB0C1 /* Scalar2D_UIKitViews in Frameworks */,
+				2105B27E22C9759300BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */,
+				2105B28622C9759300BAB0C1 /* Scalar2D_Styling in Frameworks */,
+				2105B28822C9759300BAB0C1 /* Scalar2D_SVG in Frameworks */,
+				2105B27C22C9759300BAB0C1 /* Scalar2D_Colour in Frameworks */,
+				2105B28422C9759300BAB0C1 /* Scalar2D_GraphicPath in Frameworks */,
+				2105B28E22C9759300BAB0C1 /* Scalar2D_Utils in Frameworks */,
+				2105B28222C9759300BAB0C1 /* Scalar2D_FontDescription in Frameworks */,
+				2105B28A22C9759300BAB0C1 /* Scalar2D_SwiftUI in Frameworks */,
+				2105B28022C9759300BAB0C1 /* Scalar2D_CoreViews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +296,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2105B27622C9754B00BAB0C1 /* Scalar2D_UIKitViews in Frameworks */,
+				2105B26A22C9754B00BAB0C1 /* Scalar2D_Colour in Frameworks */,
+				2105B27022C9754B00BAB0C1 /* Scalar2D_SVG in Frameworks */,
+				2105B26822C9754B00BAB0C1 /* Scalar2D_GraphicPath in Frameworks */,
+				2105B27822C9754B00BAB0C1 /* Scalar2D_FontDescription in Frameworks */,
+				2105B27A22C9754B00BAB0C1 /* Scalar2D_SwiftUI in Frameworks */,
+				2105B26C22C9754B00BAB0C1 /* Scalar2D_CoreGraphics in Frameworks */,
+				2105B26E22C9754B00BAB0C1 /* Scalar2D_CoreViews in Frameworks */,
+				2105B27422C9754B00BAB0C1 /* Scalar2D_Styling in Frameworks */,
+				2105B26622C9754B00BAB0C1 /* Scalar2D_Utils in Frameworks */,
+				2105B27222C9754B00BAB0C1 /* Scalar2D_AppKitViews in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,7 +423,6 @@
 		21B719661D48599A00B0ACBF = {
 			isa = PBXGroup;
 			children = (
-				21C87F1922C8FEEB00CC4C70 /* Scalar2d */,
 				213D06EB1D55F72200A5FD69 /* Scalar2D iOS Test App */,
 				211B7FD722C964820022952D /* Shared Test UI */,
 				212E78311D5832C4003802D7 /* Scalar2D Mac Test App */,
@@ -489,15 +511,14 @@
 			);
 			name = "Scalar2D watchOS TestApp WatchKit Extension";
 			packageProductDependencies = (
-				211B7F9422C943AF0022952D /* Scalar2D_Colour */,
-				211B7F9622C943AF0022952D /* Scalar2D_CoreGraphics */,
-				211B7F9822C943AF0022952D /* Scalar2D_CoreViews */,
-				211B7F9A22C943AF0022952D /* Scalar2D_FontDescription */,
-				211B7F9C22C943AF0022952D /* Scalar2D_GraphicPath */,
-				211B7F9E22C943AF0022952D /* Scalar2D_Styling */,
-				211B7FA022C943AF0022952D /* Scalar2D_SVG */,
-				211B7FA222C943AF0022952D /* Scalar2D_SwiftUI */,
-				211B7FA422C943AF0022952D /* Scalar2D_Utils */,
+				2105B2A322C975C200BAB0C1 /* Scalar2D_Colour */,
+				2105B2A522C975C200BAB0C1 /* Scalar2D_CoreGraphics */,
+				2105B2A722C975C200BAB0C1 /* Scalar2D_FontDescription */,
+				2105B2A922C975C200BAB0C1 /* Scalar2D_GraphicPath */,
+				2105B2AB22C975C200BAB0C1 /* Scalar2D_Styling */,
+				2105B2AD22C975C200BAB0C1 /* Scalar2D_SVG */,
+				2105B2AF22C975C200BAB0C1 /* Scalar2D_SwiftUI */,
+				2105B2B122C975C200BAB0C1 /* Scalar2D_Utils */,
 			);
 			productName = "Scalar2D watchOS TestApp WatchKit Extension";
 			productReference = 211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */;
@@ -517,14 +538,16 @@
 			);
 			name = "Scalar2D tVOS Test App";
 			packageProductDependencies = (
-				211B7FC722C964290022952D /* Scalar2D_Colour */,
-				211B7FC922C964290022952D /* Scalar2D_CoreGraphics */,
-				211B7FCB22C964290022952D /* Scalar2D_FontDescription */,
-				211B7FCD22C964290022952D /* Scalar2D_GraphicPath */,
-				211B7FCF22C964290022952D /* Scalar2D_Styling */,
-				211B7FD122C964290022952D /* Scalar2D_SVG */,
-				211B7FD322C964290022952D /* Scalar2D_SwiftUI */,
-				211B7FD522C964290022952D /* Scalar2D_Utils */,
+				2105B2B322C975D400BAB0C1 /* Scalar2D_Colour */,
+				2105B2B522C975D400BAB0C1 /* Scalar2D_CoreGraphics */,
+				2105B2B722C975D400BAB0C1 /* Scalar2D_CoreViews */,
+				2105B2B922C975D400BAB0C1 /* Scalar2D_FontDescription */,
+				2105B2BB22C975D400BAB0C1 /* Scalar2D_GraphicPath */,
+				2105B2BD22C975D400BAB0C1 /* Scalar2D_Styling */,
+				2105B2BF22C975D400BAB0C1 /* Scalar2D_SVG */,
+				2105B2C122C975D400BAB0C1 /* Scalar2D_SwiftUI */,
+				2105B2C322C975D400BAB0C1 /* Scalar2D_UIKitViews */,
+				2105B2C522C975D400BAB0C1 /* Scalar2D_Utils */,
 			);
 			productName = "Scalar2D tVOS Test App";
 			productReference = 211B7FAA22C964000022952D /* Scalar2D tVOS Test App.app */;
@@ -563,16 +586,16 @@
 			);
 			name = "Scalar2D Mac Test App";
 			packageProductDependencies = (
-				211B7F4922C92A020022952D /* Scalar2D_AppKitViews */,
-				211B7F4B22C92A020022952D /* Scalar2D_Colour */,
-				211B7F4D22C92A020022952D /* Scalar2D_CoreGraphics */,
-				211B7F4F22C92A020022952D /* Scalar2D_CoreViews */,
-				211B7F5122C92A020022952D /* Scalar2D_FontDescription */,
-				211B7F5322C92A020022952D /* Scalar2D_GraphicPath */,
-				211B7F5522C92A020022952D /* Scalar2D_Styling */,
-				211B7F5722C92A020022952D /* Scalar2D_Utils */,
-				211B7F5D22C940A30022952D /* Scalar2D_SVG */,
-				211B7F5F22C940A30022952D /* Scalar2D_SwiftUI */,
+				2105B28F22C9759F00BAB0C1 /* Scalar2D_AppKitViews */,
+				2105B29122C9759F00BAB0C1 /* Scalar2D_Colour */,
+				2105B29322C9759F00BAB0C1 /* Scalar2D_CoreGraphics */,
+				2105B29522C9759F00BAB0C1 /* Scalar2D_CoreViews */,
+				2105B29722C9759F00BAB0C1 /* Scalar2D_FontDescription */,
+				2105B29922C9759F00BAB0C1 /* Scalar2D_GraphicPath */,
+				2105B29B22C9759F00BAB0C1 /* Scalar2D_Styling */,
+				2105B29D22C9759F00BAB0C1 /* Scalar2D_SVG */,
+				2105B29F22C9759F00BAB0C1 /* Scalar2D_SwiftUI */,
+				2105B2A122C9759F00BAB0C1 /* Scalar2D_Utils */,
 			);
 			productName = "Scalar2D Mac Test App";
 			productReference = 212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */;
@@ -592,16 +615,16 @@
 			);
 			name = "Scalar2D iOS Test App";
 			packageProductDependencies = (
-				211B7F3922C904AC0022952D /* Scalar2D_Colour */,
-				211B7F3B22C904AC0022952D /* Scalar2D_CoreGraphics */,
-				211B7F3D22C904AC0022952D /* Scalar2D_CoreViews */,
-				211B7F3F22C904AC0022952D /* Scalar2D_FontDescription */,
-				211B7F4122C904AC0022952D /* Scalar2D_GraphicPath */,
-				211B7F4322C904AC0022952D /* Scalar2D_Styling */,
-				211B7F4522C904AC0022952D /* Scalar2D_UIKitViews */,
-				211B7F4722C904AC0022952D /* Scalar2D_Utils */,
-				211B7F5922C9409B0022952D /* Scalar2D_SVG */,
-				211B7F5B22C9409B0022952D /* Scalar2D_SwiftUI */,
+				2105B27B22C9759300BAB0C1 /* Scalar2D_Colour */,
+				2105B27D22C9759300BAB0C1 /* Scalar2D_CoreGraphics */,
+				2105B27F22C9759300BAB0C1 /* Scalar2D_CoreViews */,
+				2105B28122C9759300BAB0C1 /* Scalar2D_FontDescription */,
+				2105B28322C9759300BAB0C1 /* Scalar2D_GraphicPath */,
+				2105B28522C9759300BAB0C1 /* Scalar2D_Styling */,
+				2105B28722C9759300BAB0C1 /* Scalar2D_SVG */,
+				2105B28922C9759300BAB0C1 /* Scalar2D_SwiftUI */,
+				2105B28B22C9759300BAB0C1 /* Scalar2D_UIKitViews */,
+				2105B28D22C9759300BAB0C1 /* Scalar2D_Utils */,
 			);
 			productName = "Scalar2D Test App";
 			productReference = 213D06EA1D55F72100A5FD69 /* Scalar2D iOS Test App.app */;
@@ -639,6 +662,19 @@
 				212E78271D579C29003802D7 /* PBXTargetDependency */,
 			);
 			name = Scalar2DTests;
+			packageProductDependencies = (
+				2105B26522C9754B00BAB0C1 /* Scalar2D_Utils */,
+				2105B26722C9754B00BAB0C1 /* Scalar2D_GraphicPath */,
+				2105B26922C9754B00BAB0C1 /* Scalar2D_Colour */,
+				2105B26B22C9754B00BAB0C1 /* Scalar2D_CoreGraphics */,
+				2105B26D22C9754B00BAB0C1 /* Scalar2D_CoreViews */,
+				2105B26F22C9754B00BAB0C1 /* Scalar2D_SVG */,
+				2105B27122C9754B00BAB0C1 /* Scalar2D_AppKitViews */,
+				2105B27322C9754B00BAB0C1 /* Scalar2D_Styling */,
+				2105B27522C9754B00BAB0C1 /* Scalar2D_UIKitViews */,
+				2105B27722C9754B00BAB0C1 /* Scalar2D_FontDescription */,
+				2105B27922C9754B00BAB0C1 /* Scalar2D_SwiftUI */,
+			);
 			productName = Scalar2DTests;
 			productReference = 21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -707,6 +743,9 @@
 				Base,
 			);
 			mainGroup = 21B719661D48599A00B0ACBF;
+			packageReferences = (
+				2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */,
+			);
 			productRefGroup = 21B719711D48599A00B0ACBF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1575,153 +1614,261 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GenerallyHelpfulSoftware/Scalar2D.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
-		211B7F3922C904AC0022952D /* Scalar2D_Colour */ = {
+		2105B26522C9754B00BAB0C1 /* Scalar2D_Utils */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_Colour;
-		};
-		211B7F3B22C904AC0022952D /* Scalar2D_CoreGraphics */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_CoreGraphics;
-		};
-		211B7F3D22C904AC0022952D /* Scalar2D_CoreViews */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_CoreViews;
-		};
-		211B7F3F22C904AC0022952D /* Scalar2D_FontDescription */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_FontDescription;
-		};
-		211B7F4122C904AC0022952D /* Scalar2D_GraphicPath */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_GraphicPath;
-		};
-		211B7F4322C904AC0022952D /* Scalar2D_Styling */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_Styling;
-		};
-		211B7F4522C904AC0022952D /* Scalar2D_UIKitViews */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_UIKitViews;
-		};
-		211B7F4722C904AC0022952D /* Scalar2D_Utils */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Utils;
 		};
-		211B7F4922C92A020022952D /* Scalar2D_AppKitViews */ = {
+		2105B26722C9754B00BAB0C1 /* Scalar2D_GraphicPath */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_GraphicPath;
+		};
+		2105B26922C9754B00BAB0C1 /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_Colour;
+		};
+		2105B26B22C9754B00BAB0C1 /* Scalar2D_CoreGraphics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_CoreGraphics;
+		};
+		2105B26D22C9754B00BAB0C1 /* Scalar2D_CoreViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_CoreViews;
+		};
+		2105B26F22C9754B00BAB0C1 /* Scalar2D_SVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_SVG;
+		};
+		2105B27122C9754B00BAB0C1 /* Scalar2D_AppKitViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_AppKitViews;
 		};
-		211B7F4B22C92A020022952D /* Scalar2D_Colour */ = {
+		2105B27322C9754B00BAB0C1 /* Scalar2D_Styling */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_Styling;
+		};
+		2105B27522C9754B00BAB0C1 /* Scalar2D_UIKitViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_UIKitViews;
+		};
+		2105B27722C9754B00BAB0C1 /* Scalar2D_FontDescription */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_FontDescription;
+		};
+		2105B27922C9754B00BAB0C1 /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_SwiftUI;
+		};
+		2105B27B22C9759300BAB0C1 /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Colour;
 		};
-		211B7F4D22C92A020022952D /* Scalar2D_CoreGraphics */ = {
+		2105B27D22C9759300BAB0C1 /* Scalar2D_CoreGraphics */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_CoreGraphics;
 		};
-		211B7F4F22C92A020022952D /* Scalar2D_CoreViews */ = {
+		2105B27F22C9759300BAB0C1 /* Scalar2D_CoreViews */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_CoreViews;
 		};
-		211B7F5122C92A020022952D /* Scalar2D_FontDescription */ = {
+		2105B28122C9759300BAB0C1 /* Scalar2D_FontDescription */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_FontDescription;
 		};
-		211B7F5322C92A020022952D /* Scalar2D_GraphicPath */ = {
+		2105B28322C9759300BAB0C1 /* Scalar2D_GraphicPath */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_GraphicPath;
 		};
-		211B7F5522C92A020022952D /* Scalar2D_Styling */ = {
+		2105B28522C9759300BAB0C1 /* Scalar2D_Styling */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Styling;
 		};
-		211B7F5722C92A020022952D /* Scalar2D_Utils */ = {
+		2105B28722C9759300BAB0C1 /* Scalar2D_SVG */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_SVG;
+		};
+		2105B28922C9759300BAB0C1 /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_SwiftUI;
+		};
+		2105B28B22C9759300BAB0C1 /* Scalar2D_UIKitViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_UIKitViews;
+		};
+		2105B28D22C9759300BAB0C1 /* Scalar2D_Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Utils;
 		};
-		211B7F5922C9409B0022952D /* Scalar2D_SVG */ = {
+		2105B28F22C9759F00BAB0C1 /* Scalar2D_AppKitViews */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_SVG;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_AppKitViews;
 		};
-		211B7F5B22C9409B0022952D /* Scalar2D_SwiftUI */ = {
+		2105B29122C9759F00BAB0C1 /* Scalar2D_Colour */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_SwiftUI;
-		};
-		211B7F5D22C940A30022952D /* Scalar2D_SVG */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_SVG;
-		};
-		211B7F5F22C940A30022952D /* Scalar2D_SwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = Scalar2D_SwiftUI;
-		};
-		211B7F9422C943AF0022952D /* Scalar2D_Colour */ = {
-			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Colour;
 		};
-		211B7F9622C943AF0022952D /* Scalar2D_CoreGraphics */ = {
+		2105B29322C9759F00BAB0C1 /* Scalar2D_CoreGraphics */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_CoreGraphics;
 		};
-		211B7F9822C943AF0022952D /* Scalar2D_CoreViews */ = {
+		2105B29522C9759F00BAB0C1 /* Scalar2D_CoreViews */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_CoreViews;
 		};
-		211B7F9A22C943AF0022952D /* Scalar2D_FontDescription */ = {
+		2105B29722C9759F00BAB0C1 /* Scalar2D_FontDescription */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_FontDescription;
 		};
-		211B7F9C22C943AF0022952D /* Scalar2D_GraphicPath */ = {
+		2105B29922C9759F00BAB0C1 /* Scalar2D_GraphicPath */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_GraphicPath;
 		};
-		211B7F9E22C943AF0022952D /* Scalar2D_Styling */ = {
+		2105B29B22C9759F00BAB0C1 /* Scalar2D_Styling */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Styling;
 		};
-		211B7FA022C943AF0022952D /* Scalar2D_SVG */ = {
+		2105B29D22C9759F00BAB0C1 /* Scalar2D_SVG */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_SVG;
 		};
-		211B7FA222C943AF0022952D /* Scalar2D_SwiftUI */ = {
+		2105B29F22C9759F00BAB0C1 /* Scalar2D_SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_SwiftUI;
 		};
-		211B7FA422C943AF0022952D /* Scalar2D_Utils */ = {
+		2105B2A122C9759F00BAB0C1 /* Scalar2D_Utils */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Utils;
 		};
-		211B7FC722C964290022952D /* Scalar2D_Colour */ = {
+		2105B2A322C975C200BAB0C1 /* Scalar2D_Colour */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Colour;
 		};
-		211B7FC922C964290022952D /* Scalar2D_CoreGraphics */ = {
+		2105B2A522C975C200BAB0C1 /* Scalar2D_CoreGraphics */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_CoreGraphics;
 		};
-		211B7FCB22C964290022952D /* Scalar2D_FontDescription */ = {
+		2105B2A722C975C200BAB0C1 /* Scalar2D_FontDescription */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_FontDescription;
 		};
-		211B7FCD22C964290022952D /* Scalar2D_GraphicPath */ = {
+		2105B2A922C975C200BAB0C1 /* Scalar2D_GraphicPath */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_GraphicPath;
 		};
-		211B7FCF22C964290022952D /* Scalar2D_Styling */ = {
+		2105B2AB22C975C200BAB0C1 /* Scalar2D_Styling */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Styling;
 		};
-		211B7FD122C964290022952D /* Scalar2D_SVG */ = {
+		2105B2AD22C975C200BAB0C1 /* Scalar2D_SVG */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_SVG;
 		};
-		211B7FD322C964290022952D /* Scalar2D_SwiftUI */ = {
+		2105B2AF22C975C200BAB0C1 /* Scalar2D_SwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_SwiftUI;
 		};
-		211B7FD522C964290022952D /* Scalar2D_Utils */ = {
+		2105B2B122C975C200BAB0C1 /* Scalar2D_Utils */ = {
 			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_Utils;
+		};
+		2105B2B322C975D400BAB0C1 /* Scalar2D_Colour */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_Colour;
+		};
+		2105B2B522C975D400BAB0C1 /* Scalar2D_CoreGraphics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_CoreGraphics;
+		};
+		2105B2B722C975D400BAB0C1 /* Scalar2D_CoreViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_CoreViews;
+		};
+		2105B2B922C975D400BAB0C1 /* Scalar2D_FontDescription */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_FontDescription;
+		};
+		2105B2BB22C975D400BAB0C1 /* Scalar2D_GraphicPath */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_GraphicPath;
+		};
+		2105B2BD22C975D400BAB0C1 /* Scalar2D_Styling */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_Styling;
+		};
+		2105B2BF22C975D400BAB0C1 /* Scalar2D_SVG */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_SVG;
+		};
+		2105B2C122C975D400BAB0C1 /* Scalar2D_SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_SwiftUI;
+		};
+		2105B2C322C975D400BAB0C1 /* Scalar2D_UIKitViews */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
+			productName = Scalar2D_UIKitViews;
+		};
+		2105B2C522C975D400BAB0C1 /* Scalar2D_Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2105B26422C9754B00BAB0C1 /* XCRemoteSwiftPackageReference "Scalar2D" */;
 			productName = Scalar2D_Utils;
 		};
 /* End XCSwiftPackageProductDependency section */

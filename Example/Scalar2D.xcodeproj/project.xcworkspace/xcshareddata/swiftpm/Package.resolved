@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Scalar2D",
+        "repositoryURL": "https://github.com/GenerallyHelpfulSoftware/Scalar2D.git",
+        "state": {
+          "branch": null,
+          "revision": "d290c0aeb27d36ae74ec9fb24260f6c6ffb51f08",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

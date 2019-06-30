@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Scalar2D.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "21B719781D48599B00B0ACBF"
+               BuildableName = "Scalar2DTests.xctest"
+               BlueprintName = "Scalar2DTests"
+               ReferencedContainer = "container:Scalar2D.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
