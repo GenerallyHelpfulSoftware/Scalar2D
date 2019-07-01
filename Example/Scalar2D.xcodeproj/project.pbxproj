@@ -62,7 +62,6 @@
 		211B7F7022C943340022952D /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F6E22C943340022952D /* Interface.storyboard */; };
 		211B7F7222C943350022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F7122C943350022952D /* Assets.xcassets */; };
 		211B7F7922C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		211B7F7E22C943350022952D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F7D22C943350022952D /* ContentView.swift */; };
 		211B7F8022C943350022952D /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F7F22C943350022952D /* HostingController.swift */; };
 		211B7F8222C943350022952D /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7F8122C943350022952D /* ExtensionDelegate.swift */; };
 		211B7F8422C943360022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7F8322C943360022952D /* Assets.xcassets */; };
@@ -171,7 +170,6 @@
 		211B7F7122C943350022952D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		211B7F7322C943350022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Scalar2D watchOS TestApp WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		211B7F7D22C943350022952D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		211B7F7F22C943350022952D /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		211B7F8122C943350022952D /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		211B7F8322C943360022952D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 		211B7F7C22C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				211B7F7D22C943350022952D /* ContentView.swift */,
 				211B7F7F22C943350022952D /* HostingController.swift */,
 				211B7F8122C943350022952D /* ExtensionDelegate.swift */,
 				211B7F8322C943360022952D /* Assets.xcassets */,
@@ -846,7 +843,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				211B7F8022C943350022952D /* HostingController.swift in Sources */,
-				211B7F7E22C943350022952D /* ContentView.swift in Sources */,
 				211B7FDB22C964B90022952D /* TestFrogView.swift in Sources */,
 				211B7F8222C943350022952D /* ExtensionDelegate.swift in Sources */,
 			);
