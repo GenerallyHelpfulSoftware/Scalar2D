@@ -55,19 +55,6 @@ extension CGPath
     }
 }
 
-#if DEBUG
-struct TestFrogView_Previews : PreviewProvider {
-
-    
-    static var previews: some View {
-        GeometryReader
-        {
-                proxy in
-                Path(CGPath.path(fromSVGPath: "M100 250 C167 256 217 249 224 244S234 238 229 218 235 203 249 204 270 157 265 115 C260 100 236 81 228 95 S 221 137 220 145 207 19 135 30 C116 9 86 18 85 43Q66 45 53 68C21 68 17 96 32 112 43 205 113 189 185 212")!.fitting(geometry: proxy)).strokedPath(StrokeStyle(lineWidth:3.0))
-        }
-    }
-}
-#endif
 
 
 #endif
