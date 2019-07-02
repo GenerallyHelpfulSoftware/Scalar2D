@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Scalar2D",
-    platforms: [.macOS("10.11.2"), .iOS("10.0"), .watchOS("6.0"), .tvOS("10.0")],
+    platforms: [.macOS("10.11.2"), .iOS("10.0"), .watchOS("6.0"), .tvOS("13.0")],
     products: [
         .library(
             name: "Scalar2D_Utils",
