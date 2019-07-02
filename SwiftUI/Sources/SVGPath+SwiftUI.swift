@@ -25,8 +25,10 @@ public extension Path
 }
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension CGPath
+public extension CGPath
 {
+    /// Transform this CGPath to fit int the GeometryProxy's size.
+    /// - Parameter geometry: geometry environment to fit into
     func fitting(geometry : GeometryProxy) -> CGPath
     {
         let baseBox = self.boundingBoxOfPath
@@ -54,7 +56,4 @@ extension CGPath
         return self.copy(using: &requiredTransform) ?? self
     }
 }
-
-
-
 #endif
