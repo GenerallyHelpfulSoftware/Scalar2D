@@ -70,7 +70,6 @@
 		211B7FAF22C964000022952D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FAE22C964000022952D /* ContentView.swift */; };
 		211B7FB122C964030022952D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7FB022C964030022952D /* Assets.xcassets */; };
 		211B7FB422C964030022952D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 211B7FB322C964030022952D /* Preview Assets.xcassets */; };
-		211B7FBF22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FBE22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift */; };
 		211B7FD922C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
 		211B7FDA22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
 		211B7FDB22C964B90022952D /* TestFrogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211B7FD822C964B90022952D /* TestFrogView.swift */; };
@@ -103,13 +102,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 211B7F7722C943350022952D;
 			remoteInfo = "Scalar2D watchOS TestApp WatchKit Extension";
-		};
-		211B7FBB22C964030022952D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 21B719671D48599A00B0ACBF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 211B7FA922C964000022952D;
-			remoteInfo = "Scalar2D tVOS Test App";
 		};
 		212E78261D579C29003802D7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -163,7 +155,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		211B7F6122C942630022952D /* SwiftUIFrogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SwiftUIFrogView.swift; path = "../../../Scalar2D/Example/Scalar2D Test App/SwiftUIFrogView.swift"; sourceTree = "<group>"; };
+		211B7F6122C942630022952D /* SwiftUIFrogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIFrogView.swift; sourceTree = "<group>"; };
 		211B7F6622C943340022952D /* Scalar2D watchOS TestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D watchOS TestApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D watchOS TestApp WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		211B7F6F22C943340022952D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -181,10 +173,9 @@
 		211B7FB022C964030022952D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		211B7FB322C964030022952D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		211B7FB522C964030022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		211B7FBA22C964030022952D /* Scalar2D tVOS Test AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Scalar2D tVOS Test AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		211B7FBE22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_tVOS_Test_AppUITests.swift; sourceTree = "<group>"; };
 		211B7FC022C964030022952D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		211B7FD822C964B90022952D /* TestFrogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestFrogView.swift; path = "../../../Scalar2D/Example/Shared Test UI/TestFrogView.swift"; sourceTree = "<group>"; };
+		211B7FD822C964B90022952D /* TestFrogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFrogView.swift; sourceTree = "<group>"; };
 		212E78301D5832C4003802D7 /* Scalar2D Mac Test App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Scalar2D Mac Test App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		212E78321D5832C4003802D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		212E78341D5832C4003802D7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +195,7 @@
 		2157D36C1D5AE3DE00C57462 /* Scalar2D_Mac_Test_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scalar2D_Mac_Test_AppTests.swift; sourceTree = "<group>"; };
 		2157D36E1D5AE3DE00C57462 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21B719791D48599B00B0ACBF /* Scalar2DTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Scalar2DTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		21BE024322D442A4006E6968 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS13.0.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 		21FFE8D91D630227003446DF /* Scalard2D (iOS).playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Scalard2D (iOS).playground"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		21FFE8E91D6473D3003446DF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -238,13 +230,6 @@
 				2105B2BA22C975D400BAB0C1 /* Scalar2D_FontDescription in Frameworks */,
 				2105B2C222C975D400BAB0C1 /* Scalar2D_SwiftUI in Frameworks */,
 				2105B2B822C975D400BAB0C1 /* Scalar2D_CoreViews in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		211B7FB722C964030022952D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,7 +429,6 @@
 				211B7F6922C943340022952D /* Scalar2D watchOS TestApp WatchKit App.app */,
 				211B7F7822C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension.appex */,
 				211B7FAA22C964000022952D /* Scalar2D tVOS Test App.app */,
-				211B7FBA22C964030022952D /* Scalar2D tVOS Test AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -452,6 +436,7 @@
 		21FFE8E81D6473D3003446DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21BE024322D442A4006E6968 /* SwiftUI.framework */,
 				21FFE8E91D6473D3003446DF /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
@@ -549,24 +534,6 @@
 			productName = "Scalar2D tVOS Test App";
 			productReference = 211B7FAA22C964000022952D /* Scalar2D tVOS Test App.app */;
 			productType = "com.apple.product-type.application";
-		};
-		211B7FB922C964030022952D /* Scalar2D tVOS Test AppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 211B7FC422C964030022952D /* Build configuration list for PBXNativeTarget "Scalar2D tVOS Test AppUITests" */;
-			buildPhases = (
-				211B7FB622C964030022952D /* Sources */,
-				211B7FB722C964030022952D /* Frameworks */,
-				211B7FB822C964030022952D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				211B7FBC22C964030022952D /* PBXTargetDependency */,
-			);
-			name = "Scalar2D tVOS Test AppUITests";
-			productName = "Scalar2D tVOS Test AppUITests";
-			productReference = 211B7FBA22C964030022952D /* Scalar2D tVOS Test AppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		212E782F1D5832C4003802D7 /* Scalar2D Mac Test App */ = {
 			isa = PBXNativeTarget;
@@ -698,10 +665,6 @@
 					211B7FA922C964000022952D = {
 						CreatedOnToolsVersion = 11.0;
 					};
-					211B7FB922C964030022952D = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = 211B7FA922C964000022952D;
-					};
 					212E782F1D5832C4003802D7 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 626532Z6AM;
@@ -755,7 +718,6 @@
 				211B7F6822C943340022952D /* Scalar2D watchOS TestApp WatchKit App */,
 				211B7F7722C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */,
 				211B7FA922C964000022952D /* Scalar2D tVOS Test App */,
-				211B7FB922C964030022952D /* Scalar2D tVOS Test AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -792,13 +754,6 @@
 			files = (
 				211B7FB422C964030022952D /* Preview Assets.xcassets in Resources */,
 				211B7FB122C964030022952D /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		211B7FB822C964030022952D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,14 +813,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		211B7FB622C964030022952D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				211B7FBF22C964030022952D /* Scalar2D_tVOS_Test_AppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		212E782C1D5832C4003802D7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -916,11 +863,6 @@
 			isa = PBXTargetDependency;
 			target = 211B7F7722C943350022952D /* Scalar2D watchOS TestApp WatchKit Extension */;
 			targetProxy = 211B7F7A22C943350022952D /* PBXContainerItemProxy */;
-		};
-		211B7FBC22C964030022952D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 211B7FA922C964000022952D /* Scalar2D tVOS Test App */;
-			targetProxy = 211B7FBB22C964030022952D /* PBXContainerItemProxy */;
 		};
 		212E78271D579C29003802D7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1168,61 +1110,6 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-			};
-			name = Release;
-		};
-		211B7FC522C964030022952D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Scalar2D tVOS Test AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-tVOS-Test-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = "Scalar2D tVOS Test App";
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-			};
-			name = Debug;
-		};
-		211B7FC622C964030022952D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Scalar2D tVOS Test AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.genhelp.Scalar2D-tVOS-Test-AppUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = appletvos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 3;
-				TEST_TARGET_NAME = "Scalar2D tVOS Test App";
 				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Release;
@@ -1550,15 +1437,6 @@
 			buildConfigurations = (
 				211B7FC222C964030022952D /* Debug */,
 				211B7FC322C964030022952D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		211B7FC422C964030022952D /* Build configuration list for PBXNativeTarget "Scalar2D tVOS Test AppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				211B7FC522C964030022952D /* Debug */,
-				211B7FC622C964030022952D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
