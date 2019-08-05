@@ -7,52 +7,18 @@
 //
 
 import SwiftUI
-
 import Scalar2D_SwiftUI
 import CoreGraphics
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, *)
-extension CGPath
-{
-    func fitting(geometry : GeometryProxy) -> CGPath
-    {
-        let baseBox = self.boundingBoxOfPath
-        guard !baseBox.isEmpty && !baseBox.isInfinite && !baseBox.isNull else
-        {
-            return self
-        }
-        
-        let nativeWidth = baseBox.width
-        let nativeHeight = baseBox.height
-        let nativeAspectRatio = nativeWidth/nativeHeight;
-        let boundedAspectRatio = geometry.size.width/geometry.size.height;
-        
-        var scale : CGFloat!
-        if(nativeAspectRatio >= boundedAspectRatio) // blank space on top and bottom
-        {
-            scale = geometry.size.width / nativeWidth
-        }
-        else
-        {
-            scale = geometry.size.height / nativeHeight
-        }
-        var requiredTransform = CGAffineTransform(scaleX: scale, y: scale).translatedBy(x: -baseBox.minX*scale, y: -baseBox.minY*scale)
-        
-        return self.copy(using: &requiredTransform) ?? self
-    }
-}
-
-
 public struct TestFrogView : View {
-    private let cgPath = CGPath.path(fromSVGPath: "M100 250 C167 256 217 249 224 244S234 238 229 218 235 203 249 204 270 157 265 115 C260 100 236 81 228 95 S 221 137 220 145 207 19 135 30 C116 9 86 18 85 43Q66 45 53 68C21 68 17 96 32 112 43 205 113 189 185 212")!
+    private let cgPath = CGPath.path(fromSVGPath: "M185 212C139 183 40 199 39 108A18 18 0 1 1 56 75Q67 53 91 45A18 18 0 1 1 127 38C170 29 193 62 220 161L225 110Q231 84 260 115C260 142 265 205 241 198Q215 193 227 230C236 249 161 249 125 248A5 5 325 1 0 122 259C192 264 248 249 237 226Q230 206 247 211  266 210 272 161C273 139 276 106 252 93 245 86 209 65 216 133 200 46 176 19 132 26A28 28 0 0 0 81 40Q61 46 52 63A27 28 0 0 0 27 110C33 192 70 192 145 205Z")!
 
     public var body: some View
     {
-        
-       GeometryReader
+       GeometryReader // using a GeometryReader as my SVG is not necessarily the exact size needed to fit the available size
         {
            proxy in
-            Path(self.cgPath.fitting(geometry: proxy)).strokedPath(StrokeStyle(lineWidth:3.0))
+            Path(self.cgPath.fitting(geometry: proxy)) //using the fitting extension to scale the cgPath to fit the available size.
         }.frame(idealWidth:cgPath.boundingBoxOfPath.width, idealHeight:cgPath.boundingBoxOfPath.height)
     }
 }
@@ -64,13 +30,13 @@ public struct TestFrogButtonView: View
         {
             // I'm using Scalar2D_Colour's to generate various Color elements and color the frog logo
             TestFrogView().scaledToFit().padding().foregroundColor($toggled.value ? Color(textual: "icc-color(p3, 0.50, 0.94, 0.94)") : Color(textual: "chartreuse"))
-            }.background(Color(textual: "rgba(44, 100, 211, .5)"))
+        }.background(Color(textual: "rgba(25, 25, 100, .5)"))
     }
 }
 #if DEBUG
 struct TestFrogView_Previews : PreviewProvider {
     static var previews: some View {
-        TestFrogButtonView()
+        TestFrogButtonView().previewDevice("Apple Watch Series 4 - 44mm")
     }
 }
 #endif

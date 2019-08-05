@@ -31,7 +31,9 @@
 //
 //
 import Cocoa
+import SwiftUI
 import Scalar2D_AppKitViews
+
 
 class TestView: NSView
 {
@@ -51,7 +53,10 @@ class TestView: NSView
 }
 
 class ViewController: NSViewController {
-
+    @IBSegueAction func showSwiftUI(_ coder: NSCoder, sender: Any?) -> NSViewController? {
+        return NSHostingController<TestFrogButtonView>(coder: coder, rootView: TestFrogButtonView())
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
