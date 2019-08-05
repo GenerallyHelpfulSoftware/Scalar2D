@@ -4,7 +4,30 @@
 //
 //  Created by Glenn Howes on 7/1/19.
 //
+//
+// The MIT License (MIT)
 
+//  Copyright (c) 2016-2019 Generally Helpful Software
+
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+//
 
 #if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
 import Foundation
@@ -16,6 +39,7 @@ import SwiftUI
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public extension Colour
 {
+    /// a SwiftUI Color element as Described by this Colour. Does not support CMYK
     var swiftUIColor: Color?
     {
         switch self
@@ -72,16 +96,11 @@ public extension Color
        // AnyColourParser(DeviceCYMKColourParser()), // don't know how to losslessly make a CYMK into a SwiftUI Color
         AnyColourParser(ICCColourParser()) // only support p3
     ]
-    
-    static  func from(string: String, colorContext: ColorContext? = nil) -> CGColor?
-    {
-        if let aColorDefinition = ((try? CGColor.standaloneParsers.parseString(source: string,  colorContext: nil)) as Colour??)
-        {
-            return aColorDefinition?.nativeColour
-        }
-        
-        return nil
-    }
+
+    /// init a SwiftUI Color from a string can be any of a wide range of possible formats
+    /// example:
+    /// let aColor = Color(textual: "icc-color(p3, 0.50, 0.94, 0.94)")!
+    /// will return nil if the Scalar2D parsers can't create a Color out of the input
     init?(textual string: String)
     {
         guard let aColorDefinition = ((try? Color.standaloneParsers.parseString(source: string,  colorContext: nil)) as Colour??), let result = aColorDefinition?.swiftUIColor else

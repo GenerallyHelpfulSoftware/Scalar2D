@@ -31,12 +31,13 @@
 //
 //
 
+#if os(iOS) || os(tvOS) || os(OSX) || os(watchOS)
 import Foundation
 import CoreGraphics
 
-
 public extension Colour
 {
+    /// the CGColor described by this color or nil if can't be created
     var nativeColour: CGColor?
     {
         switch self
@@ -140,3 +141,4 @@ extension CGColor
         return nil
     }
 }
+#endif
