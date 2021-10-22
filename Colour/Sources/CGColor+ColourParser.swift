@@ -103,7 +103,10 @@ public extension Colour
                 if let profileData = context.profileNamed(name: name)
                 {
                     if #available(OSX 10.12, iOS 10, *) {
-                        let colorSpace = CGColorSpace(iccData: profileData as CFData)
+                        guard let colorSpace = CGColorSpace(iccData: profileData as CFData) else 
+                        {
+                        	return nil // 
+                        }
                         result = CGColor(colorSpace: colorSpace, components: components)
                     } else {
                         return nil
