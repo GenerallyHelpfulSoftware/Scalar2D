@@ -22,15 +22,20 @@ public struct TestFrogView : View {
         }.frame(idealWidth:cgPath.boundingBoxOfPath.width, idealHeight:cgPath.boundingBoxOfPath.height)
     }
 }
+
+
 public struct TestFrogButtonView: View
 {
     @State var toggled : Bool = false
+    
     public var body: some View {
-        Button(action: {self.toggled = !self.toggled})
+        Button(action:
+                {self.toggled = !self.toggled})
         {
             // I'm using Scalar2D_Colour's to generate various Color elements and color the frog logo
             TestFrogView().scaledToFit().padding().foregroundColor($toggled.wrappedValue ? Color(textual: "icc-color(p3, 0.50, 0.94, 0.94)") : Color(textual: "chartreuse"))
-        }.background(Color(textual: "rgba(25, 25, 100, .5)"))
+            
+        }.buttonStyle(BorderlessButtonStyle()).background(Color(textual: "rgba(25, 25, 100, .5)"))
     }
 }
 #if DEBUG
