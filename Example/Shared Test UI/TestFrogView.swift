@@ -29,7 +29,7 @@ public struct TestFrogButtonView: View
         Button(action: {self.toggled = !self.toggled})
         {
             // I'm using Scalar2D_Colour's to generate various Color elements and color the frog logo
-            TestFrogView().scaledToFit().padding().foregroundColor($toggled.value ? Color(textual: "icc-color(p3, 0.50, 0.94, 0.94)") : Color(textual: "chartreuse"))
+            TestFrogView().scaledToFit().padding().foregroundColor($toggled.wrappedValue ? Color(textual: "icc-color(p3, 0.50, 0.94, 0.94)") : Color(textual: "chartreuse"))
         }.background(Color(textual: "rgba(25, 25, 100, .5)"))
     }
 }
