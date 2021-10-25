@@ -476,15 +476,15 @@ public struct StyleSelector : CSSRankable
                 return "No Failure"
             case .emptyString:
                 return "Empty String"
-            case let .unexpectedCharacter(badCharacter):
+            case let .unexpectedCharacter(badCharacter, _):
                 return "Unexpected character: \(badCharacter)"
             case .missingSelector:
                 return "Missing Selectors"
             case .missingValues:
                 return "Missing Values"
-            case let .unknownPseudoElement(string):
+            case let .unknownPseudoElement(string, _):
                 return "Unkown PseudoElement \(string)"
-            case let .unexpectedEnding(string):
+            case let .unexpectedEnding(string, _):
                 return "String after finished selector \(string)"
             case .multipleIdentifiers:
                 return "Multiple Identifiers"

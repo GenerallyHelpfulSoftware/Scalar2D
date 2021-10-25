@@ -121,7 +121,7 @@ public enum SelectorCombinator : CSSRankable
                 let combinator0String = combinator0.asString!
                 let combinator1String = combinator1.asString!
                 return "consequuative Combinators \(combinator0String) \(combinator1String)"
-            case .unexpectedCharacter(let aCharacter):
+            case .unexpectedCharacter(let aCharacter, _):
                 return "Unexpected character: \(aCharacter)"
                 
             }
