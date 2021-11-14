@@ -194,7 +194,7 @@ public extension Array where Element : ColourParser
         let normalizedsource = source.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         for aParser in self
         {
-            if let testResult = try aParser.deserializeString(source: normalizedsource, colorContext: nil)
+            if let testResult = try aParser.deserializeString(source: normalizedsource, colorContext: colorContext)
             {
                 result = testResult
                 break

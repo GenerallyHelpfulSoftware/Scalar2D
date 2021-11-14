@@ -39,7 +39,7 @@ let package = Package(
             targets: ["Scalar2D_UIKitViews"]),
         .library(
             name: "Scalar2D_SwiftUI",
-            targets: ["Scalar2D_SwiftUI"]),
+            targets: ["Scalar2D_SwiftUI"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -96,7 +96,7 @@ let package = Package(
         ),
         .target(
             name: "Scalar2D_SwiftUI",
-            dependencies: ["Scalar2D_Utils", "Scalar2D_Colour", "Scalar2D_FontDescription", "Scalar2D_Styling", "Scalar2D_CoreGraphics",],
+            dependencies: ["Scalar2D_Utils", "Scalar2D_Colour", "Scalar2D_FontDescription", "Scalar2D_Styling", "Scalar2D_CoreGraphics"],
             path: "SwiftUI/Sources"
         ),
         .testTarget(
